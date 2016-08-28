@@ -26,9 +26,10 @@ TIMEZONE = 'Europe/Rome'
 
 DEFAULT_LANG = 'en'
 
-THEME = './my_themes/Flex'
+THEME = 'Flex'
 
-STATIC_PATHS = ['static', 'pdfs']
+STATIC_PATHS = ['static', 'pdfs', 'extra/CNAME']
+EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 PLUGIN_PATHS = ['pelican-plugins', 'plugins']
 # Pelican plugins:

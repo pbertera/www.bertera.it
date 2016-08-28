@@ -13,8 +13,10 @@ RUN pip install -r /requirements.txt
 
 WORKDIR /site
 
-RUN mkdir -p /site/my_themes && cd /site/my_themes && \
+RUN mkdir -p /my_themes && cd /my_themes && \
     git clone https://github.com/alexandrevicenzi/Flex.git && cd Flex && \
-    git checkout tags/v1.2 && cd /site 
+    git checkout tags/v1.2
+
+RUN pelican-themes --install /my_themes/Flex --verbose && cd /site
 
 ENTRYPOINT ["make"]
