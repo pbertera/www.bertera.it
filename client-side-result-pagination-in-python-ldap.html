@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="admin" />
+<meta name="description" content="Sometime I must fighting with monkeys-configured LDAP servers. This time DIT does not support RFC2696 (Paged Results for LDAP query), the data tree contains over 90000 entries. Thanks to ldap.resiter is possible to implement client side pagination in ldap scripts. These simple lines of code explain how to: import ..." />
+<meta name="keywords" content="code, ldap, python, python-ldap">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="Client side result pagination in python-ldap"/>
+<meta property="og:description" content="Sometime I must fighting with monkeys-configured LDAP servers. This time DIT does not support RFC2696 (Paged Results for LDAP query), the data tree contains over 90000 entries. Thanks to ldap.resiter is possible to implement client side pagination in ldap scripts. These simple lines of code explain how to: import ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it/client-side-result-pagination-in-python-ldap.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-10-25 13:28:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://bertera.it/author/admin.html">
+<meta property="article:section" content="hack, scripts"/>
+<meta property="article:tag" content="code"/>
+<meta property="article:tag" content="ldap"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="python-ldap"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; Client side result pagination in python-ldap</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="client-side-result-pagination-in-python-ldap">Client side result pagination in python-ldap</h1>
+    <p>Posted on Tue 25 October 2011 in <a href="http://bertera.it/category/hack-scripts.html">hack, scripts</a></p>
+  </header>
+  <div>
+    <p>Sometime I must fighting with monkeys-configured LDAP servers.<br />
+This time DIT does not support
+<a href="http://www.ietf.org/rfc/rfc2696" title="RFC2696">RFC2696</a> (Paged Results for
+LDAP query), the data tree contains over 90000 entries.<br />
+Thanks to ldap.resiter is possible to implement client side pagination
+in ldap scripts.<br />
+These simple lines of code explain how to:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ldap</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">ldap.resiter</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">ldap_uri</span> <span class="o">=</span> <span class="s2">&quot;ldap://my.ldap.server&quot;</span>
+<span class="n">ldap_base</span> <span class="o">=</span> <span class="s2">&quot;dc=example,dc=com&quot;</span>
+<span class="n">page_entry_num</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">class</span> <span class="nc">MyLDAPObject</span><span class="p">(</span><span class="n">ldap</span><span class="o">.</span><span class="n">ldapobject</span><span class="o">.</span><span class="n">LDAPObject</span><span class="p">,</span><span class="n">ldap</span><span class="o">.</span><span class="n">resiter</span><span class="o">.</span><span class="n">ResultProcessor</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">ldapconn</span> <span class="o">=</span> <span class="n">MyLDAPObject</span><span class="p">(</span><span class="n">ldap_uri</span><span class="p">)</span>
+<span class="n">msg_id</span> <span class="o">=</span> <span class="n">ldapconn</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">ldap_base</span><span class="p">,</span> <span class="n">ldap</span><span class="o">.</span><span class="n">SCOPE_SUBTREE</span><span class="p">,</span> <span class="s2">&quot;(objectclass=*)&quot;</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">res_type</span><span class="p">,</span><span class="n">result</span><span class="p">,</span><span class="n">res_msgid</span><span class="p">,</span><span class="n">res_controls</span> <span class="ow">in</span> <span class="n">ldapconn</span><span class="o">.</span><span class="n">allresults</span><span class="p">(</span><span class="n">msg_id</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">=</span> <span class="n">page_entry_num</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;Press Enter for nex page or CTRL-C to interrupt:&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="n">ldapconn</span><span class="o">.</span><span class="n">abandon</span><span class="p">(</span><span class="n">msg_id</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s2">&quot;..Bye.&quot;</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">rdn</span><span class="p">,</span> <span class="n">ldap_obj</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;***********************&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;RDN: &quot;</span> <span class="o">+</span> <span class="n">rdn</span>
+        <span class="k">print</span> <span class="s2">&quot;***********************&quot;</span>
+        <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">ldap_obj</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;***********************&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://bertera.it/tag/code.html">code</a>
+      <a href="http://bertera.it/tag/ldap.html">ldap</a>
+      <a href="http://bertera.it/tag/python.html">python</a>
+      <a href="http://bertera.it/tag/python-ldap.html">python-ldap</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Client side result pagination in python-ldap",
+  "headline": "Client side result pagination in python-ldap",
+  "datePublished": "2011-10-25 13:28:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "admin",
+    "url": "http://bertera.it/author/admin.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://bertera.it/client-side-result-pagination-in-python-ldap.html",
+  "description": "Sometime I must fighting with monkeys-configured LDAP servers. This time DIT does not support RFC2696 (Paged Results for LDAP query), the data tree contains over 90000 entries. Thanks to ldap.resiter is possible to implement client side pagination in ldap scripts. These simple lines of code explain how to: import ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="admin" />
+<meta name="description" content="Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 ..." />
+<meta name="keywords" content="cisco, ios, monitoring, vpn">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="cisco IOS: Monitorare una vpn"/>
+<meta property="og:description" content="Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it/cisco-ios-monitorare-una-vpn.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-08-23 20:54:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://bertera.it/author/admin.html">
+<meta property="article:section" content="hack, systems"/>
+<meta property="article:tag" content="cisco"/>
+<meta property="article:tag" content="ios"/>
+<meta property="article:tag" content="monitoring"/>
+<meta property="article:tag" content="vpn"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; cisco IOS: Monitorare una vpn</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="cisco-ios-monitorare-una-vpn">cisco IOS: Monitorare una vpn</h1>
+    <p>Posted on Tue 23 August 2011 in <a href="http://bertera.it/category/hack-systems.html">hack, systems</a></p>
+  </header>
+  <div>
+    <p>Avere a che fare con delle connettività scadenti è sempre un disastro.</p>
+<p>Uno strumento per tenere monitorata una VPN e reagire in caso di down
+puo' essere comodo.</p>
+<p><strong>Esempio:</strong><br />
+In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B
+(192.168.8.0/24)<br />
+L'endpoint della rete A (192.186.2.1) è un router Cisco, l'enpoint B
+(192.168.8.1) non è in nostra gestione ma parla IPSec. Tramite le
+configurazione seguenti l'endpoint A tiene monitorato lo stato della VPN
+e in caso di down effettua il reload della VPN.</p>
+<p>1) definiamo lo <strong>sla monitor</strong> in modo che esegua un ping verso l'host
+192.168.8.1. Dobbiamo definire il source address in modo da essere
+sicuri di utilizzare il tunnel cifrato e lo scheduling in modo da
+eseguire il test sempre. E' possibile impostare una frequenza di
+esecuzione, di default è 60 secondi.</p>
+<div class="highlight"><pre><span></span> ip sla monitor 5
+ type echo protocol ipIcmpEcho 192.168.8.1 source-ipaddr 192.168.2.1
+ exit
+ ip sla monitor schedule 1 life forever start-time now
+</pre></div>
+
+
+<p>2) definiamo un tracker per lo sla monitor creato precedentemente:
+vogliamo monitorare quando lo <strong>sla monitor 5</strong> ritorna route
+unreachable e reagire solo se lo stato di down permane per piu' di 60
+secondi.</p>
+<div class="highlight"><pre><span></span> track 1 rtr 5 reachability
+ delay down 60
+</pre></div>
+
+
+<p>3) definiamo il "reattore"<br />
+Le configurazioni immesse finora fanno in modo che se l'host
+192.168.8.1 rimane irraggiungibile per piu' di 60 secondi viene generato
+un evento nel syslog locale. L'event manager applet seguente si occupa
+di intercettare l'evento syslog, eseguire il reload della VPN e loggare
+il messaggio "VPN Reloaded"</p>
+<div class="highlight"><pre><span></span> event manager applet VPN-IS-DOWN
+ event syslog pattern &quot;TRACKING-5-STATE: 5 .*Up-&gt;Down&quot;
+ action 1.0 cli command &quot;enable&quot;
+ action 2.0 cli command &quot;clear crypto session remote b.public.ip&quot;
+ action 3.0 cli command &quot;end&quot;
+ action 4.0 syslog msg &quot;VPN Reloaded&quot;
+</pre></div>
+
+
+<p><a href="http://www.cisco.com/en/US/docs/ios/12_4/ip_sla/configuration/guide/hsla_c.html">Cisco IOS IP SLA configuration
+guide</a><br />
+<a href="http://www.cisco.com/en/US/docs/ios/ipsla/command/reference/sla_book.html">Cisco IOS IP SLAs command
+reference</a><br />
+<a href="http://www.cisco.com/en/US/docs/ios/netmgmt/configuration/guide/nm_eem_policy_cli.html">Writing Cisco embedded event manager
+policy</a></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://bertera.it/tag/cisco.html">cisco</a>
+      <a href="http://bertera.it/tag/ios.html">ios</a>
+      <a href="http://bertera.it/tag/monitoring.html">monitoring</a>
+      <a href="http://bertera.it/tag/vpn.html">vpn</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "cisco IOS: Monitorare una vpn",
+  "headline": "cisco IOS: Monitorare una vpn",
+  "datePublished": "2011-08-23 20:54:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "admin",
+    "url": "http://bertera.it/author/admin.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://bertera.it/cisco-ios-monitorare-una-vpn.html",
+  "description": "Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 ..."
+}
+</script></body>
+</html>

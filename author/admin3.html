@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="author" content="Pietro Bertera" />
+    <meta name="description" content="Pietro Bertera's Thoughts and Writings" />
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Pietro Bertera's Blog"/>
+<meta property="og:description" content="Pietro Bertera's Thoughts and Writings"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+
+  <title>Pietro Bertera's Blog &ndash; Posts by: admin</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h2><a href="http://bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html#php-sinippet-howto-ignore-http-errors-in-file_get_contents">Php sinippet: howto ignore HTTP errors in file_get_contents()</a></h2>
+    <p>
+      Posted on Fri 04 November 2011 in <a href="http://bertera.it/category/coding-hack-scripts.html">coding, hack, scripts</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/code.html">code</a>,      <a href="http://bertera.it/tag/http.html">http</a>,      <a href="http://bertera.it/tag/php.html">php</a>    </p>
+  </header>
+  <div>
+      <p>A useful snipped of php code:  </p>
+<div class="highlight"><pre><span></span>echo file_get_contents(&#39;http://www.example.com/foo.html&#39;,\
+  FALSE, stream_context_create(array\
+  (&#39;http&#39;=&gt;;array(&#39;ignore_errors&#39; =&gt;; TRUE))))
+</pre></div>
+      <a class="btn" href="http://bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html#php-sinippet-howto-ignore-http-errors-in-file_get_contents">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/client-side-result-pagination-in-python-ldap.html#client-side-result-pagination-in-python-ldap">Client side result pagination in python-ldap</a></h2>
+    <p>
+      Posted on Tue 25 October 2011 in <a href="http://bertera.it/category/hack-scripts.html">hack, scripts</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/code.html">code</a>,      <a href="http://bertera.it/tag/ldap.html">ldap</a>,      <a href="http://bertera.it/tag/python.html">python</a>,      <a href="http://bertera.it/tag/python-ldap.html">python-ldap</a>    </p>
+  </header>
+  <div>
+      <p>Sometime I must fighting with monkeys-configured LDAP servers.<br />
+This time DIT does not support
+<a href="http://www.ietf.org/rfc/rfc2696" title="RFC2696">RFC2696</a> (Paged Results for
+LDAP query), the data tree contains over 90000 entries.<br />
+Thanks to ldap.resiter is possible to implement client side pagination
+in ldap scripts.<br />
+These simple lines of code explain how to:</p>
+<div class="highlight"><pre><span></span><span class="kn">import ...</span></pre></div>
+      <a class="btn" href="http://bertera.it/client-side-result-pagination-in-python-ldap.html#client-side-result-pagination-in-python-ldap">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html#howto-configure-multiple-mac-address-over-a-single-ethernet-interface">Howto configure multiple mac address over a single ethernet interface</a></h2>
+    <p>
+      Posted on Tue 04 October 2011 in <a href="http://bertera.it/category/hack-systems.html">hack, systems</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/iptables.html">iptables</a>,      <a href="http://bertera.it/tag/linux.html">linux</a>,      <a href="http://bertera.it/tag/networking.html">networking</a>,      <a href="http://bertera.it/tag/routing.html">routing</a>    </p>
+  </header>
+  <div>
+      <p>I up against this problem on a server hosted by Hetzner.My server is a
+virtual hypervisor containing several virtual machines.The Hetzner's
+politics is to statically associate a public IP to a single mac address,
+is therefore impossible to have multiple IP address on a single ethernet
+device ...</p>
+      <a class="btn" href="http://bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html#howto-configure-multiple-mac-address-over-a-single-ethernet-interface">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/cisco-ios-monitorare-una-vpn.html#cisco-ios-monitorare-una-vpn">cisco IOS: Monitorare una vpn</a></h2>
+    <p>
+      Posted on Tue 23 August 2011 in <a href="http://bertera.it/category/hack-systems.html">hack, systems</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/cisco.html">cisco</a>,      <a href="http://bertera.it/tag/ios.html">ios</a>,      <a href="http://bertera.it/tag/monitoring.html">monitoring</a>,      <a href="http://bertera.it/tag/vpn.html">vpn</a>    </p>
+  </header>
+  <div>
+      <p>Avere a che fare con delle connettività scadenti è sempre un disastro.</p>
+<p>Uno strumento per tenere monitorata una VPN e reagire in caso di down
+puo' essere comodo.</p>
+<p><strong>Esempio:</strong><br />
+In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B
+(192.168 ...</p>
+      <a class="btn" href="http://bertera.it/cisco-ios-monitorare-una-vpn.html#cisco-ios-monitorare-una-vpn">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/bacula-5-0-3-debian-squeeze-backport.html#bacula-5-0-3-debian-squeeze-backport">Bacula 5.0.3 debian squeeze backport</a></h2>
+    <p>
+      Posted on Mon 25 July 2011 in <a href="http://bertera.it/category/systems.html">systems</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/bacula.html">bacula</a>,      <a href="http://bertera.it/tag/debian.html">debian</a>    </p>
+  </header>
+  <div>
+      <p>Packages available here:
+<a href="http://www.bertera.it/software/bacula/bacula-backports/">http://www.bertera.it/software/bacula/bacula-backports/</a></p>
+      <a class="btn" href="http://bertera.it/bacula-5-0-3-debian-squeeze-backport.html#bacula-5-0-3-debian-squeeze-backport">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/poor-man-vmware-consolidate-backup.html#poor-man-vmware-consolidate-backup">Poor man vmware consolidate backup</a></h2>
+    <p>
+      Posted on Mon 25 July 2011 in <a href="http://bertera.it/category/scripts-systems.html">scripts, systems</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/backup.html">backup</a>,      <a href="http://bertera.it/tag/bacula.html">bacula</a>,      <a href="http://bertera.it/tag/script.html">script</a>,      <a href="http://bertera.it/tag/vmware.html">vmware</a>    </p>
+  </header>
+  <div>
+      <ul>
+<li><strong>Update:</strong> for an english version of this post you
+can read the README of pmvcb at <a href="https://github.com/pbertera/pmvcb">github</a><br />
+For bacula integration of pvmcb you can see the instruction on bacula <a href="http://wiki.bacula.org/doku.php?id=application_specific_backups:poor_man_vmware_consolidated_backup">wiki</a></li>
+</ul>
+<p>VMware offre un pacchetto di backup per le macchine virtuali: <a href="http://www.vmware.com/products/vi/cb_overview.html">VCB</a></p>
+<p><img alt="VCB" src="http://bertera.it/static/vcb.gif" /></p>
+<p>Il VCB non fa altro che:</p>
+<ul>
+<li>eseguire uno snapshot ...</li></ul>
+      <a class="btn" href="http://bertera.it/poor-man-vmware-consolidate-backup.html#poor-man-vmware-consolidate-backup">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">bash snippet: dumping function call trace</a></h2>
+    <p>
+      Posted on Mon 18 July 2011 in <a href="http://bertera.it/category/scripts.html">scripts</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/bash.html">bash</a>,      <a href="http://bertera.it/tag/debugging.html">debugging</a>,      <a href="http://bertera.it/tag/script.html">script</a>    </p>
+  </header>
+  <div>
+      <p>Uno snippet di codice bash utile nel debugging di script.</p>
+<div class="highlight"><pre><span></span>#@.. function:: __cm_exit_error([text],[...])
+#@
+#@   Stampa la stringa passata in stderr ed esce
+#@   Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni
+#@
+#@   :param text: la stringa da stampare
+#@   :type text: String
+#@
+__cm_exit_error()
+
+{
+        echo &quot;Error in <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">BASH_LINENO ...</span></pre></div>
+      <a class="btn" href="http://bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">cisco IOS contextual config diffs via syslog</a></h2>
+    <p>
+      Posted on Mon 11 October 2010 in <a href="http://bertera.it/category/hack.html">hack</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/cisco.html">cisco</a>,      <a href="http://bertera.it/tag/cli.html">cli</a>,      <a href="http://bertera.it/tag/syslog.html">syslog</a>    </p>
+  </header>
+  <div>
+      <p>Event amanager applet per salvare il diff tra stratup-config e
+running-config via syslog.</p>
+<div class="highlight"><pre><span></span><span class="x">event manager applet wr-mem-match </span>
+<span class="x"> event cli pattern &quot;wr.* mem.*&quot; sync yes</span>
+<span class="x"> action 1.0 cli command &quot;enable&quot;</span>
+<span class="x"> action 1.1 cli command &quot;show archive config differences nvram:/startup-config system:/running-config&quot;</span>
+<span class="x"> action 1.2 syslog msg &quot;</span><span class="p">$</span><span class="nv">_cli_result</span><span class="x">&quot;</span>
+<span class="x"> set ...</span></pre></div>
+      <a class="btn" href="http://bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Authentication username in Astersik SIP peer</a></h2>
+    <p>
+      Posted on Mon 12 July 2010 in <a href="http://bertera.it/category/coding-hack.html">coding, hack</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://bertera.it/tag/c.html">c</a>,      <a href="http://bertera.it/tag/patch.html">patch</a>,      <a href="http://bertera.it/tag/voip.html">VoIP</a>    </p>
+  </header>
+  <div>
+      <p>Asterisk use peername as username during SIP inbound digest
+authentication.<br />
+<a href="http://www.bertera.it/software/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.diff">This
+patch</a>
+add <strong>authuser</strong> parameter in SIP peer definition and use authuser in
+digest authentication:</p>
+<p><strong>Peer definition in /etc/asterisk/sip.conf</strong>  </p>
+<div class="highlight"><pre><span></span>...
+[pietro](sip-client-base)
+authuser=MyUsername
+secret=XXXXX
+qualify=yes
+nat=yes
+...
+</pre></div>
+
+
+<p><strong>Peer definition in my SIP client (Twinkle)</strong><br />
+<img alt="client configuration" src="http://bertera.it/static/Twinkle-conf.png" /></p>
+<p><strong>REGISTER ...</strong></p>
+      <a class="btn" href="http://bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">GNU/Find posix acl support</a></h2>
+    <p>
+      Posted on Mon 28 September 2009 in <a href="http://bertera.it/category/coding-hack.html">coding, hack</a>
+      &#8226; Tagged with
+      <a href="http://bertera.it/tag/c.html">c</a>,      <a href="http://bertera.it/tag/find.html">find</a>,      <a href="http://bertera.it/tag/gnu.html">gnu</a>    </p>
+  </header>
+  <div>
+      <p>Cercare file che corrispondono a delle acl posix all'interno di un
+filesystem molto intricato è sempre un delirio.</p>
+<p><a href="http://www.bertera.it/software/findutils-acl/">Questa</a> patch aggiunge
+l'opzione -acl al comando find
+(<a href="http://www.gnu.org/software/findutils/">GNU/Findutils</a>).</p>
+<p>Esempio d'uso:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+<span class="err">$</span> <span class="s s-Atom">mkdir</span> <span class="mi">5</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rx</span> <span class="mi">1</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">bin ...</span></pre></div>
+      <a class="btn" href="http://bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">Continue reading</a>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="http://bertera.it/author/admin4.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+    <a class="btn float-right" href="http://bertera.it/author/admin2.html">
+      Newer Posts <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://bertera.it/" rel="alternate"></link><link href="http://bertera.it/feeds/hack-systems.atom.xml" rel="self"></link><id>http://bertera.it/</id><updated>2011-10-04T18:01:00+02:00</updated><entry><title>Howto configure multiple mac address over a single ethernet interface</title><link href="http://bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html" rel="alternate"></link><published>2011-10-04T18:01:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2011-10-04:howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html</id><summary type="html">&lt;p&gt;I up against this problem on a server hosted by Hetzner.My server is a
+virtual hypervisor containing several virtual machines.The Hetzner's
+politics is to statically associate a public IP to a single mac address,
+is therefore impossible to have multiple IP address on a single ethernet
+device.  Observing this rule you can associate only one virtual machine
+with one public IP, and you cannot create a firewall with all public IPs
+attested on public interface and private interfaces attached to a
+vSwitchs.&lt;/p&gt;
+&lt;p&gt;To solve the problem you can use the macvlan module. Macvlan allow to
+create indipendent logical devices over a single ethernet device. In
+this way you have three (logical) ethernet device with three IPs and
+three mac address over a single physical device. This solve the
+addressing problem but slightly complicates routing and NAT.&lt;/p&gt;
+&lt;h3&gt;Configuration example:&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Public IPs:&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;A.A.A.A associated mac address: aa:aa:aa:aa:aa:aa  &lt;/p&gt;
+&lt;p&gt;B.B.B.B associated mac address: bb:bb:bb:bb:bb:bb  &lt;/p&gt;
+&lt;p&gt;C.C.C.C associated mac address: cc:cc:cc:cc:cc:cc  &lt;/p&gt;
+&lt;p&gt;External interface: eth0  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gateway:&lt;/strong&gt;&lt;br /&gt;
+X.X.X.X&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Internal Subnets:&lt;/strong&gt;&lt;br /&gt;
+a.a.a.0/24 (eth1)&lt;br /&gt;
+b.b.b.0/24 (eth2)&lt;br /&gt;
+c.c.c.0/24 (eth3)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Firewall IPs on internal subnets:&lt;/strong&gt;&lt;br /&gt;
+eth1: a.a.a.254&lt;br /&gt;
+eth2: b.b.b.254&lt;br /&gt;
+eth3: c.c.c.254&lt;/p&gt;
+&lt;h3&gt;Network schema:&lt;/h3&gt;
+&lt;p&gt;I want to map the outgoing connections in this way:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;Origin subnet&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Public IP&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;a.a.a.0/24&lt;/td&gt;
+&lt;td&gt;A.A.A.A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;b.b.b.0/24&lt;/td&gt;
+&lt;td&gt;B.B.B.B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.c.c.0/24&lt;/td&gt;
+&lt;td&gt;C.C.C.C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Macvlan interface creation&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;set-up link on physical device:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip link set up dev eth0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;create logical interfaces:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa
+    ip link add link eth0 dev peth1 type macvlan address bb:bb:bb:bb:bb:bb
+    ip link add link eth0 dev peth2 type macvlan address cc:cc:cc:cc:cc:cc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Assign ip address and activate link:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip addr add A.A.A.A/26 dev peth0
+    ip addr add B.B.B.B/26 dev peth1
+    ip addr add C.C.C.C/26 dev peth2
+    ip link set up dev peth0
+    ip link set up dev peth1
+    ip link set up dev peth2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Normally configure the internal interfaces (eth1, eth2 eth3):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip addr add a.a.a.245/24 dev eth1
+    ip addr add b.b.b.245/24 dev eth2
+    ip addr add b.b.b.245/24 dev eth3
+    ip link set up dev eth1
+    ip link set up dev eth2
+    ip link set up dev eth3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;This is the routing situation:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# ip route sh
+127.0.0.0/8 dev lo  proto kernel  scope link  src 127.0.0.1
+a.a.a.0/24 dev eth1  proto kernel  scope link  src a.a.a.254
+a.a.a.0/24 dev eth2  proto kernel  scope link  src b.b.b.254
+a.a.a.0/24 dev eth3  proto kernel  scope link  src c.c.c.254
+A.A.A.A/26 dev peth0  proto kernel  scope link  src A.A.A.A
+B.B.B.B/26 dev peth1  proto kernel  scope link  src B.B.B.B
+C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;You must create a routing table for all outgoing interface:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    echo &amp;quot;500 ipA&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+    echo &amp;quot;600 ipB&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+    echo &amp;quot;700 ipC&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add a "catch all" routing table:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    echo &amp;quot;1000 catch_all&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add gateways for tables:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip route add default via X.X.X.X dev peth0 table ipA
+    ip route add default via X.X.X.X dev peth1 table ipB
+    ip route add default via X.X.X.X dev peth1 table ipC
+    ip route add default via X.X.X.X dev peth0 table catch_all
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add routing policy for internal subnet. Note that the priority must
+be greater than the priority used for the normal and default tables (for
+show all rules: ip rule show )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip rule add from a.a.a.0/24 lookup ipA pref 60000
+    ip rule add from b.b.b.0/24 lookup ipB pref 60001
+    ip rule add from c.c.c.0/24 lookup ipC pref 60002
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add routing policy for local IPs:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip rule add from A.A.A.254 lookup ipA pref 60010
+    ip rule add from B.B.B.254 lookup ipB pref 60011
+    ip rule add from C.C.C.254 lookup ipC pref 60012
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add a catch all routing policy (with preference greater than all):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip rule add from all lookup catch_all pref 70000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Configure the NAT:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    iptables -t nat -I POSTROUTING -o peth0 -s a.a.a.0/24 -j SNAT --to-source A.A.A.A
+    iptables -t nat -I POSTROUTING -o peth1 -s b.b.b.0/24 -j SNAT --to-source B.B.B.B
+    iptables -t nat -I POSTROUTING -o peth2 -s c.c.c.0/24 -j SNAT --to-source C.C.C.C
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="iptables"></category><category term="linux"></category><category term="networking"></category><category term="routing"></category></entry><entry><title>cisco IOS: Monitorare una vpn</title><link href="http://bertera.it/cisco-ios-monitorare-una-vpn.html" rel="alternate"></link><published>2011-08-23T20:54:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2011-08-23:cisco-ios-monitorare-una-vpn.html</id><summary type="html">&lt;p&gt;Avere a che fare con delle connettività scadenti è sempre un disastro.&lt;/p&gt;
+&lt;p&gt;Uno strumento per tenere monitorata una VPN e reagire in caso di down
+puo' essere comodo.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Esempio:&lt;/strong&gt;&lt;br /&gt;
+In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B
+(192.168.8.0/24)&lt;br /&gt;
+L'endpoint della rete A (192.186.2.1) è un router Cisco, l'enpoint B
+(192.168.8.1) non è in nostra gestione ma parla IPSec. Tramite le
+configurazione seguenti l'endpoint A tiene monitorato lo stato della VPN
+e in caso di down effettua il reload della VPN.&lt;/p&gt;
+&lt;p&gt;1) definiamo lo &lt;strong&gt;sla monitor&lt;/strong&gt; in modo che esegua un ping verso l'host
+192.168.8.1. Dobbiamo definire il source address in modo da essere
+sicuri di utilizzare il tunnel cifrato e lo scheduling in modo da
+eseguire il test sempre. E' possibile impostare una frequenza di
+esecuzione, di default è 60 secondi.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; ip sla monitor 5
+ type echo protocol ipIcmpEcho 192.168.8.1 source-ipaddr 192.168.2.1
+ exit
+ ip sla monitor schedule 1 life forever start-time now
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2) definiamo un tracker per lo sla monitor creato precedentemente:
+vogliamo monitorare quando lo &lt;strong&gt;sla monitor 5&lt;/strong&gt; ritorna route
+unreachable e reagire solo se lo stato di down permane per piu' di 60
+secondi.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; track 1 rtr 5 reachability
+ delay down 60
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3) definiamo il "reattore"&lt;br /&gt;
+Le configurazioni immesse finora fanno in modo che se l'host
+192.168.8.1 rimane irraggiungibile per piu' di 60 secondi viene generato
+un evento nel syslog locale. L'event manager applet seguente si occupa
+di intercettare l'evento syslog, eseguire il reload della VPN e loggare
+il messaggio "VPN Reloaded"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; event manager applet VPN-IS-DOWN
+ event syslog pattern &amp;quot;TRACKING-5-STATE: 5 .*Up-&amp;gt;Down&amp;quot;
+ action 1.0 cli command &amp;quot;enable&amp;quot;
+ action 2.0 cli command &amp;quot;clear crypto session remote b.public.ip&amp;quot;
+ action 3.0 cli command &amp;quot;end&amp;quot;
+ action 4.0 syslog msg &amp;quot;VPN Reloaded&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://www.cisco.com/en/US/docs/ios/12_4/ip_sla/configuration/guide/hsla_c.html"&gt;Cisco IOS IP SLA configuration
+guide&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://www.cisco.com/en/US/docs/ios/ipsla/command/reference/sla_book.html"&gt;Cisco IOS IP SLAs command
+reference&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://www.cisco.com/en/US/docs/ios/netmgmt/configuration/guide/nm_eem_policy_cli.html"&gt;Writing Cisco embedded event manager
+policy&lt;/a&gt;&lt;/p&gt;</summary><category term="cisco"></category><category term="ios"></category><category term="monitoring"></category><category term="vpn"></category></entry></feed>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="admin" />
+<meta name="description" content="In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network ..." />
+<meta name="keywords" content="routing, ssh, vpn">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="How to push a public IP on your laptop using SSH bridged tunnel"/>
+<meta property="og:description" content="In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-03-04 23:49:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://bertera.it/author/admin.html">
+<meta property="article:section" content="hack, scripts, systems"/>
+<meta property="article:tag" content="routing"/>
+<meta property="article:tag" content="ssh"/>
+<meta property="article:tag" content="vpn"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; How to push a public IP on your laptop using SSH bridged tunnel</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel">How to push a public IP on your laptop using SSH bridged tunnel</h1>
+    <p>Posted on Sun 04 March 2012 in <a href="http://bertera.it/category/hack-scripts-systems.html">hack, scripts, systems</a></p>
+  </header>
+  <div>
+    <p>In my <a href="http://www.bertera.it/index.php/2008/12/22/vpn-layer-3-con-openssh/" title="VPN layer 3 con OpenSSH">previous
+post</a> I
+talked about Layer 3 VPN feature of OpenSSH (starting from version
+4.3).<br />
+Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature
+you can create a virtual network device that, through the encrypted
+tunnel, is connected on the same network segment of remote server. In
+fact the VPN acts as a network switch connecting local virtual device
+with remote device in same ethernet network.</p>
+<p>With this setup your SSH client will connect to remote server and start
+forwarding packet between local end remote TUN/TAP device.<br />
+All packets are forward through the encrypted SSH tunnel.</p>
+<p>using <strong>-o Tunnel=ethernet</strong> instead of <strong><em>-o
+Tunnel=point-to-point</em></strong> ssh process try to use a tap device and
+forwards all ethernet frames (layer 2). You can specify TUN/TAP local
+and remote device index with <strong><em>-w</em></strong> option:</p>
+<p>This command: <code>ssh -o Tunnel=ethernet -w 0:1 host.example.com</code>
+establish an ssh connection to host.example.com and forwards all ethernet
+frames from local tap0 to remote tap1 and vice-versa.<br />
+If tap0 and tap1 doesn't exist ssh will try to create.</p>
+<p>In order to setup a public IP on your laptop you need to create a bridge
+between remote remote public ethernet device and remote TUN/TAP device.
+Below the accomplishment step for this task:</p>
+<p>Assuming that this is the public network configuration:</p>
+<p><strong>Public IP:</strong> 78.47.249.187<br />
+<strong>Public Network:</strong> 78.47.249.160<br />
+<strong>Public Gateway:</strong> 78.47.249.190<br />
+<strong>Laptop Public IP:</strong> 78.47.249.187</p>
+<p><strong>On server side:</strong></p>
+<ul>
+<li>create a bridge: <code>brctl addbr br0</code></li>
+<li>create the remote tap device: <code>tunctl -t tap0</code></li>
+<li>add devices to bridge: <code>brctl addif br0 eth0 &amp;&amp; brctl addif br0 tap0</code></li>
+<li>setup the remote public IP address on bridge interface: <code>ip addr add  78.47.249.187/27 dev br0</code></li>
+<li>setup link and promiscuous mode: <code>ip link set up promisc on dev tap0  &amp;&amp; ip link set up promisc on dev eth0</code></li>
+<li>setup default gateway: <code>ip route add default via  78.47.249.190</code></li>
+<li>Permit tunnel on ssh server: add "<strong>PermitTunnel yes</strong>" on your sshd_config sshd configuration file</li>
+</ul>
+<p>Now the public machine must be connected to public network and
+reachable.</p>
+<p><strong>On client side:</strong></p>
+<ul>
+<li>connect your laptop to server and create the tunnel <code>ssh -o Tunnel=ethernet -w 0:0 root@78.47.249.187</code></li>
+<li>add public ip to your client and setup link: <code>ip addr add  78.47.249.188/27 dev tap0 &amp;&amp; ip link set up dev tap0</code></li>
+</ul>
+<p>Now your laptop is directly connected to public remote network through
+tap0 device.<br />
+Following steps are needed only  if you  need to substitute your
+gateway with public gw:</p>
+<ul>
+<li>setup a static route to remote server (you need to know your current
+default gw): <code>ip route add 78.47.249.187 via my.old.def.gw</code></li>
+<li>setup the new default gw: <code>ip route del default via my.old.def.gw &amp;&amp; ip route add default via 78.47.249.190 dev tap0</code></li>
+</ul>
+<p><strong>Tips:</strong></p>
+<ul>
+<li>You can automate all client task with a simple bash script</li>
+<li><em>-u</em> and <em>-g</em> tunctl options permit to manage TUN/TAP device with an unprivileged user</li>
+<li>use ssh public key authentication and a dedicated unprivileged user</li>
+<li><em>-NTCf -o ServerAliveInterval=60</em> ssh options are your friends</li>
+<li>following the configuration files for automatic and reboot persistent configuration on server side (for RedHat based distro):</li>
+</ul>
+<p><strong>/etc/sysconfig/network-scripts/ifcfg-br0</strong></p>
+<div class="highlight"><pre><span></span>DEVICE=&quot;br0&quot;
+ONBOOT=&quot;yes&quot;
+TYPE=Bridge
+BOOTPROTO=none
+IPADDR=78.47.249.187
+PREFIX=27
+GATEWAY=78.47.249.190
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=yes
+IPV6INIT=no
+NAME=&quot;System Bridge&quot;
+</pre></div>
+
+
+<p><strong>/etc/sysconfig/network-scripts/ifcfg-tap0</strong></p>
+<div class="highlight"><pre><span></span>DEVICE=tap0
+TYPE=Tap
+OWNER=vpnuser #use an unprivileged user for your TUN/TAP device
+BRIDGE=br0
+</pre></div>
+
+
+<p><strong>/etc/sysconfig/network-scripts/ifcfg-eth0</strong></p>
+<div class="highlight"><pre><span></span>DEVICE=&quot;eth0&quot;
+ONBOOT=&quot;yes&quot;
+TYPE=Ethernet
+BRIDGE=br0
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://bertera.it/tag/routing.html">routing</a>
+      <a href="http://bertera.it/tag/ssh.html">ssh</a>
+      <a href="http://bertera.it/tag/vpn.html">vpn</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "How to push a public IP on your laptop using SSH bridged tunnel",
+  "headline": "How to push a public IP on your laptop using SSH bridged tunnel",
+  "datePublished": "2012-03-04 23:49:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "admin",
+    "url": "http://bertera.it/author/admin.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html",
+  "description": "In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network ..."
+}
+</script></body>
+</html>

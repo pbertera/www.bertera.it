@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="admin" />
+<meta name="description" content="With a bit of code you can build a simple but powerful, single page, CMS using python, web.py and content stored in markdown files. 1) the application: application.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ..." />
+<meta name="keywords" content="python, web.py, webapplications">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="Simple CMS using web.py and Markdown"/>
+<meta property="og:description" content="With a bit of code you can build a simple but powerful, single page, CMS using python, web.py and content stored in markdown files. 1) the application: application.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it/simple-cms-usin-web-py-and-markdown.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2011-11-18 20:54:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://bertera.it/author/admin.html">
+<meta property="article:section" content="hack, scripts"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="web.py"/>
+<meta property="article:tag" content="webapplications"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; Simple CMS using web.py and Markdown</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="simple-cms-usin-web-py-and-markdown">Simple CMS using web.py and Markdown</h1>
+    <p>Posted on Fri 18 November 2011 in <a href="http://bertera.it/category/hack-scripts.html">hack, scripts</a></p>
+  </header>
+  <div>
+    <p>With a bit of code you can build a simple but powerful, single page, CMS
+using <a href="http://www.python.org">python</a>, <a href="http://www.webpy.org">web.py</a>
+and content stored in <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a>
+files.</p>
+<p>1) the application: <strong>application.py</strong></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python26</span>
+<span class="c1"># vi:si:et:sw=4:sts=4:ts=4</span>
+<span class="c1"># -*- coding: UTF-8 -*-</span>
+<span class="c1"># -*- Mode: Python -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2011 Bertera Pietro</span>
+
+<span class="kn">import</span> <span class="nn">web</span>
+<span class="kn">import</span> <span class="nn">mimetypes</span>
+
+<span class="kn">import</span> <span class="nn">markdown2</span>
+
+<span class="c1"># pages is a list of dictionary: the value of key name represent the name\</span>
+<span class="c1"># of page, the value of  link represent the routing pattern,</span>
+<span class="c1"># and content_file is the path of markdown file with the page content</span>
+<span class="n">pages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> 
+                  <span class="s2">&quot;content_file&quot;</span><span class="p">:</span> <span class="s2">&quot;contents/home.md&quot;</span>
+                 <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Info&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;/info.html&quot;</span><span class="p">,</span> 
+                  <span class="s2">&quot;content_file&quot;</span><span class="p">:</span> <span class="s2">&quot;contents/info.md&quot;</span>
+                 <span class="p">},</span>
+    <span class="p">]</span>
+
+<span class="c1"># this is the directory with static files (images, css, ...)</span>
+<span class="n">static_dir</span> <span class="o">=</span> <span class="s2">&quot;public&quot;</span>
+
+<span class="c1"># the view, layout.html is a template file</span>
+<span class="n">htmlview</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s2">&quot;layout&quot;</span><span class="p">,</span>\
+   <span class="nb">globals</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pages&#39;</span><span class="p">:</span><span class="n">pages</span><span class="p">,</span> <span class="s1">&#39;ctx&#39;</span><span class="p">:</span> <span class="n">web</span><span class="o">.</span><span class="n">ctx</span><span class="p">})</span>
+
+<span class="c1"># generic controller for Markdown pages:</span>
+<span class="k">class</span> <span class="nc">PageClassTemplate</span><span class="p">:</span>
+    <span class="n">content_file</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">markdown2</span><span class="o">.</span><span class="n">markdown_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">htmlview</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+<span class="c1"># Controller for static files</span>
+<span class="k">class</span> <span class="nc">Public</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">web</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;Content-type&#39;</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">(</span><span class="n">file_name</span><span class="p">))</span>
+            <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">web</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">web</span><span class="o">.</span><span class="n">notfound</span><span class="p">()</span>
+
+<span class="c1"># mime type interpreter</span>
+<span class="k">def</span> <span class="nf">mime_type</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">guess_type</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;application/octet-stream&#39;</span>
+
+<span class="c1"># initialize the application</span>
+<span class="n">myApp</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">mapping</span><span class="o">=</span><span class="p">(),</span> <span class="n">fvars</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">pages</span><span class="p">:</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;link&quot;</span><span class="p">]</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>\
+   <span class="p">(</span><span class="n">PageClassTemplate</span><span class="p">,</span><span class="nb">object</span><span class="p">,),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">content_file</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;content_file&quot;</span><span class="p">]))</span>
+    <span class="n">myApp</span><span class="o">.</span><span class="n">add_mapping</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+
+<span class="c1"># add static file handler:</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">static_dir</span><span class="p">:</span>
+        <span class="n">myApp</span><span class="o">.</span><span class="n">add_mapping</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">%s</span><span class="s2">/.+&quot;</span> <span class="o">%</span> <span class="n">static_dir</span><span class="p">,</span> <span class="s2">&quot;Public&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># RUN!</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">myApp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>2) main template layout: <strong>views/layout.html</strong></p>
+<div class="highlight"><pre><span></span>$def with (page, title=&quot;&quot;)
+
+<span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xml:lang=</span><span class="s">&quot;cs&quot;</span> <span class="na">lang=</span><span class="s">&quot;cs&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Single Page Markdown CMS<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;h1&gt;</span>
+Custom header here      
+<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;ul&gt;</span>        
+$for item in pages:
+    $ attr = &#39;&#39;
+    $if ctx.path == item[&#39;link&#39;]:
+        $ attr=&#39; id=&quot;current&quot;&#39;
+    <span class="nt">&lt;li</span><span class="err">$:(attr)</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;$item[&#39;link&#39;]&quot;</span><span class="nt">&gt;</span>$item[&#39;name&#39;]<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+$pass
+        <span class="nt">&lt;/ul&gt;</span>
+
+<span class="nt">&lt;hr/&gt;</span>
+$:page
+<span class="nt">&lt;hr/&gt;</span>    
+
+    Custom footer here 
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>3) content template: views/page.html</p>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">def</span><span class="x"> with (html)</span>
+
+<span class="p">$</span><span class="x">:html</span>
+</pre></div>
+
+
+<p>4) markdown contents:</p>
+<p><strong>contents/home.md</strong></p>
+<div class="highlight"><pre><span></span>## Welcome !!
+
+### This is an Hello word Page!
+
+**web.py** the best python framework for webapps [web.py][].
+
+This is a simple page from a markdown file
+
+  [web.py]: http://www.webpy.org
+</pre></div>
+
+
+<p><strong>contents/info.md</strong>  </p>
+<div class="highlight"><pre><span></span><span class="cp">## Info</span>
+
+<span class="n">this</span> <span class="n">stupid</span> <span class="n">idea</span> <span class="n">is</span> <span class="n">made</span> <span class="n">by</span> <span class="p">[</span><span class="n">bertera</span> <span class="n">pietro</span><span class="p">](</span><span class="nl">http</span><span class="p">:</span><span class="c1">//www.bertera.it)</span>
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://bertera.it/tag/python.html">python</a>
+      <a href="http://bertera.it/tag/webpy.html">web.py</a>
+      <a href="http://bertera.it/tag/webapplications.html">webapplications</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Simple CMS using web.py and Markdown",
+  "headline": "Simple CMS using web.py and Markdown",
+  "datePublished": "2011-11-18 20:54:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "admin",
+    "url": "http://bertera.it/author/admin.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://bertera.it/simple-cms-usin-web-py-and-markdown.html",
+  "description": "With a bit of code you can build a simple but powerful, single page, CMS using python, web.py and content stored in markdown files. 1) the application: application.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ..."
+}
+</script></body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="admin" />
+<meta name="description" content="I don't like cloud storage, especially I don't like Dropbox security history. Anyway Dropbox and others cloud storage are damn cheap and easy to use, I use it for sharing non-important documents. This little howto explain how you can backup your Dropbox share with Bacula. First you must ..." />
+<meta name="keywords" content="backup, bacula, bash, dropbox">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="Backup your Dropbox share with bacula"/>
+<meta property="og:description" content="I don't like cloud storage, especially I don't like Dropbox security history. Anyway Dropbox and others cloud storage are damn cheap and easy to use, I use it for sharing non-important documents. This little howto explain how you can backup your Dropbox share with Bacula. First you must ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it/backup-your-dropbox-share-with-bacula.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2012-07-27 22:33:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://bertera.it/author/admin.html">
+<meta property="article:section" content="scripts, systems"/>
+<meta property="article:tag" content="backup"/>
+<meta property="article:tag" content="bacula"/>
+<meta property="article:tag" content="bash"/>
+<meta property="article:tag" content="dropbox"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; Backup your Dropbox share with bacula</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="backup-your-dropbox-share-with-bacula">Backup your Dropbox share with bacula</h1>
+    <p>Posted on Fri 27 July 2012 in <a href="http://bertera.it/category/scripts-systems.html">scripts, systems</a></p>
+  </header>
+  <div>
+    <p>I don't
+<a href="http://www.zdnet.com/blog/bott/sorry-dropbox-i-still-dont-trust-you/4173">like</a>
+cloud storage, especially I don't like Dropbox security
+<a href="http://www.schneier.com/blog/archives/2011/05/dropbox_securit.html">history</a>.<br />
+Anyway Dropbox and others cloud storage are damn cheap and easy to use,
+I use it for sharing non-important documents.</p>
+<p>This little howto explain how you can backup your Dropbox share with
+<a href="http://www.bacula.org">Bacula</a>.</p>
+<p>First you must install Dropbox in your server:</p>
+<ul>
+<li>Download the python <strong>CLI script</strong> from <a href="https://www.dropbox.com/install?os=lnx">here</a>: <code>wget https://linux.dropbox.com/packages/dropbox.py</code></li>
+<li>and install: <code>LC_ALL=C python26 ./dropbox.py start -i</code></li>
+<li>run it: <code>LC_ALL=C python26 ./dropbox.py start</code></li>
+<li>Now Dropbox start reply with a link:</li>
+</ul>
+<div class="highlight"><pre><span></span>To link this computer to a dropbox account, visit the following url:  
+
+https://www.dropbox.com/cli_link?host_id=4258saj1921sa123aa17329a12e3&amp;cl=en_US  
+</pre></div>
+
+
+<ul>
+<li>Copy and paste the in your browser and insert you DropBox credentials, after you can restart Dropbox.<br />
+Dropbox will sync your storage with your ~/Dropbox folder. You can check the status with the command: <code>LC_ALL=C python26 ./dropbox.py status</code>
+*When your Dropbox folder is fully syncronized you can stop Dropbox <code>LC_ALL=C python26 ./dropbox.py stop</code></li>
+</ul>
+<p>This little script starts local dropbox sync process and check the
+status, the script exit with success if your Dropbox folder is in-sync,
+and with an error code you a timeout event is reached (configure maxwait
+and recheck variabales). You can use this script as Pre-client-script in
+your bacula job.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">maxwait</span><span class="o">=</span><span class="m">20</span> <span class="c1">#number of maximum re-check</span>
+<span class="nv">recheck</span><span class="o">=</span><span class="m">2</span> <span class="c1">#seconds between recheck</span>
+<span class="nv">dropbox</span><span class="o">=</span><span class="s2">&quot;python26 /root/dropbox.py&quot;</span>
+
+
+do_ok<span class="o">(){</span>
+        <span class="nv">$dropbox</span> stop
+        <span class="nb">exit</span> 0
+<span class="o">}</span>
+
+<span class="nb">cd</span> ~
+<span class="c1"># start DR</span>
+<span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span>C
+<span class="nv">$dropbox</span> start
+
+
+<span class="nv">x</span><span class="o">=</span>0
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$x</span> -le <span class="nv">$maxwait</span> <span class="o">]</span>
+<span class="k">do</span>
+        sleep <span class="nv">$recheck</span>
+        <span class="nv">status</span><span class="o">=</span><span class="k">$(</span><span class="nv">$dropbox</span> filestatus Dropbox <span class="p">|</span> cut -d <span class="se">\ </span> -f2-<span class="k">)</span>
+        <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$status</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;up to date&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> do_ok
+        <span class="nv">x</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$x</span> <span class="o">+</span> <span class="m">1</span> <span class="k">))</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Dropbox not updated.. (</span><span class="nv">$x</span><span class="s2">)&quot;</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&quot;Timeout reached.&quot;</span>
+<span class="nv">$dropbox</span> stop
+<span class="nb">exit</span> 255
+</pre></div>
+</td></tr></table>
+
+<p>Following the bacula configuration for this job: Job definition and
+FilSet:</p>
+<div class="highlight"><pre><span></span>FileSet {
+  Name = &quot;DropBox Full Set&quot;
+  Include {
+    Options {
+      signature = MD5
+    }
+    File = /root/Dropbox
+  }
+}
+
+Job {
+  Name = &quot;BackupDropBox&quot;
+  Client = stoker-fd
+  FileSet = &quot;DropBox Full Set&quot;
+  JobDefs = &quot;DefaultJob&quot;
+  RunScript {
+    RunsWhen = Before
+    FailJobOnError = Yes
+    Command = &quot;/etc/bacula/scripts/sync-dropbox.sh&quot;
+  }
+}
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://bertera.it/tag/backup.html">backup</a>
+      <a href="http://bertera.it/tag/bacula.html">bacula</a>
+      <a href="http://bertera.it/tag/bash.html">bash</a>
+      <a href="http://bertera.it/tag/dropbox.html">dropbox</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Backup your Dropbox share with bacula",
+  "headline": "Backup your Dropbox share with bacula",
+  "datePublished": "2012-07-27 22:33:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "admin",
+    "url": "http://bertera.it/author/admin.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://bertera.it/backup-your-dropbox-share-with-bacula.html",
+  "description": "I don't like cloud storage, especially I don't like Dropbox security history. Anyway Dropbox and others cloud storage are damn cheap and easy to use, I use it for sharing non-important documents. This little howto explain how you can backup your Dropbox share with Bacula. First you must ..."
+}
+</script></body>
+</html>

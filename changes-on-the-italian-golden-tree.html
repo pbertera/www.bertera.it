@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="admin" />
+<meta name="description" content="This is a continuation of my previous post about the +39 ENUM DNS zone. Thanks to the powerful of the RIPE Database you can see all historical changes on a RIPE-assigned domain. Lets see what happen on the domain 9.3.e164.arpa. List all changes on the domain object ..." />
+<meta name="keywords" content="dns, ENUM, VoIP">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="Changes on the Italian "Golden Tree""/>
+<meta property="og:description" content="This is a continuation of my previous post about the +39 ENUM DNS zone. Thanks to the powerful of the RIPE Database you can see all historical changes on a RIPE-assigned domain. Lets see what happen on the domain 9.3.e164.arpa. List all changes on the domain object ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://bertera.it/changes-on-the-italian-golden-tree.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-03-02 21:03:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://bertera.it/author/admin.html">
+<meta property="article:section" content="Uncategorized"/>
+<meta property="article:tag" content="dns"/>
+<meta property="article:tag" content="ENUM"/>
+<meta property="article:tag" content="VoIP"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; Changes on the Italian "Golden Tree"</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://bertera.it">Pietro Bertera</a></h1>
+<p>Something about IT, sports and life</p>      <nav>
+        <ul class="list">
+          <li><a href="http://bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="changes-on-the-italian-golden-tree">Changes on the Italian "Golden Tree"</h1>
+    <p>Posted on Mon 02 March 2015 in <a href="http://bertera.it/category/uncategorized.html">Uncategorized</a></p>
+  </header>
+  <div>
+    <p>This is a continuation of my <a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?">previous
+post</a>
+about the <strong>+39 ENUM DNS zone</strong>.</p>
+<p>Thanks to the powerful of the RIPE Database you can see all historical
+changes on a RIPE-assigned domain. Lets see what happen on the
+domain <strong>9.3.e164.arpa</strong>.</p>
+<p>List all changes on the domain object:</p>
+<div class="highlight"><pre><span></span>~ pietro$ whois -h whois.ripe.net -- &quot;--list-versions 9.3.e164.arpa&quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Version history for DOMAIN object &quot;9.3.e164.arpa&quot;  
+% You can use &quot;--show-version rev\#&quot; to get an exact version of the
+object.
+
+rev\# Date Op.
+
+1 2005-11-02 15:21 ADD/UPD  
+2 2006-02-10 11:41 ADD/UPD  
+3 2006-04-07 17:56 ADD/UPD  
+4 2006-04-07 18:00 ADD/UPD
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-4)  
+</pre></div>
+
+
+<p>So, the domain was changed 4 times:</p>
+<ul>
+<li><strong>Version N°1:</strong> 2005-11-02</li>
+<li><strong>Version N°2:</strong> 2006-02-10</li>
+<li><strong>Version N°3 and 4:</strong> 2006-04-07</li>
+</ul>
+<p>The object in the first version:</p>
+<div class="highlight"><pre><span></span>~ pietro$ whois -h whois.ripe.net -- &quot;--show-version 1 9.3.e164.arpa&quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Version 1 of object &quot;9.3.e164.arpa&quot;  
+% This version was a UPDATE operation on 2005-11-02 15:21  
+% You can use &quot;--list-versions&quot; to get a list of versions for an
+object.
+
+domain: 9.3.e164.arpa  
+descr: Italy ENUM Mapping  
+descr: Italy ENUM Registry  
+admin-c: LF1894-RIPE  
+tech-c: GT2177-RIPE  
+zone-c: GT2177-RIPE  
+nserver: dns.voipex.it  
+nserver: dns2.voipex.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it  
+remarks: Istituto Superiore delle Comunicazioni  
+remarks: e delle tecnologie dell&#39;Informazione -  
+remarks: http://www.iscom.gov.it  
+remarks: Consorzio VOIPEX - http://www.voipex.it  
+mnt-by: MNT-VOIPEX  
+source: RIPE \# Filtered
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-2)  
+</pre></div>
+
+
+<p>Ok, the first version was the assignment to the Voipex consortium,
+<a href="https://www.ripe.net/ripe/mail/archives/enum-announce/2005-October/000046.html">see</a>
+the request.</p>
+<p>Here the second version of the object (updated at 2006-02-10 11:41):</p>
+<div class="highlight"><pre><span></span>~ pietro$ whois -h whois.ripe.net -- &quot;--show-version 2 9.3.e164.arpa&quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Version 2 of object &quot;9.3.e164.arpa&quot;  
+% This version was a UPDATE operation on 2006-02-10 11:41  
+% You can use &quot;--list-versions&quot; to get a list of versions for an
+object.
+
+domain: 9.3.e164.arpa  
+descr: Italy ENUM Mapping  
+descr: Italy ENUM Registry  
+admin-c: LF1894-RIPE  
+tech-c: LF1894-RIPE  
+zone-c: LF1894-RIPE  
+nserver: dns.voipex.it  
+nserver: dns2.voipex.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it  
+remarks: Istituto Superiore delle Comunicazioni e delle tecnologie
+dell&#39;Informazione  
+remarks: http://www.iscom.gov.it  
+mnt-by: ISCOM-MNT  
+source: RIPE \# Filtered
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-3)  
+</pre></div>
+
+
+<p>In this second version the domain is now delegated to ISCOM (Istituto
+Superiore delle Comunicazioni e delle tecnologie dell'Informazione).
+Nameservers were still on Voipex.</p>
+<p>Below the differences between version 2 and version 3: Namserver moved
+from Voipex to istsupcti.it</p>
+<div class="highlight"><pre><span></span>~ pietro$ whois -h whois.ripe.net -- &quot;--diff-versions 2:3
+9.3.e164.arpa&quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Difference between version 2 and 3 of object &quot;9.3.e164.arpa&quot;
+
+@@ -6,4 +6,4 @@  
+zone-c: LF1894-RIPE  
+-nserver: dns.voipex.it  
+-nserver: dns2.voipex.it  
++nserver: dns.istsupcti.it  
++nserver: dns2.istsupcti.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-2)  
+</pre></div>
+
+
+<p>There isn't differences between revisions 3 and 4:</p>
+<div class="highlight"><pre><span></span>~ pietro$ whois -h whois.ripe.net -- &quot;--diff-versions 3:4
+9.3.e164.arpa&quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Difference between version 3 and 4 of object &quot;9.3.e164.arpa&quot;
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-2)  
+</pre></div>
+
+
+<h2>The Vatican long hand</h2>
+<p>WTF? Vatican ? Yes this is quite interesting: seems that someone at
+Vatican city has something to do with the Italian golden tree:</p>
+<div class="highlight"><pre><span></span>~ pietro$ whois -h whois.ripe.net -- &quot;-B 9.3.e164.arpa&quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Information related to &#39;9.3.e164.arpa&#39;
+
+domain: 9.3.e164.arpa  
+descr: Italy ENUM Mapping  
+descr: Italy ENUM Registry  
+admin-c: LF1894-RIPE  
+tech-c: LF1894-RIPE  
+zone-c: LF1894-RIPE  
+nserver: dns.istsupcti.it  
+nserver: dns2.istsupcti.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it  
+remarks: Istituto Superiore delle Comunicazioni e delle tecnologie
+dell&#39;Informazione  
+remarks: http://www.iscom.gov.it  
+notify: pasquini@vatican.va  
+mnt-by: ISCOM-MNT  
+changed: pasquini@vatican.va 20060407  
+source: RIPE
+
+person: Luisa Franchina  
+address: Viale America 201  
+address: I-00144 Roma  
+address: Italy  
+phone: +39 06 54444267  
+fax-no: +39 06 54444222  
+e-mail: luisa.franchina@comunicazioni.it  
+nic-hdl: LF1894-RIPE  
+remarks: Ministero delle Comunicazioni  
+remarks: Direttore Generale Istituto Superiore Comunicazioni  
+notify: pasquini@vatican.va  
+mnt-by: ISCOM-MNT  
+changed: pasquini@vatican.va 20051031  
+source: RIPE
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-1)  
+</pre></div>
+
+
+<p>Ok, maybe the reason can be that Vatican City actually shares the
+Italian country code (+39) despite the fact that ITU-T allocated a
+dedicated Vatican City one (+379).</p>
+<p>Just for the records: I sent an email to Pasquini@Vatican and Franchina
+of  Communication Ministry.</p>
+<p><strong>At the moment of writing still no answers on my previous email...</strong></p>
+<p>[EDIT:] Today (6 March 2015) I received the permanent delivery failure
+from my SMTP: comunicazioni.it doesn't has a working email system and my
+email to the responsible person for the 9.3.e164.arpa cannot be
+delivered. Still no answers on my other email.</p>
+<h5>... To be continued ...</h5>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://bertera.it/tag/dns.html">dns</a>
+      <a href="http://bertera.it/tag/enum.html">ENUM</a>
+      <a href="http://bertera.it/tag/voip.html">VoIP</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Changes on the Italian "Golden Tree"",
+  "headline": "Changes on the Italian "Golden Tree"",
+  "datePublished": "2015-03-02 21:03:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "admin",
+    "url": "http://bertera.it/author/admin.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://bertera.it/changes-on-the-italian-golden-tree.html",
+  "description": "This is a continuation of my previous post about the +39 ENUM DNS zone. Thanks to the powerful of the RIPE Database you can see all historical changes on a RIPE-assigned domain. Lets see what happen on the domain 9.3.e164.arpa. List all changes on the domain object ..."
+}
+</script></body>
+</html>

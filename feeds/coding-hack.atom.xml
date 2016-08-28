@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://bertera.it/" rel="alternate"></link><link href="http://bertera.it/feeds/coding-hack.atom.xml" rel="self"></link><id>http://bertera.it/</id><updated>2013-06-05T21:55:00+02:00</updated><entry><title>Using special chars in Python string Templates</title><link href="http://bertera.it/using-special-chars-in-python-string-templates.html" rel="alternate"></link><published>2013-06-05T21:55:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2013-06-05:using-special-chars-in-python-string-templates.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.python.org/dev/peps/pep-0292"&gt;PEP-292&lt;/a&gt; introduced a nice
+Python templating feature.&lt;br /&gt;
+Templates placehoder names are subject to some
+restrictions,&lt;a href="http://docs.python.org/3/library/string.html#template-strings"&gt;Documentation&lt;/a&gt;
+says:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;identifier&lt;/span&gt;&lt;span class="x"&gt; names a substitution placeholder matching a mapping key of &amp;quot;identifier&amp;quot;.&lt;/span&gt;
+&lt;span class="x"&gt;By default, &amp;quot;identifier&amp;quot; must spell a Python identifier.&lt;/span&gt;
+&lt;span class="x"&gt;The first non-identifier character after the &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; character terminates this placeholder specification.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This means that &lt;strong&gt;\${placeholder}&lt;/strong&gt; names must spell the Python
+identifier syntax: dots (.), hyphen (-) or other special chars are not
+allowed.&lt;br /&gt;
+The default regex that must match the placeolder is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;r&amp;#39;[\_a-z][\_a-z0-9]\*&amp;#39;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can simply extend this regex overwriting the &lt;strong&gt;idpattern&lt;/strong&gt; property
+in &lt;strong&gt;Template&lt;/strong&gt; class.&lt;/p&gt;
+&lt;p&gt;Here a quick example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;string&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Template&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyTemplate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Template&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="n"&gt;idpattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;r&amp;#39;[a-z][\.\-_a-z0-9]*&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt; 
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;MyTemplate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;a=${ciccio_pippo-b}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;substitute&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ciccio_pippo-b&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;pasticcio&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;a=pasticcio&amp;#39;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="coding"></category><category term="python"></category><category term="strings"></category><category term="templating"></category></entry><entry><title>Ability to set codec in MulticastRTP Asterisk channels</title><link href="http://bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html" rel="alternate"></link><published>2012-12-12T21:08:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2012-12-12:ability-to-set-codec-in-multicastrtp-asterisk-channels.html</id><summary type="html">&lt;p&gt;&lt;a href="http://bertera.it/static/asterisk_trunk-377802_rtp_multicast_codec.patch"&gt;Here&lt;/a&gt;
+you can find a port for Asterisk trunk (rev. 377802) of this patch:
+&lt;a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html"&gt;http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html&lt;/a&gt;.&lt;br /&gt;
+This patch permits to set the codec of an outgoing multicast RTP stream
+via the variable MULTICAST_RTP_CODEC:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; 999,1,Answer()  
+exten =&amp;gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw)  
+exten =&amp;gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="code"></category><category term="patch"></category><category term="rtp"></category><category term="VoIP"></category></entry><entry><title>RTP timestamps fix in Asterisk MulticastRTP channels</title><link href="http://bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html" rel="alternate"></link><published>2012-12-12T19:09:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2012-12-12:rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html</id><summary type="html">&lt;p&gt;Starting from Asterisk 1.8 you can &lt;a href="http://www.voip-info.org/wiki/view/Asterisk+MulticastRTP+channels"&gt;send multicast rtp
+streams&lt;/a&gt;
+using the MulticastRTP channel driver. There is an &lt;a href="https://issues.asterisk.org/jira/browse/ASTERISK-19883"&gt;open
+issue&lt;/a&gt; that
+breaks outgoing RTP if the source channel doesn't contains timing
+informations (Eg. playing an audio file with
+&lt;strong&gt;Dial(MulticastRTP/basic/239.255.255.245:5555,,A(my-announce))&lt;/strong&gt;).&lt;br /&gt;
+All outgoing RTP frames a timestamp value of 0.&lt;/p&gt;
+&lt;p&gt;This &lt;a href="http://bertera.it/static/asterisk_trunk-377802-rtp-multicast-timestamp.patch"&gt;patch&lt;/a&gt; adds timing information in outgoing RTP stream.&lt;/p&gt;
+&lt;p&gt;Following an example usage in dialplan:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; 999,1,Answer()  
+exten =&amp;gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="multicast"></category><category term="patch"></category><category term="rtp"></category><category term="VoIP"></category></entry><entry><title>vtiger CRM: Howto add products commissions in invoice</title><link href="http://bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html" rel="alternate"></link><published>2012-09-27T13:27:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2012-09-27:vtiger-crm-howto-add-products-commissions-in-invoice.html</id><summary type="html">&lt;p&gt;During last days I played with &lt;a href="https://www.vtiger.com"&gt;vtiger&lt;/a&gt;: a very
+customizable and feature rich PHP/MySQL CRM. Sincerely this task has
+revived my intimate &lt;a href="http://www.google.com/search?q=php+sucks"&gt;hate&lt;/a&gt; for
+PHP programming language.&lt;/p&gt;
+&lt;p&gt;This is the idea: add a function hook in vtiger workflow every time that
+an invoice is created or edited. This function must take care to update
+invoice commission based on products commissions rates.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First step: Create the hook function:&lt;/strong&gt;&lt;br /&gt;
+Create a new file  under "include" folder: &lt;code&gt;vim include/CommissionHandler.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Following the content of this file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;   
+&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;updateCommission&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$entity&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;   
+  &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="nv"&gt;$log&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;   
+  &lt;span class="nv"&gt;$entityArray&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;get_object_vars&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$entity&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;       
+  &lt;span class="nv"&gt;$invoice_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;vtws_getIdComponents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$entity&lt;/span&gt;&lt;span class="o"&gt;-----&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;getId&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+  &lt;span class="nv"&gt;$invoice_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$invoice_id&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+  &lt;span class="nv"&gt;$log&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Entering into function updateRebate(&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nv"&gt;$invoice_id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;).&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="nv"&gt;$products&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;pquery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SELECT productid, quantity from vtiger_inventoryproductrel WHERE id=?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$invoice_id&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="nv"&gt;$numrows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;num_rows&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$products&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nv"&gt;$rebate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;$index&lt;/span&gt; &lt;span class="nx"&gt;query_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$products&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;productid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nv"&gt;$quantity&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;query_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$products&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;quantity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="nv"&gt;$commission_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;pquery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SELECT unit_price, commissionrate from vtiger_products WHERE productid=?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$productid&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+    &lt;span class="nv"&gt;$commission_rate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;query_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$commission_info&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;commissionrate&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nv"&gt;$price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;query_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$commission_info&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;unit_price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="nv"&gt;$rebate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$rebate&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$quantity&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$price&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;$commission_rate&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;pquery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UPDATE vtiger_invoice SET salescommission=&lt;/span&gt;&lt;span class="si"&gt;$rebate&lt;/span&gt;&lt;span class="s2"&gt; WHERE invoiceid=?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$invoice_id&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Second Step: register the hook  &lt;/p&gt;
+&lt;p&gt;Create a new php file: &lt;code&gt;vim reg.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Following the content of reg.php:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; 
+&lt;span class="k"&gt;require_once&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;include/utils/utils.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;modules/com_vtiger_workflow/VTEntityMethodManager.inc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+&lt;span class="nv"&gt;$emm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;VTEntityMethodManager&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;span class="c1"&gt;#addEntityMethod(&amp;quot;Module&amp;quot;, &amp;quot;LABEL&amp;quot;, &amp;quot;FILENAME&amp;quot;, &amp;quot;FUNCTION_NAME&amp;quot;); &lt;/span&gt;
+&lt;span class="nv"&gt;$emm&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;addEntityMethod&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Invoice&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Update Commission&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;include/CommissionHandler.php&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;updateCommission&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Execute the registration script:&lt;/p&gt;
+&lt;p&gt;via CLI: &lt;code&gt;php -f reg.php&lt;/code&gt; or via Web: &lt;code&gt;wget http://your.vtiger.url/vtiger-pat/reg.php -O &amp;gt; /dev/null&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Third Step: Associate the function hook to an invoice workflow:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Under the vtiger admin panel, select &lt;strong&gt;"Workflow"&lt;/strong&gt; and then &lt;strong&gt;"New Workflow"&lt;/strong&gt;.  &lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;"For Module"&lt;/strong&gt;, select &lt;strong&gt;"Invocie"&lt;/strong&gt; Module  &lt;/li&gt;
+&lt;li&gt;Fill the description field with a descriptive name eg. "Update Invoice Commission"  &lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;"Every time the record is saved."&lt;/strong&gt; radio button  &lt;/li&gt;
+&lt;li&gt;Click Save button  &lt;/li&gt;
+&lt;li&gt;Leave conditions empty  &lt;/li&gt;
+&lt;li&gt;Click on &lt;strong&gt;"New Task"&lt;/strong&gt; button  &lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;"Invoke custom function"&lt;/strong&gt;  &lt;/li&gt;
+&lt;li&gt;Assign a Task title and select &lt;strong&gt;"Update Commission"&lt;/strong&gt; method  &lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;"Save"&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Fourth Step: Play with invoice and products commissions.&lt;/strong&gt;&lt;/p&gt;</summary><category term="crm"></category><category term="php"></category><category term="vtiger"></category></entry><entry><title>Authentication username in Astersik SIP peer</title><link href="http://bertera.it/authentication-username-in-astersik-sip-peer.html" rel="alternate"></link><published>2010-07-12T09:01:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2010-07-12:authentication-username-in-astersik-sip-peer.html</id><summary type="html">&lt;p&gt;Asterisk use peername as username during SIP inbound digest
+authentication.&lt;br /&gt;
+&lt;a href="http://www.bertera.it/software/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.diff"&gt;This
+patch&lt;/a&gt;
+add &lt;strong&gt;authuser&lt;/strong&gt; parameter in SIP peer definition and use authuser in
+digest authentication:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Peer definition in /etc/asterisk/sip.conf&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;...
+[pietro](sip-client-base)
+authuser=MyUsername
+secret=XXXXX
+qualify=yes
+nat=yes
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Peer definition in my SIP client (Twinkle)&lt;/strong&gt;&lt;br /&gt;
+&lt;img alt="client configuration" src="http://bertera.it/static/Twinkle-conf.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;REGISTER message from my SIP client&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;REGISTER&lt;/span&gt; &lt;span class="nt"&gt;sip&lt;/span&gt;&lt;span class="nd"&gt;:bertera&lt;/span&gt;&lt;span class="nc"&gt;.it&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;
+&lt;span class="nt"&gt;Via&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;UDP&lt;/span&gt; &lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="nd"&gt;:10458&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;rport&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;z9hG4bKkqpevlic&lt;/span&gt;
+&lt;span class="nt"&gt;Max-Forwards&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;70&lt;/span&gt;
+&lt;span class="nt"&gt;To&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;From&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;ntlug&lt;/span&gt;
+&lt;span class="nt"&gt;Call-ID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;mqezxbywgtulavj&lt;/span&gt;&lt;span class="k"&gt;@bertuccia&lt;/span&gt;
+&lt;span class="nt"&gt;CSeq&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;681&lt;/span&gt; &lt;span class="nt"&gt;REGISTER&lt;/span&gt;
+&lt;span class="nt"&gt;Contact&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;3600&lt;/span&gt;
+&lt;span class="nt"&gt;Authorization&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Digest&lt;/span&gt; &lt;span class="nt"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MyUsername&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;realm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bertera.it&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;nonce&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;27f804de&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;uri&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sip:bertera.it&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;response&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;47dbf0a57d80faffd148b58d84edc2db&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;MD5&lt;/span&gt; &lt;span class="nt"&gt;Allow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;INVITE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;ACK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;BYE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;CANCEL&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;OPTIONS&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;PRACK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;REFER&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;NOTIFY&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;SUBSCRIBE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;MESSAGE&lt;/span&gt;
+&lt;span class="nt"&gt;User-Agent&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Twinkle&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="nc"&gt;.4.2&lt;/span&gt;
+&lt;span class="nt"&gt;Content-Length&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Message in Asterisk CLI:&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Feb 4 23:23:35] NOTICE[24864]: chan_sip.c:13016 register_verify: Trying athenticate peer &amp;#39;pietro&amp;#39; using authuser: &amp;#39;MyUsername&amp;#39;
+-- Registered SIP &amp;#39;pietro&amp;#39; at 88.149.226.66 port 10458
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;REGISTER Confirmation from Asterisk:&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt; &lt;span class="nt"&gt;200&lt;/span&gt; &lt;span class="nt"&gt;OK&lt;/span&gt;
+&lt;span class="nt"&gt;Via&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;UDP&lt;/span&gt; &lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="nd"&gt;:10458&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;z9hG4bKkqpevlic&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;received&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;rport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;10458&lt;/span&gt;
+&lt;span class="nt"&gt;From&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;ntlug&lt;/span&gt;
+&lt;span class="nt"&gt;To&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;as49faff1f&lt;/span&gt;
+&lt;span class="nt"&gt;Call-ID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;mqezxbywgtulavj&lt;/span&gt;&lt;span class="k"&gt;@bertuccia&lt;/span&gt;
+&lt;span class="nt"&gt;CSeq&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;681&lt;/span&gt; &lt;span class="nt"&gt;REGISTER&lt;/span&gt;
+&lt;span class="nt"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Asterisk&lt;/span&gt; &lt;span class="nt"&gt;PBX&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="nc"&gt;.6.2.2&lt;/span&gt;
+&lt;span class="nt"&gt;Allow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;INVITE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ACK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;CANCEL&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;OPTIONS&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;BYE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;REFER&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;SUBSCRIBE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;NOTIFY&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;INFO&lt;/span&gt;
+&lt;span class="nt"&gt;Supported&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;replaces&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;timer&lt;/span&gt;
+&lt;span class="nt"&gt;Expires&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;3600&lt;/span&gt;
+&lt;span class="nt"&gt;Contact&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;3600&lt;/span&gt;
+&lt;span class="nt"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Thu&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;04&lt;/span&gt; &lt;span class="nt"&gt;Feb&lt;/span&gt; &lt;span class="nt"&gt;2010&lt;/span&gt; &lt;span class="nt"&gt;22&lt;/span&gt;&lt;span class="nd"&gt;:23:35&lt;/span&gt; &lt;span class="nt"&gt;GMT&lt;/span&gt;
+&lt;span class="nt"&gt;Content-Length&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here is the chan_sip.c patch against Asterisk 1.6.2.2&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;Index: channels/chan_sip.c&lt;/span&gt;
+&lt;span class="gh"&gt;===================================================================&lt;/span&gt;
+&lt;span class="gd"&gt;--- channels/chan_sip.c (revision 244766)&lt;/span&gt;
+&lt;span class="gi"&gt;+++ channels/chan_sip.c (working copy)&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -1825,6 +1825,7 @@&lt;/span&gt;
+        AST_STRING_FIELD(context);      /*!&amp;lt; Default context for incoming calls */
+        AST_STRING_FIELD(subscribecontext); /*!&amp;lt; Default context for subscriptions */
+        AST_STRING_FIELD(username);     /*!&amp;lt; Temporary username until registration */ 
+&lt;span class="gi"&gt;+       AST_STRING_FIELD(authuser);     /*!&amp;lt; Username used during inbound authentication */ &lt;/span&gt;
+        AST_STRING_FIELD(accountcode);      /*!&amp;lt; Account code */
+        AST_STRING_FIELD(tohost);       /*!&amp;lt; If not dynamic, IP address */
+        AST_STRING_FIELD(regexten);         /*!&amp;lt; Extension to register (if regcontext is used) */
+&lt;span class="gu"&gt;@@ -13011,7 +13012,9 @@&lt;/span&gt;
+            ast_copy_flags(&amp;amp;p-&amp;gt;flags[0], &amp;amp;peer-&amp;gt;flags[0], SIP_NAT);
+            if (ast_test_flag(&amp;amp;p-&amp;gt;flags[1], SIP_PAGE2_REGISTERTRYING))
+                transmit_response(p, &amp;quot;100 Trying&amp;quot;, req);
+&lt;span class="gd"&gt;-           if (!(res = check_auth(p, req, peer-&amp;gt;name, peer-&amp;gt;secret, peer-&amp;gt;md5secret, SIP_REGISTER, uri, XMIT_UNRELIABLE, req-&amp;gt;ignore))) {&lt;/span&gt;
+&lt;span class="gi"&gt;+           if (strcmp(peer-&amp;gt;authuser, peer-&amp;gt;name))&lt;/span&gt;
+&lt;span class="gi"&gt;+               ast_log(LOG_NOTICE, &amp;quot;Trying athenticate peer &amp;#39;%s&amp;#39; using authuser: &amp;#39;%s&amp;#39;\n&amp;quot;, peer-&amp;gt;name, peer-&amp;gt;authuser);&lt;/span&gt;
+&lt;span class="gi"&gt;+           if (!(res = check_auth(p, req, peer-&amp;gt;authuser, peer-&amp;gt;secret, peer-&amp;gt;md5secret, SIP_REGISTER, uri, XMIT_UNRELIABLE, req-&amp;gt;ignore))) {&lt;/span&gt;
+                if (sip_cancel_destroy(p))
+                    ast_log(LOG_WARNING, &amp;quot;Unable to cancel SIP destruction.  Expect bad things.\n&amp;quot;);
+
+&lt;span class="gu"&gt;@@ -14006,7 +14009,7 @@&lt;/span&gt;
+        ast_string_field_set(p, peersecret, NULL);
+        ast_string_field_set(p, peermd5secret, NULL);
+    }
+&lt;span class="gd"&gt;-   if (!(res = check_auth(p, req, peer-&amp;gt;name, p-&amp;gt;peersecret, p-&amp;gt;peermd5secret, sipmethod, uri2, reliable, req-&amp;gt;ignore))) {&lt;/span&gt;
+&lt;span class="gi"&gt;+   if (!(res = check_auth(p, req, peer-&amp;gt;authuser, p-&amp;gt;peersecret, p-&amp;gt;peermd5secret, sipmethod, uri2, reliable, req-&amp;gt;ignore))) {&lt;/span&gt;
+        ast_copy_flags(&amp;amp;p-&amp;gt;flags[0], &amp;amp;peer-&amp;gt;flags[0], SIP_FLAGS_TO_COPY);
+        ast_copy_flags(&amp;amp;p-&amp;gt;flags[1], &amp;amp;peer-&amp;gt;flags[1], SIP_PAGE2_FLAGS_TO_COPY);
+        /* If we have a call limit, set flag */
+&lt;span class="gu"&gt;@@ -15386,6 +15389,7 @@&lt;/span&gt;
+        }
+        ast_cli(fd, &amp;quot;  Secret       : %s\n&amp;quot;, ast_strlen_zero(peer-&amp;gt;secret)?&amp;quot;&amp;lt;Not set&amp;gt;&amp;quot;:&amp;quot;&amp;lt;Set&amp;gt;&amp;quot;);
+        ast_cli(fd, &amp;quot;  MD5Secret    : %s\n&amp;quot;, ast_strlen_zero(peer-&amp;gt;md5secret)?&amp;quot;&amp;lt;Not set&amp;gt;&amp;quot;:&amp;quot;&amp;lt;Set&amp;gt;&amp;quot;);
+&lt;span class="gi"&gt;+       ast_cli(fd, &amp;quot;  Auth User    : %s\n&amp;quot;, peer-&amp;gt;authuser);&lt;/span&gt;
+        ast_cli(fd, &amp;quot;  Remote Secret: %s\n&amp;quot;, ast_strlen_zero(peer-&amp;gt;remotesecret)?&amp;quot;&amp;lt;Not set&amp;gt;&amp;quot;:&amp;quot;&amp;lt;Set&amp;gt;&amp;quot;);
+        for (auth = peer-&amp;gt;auth; auth; auth = auth-&amp;gt;next) {
+            ast_cli(fd, &amp;quot;  Realm-auth   : Realm %-15.15s User %-10.20s &amp;quot;, auth-&amp;gt;realm, auth-&amp;gt;username);
+&lt;span class="gu"&gt;@@ -23706,8 +23710,10 @@&lt;/span&gt;
+        set_peer_defaults(peer);    /* Set peer defaults */
+        peer-&amp;gt;type = 0;
+    }
+&lt;span class="gd"&gt;-   if (!found &amp;amp;&amp;amp; name)&lt;/span&gt;
+&lt;span class="gi"&gt;+   if (!found &amp;amp;&amp;amp; name) {&lt;/span&gt;
+        ast_copy_string(peer-&amp;gt;name, name, sizeof(peer-&amp;gt;name));
+&lt;span class="gi"&gt;+       ast_string_field_set(peer, authuser, name); /* Set default authuser == peername*/&lt;/span&gt;
+&lt;span class="gi"&gt;+   }&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="patch"></category><category term="VoIP"></category></entry><entry><title>GNU/Find posix acl support</title><link href="http://bertera.it/gnufind-posix-acl-support.html" rel="alternate"></link><published>2009-09-28T18:25:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2009-09-28:gnufind-posix-acl-support.html</id><summary type="html">&lt;p&gt;Cercare file che corrispondono a delle acl posix all'interno di un
+filesystem molto intricato è sempre un delirio.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.bertera.it/software/findutils-acl/"&gt;Questa&lt;/a&gt; patch aggiunge
+l'opzione -acl al comando find
+(&lt;a href="http://www.gnu.org/software/findutils/"&gt;GNU/Findutils&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Esempio d'uso:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;touch&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;mkdir&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rx&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rw&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;pietro&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;---&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rw&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;wheel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rwx&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;touch&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;wheel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rx&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;*:rx&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;*:*&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;*:*&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Questa patch e' stata testata solo su Linux, è scaricabile qua:
+&lt;a href="http://www.bertera.it/software/findutils-acl/"&gt;http://www.bertera.it/software/findutils-acl/&lt;/a&gt; è disponibile per la
+versione 4.42 e 4.5.6 di findutils&lt;/p&gt;</summary><category term="c"></category><category term="find"></category><category term="gnu"></category></entry></feed>
