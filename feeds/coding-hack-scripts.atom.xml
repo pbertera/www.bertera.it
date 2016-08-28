@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://bertera.it/" rel="alternate"></link><link href="http://bertera.it/feeds/coding-hack-scripts.atom.xml" rel="self"></link><id>http://bertera.it/</id><updated>2015-03-13T15:12:00+01:00</updated><entry><title>A server launcher with log console in Python Tkinter</title><link href="http://bertera.it/a-server-launcher-with-log-console-in-python-tkinter.html" rel="alternate"></link><published>2015-03-13T15:12:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2015-03-13:a-server-launcher-with-log-console-in-python-tkinter.html</id><summary type="html">&lt;p&gt;I'm working on an Tk application that should start and stop an UDP
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/coding-hack-scripts.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2015-03-13T15:12:00+01:00</updated><entry><title>A server launcher with log console in Python Tkinter</title><link href="http://www.bertera.it/a-server-launcher-with-log-console-in-python-tkinter.html" rel="alternate"></link><published>2015-03-13T15:12:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-13:a-server-launcher-with-log-console-in-python-tkinter.html</id><summary type="html">&lt;p&gt;I'm working on an Tk application that should start and stop an UDP
 server, I need to show server logs in the Tk GUI with a "Pause &amp;amp; Resume"
 button.&lt;/p&gt;
 &lt;p&gt;I already have the UDP server implemented using the
@@ -184,7 +184,7 @@ callback.&lt;/p&gt;
 
 
 &lt;p&gt;Here a screenshot of the UDP server in action:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A screenshot of the logging server in action" src="http://bertera.it/static/tsafe.png" /&gt;&lt;/p&gt;</summary><category term="GUI"></category><category term="Multithreading"></category><category term="python"></category><category term="Tkinter"></category><category term="UDP"></category></entry><entry><title>Little file browser with pdmenu</title><link href="http://bertera.it/little-file-browser-with-pdmenu.html" rel="alternate"></link><published>2012-03-10T02:15:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2012-03-10:little-file-browser-with-pdmenu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://kitenet.net/programs/pdmenu/"&gt;Pdmenu&lt;/a&gt; is a menu system for Unix.
+&lt;p&gt;&lt;img alt="A screenshot of the logging server in action" src="http://www.bertera.it/static/tsafe.png" /&gt;&lt;/p&gt;</summary><category term="GUI"></category><category term="Multithreading"></category><category term="python"></category><category term="Tkinter"></category><category term="UDP"></category></entry><entry><title>Little file browser with pdmenu</title><link href="http://www.bertera.it/little-file-browser-with-pdmenu.html" rel="alternate"></link><published>2012-03-10T02:15:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-03-10:little-file-browser-with-pdmenu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://kitenet.net/programs/pdmenu/"&gt;Pdmenu&lt;/a&gt; is a menu system for Unix.
 It is designed to be easy to use, and is suitable for a login shell for
 inexperienced users, or it can just be run at the command line as a
 handy menu program.&lt;/p&gt;
@@ -192,8 +192,8 @@ handy menu program.&lt;/p&gt;
 minimal file browser for using pdmenu.&lt;/p&gt;
 &lt;p&gt;You can add/delete file and directory and edit files. Some screenshot
 below:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="run menu" src="http://bertera.it/static/pdmenu1.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="menu" src="http://bertera.it/static/pdmenu2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="run menu" src="http://www.bertera.it/static/pdmenu1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="menu" src="http://www.bertera.it/static/pdmenu2.png" /&gt;&lt;/p&gt;
 &lt;p&gt;this is the &lt;a href="http://www.bertera.it/software/pdmenu/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -283,11 +283,11 @@ exit:E_xit
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;you can download the showdir.pl script &lt;a href="http://bertera.it/static/showdir.pl.gz"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;you can download the showdir.pl script &lt;a href="http://www.bertera.it/static/showdir.pl.gz"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;All files &lt;code&gt;/usr/share/pdmenu/editdir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/deldir.pl&lt;/code&gt;
 &lt;code&gt;/usr/share/pdmenu/adddir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/addfile.pl&lt;/code&gt; are symlink to
-&lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>snom XML minibrowser project online</title><link href="http://bertera.it/snom-xml-minibrowser-project-online.html" rel="alternate"></link><published>2011-11-15T21:49:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2011-11-15:snom-xml-minibrowser-project-online.html</id><summary type="html">&lt;p&gt;snom XML minibrowser web emulator project pages are online:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://snombrowser.bertera.it/"&gt;http://snombrowser.bertera.it/&lt;/a&gt;&lt;/p&gt;</summary><category term="emulator"></category><category term="php"></category><category term="snom"></category><category term="VoIP"></category></entry><entry><title>Php sinippet: howto ignore HTTP errors in file_get_contents()</title><link href="http://bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html" rel="alternate"></link><published>2011-11-04T12:52:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2011-11-04:php-sinippet-howto-ignore-http-errors-in-file_get_contents.html</id><summary type="html">&lt;p&gt;A useful snipped of php code:  &lt;/p&gt;
+&lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>snom XML minibrowser project online</title><link href="http://www.bertera.it/snom-xml-minibrowser-project-online.html" rel="alternate"></link><published>2011-11-15T21:49:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-15:snom-xml-minibrowser-project-online.html</id><summary type="html">&lt;p&gt;snom XML minibrowser web emulator project pages are online:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://snombrowser.bertera.it/"&gt;http://snombrowser.bertera.it/&lt;/a&gt;&lt;/p&gt;</summary><category term="emulator"></category><category term="php"></category><category term="snom"></category><category term="VoIP"></category></entry><entry><title>Php sinippet: howto ignore HTTP errors in file_get_contents()</title><link href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html" rel="alternate"></link><published>2011-11-04T12:52:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-04:php-sinippet-howto-ignore-http-errors-in-file_get_contents.html</id><summary type="html">&lt;p&gt;A useful snipped of php code:  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo file_get_contents(&amp;#39;http://www.example.com/foo.html&amp;#39;,\
   FALSE, stream_context_create(array\
   (&amp;#39;http&amp;#39;=&amp;gt;;array(&amp;#39;ignore_errors&amp;#39; =&amp;gt;; TRUE))))

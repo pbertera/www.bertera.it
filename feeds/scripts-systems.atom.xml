@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://bertera.it/" rel="alternate"></link><link href="http://bertera.it/feeds/scripts-systems.atom.xml" rel="self"></link><id>http://bertera.it/</id><updated>2012-10-19T10:38:00+02:00</updated><entry><title>Encoding and decoding Encapsulated DHCP options (RFC 2132)</title><link href="http://bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html" rel="alternate"></link><published>2012-10-19T10:38:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2012-10-19:encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html</id><summary type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/scripts-systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2012-10-19T10:38:00+02:00</updated><entry><title>Encoding and decoding Encapsulated DHCP options (RFC 2132)</title><link href="http://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html" rel="alternate"></link><published>2012-10-19T10:38:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-19:encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html</id><summary type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
 43.&lt;br /&gt;
-With &lt;a href="http://bertera.it/static/dhcp-encapsulated-options.py"&gt;this little script&lt;/a&gt; you
+With &lt;a href="http://www.bertera.it/static/dhcp-encapsulated-options.py"&gt;this little script&lt;/a&gt; you
 can encode and decode vendor encapsulated option according to &lt;a href="http://www.ietf.org/rfc/rfc2132.txt"&gt;RFC
 2132&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For example with this command you can tunnel options 66 (TFTP Server),
@@ -54,7 +54,7 @@ Decoding part 2: 43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
  Option value: &lt;span class="s2"&gt;&amp;quot;settings.xml&amp;quot;&lt;/span&gt;
 
 End of encoded options
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="decoding"></category><category term="dhcp"></category><category term="encapsulated options"></category><category term="encoding"></category><category term="python"></category><category term="rfc2132"></category></entry><entry><title>Backup your Dropbox share with bacula</title><link href="http://bertera.it/backup-your-dropbox-share-with-bacula.html" rel="alternate"></link><published>2012-07-27T22:33:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2012-07-27:backup-your-dropbox-share-with-bacula.html</id><summary type="html">&lt;p&gt;I don't
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="decoding"></category><category term="dhcp"></category><category term="encapsulated options"></category><category term="encoding"></category><category term="python"></category><category term="rfc2132"></category></entry><entry><title>Backup your Dropbox share with bacula</title><link href="http://www.bertera.it/backup-your-dropbox-share-with-bacula.html" rel="alternate"></link><published>2012-07-27T22:33:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-07-27:backup-your-dropbox-share-with-bacula.html</id><summary type="html">&lt;p&gt;I don't
 &lt;a href="http://www.zdnet.com/blog/bott/sorry-dropbox-i-still-dont-trust-you/4173"&gt;like&lt;/a&gt;
 cloud storage, especially I don't like Dropbox security
 &lt;a href="http://www.schneier.com/blog/archives/2011/05/dropbox_securit.html"&gt;history&lt;/a&gt;.&lt;br /&gt;
@@ -170,13 +170,13 @@ Job {
     Command = &amp;quot;/etc/bacula/scripts/sync-dropbox.sh&amp;quot;
   }
 }
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="backup"></category><category term="bacula"></category><category term="bash"></category><category term="dropbox"></category></entry><entry><title>Poor man vmware consolidate backup</title><link href="http://bertera.it/poor-man-vmware-consolidate-backup.html" rel="alternate"></link><published>2011-07-25T21:59:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2011-07-25:poor-man-vmware-consolidate-backup.html</id><summary type="html">&lt;ul&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="backup"></category><category term="bacula"></category><category term="bash"></category><category term="dropbox"></category></entry><entry><title>Poor man vmware consolidate backup</title><link href="http://www.bertera.it/poor-man-vmware-consolidate-backup.html" rel="alternate"></link><published>2011-07-25T21:59:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-25:poor-man-vmware-consolidate-backup.html</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Update:&lt;/strong&gt; for an english version of this post you
 can read the README of pmvcb at &lt;a href="https://github.com/pbertera/pmvcb"&gt;github&lt;/a&gt;&lt;br /&gt;
 For bacula integration of pvmcb you can see the instruction on bacula &lt;a href="http://wiki.bacula.org/doku.php?id=application_specific_backups:poor_man_vmware_consolidated_backup"&gt;wiki&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;VMware offre un pacchetto di backup per le macchine virtuali: &lt;a href="http://www.vmware.com/products/vi/cb_overview.html"&gt;VCB&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="VCB" src="http://bertera.it/static/vcb.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="VCB" src="http://www.bertera.it/static/vcb.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;Il VCB non fa altro che:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;eseguire uno snapshot di una VM&lt;/li&gt;

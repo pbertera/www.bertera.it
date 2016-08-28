@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://bertera.it/" rel="alternate"></link><link href="http://bertera.it/feeds/uncategorized.atom.xml" rel="self"></link><id>http://bertera.it/</id><updated>2015-03-02T21:03:00+01:00</updated><entry><title>Changes on the Italian "Golden Tree"</title><link href="http://bertera.it/changes-on-the-italian-golden-tree.html" rel="alternate"></link><published>2015-03-02T21:03:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2015-03-02:changes-on-the-italian-golden-tree.html</id><summary type="html">&lt;p&gt;This is a continuation of my &lt;a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?"&gt;previous
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/uncategorized.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2015-03-02T21:03:00+01:00</updated><entry><title>Changes on the Italian "Golden Tree"</title><link href="http://www.bertera.it/changes-on-the-italian-golden-tree.html" rel="alternate"></link><published>2015-03-02T21:03:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-02:changes-on-the-italian-golden-tree.html</id><summary type="html">&lt;p&gt;This is a continuation of my &lt;a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?"&gt;previous
 post&lt;/a&gt;
 about the &lt;strong&gt;+39 ENUM DNS zone&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Thanks to the powerful of the RIPE Database you can see all historical
@@ -202,7 +202,7 @@ of  Communication Ministry.&lt;/p&gt;
 from my SMTP: comunicazioni.it doesn't has a working email system and my
 email to the responsible person for the 9.3.e164.arpa cannot be
 delivered. Still no answers on my other email.&lt;/p&gt;
-&lt;h5&gt;... To be continued ...&lt;/h5&gt;</summary><category term="dns"></category><category term="ENUM"></category><category term="VoIP"></category></entry><entry><title>What happened to the +39 (Italy) ENUM DNS Zone ?</title><link href="http://bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html" rel="alternate"></link><published>2015-02-25T16:38:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2015-02-25:what-happened-to-the-39-italy-enum-dns-zone.html</id><summary type="html">&lt;p&gt;&lt;a href="https://tools.ietf.org/html/rfc6116"&gt;ENUM&lt;/a&gt; is a DNS based algorithm
+&lt;h5&gt;... To be continued ...&lt;/h5&gt;</summary><category term="dns"></category><category term="ENUM"></category><category term="VoIP"></category></entry><entry><title>What happened to the +39 (Italy) ENUM DNS Zone ?</title><link href="http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html" rel="alternate"></link><published>2015-02-25T16:38:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-02-25:what-happened-to-the-39-italy-enum-dns-zone.html</id><summary type="html">&lt;p&gt;&lt;a href="https://tools.ietf.org/html/rfc6116"&gt;ENUM&lt;/a&gt; is a DNS based algorithm
 used to store data associated with E.164 numbers (aka global phone
 numbers). Using ENUM you can associate your email or Skype or SIP
 contact along with your phone number.&lt;/p&gt;
@@ -391,7 +391,7 @@ cannot find test results, adoptions guidelines nor regulation rules.&lt;/p&gt;
 dell'Informazione" &lt;a href="http://www.isticom.it/index.php/contatti"&gt;PR
 office&lt;/a&gt; ), I tried to send an
 email to AGCOM too but I crashed against this message:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="agcom" src="http://bertera.it/static/agcom-300x170.png" /&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;img alt="agcom" src="http://www.bertera.it/static/agcom-300x170.png" /&gt;]&lt;/p&gt;
 &lt;p&gt;If you have any information about ENUM in Italy, feel free to
 &lt;a href="http://www.bertera.it/index.php/contacts/"&gt;contact&lt;/a&gt; me.&lt;/p&gt;
 &lt;h5&gt;to be continued ...&lt;/h5&gt;</summary><category term="ENUM"></category><category term="Italy"></category><category term="VoIP"></category></entry></feed>

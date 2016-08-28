@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://bertera.it/" rel="alternate"></link><link href="http://bertera.it/feeds/scripts.atom.xml" rel="self"></link><id>http://bertera.it/</id><updated>2013-05-30T16:42:00+02:00</updated><entry><title>UAS Authenticating registrar SIPp scenario</title><link href="http://bertera.it/uas-authenticating-registrar-sipp-scenario.html" rel="alternate"></link><published>2013-05-30T16:42:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2013-05-30:uas-authenticating-registrar-sipp-scenario.html</id><summary type="html">&lt;p&gt;&lt;a href="http://sipp.sourceforge.net"&gt;SIPp&lt;/a&gt; is a real SIP swiss army knife. You
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/scripts.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2013-05-30T16:42:00+02:00</updated><entry><title>UAS Authenticating registrar SIPp scenario</title><link href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html" rel="alternate"></link><published>2013-05-30T16:42:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2013-05-30:uas-authenticating-registrar-sipp-scenario.html</id><summary type="html">&lt;p&gt;&lt;a href="http://sipp.sourceforge.net"&gt;SIPp&lt;/a&gt; is a real SIP swiss army knife. You
 can create various SIP scenario and test your devices and environments.&lt;/p&gt;
 &lt;p&gt;I never found a SIPp scenario implementing an UAs (User Agent server)
 registrar with authentication.&lt;/p&gt;
@@ -126,7 +126,7 @@ the message flow:&lt;/p&gt;
 
 
 &lt;p&gt;Log messages will be saved in &lt;strong&gt;sipp_register_auth_uas.log&lt;/strong&gt;.&lt;br /&gt;
-Please note that the &lt;strong&gt;verifyauth&lt;/strong&gt; needs the OpenSSL support.&lt;/p&gt;</summary><category term="sip"></category><category term="SIPp"></category><category term="Testing"></category><category term="VoIP"></category></entry><entry><title>bash snippet: dumping function call trace</title><link href="http://bertera.it/bash-snippet-dumping-function-call-trace.html" rel="alternate"></link><published>2011-07-18T12:44:00+02:00</published><author><name>admin</name></author><id>tag:bertera.it,2011-07-18:bash-snippet-dumping-function-call-trace.html</id><summary type="html">&lt;p&gt;Uno snippet di codice bash utile nel debugging di script.&lt;/p&gt;
+Please note that the &lt;strong&gt;verifyauth&lt;/strong&gt; needs the OpenSSL support.&lt;/p&gt;</summary><category term="sip"></category><category term="SIPp"></category><category term="Testing"></category><category term="VoIP"></category></entry><entry><title>bash snippet: dumping function call trace</title><link href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html" rel="alternate"></link><published>2011-07-18T12:44:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-18:bash-snippet-dumping-function-call-trace.html</id><summary type="html">&lt;p&gt;Uno snippet di codice bash utile nel debugging di script.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#@.. function:: __cm_exit_error([text],[...])
 #@
 #@   Stampa la stringa passata in stderr ed esce
@@ -147,7 +147,7 @@ __cm_exit_error()
         done
         exit 1
 }
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="debugging"></category><category term="script"></category></entry><entry><title>VPN layer 3 con OpenSSH</title><link href="http://bertera.it/vpn-layer-3-con-openssh.html" rel="alternate"></link><published>2008-12-22T13:48:00+01:00</published><author><name>admin</name></author><id>tag:bertera.it,2008-12-22:vpn-layer-3-con-openssh.html</id><summary type="html">&lt;p&gt;Dalla versione 4.3 di OpenSSH è stato introdotto il supporto per
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="debugging"></category><category term="script"></category></entry><entry><title>VPN layer 3 con OpenSSH</title><link href="http://www.bertera.it/vpn-layer-3-con-openssh.html" rel="alternate"></link><published>2008-12-22T13:48:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-12-22:vpn-layer-3-con-openssh.html</id><summary type="html">&lt;p&gt;Dalla versione 4.3 di OpenSSH è stato introdotto il supporto per
 TUN/TAP. Questo sigifica che è possibile stabilire un tunnel cifrato tra
 due peer o due (o piu) reti.&lt;br /&gt;
 &lt;a href="http://www.bertera.it/software/ssh-vpn/ssh-vpn.sh"&gt;Questo&lt;/a&gt; script si
