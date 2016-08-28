@@ -2718,9 +2718,11 @@ differenziali o full utilizzando rsync:
 &lt;a href="https://github.com/pbertera/junk/tree/master/batbu"&gt;Batbu&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bacula: i .deb per sarge della 1.38.5
 &lt;a href="http://www.bertera.it/software/bacula-1.38.5/"&gt;bacula-1.38.5&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Plugin nagios:
-&lt;em&gt; &lt;strong&gt;check-imap-login&lt;/strong&gt; Un plugin per nagios per eseguire un login su un server IMAP (o IMAPS)
-&lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_imap_login"&gt;chek-imap-login&lt;/a&gt;
-&lt;/em&gt; &lt;strong&gt;chek-load-login&lt;/strong&gt; Altro plugin per verificare il carico di una macchina via ssh con due
-soglie di allarme &lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_load_ssh"&gt;check_load_ssh&lt;/a&gt;
-* &lt;strong&gt;check-horde-login&lt;/strong&gt; Plugin che fa il logon in horde web mail&lt;/p&gt;</summary><category term="bacula"></category><category term="nagios"></category><category term="python"></category><category term="rsync"></category><category term="script"></category></entry></feed>
+&lt;p&gt;Plugin nagios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;check-imap-login&lt;/strong&gt; Un plugin per nagios per eseguire un login su un server IMAP (o IMAPS)
+&lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_imap_login"&gt;chek-imap-login&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;chek-load-login&lt;/strong&gt; Altro plugin per verificare il carico di una macchina via ssh con due
+soglie di allarme &lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_load_ssh"&gt;check_load_ssh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;check-horde-login&lt;/strong&gt; Plugin che fa il logon in horde web mail&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="bacula"></category><category term="nagios"></category><category term="python"></category><category term="rsync"></category><category term="script"></category></entry></feed>
