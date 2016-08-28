@@ -2,7 +2,7 @@ Title: Contact
 
 If you're interested in my work or you just have a question or comment, please feel free to contact me anytime.
 
-If you want to contact about typos, grammar and other errors in this blog, you can open an issue here. Otherwise you can mail me at `pietro [at] bertera [dot] it`.
+If you want to contact about typos, grammar and other errors in this blog, you can open an issue [here](https://github.com/pbertera/www.bertera.it). Otherwise you can mail me at `pietro [at] bertera [dot] it`.
 
 ```
 GPG Key ID: E77431A4
