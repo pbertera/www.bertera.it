@@ -6,7 +6,7 @@ AUTHOR = 'Pietro Bertera'
 SITENAME = 'Pietro Bertera\'s Blog'
 SITEURL = 'http://localhost:8000'
 SITETITLE = AUTHOR
-SITESUBTITLE = 'Something about IT, sports and life'
+SITESUBTITLE = 'Something about ...'
 SITEDESCRIPTION = '%s\'s Thoughts and Writings' % AUTHOR
 SITELOGO = '//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120'
 BROWSER_COLOR = '#ff3333'
@@ -32,6 +32,7 @@ STATIC_PATHS = ['static', 'pdfs', 'extra/CNAME']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 PLUGIN_PATHS = ['pelican-plugins', 'plugins']
+
 # Pelican plugins:
 PLUGINS = [# These plugins are part of the official `pelican-plugins` repo:
            #'summary',
@@ -39,6 +40,8 @@ PLUGINS = [# These plugins are part of the official `pelican-plugins` repo:
            # This one is a custom plugin:
            'cv_pdf',
            ]
+
+DISQUS_SITENAME = "bertera-it"
 
 LINKS = ()
 # Blogroll
