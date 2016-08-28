@@ -46,7 +46,7 @@
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
       <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
-<p>Something about IT, sports and life</p>      <nav>
+<p>Something about ...</p>      <nav>
         <ul class="list">
           <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
           <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
@@ -71,9 +71,34 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">GNU/Find posix acl support</a></h2>
+    <p>
+      Posted on Mon 28 September 2009 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/find.html">find</a>,      <a href="http://www.bertera.it/tag/gnu.html">gnu</a>      &#8226; <a href="http://www.bertera.it/gnufind-posix-acl-support.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Cercare file che corrispondono a delle acl posix all'interno di un
+filesystem molto intricato è sempre un delirio.</p>
+<p><a href="https://github.com/pbertera/junk/tree/master/findutils-acl">Questa</a> patch aggiunge
+l'opzione -acl al comando find
+(<a href="http://www.gnu.org/software/findutils/">GNU/Findutils</a>).</p>
+<p>Esempio d'uso:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+<span class="err">$</span> <span class="s s-Atom">mkdir</span> <span class="mi">5</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rx</span> <span class="mi">1</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">bin ...</span></pre></div>
+      <a class="btn" href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/verbose-bash-history.html#verbose-bash-history">Verbose bash history</a></h2>
     <p>
       Posted on Thu 02 July 2009 in <a href="http://www.bertera.it/category/hack.html">hack</a>
+      &#8226; <a href="http://www.bertera.it/verbose-bash-history.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
@@ -93,7 +118,8 @@ quando il file raggiunge ...</p>
     <p>
       Posted on Mon 22 December 2008 in <a href="http://www.bertera.it/category/scripts.html">scripts</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/bash.html">bash</a>,      <a href="http://www.bertera.it/tag/ssh.html">ssh</a>,      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>    </p>
+      <a href="http://www.bertera.it/tag/bash.html">bash</a>,      <a href="http://www.bertera.it/tag/ssh.html">ssh</a>,      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>      &#8226; <a href="http://www.bertera.it/vpn-layer-3-con-openssh.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>Dalla versione 4.3 di OpenSSH è stato introdotto il supporto per
@@ -112,7 +138,8 @@ indirizzi e le rotte ...</p>
     <p>
       Posted on Wed 17 December 2008 in <a href="http://www.bertera.it/category/coding.html">coding</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/product-key.html">product key</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>,      <a href="http://www.bertera.it/tag/registry.html">registry</a>,      <a href="http://www.bertera.it/tag/windows.html">windows</a>    </p>
+      <a href="http://www.bertera.it/tag/product-key.html">product key</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>,      <a href="http://www.bertera.it/tag/registry.html">registry</a>,      <a href="http://www.bertera.it/tag/windows.html">windows</a>      &#8226; <a href="http://www.bertera.it/reading-windows-and-office-product-key.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>I product key di M\$ Windows e Office vengono salvati nel registro in
@@ -131,7 +158,8 @@ key da un pc remoto.</p>
     <p>
       Posted on Fri 26 September 2008 in <a href="http://www.bertera.it/category/coding.html">coding</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/acl-posix.html">acl posix</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>    </p>
+      <a href="http://www.bertera.it/tag/acl-posix.html">acl posix</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>      &#8226; <a href="http://www.bertera.it/worstbit-posix-acl.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando</p>
@@ -150,7 +178,8 @@ key da un pc remoto.</p>
     <p>
       Posted on Wed 24 September 2008 in <a href="http://www.bertera.it/category/hack.html">hack</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/http.html">http</a>,      <a href="http://www.bertera.it/tag/nagios.html">nagios</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>    </p>
+      <a href="http://www.bertera.it/tag/http.html">http</a>,      <a href="http://www.bertera.it/tag/nagios.html">nagios</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>      &#8226; <a href="http://www.bertera.it/check_web_formpy.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>Check script di nagios per eseguire il submit di un form e cercare dei
@@ -196,7 +225,8 @@ valori nella response del server.</p>
     <p>
       Posted on Wed 03 September 2008 in <a href="http://www.bertera.it/category/hack.html">hack</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/apcupsd.html">apcupsd</a>,      <a href="http://www.bertera.it/tag/backports.html">backports</a>,      <a href="http://www.bertera.it/tag/debian.html">debian</a>,      <a href="http://www.bertera.it/tag/linux.html">linux</a>,      <a href="http://www.bertera.it/tag/powerchute.html">powerchute</a>    </p>
+      <a href="http://www.bertera.it/tag/apcupsd.html">apcupsd</a>,      <a href="http://www.bertera.it/tag/backports.html">backports</a>,      <a href="http://www.bertera.it/tag/debian.html">debian</a>,      <a href="http://www.bertera.it/tag/linux.html">linux</a>,      <a href="http://www.bertera.it/tag/powerchute.html">powerchute</a>      &#8226; <a href="http://www.bertera.it/powerchute-con-apcupsd.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>Dalla versione 3.14 <a href="http://www.apcupsd.org">apcupsd</a> supporta il
@@ -216,7 +246,8 @@ protocollo PowerChute di APC:</p>
     <p>
       Posted on Fri 30 May 2008 in <a href="http://www.bertera.it/category/hack.html">hack</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/bacula.html">bacula</a>,      <a href="http://www.bertera.it/tag/sql-server.html">sql server</a>,      <a href="http://www.bertera.it/tag/windows.html">windows</a>    </p>
+      <a href="http://www.bertera.it/tag/bacula.html">bacula</a>,      <a href="http://www.bertera.it/tag/sql-server.html">sql server</a>,      <a href="http://www.bertera.it/tag/windows.html">windows</a>      &#8226; <a href="http://www.bertera.it/sql-server-backup-con-bacula.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>In teoria con una versione recente di Bacula ed il supporto VSS si
@@ -236,7 +267,8 @@ procedure esegue il dump di tutti i database utente in file .BAK.</p>
     <p>
       Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hack.html">hack</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/kernel.html">kernel</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>    </p>
+      <a href="http://www.bertera.it/tag/kernel.html">kernel</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>      &#8226; <a href="http://www.bertera.it/kecho.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>Kernel echo è un esempio di comunicazione tra userspace e kernelspace<br />
@@ -251,29 +283,13 @@ procedure esegue il dump di tutti i database utente in file .BAK.</p>
     <p>
       Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hack.html">hack</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/codin.html">codin</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>    </p>
+      <a href="http://www.bertera.it/tag/codin.html">codin</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>      &#8226; <a href="http://www.bertera.it/nettester.html#disqus_thread">Leave a comment</a>
+    </p>
   </header>
   <div>
       <p>un clone di netcat con supporto UDP<br />
 <a href="https://github.com/pbertera/junk/tree/master/nettester">nettester</a></p>
       <a class="btn" href="http://www.bertera.it/nettester.html#nettester">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/rtcp.html#rtcp">rTCP</a></h2>
-    <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hack.html">hack</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/kernel.html">kernel</a>    </p>
-  </header>
-  <div>
-      <p>rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
-diretti verso un dato host.<br />
-Installato su due host permette di comunicare con un TCP “inverso”<br />
-<a href="https://github.com/pbertera/junk/tree/master/rtcp">rtcp</a></p>
-      <a class="btn" href="http://www.bertera.it/rtcp.html#rtcp">Continue reading</a>
   </div>
 </article>
 
@@ -317,6 +333,15 @@ Installato su due host permette di comunicare con un TCP “inverso”<br />
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
+</script>
+<script type="text/javascript">
+    var disqus_shortname = 'bertera-it';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
 </script>
 </body>
 </html>
