@@ -7,7 +7,7 @@ Slug: asterisk_and_sip_session_refresh_with_update-request
 Status: published
 
 Using **directmedia=update** or (**canreinvite=update** in old-sytle
-configuration) in chan\_sip.conf Asterisk sends SIP UPDATE request to
+configuration) in chan_sip.conf Asterisk sends SIP UPDATE request to
 refresh SIP session.
 
 If this UPDATE requests refers to an inactive call the phone reply with
@@ -45,6 +45,6 @@ handle_response_subscribe(p, resp, rest, req, seqno);
 ```
 
 You can download the patch at
-<http://www.bertera.it/software/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch>
+<https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch>
 
 Asterisk reported issue: [ASTERISK-19313](https://issues.asterisk.org/jira/browse/ASTERISK-19313)

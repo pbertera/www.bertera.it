@@ -7,5 +7,5 @@ Slug: hacking-della-seriale
 Status: published
 
 Leggere e modificare lo stato dei pin di seganalzione della seriale:  
-[due script](http://www.bertera.it/software/serial/)
+[due script](https://github.com/pbertera/junk/tree/master/serial)
 

@@ -21,7 +21,7 @@ below:
 
 ![menu]({attach}/static/pdmenu2.png)
 
-this is the [pdmenu configuration file](http://www.bertera.it/software/pdmenu/menutest):
+this is the [pdmenu configuration file](https://github.com/pbertera/junk/blob/master/showdir/menutest):
 
 ```
 #! /usr/bin/pdmenu -c
@@ -69,7 +69,7 @@ nop
 exit:E_xit
 ```
 
-you can download the showdir.pl script [here]({attach}/static/showdir.pl.gz)
+you can download the showdir.pl script [here](https://github.com/pbertera/junk/blob/master/showdir/showdir.pl)
 
 All files `/usr/share/pdmenu/editdir.pl` `/usr/share/pdmenu/deldir.pl`
 `/usr/share/pdmenu/adddir.pl` `/usr/share/pdmenu/addfile.pl` are symlink to

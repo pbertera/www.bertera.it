@@ -9,7 +9,7 @@ Status: published
 Asterisk use peername as username during SIP inbound digest
 authentication.  
 [This
-patch](http://www.bertera.it/software/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.diff)
+patch](https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.patch)
 add **authuser** parameter in SIP peer definition and use authuser in
 digest authentication:
 

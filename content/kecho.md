@@ -7,5 +7,4 @@ Slug: kecho
 Status: published
 
 Kernel echo è un esempio di comunicazione tra userspace e kernelspace  
-[kecho,tgz](http://www.bertera.it/software/kecho/kecho.tgz)
-
+[kecho](https://github.com/pbertera/junk/tree/master/kecho)

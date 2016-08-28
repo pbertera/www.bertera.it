@@ -9,5 +9,4 @@ Status: published
 rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
 diretti verso un dato host.  
 Installato su due host permette di comunicare con un TCP “inverso”  
-[rtcp.c](http://www.bertera.it/software/rtcp/rtcp.c)
-
+[rtcp](https://github.com/pbertera/junk/tree/master/rtcp)

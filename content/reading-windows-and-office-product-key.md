@@ -60,12 +60,8 @@ PS: non sono sicuro funzioni correttamente con Office 2000
 
 **Download:**  
 
-pygetkey è scaricabile [qua](http://www.bertera.it/software/pygetkey)
+pygetkey è scaricabile [qua](https://github.com/pbertera/junk/tree/master/pygetkey)
 
-Gli eseguibili di pygetkey e readrreg e le librerie necessarie per
-windows 32bit sono scaricabili [qua](http://www.bertera.it/software/pygetkey/dist/)
  
 python è scaricabile all'indirizzo: <http://www.python.org>  
 py2exe è scaricabile all'indirizzo: <http://www.py2exe.org>
-
-il README di pygekey e readrreg: http://www.bertera.it/software/pygetkey/README

@@ -9,7 +9,7 @@ Status: published
 Cercare file che corrispondono a delle acl posix all'interno di un
 filesystem molto intricato è sempre un delirio.
 
-[Questa](http://www.bertera.it/software/findutils-acl/) patch aggiunge
+[Questa](https://github.com/pbertera/junk/tree/master/findutils-acl) patch aggiunge
 l'opzione -acl al comando find
 ([GNU/Findutils](http://www.gnu.org/software/findutils/)).
 
@@ -44,6 +44,6 @@ $ find . -acl d:u:*:*
 ```
 
 Questa patch e' stata testata solo su Linux, è scaricabile qua:
-<http://www.bertera.it/software/findutils-acl/> è disponibile per la
+<https://github.com/pbertera/junk/tree/master/findutils-acl> è disponibile per la
 versione 4.42 e 4.5.6 di findutils
 

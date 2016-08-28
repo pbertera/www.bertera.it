@@ -8,7 +8,7 @@ Status: published
 
 Vendor specific DHCP options may be provided encapsulated in DHCP option
 43.  
-With [this little script]({attach}/static/dhcp-encapsulated-options.py) you
+With [this little script](https://github.com/pbertera/junk/tree/master/dhcp-encapsulated-options) you
 can encode and decode vendor encapsulated option according to [RFC
 2132](http://www.ietf.org/rfc/rfc2132.txt).
 

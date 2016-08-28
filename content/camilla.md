@@ -10,5 +10,4 @@ Camilla è un sistema di booking per camere e case, supporta agenzie
 multiple e la gestione di calendari e stagioni.  
 ![camilla]({attach}/static/camilla.jpg)  
 
-[camilla-0.9.tgz](http://www.bertera.it/software/camilla/camilla-0.9.tgz)
-
+[camilla](https://github.com/pbertera/junk/tree/master/camilla)

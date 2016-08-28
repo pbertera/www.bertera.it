@@ -6,10 +6,8 @@ Tags: acl posix, c
 Slug: worstbit-posix-acl
 Status: published
 
-Software C che si occupa dell'encode e decode dei filename nei dump del
-comando
+Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando
 
      getfacl -R
 
-<http://www.bertera.it/software/worstbit/worstbit.c>
-
+<https://github.com/pbertera/junk/tree/master/worstbit>

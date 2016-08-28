@@ -6,6 +6,6 @@ Tags: codin, networking
 Slug: nettester
 Status: published
 
-un clone di netcat che supporta anche UDP  
-[nettester.c](http://www.bertera.it/software/nettester/nettester.c)
+un clone di netcat con supporto UDP  
+[nettester](https://github.com/pbertera/junk/tree/master/nettester)
 

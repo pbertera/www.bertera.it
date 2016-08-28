@@ -9,12 +9,12 @@ Status: published
 Dalla versione 4.3 di OpenSSH è stato introdotto il supporto per
 TUN/TAP. Questo sigifica che è possibile stabilire un tunnel cifrato tra
 due peer o due (o piu) reti.  
-[Questo](http://www.bertera.it/software/ssh-vpn/ssh-vpn.sh) script si
+[Questo](https://github.com/pbertera/ssh-vpn) script si
 occupa di fare il discover dei device tun da utilizzare, assegnare gli
 indirizzi e le rotte al tunnel (locali e sul peer remoto) ed eseguire
 comandi aggiuntivi tramite un file di configurazione.
 
-**[testvpn.conf](http://www.bertera.it/software/ssh-vpn/testvpn.conf):**
+**[testvpn.conf](https://github.com/pbertera/ssh-vpn/blob/master/example.conf):**
 
 ```
 SSH_OPTS="-i /home/pietro/.ssh/id_dsa" # optional: options for ssh command

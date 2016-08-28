@@ -10,11 +10,13 @@ In teoria con una versione recente di Bacula ed il supporto VSS si
 dovrebbe poter eseguire il backup in maniera consistente prelevando
 direttamente i file dei database.  
 Per chi non si fida
-[questa](http://www.bertera.it/software/mssql-backup/dump.sql) stored
+[questa](https://github.com/pbertera/junk/blob/master/mssql-backup/dump.sql) stored
 procedure esegue il dump di tutti i database utente in file .BAK.
 
 Viene installata ed eseguita tramite
-[questo](http://www.bertera.it/software/mssql-backup/pre-backup.bat)
+[questo](https://github.com/pbertera/junk/blob/master/mssql-backup/pre-backup.bat)
 .bat richiamato da un “ClientRunBeforeJob”. (Ovvio che la directory che
 contiene i .BAK deve essere compresa nel FIleSet del client).
 
+Lo script [post-bakup](https://github.com/pbertera/junk/blob/master/mssql-backup/post-backup.bat)
+si occupa di ripulire la directory di appoggio dai dump.
