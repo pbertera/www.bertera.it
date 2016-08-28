@@ -11,6 +11,8 @@ case $1 in
     serve)
         docker run -it -v ${PWD}:/site -p ${LOCAL_PORT}:${LOCAL_PORT} -v ${HOME}/${SSH_KEY}:/root/${SSH_KEY} $CONTAINER serve 
         ;;
+    build)
+        docker build -t ${CONTAINER} .
     *)
         docker run -it -v ${PWD}:/site -p ${LOCAL_PORT}:${LOCAL_PORT} -v ${HOME}/${SSH_KEY}:/root/${SSH_KEY} $CONTAINER $1
         ;; 
