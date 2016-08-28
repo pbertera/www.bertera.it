@@ -846,7 +846,7 @@ All outgoing RTP frames a timestamp value of 0.&lt;/p&gt;
 exten =&amp;gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="multicast"></category><category term="patch"></category><category term="rtp"></category><category term="VoIP"></category></entry><entry><title>Encoding and decoding Encapsulated DHCP options (RFC 2132)</title><link href="http://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html" rel="alternate"></link><published>2012-10-19T10:38:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-19:encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html</id><summary type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
 43.&lt;br /&gt;
-With &lt;a href="http://www.bertera.it/static/dhcp-encapsulated-options.py"&gt;this little script&lt;/a&gt; you
+With &lt;a href="https://github.com/pbertera/junk/tree/master/dhcp-encapsulated-options"&gt;this little script&lt;/a&gt; you
 can encode and decode vendor encapsulated option according to &lt;a href="http://www.ietf.org/rfc/rfc2132.txt"&gt;RFC
 2132&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For example with this command you can tunnel options 66 (TFTP Server),
@@ -1108,7 +1108,7 @@ minimal file browser for using pdmenu.&lt;/p&gt;
 below:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="run menu" src="http://www.bertera.it/static/pdmenu1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="menu" src="http://www.bertera.it/static/pdmenu2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;this is the &lt;a href="http://www.bertera.it/software/pdmenu/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;this is the &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -1197,7 +1197,7 @@ exit:E_xit
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;you can download the showdir.pl script &lt;a href="http://www.bertera.it/static/showdir.pl.gz"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;you can download the showdir.pl script &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/showdir.pl"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;All files &lt;code&gt;/usr/share/pdmenu/editdir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/deldir.pl&lt;/code&gt;
 &lt;code&gt;/usr/share/pdmenu/adddir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/addfile.pl&lt;/code&gt; are symlink to
 &lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>How to push a public IP on your laptop using SSH bridged tunnel</title><link href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html" rel="alternate"></link><published>2012-03-04T23:49:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-03-04:how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html</id><summary type="html">&lt;p&gt;In my &lt;a href="http://www.bertera.it/index.php/2008/12/22/vpn-layer-3-con-openssh/" title="VPN layer 3 con OpenSSH"&gt;previous
@@ -1325,7 +1325,7 @@ handle_response_subscribe(p, resp, rest, req, seqno);
 
 
 &lt;p&gt;You can download the patch at
-&lt;a href="http://www.bertera.it/software/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch"&gt;http://www.bertera.it/software/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch"&gt;https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Asterisk reported issue: &lt;a href="https://issues.asterisk.org/jira/browse/ASTERISK-19313"&gt;ASTERISK-19313&lt;/a&gt;&lt;/p&gt;</summary><category term="asterisk"></category><category term="bug"></category><category term="sip"></category><category term="VoIP"></category></entry><entry><title>How to split DNS name resolution in VPN environment</title><link href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html" rel="alternate"></link><published>2011-11-30T19:18:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-30:how-to-split-dns-name-resolution-in-vpn-environment.html</id><summary type="html">&lt;p&gt;I'm in this situation:&lt;br /&gt;
 a VPN to remote concentrator that load many routes to private networks,
 vpn server push DNS configuration via OpenVPN protocol (see
@@ -2016,7 +2016,7 @@ running-config via syslog.&lt;/p&gt;
 &lt;span class="x"&gt; set 2.0 _exit_status 1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="cisco"></category><category term="cli"></category><category term="syslog"></category></entry><entry><title>Authentication username in Astersik SIP peer</title><link href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html" rel="alternate"></link><published>2010-07-12T09:01:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2010-07-12:authentication-username-in-astersik-sip-peer.html</id><summary type="html">&lt;p&gt;Asterisk use peername as username during SIP inbound digest
 authentication.&lt;br /&gt;
-&lt;a href="http://www.bertera.it/software/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.diff"&gt;This
+&lt;a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.patch"&gt;This
 patch&lt;/a&gt;
 add &lt;strong&gt;authuser&lt;/strong&gt; parameter in SIP peer definition and use authuser in
 digest authentication:&lt;/p&gt;
@@ -2123,7 +2123,7 @@ nat=yes
 &lt;span class="gi"&gt;+   }&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="patch"></category><category term="VoIP"></category></entry><entry><title>GNU/Find posix acl support</title><link href="http://www.bertera.it/gnufind-posix-acl-support.html" rel="alternate"></link><published>2009-09-28T18:25:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-09-28:gnufind-posix-acl-support.html</id><summary type="html">&lt;p&gt;Cercare file che corrispondono a delle acl posix all'interno di un
 filesystem molto intricato è sempre un delirio.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.bertera.it/software/findutils-acl/"&gt;Questa&lt;/a&gt; patch aggiunge
+&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;Questa&lt;/a&gt; patch aggiunge
 l'opzione -acl al comando find
 (&lt;a href="http://www.gnu.org/software/findutils/"&gt;GNU/Findutils&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Esempio d'uso:&lt;/p&gt;
@@ -2156,7 +2156,7 @@ l'opzione -acl al comando find
 
 
 &lt;p&gt;Questa patch e' stata testata solo su Linux, è scaricabile qua:
-&lt;a href="http://www.bertera.it/software/findutils-acl/"&gt;http://www.bertera.it/software/findutils-acl/&lt;/a&gt; è disponibile per la
+&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;https://github.com/pbertera/junk/tree/master/findutils-acl&lt;/a&gt; è disponibile per la
 versione 4.42 e 4.5.6 di findutils&lt;/p&gt;</summary><category term="c"></category><category term="find"></category><category term="gnu"></category></entry><entry><title>Verbose bash history</title><link href="http://www.bertera.it/verbose-bash-history.html" rel="alternate"></link><published>2009-07-02T08:58:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-07-02:verbose-bash-history.html</id><summary type="html">&lt;p&gt;Usando questo codice durante l'inizializzasione della shell viene
 salvata una command history nel file &lt;em&gt;.bash_verbose_history&lt;/em&gt; contenete
 data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando
@@ -2183,11 +2183,11 @@ PROMPT_COMMAND=&amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n
 &lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>VPN layer 3 con OpenSSH</title><link href="http://www.bertera.it/vpn-layer-3-con-openssh.html" rel="alternate"></link><published>2008-12-22T13:48:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-12-22:vpn-layer-3-con-openssh.html</id><summary type="html">&lt;p&gt;Dalla versione 4.3 di OpenSSH è stato introdotto il supporto per
 TUN/TAP. Questo sigifica che è possibile stabilire un tunnel cifrato tra
 due peer o due (o piu) reti.&lt;br /&gt;
-&lt;a href="http://www.bertera.it/software/ssh-vpn/ssh-vpn.sh"&gt;Questo&lt;/a&gt; script si
+&lt;a href="https://github.com/pbertera/ssh-vpn"&gt;Questo&lt;/a&gt; script si
 occupa di fare il discover dei device tun da utilizzare, assegnare gli
 indirizzi e le rotte al tunnel (locali e sul peer remoto) ed eseguire
 comandi aggiuntivi tramite un file di configurazione.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href="http://www.bertera.it/software/ssh-vpn/testvpn.conf"&gt;testvpn.conf&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/pbertera/ssh-vpn/blob/master/example.conf"&gt;testvpn.conf&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;SSH_OPTS=&amp;quot;-i /home/pietro/.ssh/id_dsa&amp;quot; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: options for ssh command&lt;/span&gt;
 &lt;span class="x"&gt;RUSER=root  &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; user to login on remote peer&lt;/span&gt;
 &lt;span class="x"&gt;PEER=172.42.10.2 &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; ip of remote peer&lt;/span&gt;
@@ -2251,12 +2251,9 @@ necessari all'esecuzione di pygetkey.exe e readrreg.exe sono:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;PS: non sono sicuro funzioni correttamente con Office 2000&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Download:&lt;/strong&gt;  &lt;/p&gt;
-&lt;p&gt;pygetkey è scaricabile &lt;a href="http://www.bertera.it/software/pygetkey"&gt;qua&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Gli eseguibili di pygetkey e readrreg e le librerie necessarie per
-windows 32bit sono scaricabili &lt;a href="http://www.bertera.it/software/pygetkey/dist/"&gt;qua&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;pygetkey è scaricabile &lt;a href="https://github.com/pbertera/junk/tree/master/pygetkey"&gt;qua&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;python è scaricabile all'indirizzo: &lt;a href="http://www.python.org"&gt;http://www.python.org&lt;/a&gt;&lt;br /&gt;
-py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;il README di pygekey e readrreg: http://www.bertera.it/software/pygetkey/README&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
+py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; getfacl -R
 &lt;/pre&gt;&lt;/div&gt;
 

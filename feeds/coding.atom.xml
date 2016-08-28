@@ -43,12 +43,9 @@ necessari all'esecuzione di pygetkey.exe e readrreg.exe sono:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;PS: non sono sicuro funzioni correttamente con Office 2000&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Download:&lt;/strong&gt;  &lt;/p&gt;
-&lt;p&gt;pygetkey è scaricabile &lt;a href="http://www.bertera.it/software/pygetkey"&gt;qua&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Gli eseguibili di pygetkey e readrreg e le librerie necessarie per
-windows 32bit sono scaricabili &lt;a href="http://www.bertera.it/software/pygetkey/dist/"&gt;qua&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;pygetkey è scaricabile &lt;a href="https://github.com/pbertera/junk/tree/master/pygetkey"&gt;qua&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;python è scaricabile all'indirizzo: &lt;a href="http://www.python.org"&gt;http://www.python.org&lt;/a&gt;&lt;br /&gt;
-py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;il README di pygekey e readrreg: http://www.bertera.it/software/pygetkey/README&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
+py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; getfacl -R
 &lt;/pre&gt;&lt;/div&gt;
 

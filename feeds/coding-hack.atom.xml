@@ -115,7 +115,7 @@ Create a new file  under "include" folder: &lt;code&gt;vim include/CommissionHa
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Fourth Step: Play with invoice and products commissions.&lt;/strong&gt;&lt;/p&gt;</summary><category term="crm"></category><category term="php"></category><category term="vtiger"></category></entry><entry><title>Authentication username in Astersik SIP peer</title><link href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html" rel="alternate"></link><published>2010-07-12T09:01:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2010-07-12:authentication-username-in-astersik-sip-peer.html</id><summary type="html">&lt;p&gt;Asterisk use peername as username during SIP inbound digest
 authentication.&lt;br /&gt;
-&lt;a href="http://www.bertera.it/software/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.diff"&gt;This
+&lt;a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.patch"&gt;This
 patch&lt;/a&gt;
 add &lt;strong&gt;authuser&lt;/strong&gt; parameter in SIP peer definition and use authuser in
 digest authentication:&lt;/p&gt;
@@ -222,7 +222,7 @@ nat=yes
 &lt;span class="gi"&gt;+   }&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="patch"></category><category term="VoIP"></category></entry><entry><title>GNU/Find posix acl support</title><link href="http://www.bertera.it/gnufind-posix-acl-support.html" rel="alternate"></link><published>2009-09-28T18:25:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-09-28:gnufind-posix-acl-support.html</id><summary type="html">&lt;p&gt;Cercare file che corrispondono a delle acl posix all'interno di un
 filesystem molto intricato è sempre un delirio.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.bertera.it/software/findutils-acl/"&gt;Questa&lt;/a&gt; patch aggiunge
+&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;Questa&lt;/a&gt; patch aggiunge
 l'opzione -acl al comando find
 (&lt;a href="http://www.gnu.org/software/findutils/"&gt;GNU/Findutils&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Esempio d'uso:&lt;/p&gt;
@@ -255,5 +255,5 @@ l'opzione -acl al comando find
 
 
 &lt;p&gt;Questa patch e' stata testata solo su Linux, è scaricabile qua:
-&lt;a href="http://www.bertera.it/software/findutils-acl/"&gt;http://www.bertera.it/software/findutils-acl/&lt;/a&gt; è disponibile per la
+&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;https://github.com/pbertera/junk/tree/master/findutils-acl&lt;/a&gt; è disponibile per la
 versione 4.42 e 4.5.6 di findutils&lt;/p&gt;</summary><category term="c"></category><category term="find"></category><category term="gnu"></category></entry></feed>

@@ -194,7 +194,7 @@ minimal file browser for using pdmenu.&lt;/p&gt;
 below:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="run menu" src="http://www.bertera.it/static/pdmenu1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="menu" src="http://www.bertera.it/static/pdmenu2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;this is the &lt;a href="http://www.bertera.it/software/pdmenu/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;this is the &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -283,7 +283,7 @@ exit:E_xit
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;you can download the showdir.pl script &lt;a href="http://www.bertera.it/static/showdir.pl.gz"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;you can download the showdir.pl script &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/showdir.pl"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;All files &lt;code&gt;/usr/share/pdmenu/editdir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/deldir.pl&lt;/code&gt;
 &lt;code&gt;/usr/share/pdmenu/adddir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/addfile.pl&lt;/code&gt; are symlink to
 &lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>snom XML minibrowser project online</title><link href="http://www.bertera.it/snom-xml-minibrowser-project-online.html" rel="alternate"></link><published>2011-11-15T21:49:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-15:snom-xml-minibrowser-project-online.html</id><summary type="html">&lt;p&gt;snom XML minibrowser web emulator project pages are online:&lt;/p&gt;

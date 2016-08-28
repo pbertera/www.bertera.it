@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/scripts-systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2012-10-19T10:38:00+02:00</updated><entry><title>Encoding and decoding Encapsulated DHCP options (RFC 2132)</title><link href="http://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html" rel="alternate"></link><published>2012-10-19T10:38:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-19:encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html</id><summary type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
 43.&lt;br /&gt;
-With &lt;a href="http://www.bertera.it/static/dhcp-encapsulated-options.py"&gt;this little script&lt;/a&gt; you
+With &lt;a href="https://github.com/pbertera/junk/tree/master/dhcp-encapsulated-options"&gt;this little script&lt;/a&gt; you
 can encode and decode vendor encapsulated option according to &lt;a href="http://www.ietf.org/rfc/rfc2132.txt"&gt;RFC
 2132&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For example with this command you can tunnel options 66 (TFTP Server),

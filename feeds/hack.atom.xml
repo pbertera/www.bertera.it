@@ -71,7 +71,7 @@ handle_response_subscribe(p, resp, rest, req, seqno);
 
 
 &lt;p&gt;You can download the patch at
-&lt;a href="http://www.bertera.it/software/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch"&gt;http://www.bertera.it/software/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch"&gt;https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Asterisk reported issue: &lt;a href="https://issues.asterisk.org/jira/browse/ASTERISK-19313"&gt;ASTERISK-19313&lt;/a&gt;&lt;/p&gt;</summary><category term="asterisk"></category><category term="bug"></category><category term="sip"></category><category term="VoIP"></category></entry><entry><title>cisco IOS contextual config diffs via syslog</title><link href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html" rel="alternate"></link><published>2010-10-11T11:11:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2010-10-11:cisco-ios-contextual-config-diffs-via-syslog.html</id><summary type="html">&lt;p&gt;Event amanager applet per salvare il diff tra stratup-config e
 running-config via syslog.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;event manager applet wr-mem-match &lt;/span&gt;
