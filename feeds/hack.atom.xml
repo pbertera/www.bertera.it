@@ -556,13 +556,12 @@ multiple e la gestione di calendari e stagioni.&lt;br /&gt;
 program&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Hacking della seriale</title><link href="http://www.bertera.it/hacking-della-seriale.html" rel="alternate"></link><published>2006-02-09T16:25:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-09:hacking-della-seriale.html</id><summary type="html">&lt;p&gt;Leggere e modificare lo stato dei pin di seganalzione della seriale:&lt;br /&gt;
 &lt;a href="http://www.bertera.it/software/serial/"&gt;due script&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Software</title><link href="http://www.bertera.it/software.html" rel="alternate"></link><published>2006-02-05T16:22:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-05:software.html</id><summary type="html">&lt;p&gt;Era un progettino che avevo dato all’università : esegue dei backup
 differenziali o full utilizzando rsync:
-&lt;a href="http://www.bertera.it/software/batbu/"&gt;Batbu&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/batbu"&gt;Batbu&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bacula: i .deb per sarge della 1.38.5
 &lt;a href="http://www.bertera.it/software/bacula-1.38.5/"&gt;bacula-1.38.5&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Plugin nagios: check-imap-login&lt;br /&gt;
-Un plugin per nagios per eseguire un login su un server IMAP (o IMAPS)  &lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.bertera.it/software/nagios/check_imap_login"&gt;chek-imap-login&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Plugin per nagios: chek-load-ssh&lt;br /&gt;
-Altro plugin per verificare il carico di una macchina via ssh con due
-soglie di allarme
-&lt;a href="http://www.bertera.it/software/nagios/check_load_ssh"&gt;check_load_ssh&lt;/a&gt;&lt;/p&gt;</summary><category term="bacula"></category><category term="nagios"></category><category term="python"></category><category term="rsync"></category><category term="script"></category></entry></feed>
+&lt;p&gt;Plugin nagios:
+&lt;em&gt; &lt;strong&gt;check-imap-login&lt;/strong&gt; Un plugin per nagios per eseguire un login su un server IMAP (o IMAPS)
+&lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_imap_login"&gt;chek-imap-login&lt;/a&gt;
+&lt;/em&gt; &lt;strong&gt;chek-load-login&lt;/strong&gt; Altro plugin per verificare il carico di una macchina via ssh con due
+soglie di allarme &lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_load_ssh"&gt;check_load_ssh&lt;/a&gt;
+* &lt;strong&gt;check-horde-login&lt;/strong&gt; Plugin che fa il logon in horde web mail&lt;/p&gt;</summary><category term="bacula"></category><category term="nagios"></category><category term="python"></category><category term="rsync"></category><category term="script"></category></entry></feed>
