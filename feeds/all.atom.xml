@@ -229,7 +229,7 @@ callback.&lt;/p&gt;
 
 
 &lt;p&gt;Here a screenshot of the UDP server in action:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A screenshot of the logging server in action" src="http://www.bertera.it/static/tsafe.png" /&gt;&lt;/p&gt;</summary><category term="GUI"></category><category term="Multithreading"></category><category term="python"></category><category term="Tkinter"></category><category term="UDP"></category></entry><entry><title>Changes on the Italian "Golden Tree"</title><link href="http://www.bertera.it/changes-on-the-italian-golden-tree.html" rel="alternate"></link><published>2015-03-02T21:03:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-02:changes-on-the-italian-golden-tree.html</id><summary type="html">&lt;p&gt;This is a continuation of my &lt;a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?"&gt;previous
+&lt;p&gt;&lt;img alt="A screenshot of the logging server in action" src="http://www.bertera.it/tsafe.png" /&gt;&lt;/p&gt;</summary><category term="GUI"></category><category term="Multithreading"></category><category term="python"></category><category term="Tkinter"></category><category term="UDP"></category></entry><entry><title>Changes on the Italian "Golden Tree"</title><link href="http://www.bertera.it/changes-on-the-italian-golden-tree.html" rel="alternate"></link><published>2015-03-02T21:03:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-02:changes-on-the-italian-golden-tree.html</id><summary type="html">&lt;p&gt;This is a continuation of my &lt;a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?"&gt;previous
 post&lt;/a&gt;
 about the &lt;strong&gt;+39 ENUM DNS zone&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Thanks to the powerful of the RIPE Database you can see all historical
@@ -621,10 +621,10 @@ cannot find test results, adoptions guidelines nor regulation rules.&lt;/p&gt;
 dell'Informazione" &lt;a href="http://www.isticom.it/index.php/contatti"&gt;PR
 office&lt;/a&gt; ), I tried to send an
 email to AGCOM too but I crashed against this message:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="agcom" src="http://www.bertera.it/static/agcom-300x170.png" /&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;img alt="agcom" src="http://www.bertera.it/agcom-300x170.png" /&gt;]&lt;/p&gt;
 &lt;p&gt;If you have any information about ENUM in Italy, feel free to
 &lt;a href="http://www.bertera.it/index.php/contacts/"&gt;contact&lt;/a&gt; me.&lt;/p&gt;
-&lt;h5&gt;to be continued ...&lt;/h5&gt;</summary><category term="ENUM"></category><category term="Italy"></category><category term="VoIP"></category></entry><entry><title>SIP packets filtering with iptables</title><link href="http://www.bertera.it/sip-facket-filtering-with-iptables.html" rel="alternate"></link><published>2014-01-22T23:50:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2014-01-22:sip-facket-filtering-with-iptables.html</id><summary type="html">&lt;p&gt;One of the most powerful &lt;a href="http://www.netfilter.org"&gt;iptables&lt;/a&gt; match is
+&lt;h5&gt;to be continued ...&lt;/h5&gt;</summary><category term="ENUM"></category><category term="Italy"></category><category term="VoIP"></category></entry><entry><title>SIP packets filtering with iptables</title><link href="http://www.bertera.it/sip-packet-filtering-with-iptables.html" rel="alternate"></link><published>2014-01-22T23:50:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2014-01-22:sip-packet-filtering-with-iptables.html</id><summary type="html">&lt;p&gt;One of the most powerful &lt;a href="http://www.netfilter.org"&gt;iptables&lt;/a&gt; match is
 the &lt;a href="http://www.netfilter.org/documentation/HOWTO/netfilter-extensions-HOWTO-3.html#ss3.21"&gt;u32
 module&lt;/a&gt;.&lt;br /&gt;
 Using the u32 match you are able to write a firewall rule matching
@@ -832,7 +832,7 @@ the message flow:&lt;/p&gt;
 
 
 &lt;p&gt;Log messages will be saved in &lt;strong&gt;sipp_register_auth_uas.log&lt;/strong&gt;.&lt;br /&gt;
-Please note that the &lt;strong&gt;verifyauth&lt;/strong&gt; needs the OpenSSL support.&lt;/p&gt;</summary><category term="sip"></category><category term="SIPp"></category><category term="Testing"></category><category term="VoIP"></category></entry><entry><title>Ability to set codec in MulticastRTP Asterisk channels</title><link href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html" rel="alternate"></link><published>2012-12-12T21:08:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-12-12:ability-to-set-codec-in-multicastrtp-asterisk-channels.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.bertera.it/static/asterisk_trunk-377802_rtp_multicast_codec.patch"&gt;Here&lt;/a&gt;
+Please note that the &lt;strong&gt;verifyauth&lt;/strong&gt; needs the OpenSSL support.&lt;/p&gt;</summary><category term="sip"></category><category term="SIPp"></category><category term="Testing"></category><category term="VoIP"></category></entry><entry><title>Ability to set codec in MulticastRTP Asterisk channels</title><link href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html" rel="alternate"></link><published>2012-12-12T21:08:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-12-12:ability-to-set-codec-in-multicastrtp-asterisk-channels.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.bertera.it/asterisk_trunk-377802_rtp_multicast_codec.patch"&gt;Here&lt;/a&gt;
 you can find a port for Asterisk trunk (rev. 377802) of this patch:
 &lt;a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html"&gt;http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html&lt;/a&gt;.&lt;br /&gt;
 This patch permits to set the codec of an outgoing multicast RTP stream
@@ -848,7 +848,7 @@ breaks outgoing RTP if the source channel doesn't contains timing
 informations (Eg. playing an audio file with
 &lt;strong&gt;Dial(MulticastRTP/basic/239.255.255.245:5555,,A(my-announce))&lt;/strong&gt;).&lt;br /&gt;
 All outgoing RTP frames a timestamp value of 0.&lt;/p&gt;
-&lt;p&gt;This &lt;a href="http://www.bertera.it/static/asterisk_trunk-377802-rtp-multicast-timestamp.patch"&gt;patch&lt;/a&gt; adds timing information in outgoing RTP stream.&lt;/p&gt;
+&lt;p&gt;This &lt;a href="http://www.bertera.it/asterisk_trunk-377802-rtp-multicast-timestamp.patch"&gt;patch&lt;/a&gt; adds timing information in outgoing RTP stream.&lt;/p&gt;
 &lt;p&gt;Following an example usage in dialplan:  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; 999,1,Answer()  
 exten =&amp;gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
@@ -1114,8 +1114,8 @@ handy menu program.&lt;/p&gt;
 minimal file browser for using pdmenu.&lt;/p&gt;
 &lt;p&gt;You can add/delete file and directory and edit files. Some screenshot
 below:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="run menu" src="http://www.bertera.it/static/pdmenu1.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="menu" src="http://www.bertera.it/static/pdmenu2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="run menu" src="http://www.bertera.it/pdmenu1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="menu" src="http://www.bertera.it/pdmenu2.png" /&gt;&lt;/p&gt;
 &lt;p&gt;this is the &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -1652,8 +1652,7 @@ This is a simple page from a markdown file
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;## Info&lt;/span&gt;
 
 &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;stupid&lt;/span&gt; &lt;span class="n"&gt;idea&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;made&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bertera&lt;/span&gt; &lt;span class="n"&gt;pietro&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="nl"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.bertera.it)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category><category term="web.py"></category><category term="webapplications"></category></entry><entry><title>snom XML minibrowser project online</title><link href="http://www.bertera.it/snom-xml-minibrowser-project-online.html" rel="alternate"></link><published>2011-11-15T21:49:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-15:snom-xml-minibrowser-project-online.html</id><summary type="html">&lt;p&gt;snom XML minibrowser web emulator project pages are online:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://snombrowser.bertera.it/"&gt;http://snombrowser.bertera.it/&lt;/a&gt;&lt;/p&gt;</summary><category term="emulator"></category><category term="php"></category><category term="snom"></category><category term="VoIP"></category></entry><entry><title>Php sinippet: howto ignore HTTP errors in file_get_contents()</title><link href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html" rel="alternate"></link><published>2011-11-04T12:52:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-04:php-sinippet-howto-ignore-http-errors-in-file_get_contents.html</id><summary type="html">&lt;p&gt;A useful snipped of php code:  &lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category><category term="web.py"></category><category term="webapplications"></category></entry><entry><title>Php sinippet: howto ignore HTTP errors in file_get_contents()</title><link href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html" rel="alternate"></link><published>2011-11-04T12:52:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-04:php-sinippet-howto-ignore-http-errors-in-file_get_contents.html</id><summary type="html">&lt;p&gt;A useful snipped of php code:  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo file_get_contents(&amp;#39;http://www.example.com/foo.html&amp;#39;,\
   FALSE, stream_context_create(array\
   (&amp;#39;http&amp;#39;=&amp;gt;;array(&amp;#39;ignore_errors&amp;#39; =&amp;gt;; TRUE))))
@@ -1925,7 +1924,7 @@ can read the README of pmvcb at &lt;a href="https://github.com/pbertera/pmvcb"&g
 For bacula integration of pvmcb you can see the instruction on bacula &lt;a href="http://wiki.bacula.org/doku.php?id=application_specific_backups:poor_man_vmware_consolidated_backup"&gt;wiki&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;VMware offre un pacchetto di backup per le macchine virtuali: &lt;a href="http://www.vmware.com/products/vi/cb_overview.html"&gt;VCB&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="VCB" src="http://www.bertera.it/static/vcb.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="VCB" src="http://www.bertera.it/vcb.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;Il VCB non fa altro che:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;eseguire uno snapshot di una VM&lt;/li&gt;
@@ -2040,7 +2039,7 @@ nat=yes
 
 
 &lt;p&gt;&lt;strong&gt;Peer definition in my SIP client (Twinkle)&lt;/strong&gt;&lt;br /&gt;
-&lt;img alt="client configuration" src="http://www.bertera.it/static/Twinkle-conf.png" /&gt;&lt;/p&gt;
+&lt;img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;REGISTER message from my SIP client&lt;/strong&gt;  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;REGISTER&lt;/span&gt; &lt;span class="nt"&gt;sip&lt;/span&gt;&lt;span class="nd"&gt;:bertera&lt;/span&gt;&lt;span class="nc"&gt;.it&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;
 &lt;span class="nt"&gt;Via&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;UDP&lt;/span&gt; &lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="nd"&gt;:10458&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;rport&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;z9hG4bKkqpevlic&lt;/span&gt;
@@ -2714,12 +2713,12 @@ diretti verso un dato host.&lt;br /&gt;
 Installato su due host permette di comunicare con un TCP “inverso”&lt;br /&gt;
 &lt;a href="https://github.com/pbertera/junk/tree/master/rtcp"&gt;rtcp&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category></entry><entry><title>Camilla</title><link href="http://www.bertera.it/camilla.html" rel="alternate"></link><published>2006-05-21T16:38:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:camilla.html</id><summary type="html">&lt;p&gt;Camilla è un sistema di booking per camere e case, supporta agenzie
 multiple e la gestione di calendari e stagioni.&lt;br /&gt;
-&lt;img alt="camilla" src="http://www.bertera.it/static/camilla.jpg" /&gt;  &lt;/p&gt;
+&lt;img alt="camilla" src="http://www.bertera.it/camilla.jpg" /&gt;  &lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/camilla"&gt;camilla&lt;/a&gt;&lt;/p&gt;</summary><category term="booking"></category><category term="php"></category></entry><entry><title>Arpiglio</title><link href="http://www.bertera.it/arpiglio.html" rel="alternate"></link><published>2006-05-21T16:36:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:arpiglio.html</id><summary type="html">&lt;p&gt;un tool per forgiare pacchetti ARP/RARP da linea di comando.&lt;br /&gt;
 &lt;a href="https://github.com/pbertera/junk/tree/master/arpiglio"&gt;arpiglio.c&lt;/a&gt;&lt;/p&gt;</summary><category term="arp"></category><category term="c"></category></entry><entry><title>Wireless Networking in the Developing World</title><link href="http://www.bertera.it/wireless-networking-in-the-developing-world.html" rel="alternate"></link><published>2006-05-21T16:34:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:wireless-networking-in-the-developing-world.html</id><summary type="html">&lt;p&gt;&lt;a href="http://wndw.net/"&gt;Wireless Networking in the Developing World&lt;/a&gt;&lt;br /&gt;
 &lt;a href="http://www.secdev.org/projects/scapy/"&gt;A powerful interactive packet manipulation
 program&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Hacking della seriale</title><link href="http://www.bertera.it/hacking-della-seriale.html" rel="alternate"></link><published>2006-02-09T16:25:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-09:hacking-della-seriale.html</id><summary type="html">&lt;p&gt;Leggere e modificare lo stato dei pin di seganalzione della seriale:&lt;br /&gt;
-&lt;a href="https://github.com/pbertera/junk/tree/master/serial"&gt;due script&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Software</title><link href="http://www.bertera.it/software.html" rel="alternate"></link><published>2006-02-05T16:22:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-05:software.html</id><summary type="html">&lt;p&gt;Era un progettino che avevo dato all’università : esegue dei backup
+&lt;a href="https://github.com/pbertera/junk/tree/master/serial"&gt;due script&lt;/a&gt;&lt;/p&gt;</summary><category term="serial port"></category></entry><entry><title>Software</title><link href="http://www.bertera.it/software.html" rel="alternate"></link><published>2006-02-05T16:22:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-05:software.html</id><summary type="html">&lt;p&gt;Era un progettino che avevo dato all’università : esegue dei backup
 differenziali o full utilizzando rsync:
 &lt;a href="https://github.com/pbertera/junk/tree/master/batbu"&gt;Batbu&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bacula: i .deb per sarge della 1.38.5

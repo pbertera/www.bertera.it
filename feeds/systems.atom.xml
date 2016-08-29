@@ -1,14 +1,1081 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2012-10-07T15:34:00+02:00</updated><entry><title>Asterisk callback from a failed blind transfer</title><link href="http://www.bertera.it/asterisk-callback-from-a-failed-blind-transfer.html" rel="alternate"></link><published>2012-10-07T15:34:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-07:asterisk-callback-from-a-failed-blind-transfer.html</id><summary type="html">&lt;p&gt;This little piece of extensions.conf implements a callback from a failed
-transfer (attendant and unattendant/bind)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; _1XX,1,Dial(SIP/&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;EXTEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;,20,tT)
-exten =&amp;gt; _1XX,n,GotoIf($[ &amp;quot;a&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BLINDTRANSFER&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; = &amp;quot;a&amp;quot; ]?TransferFailed)
-exten =&amp;gt; _1XX,n,Set(CALLER=&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CUT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BLINDTRANSFER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;);
-exten =&amp;gt; _1XX,n,Goto(CallBack)
-exten =&amp;gt; _1XX,n(TransferFailed),GotoIf($[ &amp;quot;a&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;TRANSFERERNAME&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; = &amp;quot;a&amp;quot; ]?Fail)
-exten =&amp;gt; _1XX,n,Set(CALLER=&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CUT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TRANSFERERNAME&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;);
-exten =&amp;gt; _1XX,n(CallBack),Set(CALLERID(all)=&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;EXTEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CALLERID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;gt;)
-exten =&amp;gt; _1XX,n,Dial(&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CALLER&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;,,tT)
-exten =&amp;gt; _1XX,n(Fail),Hangup()
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="sip"></category><category term="VoIP"></category></entry><entry><title>Bacula 5.0.3 debian squeeze backport</title><link href="http://www.bertera.it/bacula-5-0-3-debian-squeeze-backport.html" rel="alternate"></link><published>2011-07-25T22:08:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-25:bacula-5-0-3-debian-squeeze-backport.html</id><summary type="html">&lt;p&gt;Packages available here:
-&lt;a href="http://www.bertera.it/software/bacula/bacula-backports/"&gt;http://www.bertera.it/software/bacula/bacula-backports/&lt;/a&gt;&lt;/p&gt;</summary><category term="bacula"></category><category term="debian"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2012-07-27T22:33:00+02:00</updated><entry><title>Backup your Dropbox share with bacula</title><link href="http://www.bertera.it/backup-your-dropbox-share-with-bacula.html" rel="alternate"></link><published>2012-07-27T22:33:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-07-27:backup-your-dropbox-share-with-bacula.html</id><summary type="html">&lt;p&gt;I don't
+&lt;a href="http://www.zdnet.com/blog/bott/sorry-dropbox-i-still-dont-trust-you/4173"&gt;like&lt;/a&gt;
+cloud storage, especially I don't like Dropbox security
+&lt;a href="http://www.schneier.com/blog/archives/2011/05/dropbox_securit.html"&gt;history&lt;/a&gt;.&lt;br /&gt;
+Anyway Dropbox and others cloud storage are damn cheap and easy to use,
+I use it for sharing non-important documents.&lt;/p&gt;
+&lt;p&gt;This little howto explain how you can backup your Dropbox share with
+&lt;a href="http://www.bacula.org"&gt;Bacula&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;First you must install Dropbox in your server:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download the python &lt;strong&gt;CLI script&lt;/strong&gt; from &lt;a href="https://www.dropbox.com/install?os=lnx"&gt;here&lt;/a&gt;: &lt;code&gt;wget https://linux.dropbox.com/packages/dropbox.py&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;and install: &lt;code&gt;LC_ALL=C python26 ./dropbox.py start -i&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;run it: &lt;code&gt;LC_ALL=C python26 ./dropbox.py start&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Now Dropbox start reply with a link:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;To link this computer to a dropbox account, visit the following url:  
+
+https://www.dropbox.com/cli_link?host_id=4258saj1921sa123aa17329a12e3&amp;amp;cl=en_US  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Copy and paste the in your browser and insert you DropBox credentials, after you can restart Dropbox.&lt;br /&gt;
+Dropbox will sync your storage with your ~/Dropbox folder. You can check the status with the command: &lt;code&gt;LC_ALL=C python26 ./dropbox.py status&lt;/code&gt;
+*When your Dropbox folder is fully syncronized you can stop Dropbox &lt;code&gt;LC_ALL=C python26 ./dropbox.py stop&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This little script starts local dropbox sync process and check the
+status, the script exit with success if your Dropbox folder is in-sync,
+and with an error code you a timeout event is reached (configure maxwait
+and recheck variabales). You can use this script as Pre-client-script in
+your bacula job.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nv"&gt;maxwait&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt; &lt;span class="c1"&gt;#number of maximum re-check&lt;/span&gt;
+&lt;span class="nv"&gt;recheck&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="c1"&gt;#seconds between recheck&lt;/span&gt;
+&lt;span class="nv"&gt;dropbox&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python26 /root/dropbox.py&amp;quot;&lt;/span&gt;
+
+
+do_ok&lt;span class="o"&gt;(){&lt;/span&gt;
+        &lt;span class="nv"&gt;$dropbox&lt;/span&gt; stop
+        &lt;span class="nb"&gt;exit&lt;/span&gt; 0
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="nb"&gt;cd&lt;/span&gt; ~
+&lt;span class="c1"&gt;# start DR&lt;/span&gt;
+&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;C
+&lt;span class="nv"&gt;$dropbox&lt;/span&gt; start
+
+
+&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$x&lt;/span&gt; -le &lt;span class="nv"&gt;$maxwait&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+        sleep &lt;span class="nv"&gt;$recheck&lt;/span&gt;
+        &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$dropbox&lt;/span&gt; filestatus Dropbox &lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="se"&gt;\ &lt;/span&gt; -f2-&lt;span class="k"&gt;)&lt;/span&gt;
+        &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$status&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up to date&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; do_ok
+        &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt; &lt;span class="nv"&gt;$x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="k"&gt;))&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Dropbox not updated.. (&lt;/span&gt;&lt;span class="nv"&gt;$x&lt;/span&gt;&lt;span class="s2"&gt;)&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Timeout reached.&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;$dropbox&lt;/span&gt; stop
+&lt;span class="nb"&gt;exit&lt;/span&gt; 255
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Following the bacula configuration for this job: Job definition and
+FilSet:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;FileSet {
+  Name = &amp;quot;DropBox Full Set&amp;quot;
+  Include {
+    Options {
+      signature = MD5
+    }
+    File = /root/Dropbox
+  }
+}
+
+Job {
+  Name = &amp;quot;BackupDropBox&amp;quot;
+  Client = stoker-fd
+  FileSet = &amp;quot;DropBox Full Set&amp;quot;
+  JobDefs = &amp;quot;DefaultJob&amp;quot;
+  RunScript {
+    RunsWhen = Before
+    FailJobOnError = Yes
+    Command = &amp;quot;/etc/bacula/scripts/sync-dropbox.sh&amp;quot;
+  }
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="backup"></category><category term="bacula"></category><category term="bash"></category><category term="dropbox"></category></entry><entry><title>Poor man virtual consolidated backup update</title><link href="http://www.bertera.it/poor-man-virtual-consolidated-backup-update.html" rel="alternate"></link><published>2012-04-01T15:17:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-04-01:poor-man-virtual-consolidated-backup-update.html</id><summary type="html">&lt;p&gt;I just received a little patch to my
+&lt;a href="http://www.bertera.it/index.php/2011/07/25/poor-man-vmware-consolidate-backup/" title="pmvcb"&gt;pmvcb&lt;/a&gt;
+from Tilman Schmidt.&lt;br /&gt;
+This patch add the support for the new ESXi syntax of
+&lt;strong&gt;snapshot.remove&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;You can download the last pmvcb from my Github
+&lt;a href="https://github.com/pbertera/pmvcb" title="pmvcb download from github"&gt;page&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thanks Tilman.&lt;/p&gt;</summary><category term="backup"></category><category term="bacula"></category><category term="bash"></category><category term="script"></category></entry><entry><title>How to push a public IP on your laptop using SSH bridged tunnel</title><link href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html" rel="alternate"></link><published>2012-03-04T23:49:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-03-04:how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html</id><summary type="html">&lt;p&gt;In my &lt;a href="http://www.bertera.it/index.php/2008/12/22/vpn-layer-3-con-openssh/" title="VPN layer 3 con OpenSSH"&gt;previous
+post&lt;/a&gt; I
+talked about Layer 3 VPN feature of OpenSSH (starting from version
+4.3).&lt;br /&gt;
+Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature
+you can create a virtual network device that, through the encrypted
+tunnel, is connected on the same network segment of remote server. In
+fact the VPN acts as a network switch connecting local virtual device
+with remote device in same ethernet network.&lt;/p&gt;
+&lt;p&gt;With this setup your SSH client will connect to remote server and start
+forwarding packet between local end remote TUN/TAP device.&lt;br /&gt;
+All packets are forward through the encrypted SSH tunnel.&lt;/p&gt;
+&lt;p&gt;using &lt;strong&gt;-o Tunnel=ethernet&lt;/strong&gt; instead of &lt;strong&gt;&lt;em&gt;-o
+Tunnel=point-to-point&lt;/em&gt;&lt;/strong&gt; ssh process try to use a tap device and
+forwards all ethernet frames (layer 2). You can specify TUN/TAP local
+and remote device index with &lt;strong&gt;&lt;em&gt;-w&lt;/em&gt;&lt;/strong&gt; option:&lt;/p&gt;
+&lt;p&gt;This command: &lt;code&gt;ssh -o Tunnel=ethernet -w 0:1 host.example.com&lt;/code&gt;
+establish an ssh connection to host.example.com and forwards all ethernet
+frames from local tap0 to remote tap1 and vice-versa.&lt;br /&gt;
+If tap0 and tap1 doesn't exist ssh will try to create.&lt;/p&gt;
+&lt;p&gt;In order to setup a public IP on your laptop you need to create a bridge
+between remote remote public ethernet device and remote TUN/TAP device.
+Below the accomplishment step for this task:&lt;/p&gt;
+&lt;p&gt;Assuming that this is the public network configuration:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Public IP:&lt;/strong&gt; 78.47.249.187&lt;br /&gt;
+&lt;strong&gt;Public Network:&lt;/strong&gt; 78.47.249.160&lt;br /&gt;
+&lt;strong&gt;Public Gateway:&lt;/strong&gt; 78.47.249.190&lt;br /&gt;
+&lt;strong&gt;Laptop Public IP:&lt;/strong&gt; 78.47.249.187&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;On server side:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;create a bridge: &lt;code&gt;brctl addbr br0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;create the remote tap device: &lt;code&gt;tunctl -t tap0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;add devices to bridge: &lt;code&gt;brctl addif br0 eth0 &amp;amp;&amp;amp; brctl addif br0 tap0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;setup the remote public IP address on bridge interface: &lt;code&gt;ip addr add  78.47.249.187/27 dev br0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;setup link and promiscuous mode: &lt;code&gt;ip link set up promisc on dev tap0  &amp;amp;&amp;amp; ip link set up promisc on dev eth0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;setup default gateway: &lt;code&gt;ip route add default via  78.47.249.190&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Permit tunnel on ssh server: add "&lt;strong&gt;PermitTunnel yes&lt;/strong&gt;" on your sshd_config sshd configuration file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now the public machine must be connected to public network and
+reachable.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;On client side:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;connect your laptop to server and create the tunnel &lt;code&gt;ssh -o Tunnel=ethernet -w 0:0 root@78.47.249.187&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;add public ip to your client and setup link: &lt;code&gt;ip addr add  78.47.249.188/27 dev tap0 &amp;amp;&amp;amp; ip link set up dev tap0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now your laptop is directly connected to public remote network through
+tap0 device.&lt;br /&gt;
+Following steps are needed only  if you  need to substitute your
+gateway with public gw:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;setup a static route to remote server (you need to know your current
+default gw): &lt;code&gt;ip route add 78.47.249.187 via my.old.def.gw&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;setup the new default gw: &lt;code&gt;ip route del default via my.old.def.gw &amp;amp;&amp;amp; ip route add default via 78.47.249.190 dev tap0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Tips:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can automate all client task with a simple bash script&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;-u&lt;/em&gt; and &lt;em&gt;-g&lt;/em&gt; tunctl options permit to manage TUN/TAP device with an unprivileged user&lt;/li&gt;
+&lt;li&gt;use ssh public key authentication and a dedicated unprivileged user&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;-NTCf -o ServerAliveInterval=60&lt;/em&gt; ssh options are your friends&lt;/li&gt;
+&lt;li&gt;following the configuration files for automatic and reboot persistent configuration on server side (for RedHat based distro):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;/etc/sysconfig/network-scripts/ifcfg-br0&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DEVICE=&amp;quot;br0&amp;quot;
+ONBOOT=&amp;quot;yes&amp;quot;
+TYPE=Bridge
+BOOTPROTO=none
+IPADDR=78.47.249.187
+PREFIX=27
+GATEWAY=78.47.249.190
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=yes
+IPV6INIT=no
+NAME=&amp;quot;System Bridge&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;/etc/sysconfig/network-scripts/ifcfg-tap0&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DEVICE=tap0
+TYPE=Tap
+OWNER=vpnuser #use an unprivileged user for your TUN/TAP device
+BRIDGE=br0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;/etc/sysconfig/network-scripts/ifcfg-eth0&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DEVICE=&amp;quot;eth0&amp;quot;
+ONBOOT=&amp;quot;yes&amp;quot;
+TYPE=Ethernet
+BRIDGE=br0
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="routing"></category><category term="ssh"></category><category term="vpn"></category></entry><entry><title>How to split DNS name resolution in VPN environment</title><link href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html" rel="alternate"></link><published>2011-11-30T19:18:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-30:how-to-split-dns-name-resolution-in-vpn-environment.html</id><summary type="html">&lt;p&gt;I'm in this situation:&lt;br /&gt;
+a VPN to remote concentrator that load many routes to private networks,
+vpn server push DNS configuration via OpenVPN protocol (see
+--dhcp-option DNS in openvpn(8) ).&lt;br /&gt;
+The scope of this post is to explain how you can use remote DNS pushed
+by VPN concentrator only for certain zones.&lt;br /&gt;
+For accomplish this I used a local &lt;a href="http://www.powerdns.com"&gt;PowerDNS&lt;/a&gt;
+server and a little &lt;a href="http://www.openvpn.net"&gt;OpenVPN&lt;/a&gt; up script:&lt;/p&gt;
+&lt;p&gt;When OpenVPN make the tunnel the up script create a custom
+&lt;strong&gt;forward-zones-file&lt;/strong&gt; used by PowerDNS. The script insert in the custom
+file the remote zones and the dns server authoritative for these zones.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PowedDNS configuration:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[pietro@berta ~]$ grep -v ^\# /etc/pdns/pdns.conf | sed -e /^$/d
+setuid=pdns
+setgid=pdns
+allow-recursion=127.0.0.1/8
+negquery-cache-ttl=0
+query-cache-ttl=0
+
+[pietro@berta ~]$ grep -v ^\# /etc/pdns-recursor/recursor.conf | sed -e /^$/d
+setuid=pdns-recursor
+setgid=pdns-recursor
+forward-zones-file=/etc/pdns-recursor/vpn-zones.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;OpenVPN configuration:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[pietro@berta ~]$ grep ^up /etc/openvpn/my-vpn.conf
+up /etc/openvpn/vpn-dns.sh up
+down /etc/oprnvpn/vpn-dns.sh down
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;the /etc/openvpn/vpn-dns.sh script:&lt;/strong&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nv"&gt;zones&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;example.com remote.com my.internal.zone&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;dns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;dns
+
+&lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; in
+    up&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; opt in &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="p"&gt;!foreign_option_*&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;do&lt;/span&gt;
+            &lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;dns=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;$opt&lt;/span&gt;&lt;span class="p"&gt;#dhcp-option DNS &lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$dns&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; !&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;dns&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;
+            &lt;span class="k"&gt;then&lt;/span&gt;
+                &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;;; created by openvpn --up &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;0&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;quot;&lt;/span&gt; &amp;gt;/tmp/vpn-zones.conf
+                &lt;span class="k"&gt;for&lt;/span&gt; zone in &lt;span class="nv"&gt;$zones&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+                    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+&lt;/span&gt;&lt;span class="nv"&gt;$zone&lt;/span&gt;&lt;span class="s2"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$dns&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /tmp/vpn-zones.conf
+                &lt;span class="k"&gt;done&lt;/span&gt;
+                mv -f /tmp/vpn-zones.conf /etc/pdns-recursor/
+                rec_control reload-zones
+                &lt;span class="nb"&gt;exit&lt;/span&gt; 0
+            &lt;span class="k"&gt;fi&lt;/span&gt;
+        &lt;span class="k"&gt;done&lt;/span&gt;
+        &lt;span class="p"&gt;;;&lt;/span&gt;
+
+    down&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &amp;gt; /etc/pdns-recursor/vpn-zones.conf
+        rec_control reload-zones
+        &lt;span class="p"&gt;;;&lt;/span&gt;
+    * &lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; usage:
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt; [up|down]&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;;;&lt;/span&gt;
+&lt;span class="k"&gt;esac&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;This script route DNS zones &lt;em&gt;example.com remote.com my.internal.zone&lt;/em&gt; to
+DNS server pushed by OpenVPN.&lt;/p&gt;
+&lt;p&gt;You can check the right configuration using dig end tcpdump on tunnel
+interface to see correctly routed DNS query.&lt;br /&gt;
+In finish you must not forget to instruct your dhcp client to use
+127.0.0.1 as a DNS server&lt;/p&gt;</summary><category term="dns"></category><category term="openvpn"></category><category term="powerdns"></category><category term="scripting"></category><category term="vpn"></category></entry><entry><title>Howto configure multiple mac address over a single ethernet interface</title><link href="http://www.bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html" rel="alternate"></link><published>2011-10-04T18:01:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-10-04:howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html</id><summary type="html">&lt;p&gt;I up against this problem on a server hosted by Hetzner.My server is a
+virtual hypervisor containing several virtual machines.The Hetzner's
+politics is to statically associate a public IP to a single mac address,
+is therefore impossible to have multiple IP address on a single ethernet
+device.  Observing this rule you can associate only one virtual machine
+with one public IP, and you cannot create a firewall with all public IPs
+attested on public interface and private interfaces attached to a
+vSwitchs.&lt;/p&gt;
+&lt;p&gt;To solve the problem you can use the macvlan module. Macvlan allow to
+create indipendent logical devices over a single ethernet device. In
+this way you have three (logical) ethernet device with three IPs and
+three mac address over a single physical device. This solve the
+addressing problem but slightly complicates routing and NAT.&lt;/p&gt;
+&lt;h3&gt;Configuration example:&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Public IPs:&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;A.A.A.A associated mac address: aa:aa:aa:aa:aa:aa  &lt;/p&gt;
+&lt;p&gt;B.B.B.B associated mac address: bb:bb:bb:bb:bb:bb  &lt;/p&gt;
+&lt;p&gt;C.C.C.C associated mac address: cc:cc:cc:cc:cc:cc  &lt;/p&gt;
+&lt;p&gt;External interface: eth0  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gateway:&lt;/strong&gt;&lt;br /&gt;
+X.X.X.X&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Internal Subnets:&lt;/strong&gt;&lt;br /&gt;
+a.a.a.0/24 (eth1)&lt;br /&gt;
+b.b.b.0/24 (eth2)&lt;br /&gt;
+c.c.c.0/24 (eth3)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Firewall IPs on internal subnets:&lt;/strong&gt;&lt;br /&gt;
+eth1: a.a.a.254&lt;br /&gt;
+eth2: b.b.b.254&lt;br /&gt;
+eth3: c.c.c.254&lt;/p&gt;
+&lt;h3&gt;Network schema:&lt;/h3&gt;
+&lt;p&gt;I want to map the outgoing connections in this way:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;Origin subnet&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Public IP&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;a.a.a.0/24&lt;/td&gt;
+&lt;td&gt;A.A.A.A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;b.b.b.0/24&lt;/td&gt;
+&lt;td&gt;B.B.B.B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.c.c.0/24&lt;/td&gt;
+&lt;td&gt;C.C.C.C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Macvlan interface creation&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;set-up link on physical device:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip link set up dev eth0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;create logical interfaces:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa
+    ip link add link eth0 dev peth1 type macvlan address bb:bb:bb:bb:bb:bb
+    ip link add link eth0 dev peth2 type macvlan address cc:cc:cc:cc:cc:cc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Assign ip address and activate link:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip addr add A.A.A.A/26 dev peth0
+    ip addr add B.B.B.B/26 dev peth1
+    ip addr add C.C.C.C/26 dev peth2
+    ip link set up dev peth0
+    ip link set up dev peth1
+    ip link set up dev peth2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Normally configure the internal interfaces (eth1, eth2 eth3):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip addr add a.a.a.245/24 dev eth1
+    ip addr add b.b.b.245/24 dev eth2
+    ip addr add b.b.b.245/24 dev eth3
+    ip link set up dev eth1
+    ip link set up dev eth2
+    ip link set up dev eth3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;This is the routing situation:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# ip route sh
+127.0.0.0/8 dev lo  proto kernel  scope link  src 127.0.0.1
+a.a.a.0/24 dev eth1  proto kernel  scope link  src a.a.a.254
+a.a.a.0/24 dev eth2  proto kernel  scope link  src b.b.b.254
+a.a.a.0/24 dev eth3  proto kernel  scope link  src c.c.c.254
+A.A.A.A/26 dev peth0  proto kernel  scope link  src A.A.A.A
+B.B.B.B/26 dev peth1  proto kernel  scope link  src B.B.B.B
+C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;You must create a routing table for all outgoing interface:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    echo &amp;quot;500 ipA&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+    echo &amp;quot;600 ipB&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+    echo &amp;quot;700 ipC&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add a "catch all" routing table:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    echo &amp;quot;1000 catch_all&amp;quot; &amp;gt;&amp;gt; /etc/iproute2/rt_tables
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add gateways for tables:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip route add default via X.X.X.X dev peth0 table ipA
+    ip route add default via X.X.X.X dev peth1 table ipB
+    ip route add default via X.X.X.X dev peth1 table ipC
+    ip route add default via X.X.X.X dev peth0 table catch_all
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add routing policy for internal subnet. Note that the priority must
+be greater than the priority used for the normal and default tables (for
+show all rules: ip rule show )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip rule add from a.a.a.0/24 lookup ipA pref 60000
+    ip rule add from b.b.b.0/24 lookup ipB pref 60001
+    ip rule add from c.c.c.0/24 lookup ipC pref 60002
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add routing policy for local IPs:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip rule add from A.A.A.254 lookup ipA pref 60010
+    ip rule add from B.B.B.254 lookup ipB pref 60011
+    ip rule add from C.C.C.254 lookup ipC pref 60012
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add a catch all routing policy (with preference greater than all):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    ip rule add from all lookup catch_all pref 70000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Configure the NAT:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    iptables -t nat -I POSTROUTING -o peth0 -s a.a.a.0/24 -j SNAT --to-source A.A.A.A
+    iptables -t nat -I POSTROUTING -o peth1 -s b.b.b.0/24 -j SNAT --to-source B.B.B.B
+    iptables -t nat -I POSTROUTING -o peth2 -s c.c.c.0/24 -j SNAT --to-source C.C.C.C
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="iptables"></category><category term="linux"></category><category term="networking"></category><category term="routing"></category></entry><entry><title>cisco IOS: Monitorare una vpn</title><link href="http://www.bertera.it/cisco-ios-monitorare-una-vpn.html" rel="alternate"></link><published>2011-08-23T20:54:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-08-23:cisco-ios-monitorare-una-vpn.html</id><summary type="html">&lt;p&gt;Avere a che fare con delle connettività scadenti è sempre un disastro.&lt;/p&gt;
+&lt;p&gt;Uno strumento per tenere monitorata una VPN e reagire in caso di down
+puo' essere comodo.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Esempio:&lt;/strong&gt;&lt;br /&gt;
+In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B
+(192.168.8.0/24)&lt;br /&gt;
+L'endpoint della rete A (192.186.2.1) è un router Cisco, l'enpoint B
+(192.168.8.1) non è in nostra gestione ma parla IPSec. Tramite le
+configurazione seguenti l'endpoint A tiene monitorato lo stato della VPN
+e in caso di down effettua il reload della VPN.&lt;/p&gt;
+&lt;p&gt;1) definiamo lo &lt;strong&gt;sla monitor&lt;/strong&gt; in modo che esegua un ping verso l'host
+192.168.8.1. Dobbiamo definire il source address in modo da essere
+sicuri di utilizzare il tunnel cifrato e lo scheduling in modo da
+eseguire il test sempre. E' possibile impostare una frequenza di
+esecuzione, di default è 60 secondi.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; ip sla monitor 5
+ type echo protocol ipIcmpEcho 192.168.8.1 source-ipaddr 192.168.2.1
+ exit
+ ip sla monitor schedule 1 life forever start-time now
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2) definiamo un tracker per lo sla monitor creato precedentemente:
+vogliamo monitorare quando lo &lt;strong&gt;sla monitor 5&lt;/strong&gt; ritorna route
+unreachable e reagire solo se lo stato di down permane per piu' di 60
+secondi.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; track 1 rtr 5 reachability
+ delay down 60
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3) definiamo il "reattore"&lt;br /&gt;
+Le configurazioni immesse finora fanno in modo che se l'host
+192.168.8.1 rimane irraggiungibile per piu' di 60 secondi viene generato
+un evento nel syslog locale. L'event manager applet seguente si occupa
+di intercettare l'evento syslog, eseguire il reload della VPN e loggare
+il messaggio "VPN Reloaded"&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; event manager applet VPN-IS-DOWN
+ event syslog pattern &amp;quot;TRACKING-5-STATE: 5 .*Up-&amp;gt;Down&amp;quot;
+ action 1.0 cli command &amp;quot;enable&amp;quot;
+ action 2.0 cli command &amp;quot;clear crypto session remote b.public.ip&amp;quot;
+ action 3.0 cli command &amp;quot;end&amp;quot;
+ action 4.0 syslog msg &amp;quot;VPN Reloaded&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://www.cisco.com/en/US/docs/ios/12_4/ip_sla/configuration/guide/hsla_c.html"&gt;Cisco IOS IP SLA configuration
+guide&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://www.cisco.com/en/US/docs/ios/ipsla/command/reference/sla_book.html"&gt;Cisco IOS IP SLAs command
+reference&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://www.cisco.com/en/US/docs/ios/netmgmt/configuration/guide/nm_eem_policy_cli.html"&gt;Writing Cisco embedded event manager
+policy&lt;/a&gt;&lt;/p&gt;</summary><category term="cisco"></category><category term="ios"></category><category term="monitoring"></category><category term="vpn"></category></entry><entry><title>Bacula 5.0.3 debian squeeze backport</title><link href="http://www.bertera.it/bacula-5-0-3-debian-squeeze-backport.html" rel="alternate"></link><published>2011-07-25T22:08:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-25:bacula-5-0-3-debian-squeeze-backport.html</id><summary type="html">&lt;p&gt;Packages available here:
+&lt;a href="http://www.bertera.it/software/bacula/bacula-backports/"&gt;http://www.bertera.it/software/bacula/bacula-backports/&lt;/a&gt;&lt;/p&gt;</summary><category term="bacula"></category><category term="debian"></category></entry><entry><title>Poor man vmware consolidate backup</title><link href="http://www.bertera.it/poor-man-vmware-consolidate-backup.html" rel="alternate"></link><published>2011-07-25T21:59:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-25:poor-man-vmware-consolidate-backup.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Update:&lt;/strong&gt; for an english version of this post you
+can read the README of pmvcb at &lt;a href="https://github.com/pbertera/pmvcb"&gt;github&lt;/a&gt;&lt;br /&gt;
+For bacula integration of pvmcb you can see the instruction on bacula &lt;a href="http://wiki.bacula.org/doku.php?id=application_specific_backups:poor_man_vmware_consolidated_backup"&gt;wiki&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;VMware offre un pacchetto di backup per le macchine virtuali: &lt;a href="http://www.vmware.com/products/vi/cb_overview.html"&gt;VCB&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="VCB" src="http://www.bertera.it/vcb.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;Il VCB non fa altro che:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;eseguire uno snapshot di una VM&lt;/li&gt;
+&lt;li&gt;clonare i dischi virtuali della VM&lt;/li&gt;
+&lt;li&gt;consolidare lo snapshot (rimozione dello snapshot)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I vantaggi di un backup del genere sono:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;si ha il backup una macchina virtuale intera&lt;/li&gt;
+&lt;li&gt;non ci sono downtime: lo snapshot si puo' fare a caldo&lt;/li&gt;
+&lt;li&gt;se i vmware tools fanno il loro dovere il filesystem dovrebbe essere
+    consistente&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Gli svantaggi sono:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;si ha il backup di una macchina virtuale intera (leggi: no
+    incrementali)&lt;/li&gt;
+&lt;li&gt;si hanno gli stessi limiti derivati dall'uso degli snapshot: no RDM,
+    ecc..&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In buona sostanza il VCB è un buon sistema per il disaster recovery (se
+i paletti imposti dall'uso degli snapshot non sono troppo restrittivi).&lt;/p&gt;
+&lt;p&gt;E' possibile implementare un sistema di backup molto simile
+automatizzando le operazioni di snapshot, cloning e consolidation
+tramite uno script.&lt;/p&gt;
+&lt;p&gt;Lo script in questione è pmvcb: &lt;a href="/software/pmvcb/"&gt;pmvcb&lt;/a&gt; esegue le
+operazioni sopra elencate su un host ESXi.&lt;/p&gt;
+&lt;p&gt;Di seguito l'help:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Usage: ./pmvcb -v [VM] -d [DIR] -h [host] &amp;lt;options&amp;gt;
+
+options:
+    -v &amp;lt;vm&amp;gt;       Virtual machine to backup [*]
+    -d &amp;lt;dir&amp;gt;  Remote directory to store backup [*]
+    -h &amp;lt;host&amp;gt; ESXi host [*]
+    -u &amp;lt;user&amp;gt; ESXi username (default: root)
+    -f &amp;lt;opts&amp;gt; vmkfstool optons (default: &amp;quot;-a lsilogic -d zeroedthick&amp;quot;)
+    -o      overwrite existent backups
+    -q      use quiesce snapshot
+    -s &amp;lt;opts&amp;gt; ssh options (default: &amp;quot;-i /var/lib/bacula/.ssh/id_rsa&amp;quot;)
+    -L &amp;lt;cmd&amp;gt;  local command executed after backup of virtual disks, this command is executed on local machine
+    -R &amp;lt;cmd&amp;gt;  remote command executed on ESXi host after local command execution
+
+[*] required options
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;come opzioni obbligatorie richiede il nome della VM da 
+(&lt;strong&gt;-v&lt;/strong&gt;), la directory di appoggio in cui clonare i dischi (&lt;strong&gt;-d&lt;/strong&gt;) e
+l'host ESXi a cui collegarsi (&lt;strong&gt;-h&lt;/strong&gt;).&lt;br /&gt;
+Tramite l'opzione &lt;strong&gt;-f&lt;/strong&gt; è possibile specificare diverse opzioni al
+comando vmkfstool utilizato per le operazioni di cloning, tramite &lt;strong&gt;-q&lt;/strong&gt;
+richiede un'operazione di Quiescing prima di effettuare lo snapshot.&lt;br /&gt;
+&lt;strong&gt;-s&lt;/strong&gt; istruisce il comando ssh (es. ad usare l'autenticazione con
+chiave RSA).&lt;br /&gt;
+&lt;strong&gt;-L&lt;/strong&gt; e &lt;strong&gt;-R&lt;/strong&gt; eseguono comandi rispettivamente e nell'ordine
+sull'host locale e sull'host remoto.&lt;/p&gt;
+&lt;p&gt;pmvcb si occupa di:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;verificare che la virtual machine non abbia dischi &lt;em&gt;indipendent&lt;/em&gt;
+    oppure &lt;em&gt;RDM&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;verificare che non ci siano snapshot attivi sulla virtual machine&lt;/li&gt;
+&lt;li&gt;eseguire lo snapshot&lt;/li&gt;
+&lt;li&gt;clonare i dischi e il .vmx della virtual machine nella directory
+    specificata dall'opzione &lt;strong&gt;-d&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;consolidare lo snapshot creato&lt;/li&gt;
+&lt;li&gt;eseguire i comandi specificati da &lt;strong&gt;-L&lt;/strong&gt; localmente&lt;/li&gt;
+&lt;li&gt;eseguire i comandi specificati da &lt;strong&gt;-R&lt;/strong&gt; sull'host ESXi remoto&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="backup"></category><category term="bacula"></category><category term="script"></category><category term="vmware"></category></entry><entry><title>VPN layer 3 con OpenSSH</title><link href="http://www.bertera.it/vpn-layer-3-con-openssh.html" rel="alternate"></link><published>2008-12-22T13:48:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-12-22:vpn-layer-3-con-openssh.html</id><summary type="html">&lt;p&gt;Dalla versione 4.3 di OpenSSH è stato introdotto il supporto per
+TUN/TAP. Questo sigifica che è possibile stabilire un tunnel cifrato tra
+due peer o due (o piu) reti.&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/ssh-vpn"&gt;Questo&lt;/a&gt; script si
+occupa di fare il discover dei device tun da utilizzare, assegnare gli
+indirizzi e le rotte al tunnel (locali e sul peer remoto) ed eseguire
+comandi aggiuntivi tramite un file di configurazione.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/pbertera/ssh-vpn/blob/master/example.conf"&gt;testvpn.conf&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;SSH_OPTS=&amp;quot;-i /home/pietro/.ssh/id_dsa&amp;quot; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: options for ssh command&lt;/span&gt;
+&lt;span class="x"&gt;RUSER=root  &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; user to login on remote peer&lt;/span&gt;
+&lt;span class="x"&gt;PEER=172.42.10.2 &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; ip of remote peer&lt;/span&gt;
+&lt;span class="x"&gt;RTUNADDR=10.10.100.2 &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; remote ip of tunnel&lt;/span&gt;
+&lt;span class="x"&gt;LTUNADDR=10.10.100.1 &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; local ip of tunnel&lt;/span&gt;
+&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;LOCAL_TUN&lt;/span&gt;&lt;span class="x"&gt;=tun0 &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;optional&lt;/span&gt;&lt;span class="x"&gt;: static definition of local tun device&lt;/span&gt;
+&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;REMOTE_TUN&lt;/span&gt;&lt;span class="x"&gt;=tun1 &lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;optional&lt;/span&gt;&lt;span class="x"&gt;: static definition of remote tun device&lt;/span&gt;
+&lt;span class="x"&gt;REMOTE_NET=172.16.40.1 &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; remote network&lt;/span&gt;
+&lt;span class="x"&gt;ENABLE_PEER_IP_FORWARD=true &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; enable ip forwarding on remote host&lt;/span&gt;
+&lt;span class="x"&gt;TRY_LOAD_PEER_TUN_MOD=true &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; try loading tun/tap kernel module&lt;/span&gt;
+&lt;span class="x"&gt;BAILOUT_COMMAND=&amp;quot;logger died&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; in POST_TUN_PEER_COMMAND and POST_TUN_LOCAL_COMMAND use &amp;#39; instead &amp;quot; !!!&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LOCAL_TUN&lt;/span&gt;&lt;span class="x"&gt; is local tun device&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;REMOTE_TUN&lt;/span&gt;&lt;span class="x"&gt; is remote tun device&lt;/span&gt;
+&lt;span class="x"&gt;POST_TUN_PEER_COMMAND=&amp;#39;iptables -I FORWARD -i &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;REMOTE_TUN&lt;/span&gt;&lt;span class="x"&gt; -j ACCEPT&amp;#39; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: command to execute on remote peer&lt;/span&gt;
+&lt;span class="x"&gt;POST_TUN_LOCAL_COMMAND=&amp;#39;ip route add 192.168.6.0/24 via &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;RTUNADDR&lt;/span&gt;&lt;span class="x"&gt; dev &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;LOCAL_TUN&lt;/span&gt;&lt;span class="x"&gt;&amp;#39; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: command to execute on local peer&lt;/span&gt;
+&lt;span class="x"&gt;LOCAL_IP=&amp;quot;ip&amp;quot; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: local ip command binary&lt;/span&gt;
+&lt;span class="x"&gt;REMOTE_IP=&amp;quot;ip&amp;quot; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: remote ip command binary&lt;/span&gt;
+&lt;span class="x"&gt;SSH=&amp;quot;ssh&amp;quot; &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; optional: ssh binary&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="ssh"></category><category term="vpn"></category></entry><entry><title>Check_web_form.py</title><link href="http://www.bertera.it/check_web_formpy.html" rel="alternate"></link><published>2008-09-24T16:42:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-24:check_web_formpy.html</id><summary type="html">&lt;p&gt;Check script di nagios per eseguire il submit di un form e cercare dei
+valori nella response del server.&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;span class="c1"&gt;# vi:si:et:sw=4:sts=4:ts=4&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- coding: UTF-8 -*-&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- Mode: Python -*-&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Copyright (C) 2006 Bertera Pietro&lt;/span&gt;
+
+&lt;span class="c1"&gt;# This file may be distributed and/or modified under the terms of&lt;/span&gt;
+&lt;span class="c1"&gt;# the GNU General Public License version 2 as published by&lt;/span&gt;
+&lt;span class="c1"&gt;# the Free Software Foundation.&lt;/span&gt;
+&lt;span class="c1"&gt;# This file is distributed without any warranty; without even the implied&lt;/span&gt;
+&lt;span class="c1"&gt;# warranty of merchantability or fitness for a particular purpose.&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Check web form&lt;/span&gt;
+&lt;span class="c1"&gt;# Permette di effettuare il submit di un form HTML e di cercare dei contenuti nella&lt;/span&gt;
+&lt;span class="c1"&gt;# response del server&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Features:&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# * Supporto per i Cookie&lt;/span&gt;
+&lt;span class="c1"&gt;# * URL personabilizzabile per ricevere i cookie&lt;/span&gt;
+&lt;span class="c1"&gt;# * Invio di Header HTTP arbitrari&lt;/span&gt;
+&lt;span class="c1"&gt;# * Ricerca nel contenuto e nell&amp;#39;header della response&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Esempio:&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# ./check_web_form -a http://www.spam.com/login.php -i username=CiccioUser -i password=CiccioUser -C &amp;quot;^Logged in as:  CiccioUser&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# Esegue il submit di un form con action=&amp;quot;http://www.spam.com/login.php&amp;quot; e passa i campi username=CiccioUser e password=CiccioUser&lt;/span&gt;
+&lt;span class="c1"&gt;# e controlla che nel risultato ci sia una riga che inizia con &amp;quot;Logged in as:  CiccioUser&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# ./check_web_form -a http://www.spam.com/login.php -i username=user -i password=Passw -H content-type=application/x-www-form-urlencoded -H &amp;quot;User-Agent=Mozilla&amp;quot; -m POST -c -u http://www.spam.com/smolla_il_cookie -R location=http://www.spam.com/*authenticated&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# * Prende il cookie all&amp;#39; URL http://www.spam.com/smolla_il_cookie (-u)&lt;/span&gt;
+&lt;span class="c1"&gt;# * Tramite metodo POST invia gli header content-type=application/x-www-form-urlencoded e User-Agent=Mozilla (-H)&lt;/span&gt;
+&lt;span class="c1"&gt;# * Invia i valori username e password (-i)&lt;/span&gt;
+&lt;span class="c1"&gt;# * L&amp;#39;invio viene effettuato all&amp;#39;URL http://www.spam.com/login.php (-a)&lt;/span&gt;
+&lt;span class="c1"&gt;# * La ricerca del risultato avviene negl&amp;#39;header location della risposta (-R)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Se l&amp;#39;esito ha buon fine ritorna 0 e stampa OK ...&lt;/span&gt;
+&lt;span class="c1"&gt;# Se fallisce ritorna 2 e stampa ERROR ...&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;optparse&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;httplib2&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Http&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urllib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FormSubmitterOptionParser&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;optparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OptionParser&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_required&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;option&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; option not supplied&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;option&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_method&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--method&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP method not implemented use GET or POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;input&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;--input&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; must be in format &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FormSubmitterOptionParser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;usage: %prog [options]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-m&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--method&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;string&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;HTTP method (GET or POST), default &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s2"&gt;efault&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--input&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;append&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;input fileld name=value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--action&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Action of form&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--cookie&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store_true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Support for cookie&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-u&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--cookie-url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;URL used to retrieve cookie&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-H&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--header&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;append&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Send header hdeadername=HeaderValue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-C&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--content-match&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Check for regular expression match in content&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-R&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--response-match&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;store&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Check for regular expression match in response ex: Status=^4??&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-d&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--debug&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;store_true&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Debug mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# Check required options&lt;/span&gt;
+        &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;check_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c1"&gt;# parser.check_required(&amp;#39;-i&amp;#39;)&lt;/span&gt;
+        &lt;span class="c1"&gt;# check http method&lt;/span&gt;
+        &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;check_method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="c1"&gt;# check values&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+           &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;check_input&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;except&lt;/span&gt;  &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Error: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+        &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# make header dict&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# make data dict&lt;/span&gt;
+    &lt;span class="n"&gt;fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+    &lt;span class="n"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Http&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="c1"&gt;#headers = None&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# check in response Header&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response_match&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;response_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response_match&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;response_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;r&amp;#39;s*=s*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response_match&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# get page to read cookie&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cookie&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Sending request to retrieve cookie:&amp;quot;&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;URL: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Method: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Headers: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cookie_url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cookie_url&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;
+        &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Response: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Content: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;set-cookie&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Cookie&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;set-cookie&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
+
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urlparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlsplit&lt;/span&gt;
+            &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;urlparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;urlunsplit&lt;/span&gt;
+
+            &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlsplit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="c1"&gt;# if exist query string&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+                &lt;span class="n"&gt;query_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;query_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urlunsplit&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;query_string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+            &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;
+
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;
+            &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;urlencode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Sending request:&amp;quot;&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;URL: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Method: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Headers: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Body: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;body&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CRITICAL : &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+        &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Response: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Content: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_match&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_match&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Error: regexp not valid: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+                &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MULTILINE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;OK Found: &amp;quot;&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response_match&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;has_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Error: regexp not valid: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+                &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;response_name&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;OK Found: &amp;quot;&lt;/span&gt;  &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+                &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CRITICAL: response header &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; not found&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;response_name&lt;/span&gt;
+            &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CRITICAL : Not found&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Download: &lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_web_form.py"&gt;check_web_form.py&lt;/a&gt;&lt;/p&gt;</summary><category term="http"></category><category term="nagios"></category><category term="python"></category></entry><entry><title>PowerChute con apcupsd</title><link href="http://www.bertera.it/powerchute-con-apcupsd.html" rel="alternate"></link><published>2008-09-03T17:37:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-03:powerchute-con-apcupsd.html</id><summary type="html">&lt;p&gt;Dalla versione 3.14 &lt;a href="http://www.apcupsd.org"&gt;apcupsd&lt;/a&gt; supporta il
+protocollo PowerChute di APC:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.apcupsd.org/manual/Configuration_Examples.html#SECTION000135000000000000000"&gt;PowerChute Network Shutdown Driver
+(PCNET)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I backport per Debian etch:
+&lt;span&gt;&lt;a href="http://www.bertera.it/software/apcupsd/"&gt;http://www.bertera.it/software/apcupsd&lt;/a&gt;&lt;br /&gt;
+&lt;/span&gt;&lt;/p&gt;</summary><category term="apcupsd"></category><category term="backports"></category><category term="debian"></category><category term="linux"></category><category term="powerchute"></category></entry><entry><title>SQL Server backup con Bacula</title><link href="http://www.bertera.it/sql-server-backup-con-bacula.html" rel="alternate"></link><published>2008-05-30T17:06:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-05-30:sql-server-backup-con-bacula.html</id><summary type="html">&lt;p&gt;In teoria con una versione recente di Bacula ed il supporto VSS si
+dovrebbe poter eseguire il backup in maniera consistente prelevando
+direttamente i file dei database.&lt;br /&gt;
+Per chi non si fida
+&lt;a href="https://github.com/pbertera/junk/blob/master/mssql-backup/dump.sql"&gt;questa&lt;/a&gt; stored
+procedure esegue il dump di tutti i database utente in file .BAK.&lt;/p&gt;
+&lt;p&gt;Viene installata ed eseguita tramite
+&lt;a href="https://github.com/pbertera/junk/blob/master/mssql-backup/pre-backup.bat"&gt;questo&lt;/a&gt;
+.bat richiamato da un “ClientRunBeforeJob”. (Ovvio che la directory che
+contiene i .BAK deve essere compresa nel FIleSet del client).&lt;/p&gt;
+&lt;p&gt;Lo script &lt;a href="https://github.com/pbertera/junk/blob/master/mssql-backup/post-backup.bat"&gt;post-bakup&lt;/a&gt;
+si occupa di ripulire la directory di appoggio dai dump.&lt;/p&gt;</summary><category term="bacula"></category><category term="sql server"></category><category term="windows"></category></entry></feed>

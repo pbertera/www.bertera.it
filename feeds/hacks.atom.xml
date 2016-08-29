@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/hacks.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2015-04-14T20:25:00+02:00</updated><entry><title>Overwriting Latex image positioning in pandoc generated pdf</title><link href="http://www.bertera.it/overwriting-latex-image-positioning-in-pandoc-generated-pdf.html" rel="alternate"></link><published>2015-04-14T20:25:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-04-14:overwriting-latex-image-positioning-in-pandoc-generated-pdf.html</id><summary type="html">&lt;p&gt;Pandoc is a very powerful tool, I'm extensively using it for writing
+documentation, papers and so on.&lt;br /&gt;
+You can generate pdf, html, docx and many other formats trough a
+compilation of markdown source file.&lt;/p&gt;
+&lt;p&gt;Often I use it to produce nice PDF documents, in this process your
+Markdown document is parsed and rendered using a Latex template, you can
+obtain the default template using the command:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pandoc -D latex&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Unfortunately all images with a caption tet are rendered in Latex using
+the &lt;strong&gt;htbp&lt;/strong&gt; floating positioning, this is hardcoded in pandoc.&lt;/p&gt;
+&lt;p&gt;Markdown code:&lt;br /&gt;
+&lt;code&gt;![I/O connector](img/1.jpg)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Latex code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;\begin{figure}[htbp]
+\centering
+\includegraphics{img/1.jpg}
+\caption{I/O connector}
+\end{figure}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sometimes the [htbp] positioning doesn't fits my needs and I prefer to
+use the fixed [H] positioning.&lt;br /&gt;
+Over the web you can find a lot of solutions suggesting to compile your
+Markdown in a Latex file, parse the file with sed and then use pdflatex
+to generate the PDF.&lt;/p&gt;
+&lt;p&gt;Now, I found a way to overwrite the Latex {figure} environment directly
+into the Latex template:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% Overwrite \begin{figure}[htbp] with \begin{figure}[H]&lt;/span&gt;
+&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;usepackage&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;float&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;origfigure&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;
+&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endorigfigure&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endfigure&lt;/span&gt;
+&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;renewenvironment&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;}[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;][]{&lt;/span&gt;&lt;span class="c"&gt;%&lt;/span&gt;
+   &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;origfigure&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}{&lt;/span&gt;&lt;span class="c"&gt;%&lt;/span&gt;
+   &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endorigfigure&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Latex"></category><category term="markdown"></category></entry><entry><title>Little file browser with pdmenu</title><link href="http://www.bertera.it/little-file-browser-with-pdmenu.html" rel="alternate"></link><published>2012-03-10T02:15:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-03-10:little-file-browser-with-pdmenu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://kitenet.net/programs/pdmenu/"&gt;Pdmenu&lt;/a&gt; is a menu system for Unix.
+It is designed to be easy to use, and is suitable for a login shell for
+inexperienced users, or it can just be run at the command line as a
+handy menu program.&lt;/p&gt;
+&lt;p&gt;I just modified showdir.pl script in order to implement a small and
+minimal file browser for using pdmenu.&lt;/p&gt;
+&lt;p&gt;You can add/delete file and directory and edit files. Some screenshot
+below:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="run menu" src="http://www.bertera.it/pdmenu1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="menu" src="http://www.bertera.it/pdmenu2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;this is the &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/menutest"&gt;pdmenu configuration file&lt;/a&gt;:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#! /usr/bin/pdmenu -c
+#
+## Version 2.0
+#
+## Title
+preproc: echo &amp;quot;Title: test&amp;quot;
+color:desktop:blue:blue
+color:title:red:white
+color:base:blue:white
+# File manager
+menu:provisioning: Provisioning file management : 
+group:_Edit a file
+    exec::makemenu: (\
+            /usr/share/pdmenu/editdir.pl /var/www &amp;quot;&amp;quot; show_directory \
+            ) 2&amp;gt;/dev/null
+    show:::show_directory
+    remove:::show_directory
+endgroup
+group:_Remove a file or directory
+    exec::makemenu: (\
+            /usr/share/pdmenu/deldir.pl /var/www &amp;quot;&amp;quot; del_directory \
+            ) 2&amp;gt;/dev/null
+    show:::del_directory
+    remove:::del_directory
+endgroup
+group:Add a _directory
+    exec::makemenu: (\
+            /usr/share/pdmenu/adddir.pl /var/www &amp;quot;&amp;quot; add_directory \
+            ) 2&amp;gt;/dev/null
+    show:::add_directory
+    remove:::add_directory
+endgroup
+group:Add a _file
+    exec::makemenu: (\
+            /usr/share/pdmenu/addfile.pl /var/www &amp;quot;&amp;quot; add_file \
+            ) 2&amp;gt;/dev/null
+    show:::add_file
+    remove:::add_file
+endgroup
+nop
+
+nop
+exit:E_xit
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;you can download the showdir.pl script &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/showdir.pl"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All files &lt;code&gt;/usr/share/pdmenu/editdir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/deldir.pl&lt;/code&gt;
+&lt;code&gt;/usr/share/pdmenu/adddir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/addfile.pl&lt;/code&gt; are symlink to
+&lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>bash snippet: dumping function call trace</title><link href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html" rel="alternate"></link><published>2011-07-18T12:44:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-18:bash-snippet-dumping-function-call-trace.html</id><summary type="html">&lt;p&gt;Uno snippet di codice bash utile nel debugging di script.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#@.. function:: __cm_exit_error([text],[...])
+#@
+#@   Stampa la stringa passata in stderr ed esce
+#@   Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni
+#@
+#@   :param text: la stringa da stampare
+#@   :type text: String
+#@
+__cm_exit_error()
+
+{
+        echo &amp;quot;Error in &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;:&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_LINENO&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;: $*&amp;quot; 1&amp;gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;2
+        local i=0
+        [ &lt;span class="nv"&gt;$__cm_debug&lt;/span&gt; ] &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; while [ &lt;span class="nv"&gt;$i&lt;/span&gt; -lt &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="c1"&gt;#FUNCNAME&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; ]; do
+                [ &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; == &amp;quot;main&amp;quot; ] &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; break
+                echo &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_SOURCE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;::&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;::&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_LINENO&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; 1&amp;gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;2
+                i=$(expr &lt;span class="nv"&gt;$i&lt;/span&gt; + 1)
+        done
+        exit 1
+}
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="debugging"></category><category term="script"></category></entry><entry><title>cisco IOS contextual config diffs via syslog</title><link href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html" rel="alternate"></link><published>2010-10-11T11:11:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2010-10-11:cisco-ios-contextual-config-diffs-via-syslog.html</id><summary type="html">&lt;p&gt;Event amanager applet per salvare il diff tra stratup-config e
+running-config via syslog.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;event manager applet wr-mem-match &lt;/span&gt;
+&lt;span class="x"&gt; event cli pattern &amp;quot;wr.* mem.*&amp;quot; sync yes&lt;/span&gt;
+&lt;span class="x"&gt; action 1.0 cli command &amp;quot;enable&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt; action 1.1 cli command &amp;quot;show archive config differences nvram:/startup-config system:/running-config&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt; action 1.2 syslog msg &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;_cli_result&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="x"&gt; set 2.0 _exit_status 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="cisco"></category><category term="cli"></category><category term="syslog"></category></entry><entry><title>GNU/Find posix acl support</title><link href="http://www.bertera.it/gnufind-posix-acl-support.html" rel="alternate"></link><published>2009-09-28T18:25:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-09-28:gnufind-posix-acl-support.html</id><summary type="html">&lt;p&gt;Cercare file che corrispondono a delle acl posix all'interno di un
+filesystem molto intricato è sempre un delirio.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;Questa&lt;/a&gt; patch aggiunge
+l'opzione -acl al comando find
+(&lt;a href="http://www.gnu.org/software/findutils/"&gt;GNU/Findutils&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Esempio d'uso:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;touch&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;mkdir&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rx&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rw&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;pietro&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;---&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rw&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;wheel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rwx&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;touch&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;setfacl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;wheel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;rx&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;root&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;*:rx&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;*:*&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;find&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;acl&lt;/span&gt; &lt;span class="nn"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nn"&gt;u&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s s-Atom"&gt;*:*&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Questa patch e' stata testata solo su Linux, è scaricabile qua:
+&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;https://github.com/pbertera/junk/tree/master/findutils-acl&lt;/a&gt; è disponibile per la
+versione 4.42 e 4.5.6 di findutils&lt;/p&gt;</summary><category term="c"></category><category term="find"></category><category term="gnu"></category></entry><entry><title>Verbose bash history</title><link href="http://www.bertera.it/verbose-bash-history.html" rel="alternate"></link><published>2009-07-02T08:58:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-07-02:verbose-bash-history.html</id><summary type="html">&lt;p&gt;Usando questo codice durante l'inizializzasione della shell viene
+salvata una command history nel file &lt;em&gt;.bash_verbose_history&lt;/em&gt; contenete
+data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando
+eseguito. Inoltre evita la sovrascrittura del file
+&lt;em&gt;.bash_verbose_history&lt;/em&gt; e &lt;em&gt;.bash_history&lt;/em&gt; eseguendone una copia
+quando il file raggiunge le 3000 righe.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;/etc/bashrc&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;HISTSIZE=4000
+HISTFILESIZE=4000
+
+for f in .bash_history .bash_verbose_history; do
+        if [ `wc -l &lt;span class="nv"&gt;$HOME&lt;/span&gt;/&lt;span class="nv"&gt;$f&lt;/span&gt; | awk &amp;#39;{print $1}&amp;#39;` -gt 3000 ] ; then
+                cp -f &lt;span class="nv"&gt;$HOME&lt;/span&gt;/&lt;span class="nv"&gt;$f&lt;/span&gt; &lt;span class="nv"&gt;$HOME&lt;/span&gt;/&lt;span class="nv"&gt;$f&lt;/span&gt;-`date -I`
+        fi
+done
+
+if [ -n &amp;quot;&lt;span class="nv"&gt;$SSH_CLIENT&lt;/span&gt;&amp;quot; ]; then
+        TTY=`echo &lt;span class="nv"&gt;$SSH_CLIENT&lt;/span&gt;| cut -d   -f1`
+else
+        TTY=`tty | sed -e &amp;quot;s:/dev/::&amp;quot;`
+fi
+
+PROMPT_COMMAND=&amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;PROMPT_COMMAND&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PROMPT_COMMAND&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;&amp;#39;echo `date +&amp;quot;%Y-%m-%d %k:%M:%S&amp;quot;` &lt;span class="nv"&gt;$USER&lt;/span&gt; &lt;span class="nv"&gt;$TTY&lt;/span&gt; &amp;quot;$(history 1)&amp;quot; &amp;gt;&amp;gt; ~/.bash_verbose_history&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Reading Windows and Office product key</title><link href="http://www.bertera.it/reading-windows-and-office-product-key.html" rel="alternate"></link><published>2008-12-17T15:04:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-12-17:reading-windows-and-office-product-key.html</id><summary type="html">&lt;p&gt;I product key di M\$ Windows e Office vengono salvati nel registro in
+alcune chiavi cifrate&lt;br /&gt;
+Pygetkey decifra le chiavi e le stampa a video oppure le salva in
+chiaro in un'altra chiave di registro. Puo' inoltre preleveare i product
+key da un pc remoto.&lt;/p&gt;
+&lt;p&gt;Pygetkey è scritto in python e richiede un'installazione di python 2.X
+per windows&lt;/p&gt;
+&lt;p&gt;Esempio:  &lt;code&gt;pygetkey -c SYSTEMTest&lt;/code&gt; creerà i valori WINDOWS-KEY e OFFICE-2007-KEY all'interno della chiave
+HKEY_LOCAL_MACHINESYSTEMTest:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[HKEY_LOCAL_MACHINESYSTEMTest] &amp;quot;WINDOWS-KEY&amp;quot;=&amp;quot;XQM13-K3M7R-32HRX-XF3Q-GMF63&amp;quot; &amp;quot;OFFICE-2007-KEY&amp;quot;=&amp;quot;JPBW9-BPY6B-79M9M-RJYJV-6G5B6&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;i valori vengono creati sotto l'albero di registro HKEY_LOCAL_MACHINE
+nella chiave specificata dal parametro -c e potranno avere i seguenti nomi:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WINDOWS-KEY: la chiave di windows  &lt;/li&gt;
+&lt;li&gt;OFFICE-{2000,2007,2003,XP}-KEY: le chiavi di office trovate a seconda della versione&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La chiave specificata dal comando DEVE esistere, in caso contrario
+verrà ritornato un errore.&lt;/p&gt;
+&lt;p&gt;L'opzione -r HOST indica a pygetkey di interrogare un host remoto.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Leggere chiavi di registro su un pc remoto:&lt;/strong&gt;&lt;br /&gt;
+readrreg.py è ingrado di leggere le chiavi di registro da un pc remoto:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;devgetkey&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;readrreg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;SYSTEMTest&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;RemotePC&lt;/span&gt; &lt;span class="n"&gt;office&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2007&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;XQM13&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;K3M7R&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="n"&gt;HRX&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;XF3Q&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;GMF63&lt;/span&gt; &lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;JPBW9&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;BPY6B&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;79&lt;/span&gt;&lt;span class="n"&gt;M9M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;RJYJV&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;G5B6&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Creazione dei binari&lt;/strong&gt;&lt;br /&gt;
+E' possibile creare un eseguibile di pygetkey e readrreg in modo da non
+installare python sui pc, per creare i binari occorre&lt;br /&gt;
+installare py2exe (http://www.py2exe.org) per l'appropriata versione di&lt;/p&gt;
+&lt;p&gt;Python ed eseguire il seguente comando: &lt;code&gt;python.exe setup.py py2exe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Qesto creera' una directory dist contente dei file, quelli strettamente
+necessari all'esecuzione di pygetkey.exe e readrreg.exe sono:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pygetkey.exe  &lt;/li&gt;
+&lt;li&gt;readrreg.exe  &lt;/li&gt;
+&lt;li&gt;library.zip  &lt;/li&gt;
+&lt;li&gt;python25.dll (il 25 dipende dalla versione di Python installata)  &lt;/li&gt;
+&lt;li&gt;MSVCR71.dll&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PS: non sono sicuro funzioni correttamente con Office 2000&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Download:&lt;/strong&gt;  &lt;/p&gt;
+&lt;p&gt;pygetkey è scaricabile &lt;a href="https://github.com/pbertera/junk/tree/master/pygetkey"&gt;qua&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;python è scaricabile all'indirizzo: &lt;a href="http://www.python.org"&gt;http://www.python.org&lt;/a&gt;&lt;br /&gt;
+py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; getfacl -R
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/worstbit"&gt;https://github.com/pbertera/junk/tree/master/worstbit&lt;/a&gt;&lt;/p&gt;</summary><category term="acl posix"></category><category term="c"></category></entry><entry><title>Kecho</title><link href="http://www.bertera.it/kecho.html" rel="alternate"></link><published>2006-05-21T16:41:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:kecho.html</id><summary type="html">&lt;p&gt;Kernel echo è un esempio di comunicazione tra userspace e kernelspace&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/kecho"&gt;kecho&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category><category term="networking"></category></entry><entry><title>Nettester</title><link href="http://www.bertera.it/nettester.html" rel="alternate"></link><published>2006-05-21T16:41:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:nettester.html</id><summary type="html">&lt;p&gt;un clone di netcat con supporto UDP&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/nettester"&gt;nettester&lt;/a&gt;&lt;/p&gt;</summary><category term="codin"></category><category term="networking"></category></entry><entry><title>rTCP</title><link href="http://www.bertera.it/rtcp.html" rel="alternate"></link><published>2006-05-21T16:40:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:rtcp.html</id><summary type="html">&lt;p&gt;rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
+diretti verso un dato host.&lt;br /&gt;
+Installato su due host permette di comunicare con un TCP “inverso”&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/rtcp"&gt;rtcp&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category></entry><entry><title>Arpiglio</title><link href="http://www.bertera.it/arpiglio.html" rel="alternate"></link><published>2006-05-21T16:36:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:arpiglio.html</id><summary type="html">&lt;p&gt;un tool per forgiare pacchetti ARP/RARP da linea di comando.&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/arpiglio"&gt;arpiglio.c&lt;/a&gt;&lt;/p&gt;</summary><category term="arp"></category><category term="c"></category></entry><entry><title>Software</title><link href="http://www.bertera.it/software.html" rel="alternate"></link><published>2006-02-05T16:22:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-05:software.html</id><summary type="html">&lt;p&gt;Era un progettino che avevo dato all’università : esegue dei backup
+differenziali o full utilizzando rsync:
+&lt;a href="https://github.com/pbertera/junk/tree/master/batbu"&gt;Batbu&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bacula: i .deb per sarge della 1.38.5
+&lt;a href="http://www.bertera.it/software/bacula-1.38.5/"&gt;bacula-1.38.5&lt;/a&gt; &lt;strong&gt;UPDATE:&lt;/strong&gt; non piu' mantenuto&lt;/p&gt;
+&lt;p&gt;Plugin nagios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;check-imap-login&lt;/strong&gt; Un plugin per nagios per eseguire un login su un server IMAP (o IMAPS)
+&lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_imap_login"&gt;chek-imap-login&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;chek-load-login&lt;/strong&gt; Altro plugin per verificare il carico di una macchina via ssh con due
+soglie di allarme &lt;a href="https://github.com/pbertera/junk/blob/master/nagios-stuff/check_load_ssh"&gt;check_load_ssh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;check-horde-login&lt;/strong&gt; Plugin che fa il logon in horde web mail&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="bacula"></category><category term="nagios"></category><category term="python"></category><category term="rsync"></category><category term="script"></category></entry></feed>

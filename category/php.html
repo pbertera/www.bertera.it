@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.bertera.it"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
 
-  <title>Pietro Bertera's Blog &ndash; Category: coding, hack, scripts, systems</title>
+  <title>Pietro Bertera's Blog &ndash; Category: PHP</title>
 </head>
 <body>
   <aside>
@@ -71,43 +71,58 @@
 
 <article>
   <header>
-    <h2><a href="http://www.bertera.it/poor-man-virtual-consolidated-backup-update.html#poor-man-virtual-consolidated-backup-update">Poor man virtual consolidated backup update</a></h2>
+    <h2><a href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html#vtiger-crm-howto-add-products-commissions-in-invoice">vtiger CRM: Howto add products commissions in invoice</a></h2>
     <p>
-      Posted on Sun 01 April 2012 in <a href="http://www.bertera.it/category/coding-hack-scripts-systems.html">coding, hack, scripts, systems</a>
+      Posted on Thu 27 September 2012 in <a href="http://www.bertera.it/category/php.html">PHP</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/backup.html">backup</a>,      <a href="http://www.bertera.it/tag/bacula.html">bacula</a>,      <a href="http://www.bertera.it/tag/bash.html">bash</a>,      <a href="http://www.bertera.it/tag/script.html">script</a>      &#8226; <a href="http://www.bertera.it/poor-man-virtual-consolidated-backup-update.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/crm.html">crm</a>,      <a href="http://www.bertera.it/tag/php.html">php</a>,      <a href="http://www.bertera.it/tag/vtiger.html">vtiger</a>      &#8226; <a href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p>I just received a little patch to my
-<a href="http://www.bertera.it/index.php/2011/07/25/poor-man-vmware-consolidate-backup/" title="pmvcb">pmvcb</a>
-from Tilman Schmidt.<br />
-This patch add the support for the new ESXi syntax of
-<strong>snapshot.remove</strong>.</p>
-<p>You can download the last pmvcb from my Github
-<a href="https://github.com/pbertera/pmvcb" title="pmvcb download from github">page</a></p>
-<p>Thanks Tilman.</p>
-      <a class="btn" href="http://www.bertera.it/poor-man-virtual-consolidated-backup-update.html#poor-man-virtual-consolidated-backup-update">Continue reading</a>
+      <p>During last days I played with <a href="https://www.vtiger.com">vtiger</a>: a very
+customizable and feature rich PHP/MySQL CRM. Sincerely this task has
+revived my intimate <a href="http://www.google.com/search?q=php+sucks">hate</a> for
+PHP programming language.</p>
+<p>This is the idea: add a function hook in vtiger workflow every time that
+an invoice is created or edited. This function ...</p>
+      <a class="btn" href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html#vtiger-crm-howto-add-products-commissions-in-invoice">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html#how-to-split-dns-name-resolution-in-vpn-environment">How to split DNS name resolution in VPN environment</a></h2>
+    <h2><a href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html#php-sinippet-howto-ignore-http-errors-in-file_get_contents">Php sinippet: howto ignore HTTP errors in file_get_contents()</a></h2>
     <p>
-      Posted on Wed 30 November 2011 in <a href="http://www.bertera.it/category/coding-hack-scripts-systems.html">coding, hack, scripts, systems</a>
+      Posted on Fri 04 November 2011 in <a href="http://www.bertera.it/category/php.html">PHP</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/dns.html">dns</a>,      <a href="http://www.bertera.it/tag/openvpn.html">openvpn</a>,      <a href="http://www.bertera.it/tag/powerdns.html">powerdns</a>,      <a href="http://www.bertera.it/tag/scripting.html">scripting</a>,      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>      &#8226; <a href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/code.html">code</a>,      <a href="http://www.bertera.it/tag/http.html">http</a>,      <a href="http://www.bertera.it/tag/php.html">php</a>      &#8226; <a href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p>I'm in this situation:<br />
-a VPN to remote concentrator that load many routes to private networks,
-vpn server push DNS configuration via OpenVPN protocol (see
---dhcp-option DNS in openvpn(8) ).<br />
-The scope of this post is to explain how you can use remote DNS pushed
-by VPN concentrator only ...</p>
-      <a class="btn" href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html#how-to-split-dns-name-resolution-in-vpn-environment">Continue reading</a>
+      <p>A useful snipped of php code:  </p>
+<div class="highlight"><pre><span></span>echo file_get_contents(&#39;http://www.example.com/foo.html&#39;,\
+  FALSE, stream_context_create(array\
+  (&#39;http&#39;=&gt;;array(&#39;ignore_errors&#39; =&gt;; TRUE))))
+</pre></div>
+      <a class="btn" href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html#php-sinippet-howto-ignore-http-errors-in-file_get_contents">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://www.bertera.it/camilla.html#camilla">Camilla</a></h2>
+    <p>
+      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/php.html">PHP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/booking.html">booking</a>,      <a href="http://www.bertera.it/tag/php.html">php</a>      &#8226; <a href="http://www.bertera.it/camilla.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Camilla è un sistema di booking per camere e case, supporta agenzie
+multiple e la gestione di calendari e stagioni.<br />
+<img alt="camilla" src="http://www.bertera.it/camilla.jpg" />  </p>
+<p><a href="https://github.com/pbertera/junk/tree/master/camilla">camilla</a></p>
+      <a class="btn" href="http://www.bertera.it/camilla.html#camilla">Continue reading</a>
   </div>
 </article>
 

@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.bertera.it"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
 
-  <title>Pietro Bertera's Blog &ndash; Category: coding, hack</title>
+  <title>Pietro Bertera's Blog &ndash; Category: VoIP</title>
 </head>
 <body>
   <aside>
@@ -71,27 +71,83 @@
 
 <article>
   <header>
-    <h2><a href="http://www.bertera.it/using-special-chars-in-python-string-templates.html#using-special-chars-in-python-string-templates">Using special chars in Python string Templates</a></h2>
+    <h2><a href="http://www.bertera.it/changes-on-the-italian-golden-tree.html#changes-on-the-italian-golden-tree">Changes on the Italian "Golden Tree"</a></h2>
     <p>
-      Posted on Wed 05 June 2013 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
+      Posted on Mon 02 March 2015 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/coding.html">coding</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>,      <a href="http://www.bertera.it/tag/strings.html">strings</a>,      <a href="http://www.bertera.it/tag/templating.html">templating</a>      &#8226; <a href="http://www.bertera.it/using-special-chars-in-python-string-templates.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/dns.html">dns</a>,      <a href="http://www.bertera.it/tag/enum.html">ENUM</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/changes-on-the-italian-golden-tree.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p><a href="http://www.python.org/dev/peps/pep-0292">PEP-292</a> introduced a nice
-Python templating feature.<br />
-Templates placehoder names are subject to some
-restrictions,<a href="http://docs.python.org/3/library/string.html#template-strings">Documentation</a>
-says:</p>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">identifier</span><span class="x"> names a substitution placeholder matching a mapping key of &quot;identifier&quot;.</span>
-<span class="x">By default, &quot;identifier&quot; must spell a Python identifier.</span>
-<span class="x">The first non-identifier character after the </span><span class="p">$</span><span class="x"> character terminates this placeholder specification.</span>
-</pre></div>
-
-
-<p>This means that ...</p>
-      <a class="btn" href="http://www.bertera.it/using-special-chars-in-python-string-templates.html#using-special-chars-in-python-string-templates">Continue reading</a>
+      <p>This is a continuation of my <a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?">previous
+post</a>
+about the <strong>+39 ENUM DNS zone</strong>.</p>
+<p>Thanks to the powerful of the RIPE Database you can see all historical
+changes on a RIPE-assigned domain. Lets see what happen on the
+domain <strong>9.3.e164.arpa</strong>.</p>
+<p>List all changes on the domain object ...</p>
+      <a class="btn" href="http://www.bertera.it/changes-on-the-italian-golden-tree.html#changes-on-the-italian-golden-tree">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html#what-happened-to-the-39-italy-enum-dns-zone">What happened to the +39 (Italy) ENUM DNS Zone ?</a></h2>
+    <p>
+      Posted on Wed 25 February 2015 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/enum.html">ENUM</a>,      <a href="http://www.bertera.it/tag/italy.html">Italy</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p><a href="https://tools.ietf.org/html/rfc6116">ENUM</a> is a DNS based algorithm
+used to store data associated with E.164 numbers (aka global phone
+numbers). Using ENUM you can associate your email or Skype or SIP
+contact along with your phone number.</p>
+<p>So, registering your contacts in the ENUM tree you'll make yourself
+reachable trough ...</p>
+      <a class="btn" href="http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html#what-happened-to-the-39-italy-enum-dns-zone">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://www.bertera.it/sip-packet-filtering-with-iptables.html#sip-packet-filtering-with-iptables">SIP packets filtering with iptables</a></h2>
+    <p>
+      Posted on Wed 22 January 2014 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/iptables.html">iptables</a>,      <a href="http://www.bertera.it/tag/netfilter.html">netfilter</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>,      <a href="http://www.bertera.it/tag/sip.html">sip</a>      &#8226; <a href="http://www.bertera.it/sip-packet-filtering-with-iptables.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>One of the most powerful <a href="http://www.netfilter.org">iptables</a> match is
+the <a href="http://www.netfilter.org/documentation/HOWTO/netfilter-extensions-HOWTO-3.html#ss3.21">u32
+module</a>.<br />
+Using the u32 match you are able to write a firewall rule matching
+against a single bit of a network packet.</p>
+<p>If you wanna play with u32 module you have to be prepared to deal with a syntax very ...</p>
+      <a class="btn" href="http://www.bertera.it/sip-packet-filtering-with-iptables.html#sip-packet-filtering-with-iptables">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">UAS Authenticating registrar SIPp scenario</a></h2>
+    <p>
+      Posted on Thu 30 May 2013 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/sip.html">sip</a>,      <a href="http://www.bertera.it/tag/sipp.html">SIPp</a>,      <a href="http://www.bertera.it/tag/testing.html">Testing</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p><a href="http://sipp.sourceforge.net">SIPp</a> is a real SIP swiss army knife. You
+can create various SIP scenario and test your devices and environments.</p>
+<p>I never found a SIPp scenario implementing an UAs (User Agent server)
+registrar with authentication.</p>
+<p>Following you can find this scenario:</p>
+<p>The SIPp XML scenario file: <strong>sipp_register_auth_uas.xml</strong>  </p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version ...</span></pre></div>
+      <a class="btn" href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">Continue reading</a>
   </div>
   <hr />
 </article>
@@ -99,13 +155,13 @@ says:</p>
   <header>
     <h2><a href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Ability to set codec in MulticastRTP Asterisk channels</a></h2>
     <p>
-      Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
+      Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
       &#8226; Tagged with
       <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/code.html">code</a>,      <a href="http://www.bertera.it/tag/patch.html">patch</a>,      <a href="http://www.bertera.it/tag/rtp.html">rtp</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p><a href="http://www.bertera.it/static/asterisk_trunk-377802_rtp_multicast_codec.patch">Here</a>
+      <p><a href="http://www.bertera.it/asterisk_trunk-377802_rtp_multicast_codec.patch">Here</a>
 you can find a port for Asterisk trunk (rev. 377802) of this patch:
 <a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html">http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html</a>.<br />
 This patch permits to set the codec of an outgoing multicast RTP stream
@@ -120,7 +176,7 @@ exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw ...</pre></div>
   <header>
     <h2><a href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html#rtp-timestamps-fix-in-asterisk-multicastrtp-channels">RTP timestamps fix in Asterisk MulticastRTP channels</a></h2>
     <p>
-      Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
+      Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
       &#8226; Tagged with
       <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/multicast.html">multicast</a>,      <a href="http://www.bertera.it/tag/patch.html">patch</a>,      <a href="http://www.bertera.it/tag/rtp.html">rtp</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html#disqus_thread">Leave a comment</a>
     </p>
@@ -139,21 +195,42 @@ informations (Eg. playing an audio file with
 </article>
 <article>
   <header>
-    <h2><a href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html#vtiger-crm-howto-add-products-commissions-in-invoice">vtiger CRM: Howto add products commissions in invoice</a></h2>
+    <h2><a href="http://www.bertera.it/asterisk-callback-from-a-failed-blind-transfer.html#asterisk-callback-from-a-failed-blind-transfer">Asterisk callback from a failed blind transfer</a></h2>
     <p>
-      Posted on Thu 27 September 2012 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
+      Posted on Sun 07 October 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/crm.html">crm</a>,      <a href="http://www.bertera.it/tag/php.html">php</a>,      <a href="http://www.bertera.it/tag/vtiger.html">vtiger</a>      &#8226; <a href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/sip.html">sip</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/asterisk-callback-from-a-failed-blind-transfer.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p>During last days I played with <a href="https://www.vtiger.com">vtiger</a>: a very
-customizable and feature rich PHP/MySQL CRM. Sincerely this task has
-revived my intimate <a href="http://www.google.com/search?q=php+sucks">hate</a> for
-PHP programming language.</p>
-<p>This is the idea: add a function hook in vtiger workflow every time that
-an invoice is created or edited. This function ...</p>
-      <a class="btn" href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html#vtiger-crm-howto-add-products-commissions-in-invoice">Continue reading</a>
+      <p>This little piece of extensions.conf implements a callback from a failed
+transfer (attendant and unattendant/bind)</p>
+<div class="highlight"><pre><span></span>exten =&gt; _1XX,1,Dial(SIP/<span class="cp">${</span><span class="n">EXTEN</span><span class="cp">}</span>,20,tT)
+exten =&gt; _1XX,n,GotoIf($[ &quot;a<span class="cp">${</span><span class="n">BLINDTRANSFER</span><span class="cp">}</span>&quot; = &quot;a&quot; ]?TransferFailed)
+exten =&gt; _1XX,n,Set(CALLER=<span class="cp">${</span><span class="n">CUT</span><span class="p">(</span><span class="n">BLINDTRANSFER</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="cp">}</span>);
+exten =&gt; _1XX,n,Goto(CallBack)
+exten =&gt; _1XX,n(TransferFailed ...</pre></div>
+      <a class="btn" href="http://www.bertera.it/asterisk-callback-from-a-failed-blind-transfer.html#asterisk-callback-from-a-failed-blind-transfer">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://www.bertera.it/asterisk_and_sip_session_refresh_with_update-request.html#asterisk_and_sip_session_refresh_with_update-request">Asterisk and SIP session refresh with UPDATE request</a></h2>
+    <p>
+      Posted on Wed 15 February 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/bug.html">bug</a>,      <a href="http://www.bertera.it/tag/sip.html">sip</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/asterisk_and_sip_session_refresh_with_update-request.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Using <strong>directmedia=update</strong> or (<strong>canreinvite=update</strong> in old-sytle
+configuration) in chan_sip.conf Asterisk sends SIP UPDATE request to
+refresh SIP session.</p>
+<p>If this UPDATE requests refers to an inactive call the phone reply with
+<strong>SIP/2.0 481 Call Leg/Transaction Does Not Exist.</strong></p>
+<p>In this situation Asterisk continue in ...</p>
+      <a class="btn" href="http://www.bertera.it/asterisk_and_sip_session_refresh_with_update-request.html#asterisk_and_sip_session_refresh_with_update-request">Continue reading</a>
   </div>
   <hr />
 </article>
@@ -161,7 +238,7 @@ an invoice is created or edited. This function ...</p>
   <header>
     <h2><a href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Authentication username in Astersik SIP peer</a></h2>
     <p>
-      Posted on Mon 12 July 2010 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
+      Posted on Mon 12 July 2010 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
       &#8226; Tagged with
       <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/patch.html">patch</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#disqus_thread">Leave a comment</a>
     </p>
@@ -185,33 +262,9 @@ nat=yes
 
 
 <p><strong>Peer definition in my SIP client (Twinkle)</strong><br />
-<img alt="client configuration" src="http://www.bertera.it/static/Twinkle-conf.png" /></p>
+<img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /></p>
 <p><strong>REGISTER ...</strong></p>
       <a class="btn" href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">GNU/Find posix acl support</a></h2>
-    <p>
-      Posted on Mon 28 September 2009 in <a href="http://www.bertera.it/category/coding-hack.html">coding, hack</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/find.html">find</a>,      <a href="http://www.bertera.it/tag/gnu.html">gnu</a>      &#8226; <a href="http://www.bertera.it/gnufind-posix-acl-support.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>Cercare file che corrispondono a delle acl posix all'interno di un
-filesystem molto intricato è sempre un delirio.</p>
-<p><a href="https://github.com/pbertera/junk/tree/master/findutils-acl">Questa</a> patch aggiunge
-l'opzione -acl al comando find
-(<a href="http://www.gnu.org/software/findutils/">GNU/Findutils</a>).</p>
-<p>Esempio d'uso:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
-<span class="err">$</span> <span class="s s-Atom">mkdir</span> <span class="mi">5</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rx</span> <span class="mi">1</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">bin ...</span></pre></div>
-      <a class="btn" href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">Continue reading</a>
   </div>
 </article>
 

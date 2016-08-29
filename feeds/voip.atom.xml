@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/voip.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2015-03-02T21:03:00+01:00</updated><entry><title>Changes on the Italian "Golden Tree"</title><link href="http://www.bertera.it/changes-on-the-italian-golden-tree.html" rel="alternate"></link><published>2015-03-02T21:03:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-02:changes-on-the-italian-golden-tree.html</id><summary type="html">&lt;p&gt;This is a continuation of my &lt;a href="http://www.bertera.it/index.php/2015/02/25/what-happened-to-the-39-italy-enum-dns-zone/" title="What happened to the +39 (Italy) ENUM DNS Zone ?"&gt;previous
+post&lt;/a&gt;
+about the &lt;strong&gt;+39 ENUM DNS zone&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Thanks to the powerful of the RIPE Database you can see all historical
+changes on a RIPE-assigned domain. Lets see what happen on the
+domain &lt;strong&gt;9.3.e164.arpa&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;List all changes on the domain object:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois -h whois.ripe.net -- &amp;quot;--list-versions 9.3.e164.arpa&amp;quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Version history for DOMAIN object &amp;quot;9.3.e164.arpa&amp;quot;  
+% You can use &amp;quot;--show-version rev\#&amp;quot; to get an exact version of the
+object.
+
+rev\# Date Op.
+
+1 2005-11-02 15:21 ADD/UPD  
+2 2006-02-10 11:41 ADD/UPD  
+3 2006-04-07 17:56 ADD/UPD  
+4 2006-04-07 18:00 ADD/UPD
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-4)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So, the domain was changed 4 times:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Version N°1:&lt;/strong&gt; 2005-11-02&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Version N°2:&lt;/strong&gt; 2006-02-10&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Version N°3 and 4:&lt;/strong&gt; 2006-04-07&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The object in the first version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois -h whois.ripe.net -- &amp;quot;--show-version 1 9.3.e164.arpa&amp;quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Version 1 of object &amp;quot;9.3.e164.arpa&amp;quot;  
+% This version was a UPDATE operation on 2005-11-02 15:21  
+% You can use &amp;quot;--list-versions&amp;quot; to get a list of versions for an
+object.
+
+domain: 9.3.e164.arpa  
+descr: Italy ENUM Mapping  
+descr: Italy ENUM Registry  
+admin-c: LF1894-RIPE  
+tech-c: GT2177-RIPE  
+zone-c: GT2177-RIPE  
+nserver: dns.voipex.it  
+nserver: dns2.voipex.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it  
+remarks: Istituto Superiore delle Comunicazioni  
+remarks: e delle tecnologie dell&amp;#39;Informazione -  
+remarks: http://www.iscom.gov.it  
+remarks: Consorzio VOIPEX - http://www.voipex.it  
+mnt-by: MNT-VOIPEX  
+source: RIPE \# Filtered
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-2)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ok, the first version was the assignment to the Voipex consortium,
+&lt;a href="https://www.ripe.net/ripe/mail/archives/enum-announce/2005-October/000046.html"&gt;see&lt;/a&gt;
+the request.&lt;/p&gt;
+&lt;p&gt;Here the second version of the object (updated at 2006-02-10 11:41):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois -h whois.ripe.net -- &amp;quot;--show-version 2 9.3.e164.arpa&amp;quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Version 2 of object &amp;quot;9.3.e164.arpa&amp;quot;  
+% This version was a UPDATE operation on 2006-02-10 11:41  
+% You can use &amp;quot;--list-versions&amp;quot; to get a list of versions for an
+object.
+
+domain: 9.3.e164.arpa  
+descr: Italy ENUM Mapping  
+descr: Italy ENUM Registry  
+admin-c: LF1894-RIPE  
+tech-c: LF1894-RIPE  
+zone-c: LF1894-RIPE  
+nserver: dns.voipex.it  
+nserver: dns2.voipex.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it  
+remarks: Istituto Superiore delle Comunicazioni e delle tecnologie
+dell&amp;#39;Informazione  
+remarks: http://www.iscom.gov.it  
+mnt-by: ISCOM-MNT  
+source: RIPE \# Filtered
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-3)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In this second version the domain is now delegated to ISCOM (Istituto
+Superiore delle Comunicazioni e delle tecnologie dell'Informazione).
+Nameservers were still on Voipex.&lt;/p&gt;
+&lt;p&gt;Below the differences between version 2 and version 3: Namserver moved
+from Voipex to istsupcti.it&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois -h whois.ripe.net -- &amp;quot;--diff-versions 2:3
+9.3.e164.arpa&amp;quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Difference between version 2 and 3 of object &amp;quot;9.3.e164.arpa&amp;quot;
+
+@@ -6,4 +6,4 @@  
+zone-c: LF1894-RIPE  
+-nserver: dns.voipex.it  
+-nserver: dns2.voipex.it  
++nserver: dns.istsupcti.it  
++nserver: dns2.istsupcti.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-2)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There isn't differences between revisions 3 and 4:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois -h whois.ripe.net -- &amp;quot;--diff-versions 3:4
+9.3.e164.arpa&amp;quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Difference between version 3 and 4 of object &amp;quot;9.3.e164.arpa&amp;quot;
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-2)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;The Vatican long hand&lt;/h2&gt;
+&lt;p&gt;WTF? Vatican ? Yes this is quite interesting: seems that someone at
+Vatican city has something to do with the Italian golden tree:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois -h whois.ripe.net -- &amp;quot;-B 9.3.e164.arpa&amp;quot;  
+% This is the RIPE Database query service.  
+% The objects are in RPSL format.  
+%  
+% The RIPE Database is subject to Terms and Conditions.  
+% See http://www.ripe.net/db/support/db-terms-conditions.pdf
+
+% Information related to &amp;#39;9.3.e164.arpa&amp;#39;
+
+domain: 9.3.e164.arpa  
+descr: Italy ENUM Mapping  
+descr: Italy ENUM Registry  
+admin-c: LF1894-RIPE  
+tech-c: LF1894-RIPE  
+zone-c: LF1894-RIPE  
+nserver: dns.istsupcti.it  
+nserver: dns2.istsupcti.it  
+remarks: Ministero delle Comunicazioni - http://www.comunicazioni.it  
+remarks: Istituto Superiore delle Comunicazioni e delle tecnologie
+dell&amp;#39;Informazione  
+remarks: http://www.iscom.gov.it  
+notify: pasquini@vatican.va  
+mnt-by: ISCOM-MNT  
+changed: pasquini@vatican.va 20060407  
+source: RIPE
+
+person: Luisa Franchina  
+address: Viale America 201  
+address: I-00144 Roma  
+address: Italy  
+phone: +39 06 54444267  
+fax-no: +39 06 54444222  
+e-mail: luisa.franchina@comunicazioni.it  
+nic-hdl: LF1894-RIPE  
+remarks: Ministero delle Comunicazioni  
+remarks: Direttore Generale Istituto Superiore Comunicazioni  
+notify: pasquini@vatican.va  
+mnt-by: ISCOM-MNT  
+changed: pasquini@vatican.va 20051031  
+source: RIPE
+
+% This query was served by the RIPE Database Query Service version 1.78 (DB-1)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ok, maybe the reason can be that Vatican City actually shares the
+Italian country code (+39) despite the fact that ITU-T allocated a
+dedicated Vatican City one (+379).&lt;/p&gt;
+&lt;p&gt;Just for the records: I sent an email to Pasquini@Vatican and Franchina
+of  Communication Ministry.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;At the moment of writing still no answers on my previous email...&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[EDIT:] Today (6 March 2015) I received the permanent delivery failure
+from my SMTP: comunicazioni.it doesn't has a working email system and my
+email to the responsible person for the 9.3.e164.arpa cannot be
+delivered. Still no answers on my other email.&lt;/p&gt;
+&lt;h5&gt;... To be continued ...&lt;/h5&gt;</summary><category term="dns"></category><category term="ENUM"></category><category term="VoIP"></category></entry><entry><title>What happened to the +39 (Italy) ENUM DNS Zone ?</title><link href="http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html" rel="alternate"></link><published>2015-02-25T16:38:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-02-25:what-happened-to-the-39-italy-enum-dns-zone.html</id><summary type="html">&lt;p&gt;&lt;a href="https://tools.ietf.org/html/rfc6116"&gt;ENUM&lt;/a&gt; is a DNS based algorithm
+used to store data associated with E.164 numbers (aka global phone
+numbers). Using ENUM you can associate your email or Skype or SIP
+contact along with your phone number.&lt;/p&gt;
+&lt;p&gt;So, registering your contacts in the ENUM tree you'll make yourself
+reachable trough all the ways you published on the ENUM database:
+someone needing to contact you will do an ENUM query against your E.164
+phone number, the server will answer with all your contacts (email, SIP
+URI, Web URL, Instant message, presence service, etc..).&lt;/p&gt;
+&lt;h5&gt;ENUM implements a global, multiservice addressbook.&lt;/h5&gt;
+&lt;h1&gt;How ENUM works?&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;As first you need to translate the phone number in the E.164 format
+    (for example +39 338 1234567 for the Italian mobile number 338
+    1234567)&lt;/li&gt;
+&lt;li&gt;The E.164 number should reduced to numbers only (393381234567)&lt;/li&gt;
+&lt;li&gt;All digits should reordered front-back (765432183393)&lt;/li&gt;
+&lt;li&gt;Insert a dot between each digit (7.6.5.4.3.2.1.8.3.3.9.3)&lt;/li&gt;
+&lt;li&gt;Add the suffix ".e164.arpa" at the end
+    (7.6.5.4.3.2.1.8.3.3.9.3.e164.arpa)&lt;/li&gt;
+&lt;li&gt;Send a DNS request for the obtained domain and look at the NAPTR
+    record&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ENUM is globally managed trough a DNS hierarchy:
+&lt;a href="https://tools.ietf.org/html/rfc6116#section-6"&gt;RFC6116&lt;/a&gt; states:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   Names within this zone are to be delegated to parties consistent with
+   ITU Recommendation E.164.  The names allocated should be hierarchic
+   in accordance with ITU Recommendation E.164, and the codes should be
+   assigned in accordance with that Recommendation.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This means that for example the +49 E.164 country code (Germany) is
+managed by the German naming authority:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ dig +short NS 9.4.e164.arpa  
+enum3.denic.de.  
+enum1.denic.de.  
+enum2.denic.de.  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A working example is the number +43 780 00471:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ dig +short 1.1.7.4.0.0.0.8.7.3.4.e164.arpa NAPTR  
+100 10 &amp;quot;u&amp;quot; &amp;quot;E2U+web:http&amp;quot; &amp;quot;!\^.\*\$!http://q.nemox.net/!&amp;quot; .  
+100 10 &amp;quot;u&amp;quot; &amp;quot;E2U+email:mailto&amp;quot; &amp;quot;!\^.\*\$!mailto:info@nemox.net!&amp;quot; .  
+100 10 &amp;quot;u&amp;quot; &amp;quot;E2U+sip&amp;quot; &amp;quot;!\^.\*\$!sip:enum-test@sip.nemox.net!&amp;quot; .  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;The 9.3.e164.arpa zone&lt;/h1&gt;
+&lt;p&gt;The DNS manging the +39 country code seems not working:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ dig +short 9.3.e164.arpa ANY  
+;; connection timed out; no servers could be reached  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Searching the nameserver managing this zone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="nt"&gt;pietro&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nt"&gt;dig&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;short&lt;/span&gt; &lt;span class="nt"&gt;e164&lt;/span&gt;&lt;span class="nc"&gt;.arpa&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt;  
+&lt;span class="nt"&gt;sec1&lt;/span&gt;&lt;span class="nc"&gt;.apnic.net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="nt"&gt;tinnie&lt;/span&gt;&lt;span class="nc"&gt;.arin.net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="nt"&gt;pri&lt;/span&gt;&lt;span class="nc"&gt;.authdns.ripe.net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="nt"&gt;sec3&lt;/span&gt;&lt;span class="nc"&gt;.apnic.net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="nt"&gt;ns3&lt;/span&gt;&lt;span class="nc"&gt;.nic.fr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="nt"&gt;sns-pb&lt;/span&gt;&lt;span class="nc"&gt;.isc.org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="nt"&gt;pietro&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nt"&gt;dig&lt;/span&gt; &lt;span class="k"&gt;@ns3&lt;/span&gt;&lt;span class="nc"&gt;.nic.fr&lt;/span&gt; &lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.3.e164.arpa&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt;
+
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;DiG&lt;/span&gt; &lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.8.3-P1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;@ns3&lt;/span&gt;&lt;span class="nc"&gt;.nic.fr&lt;/span&gt; &lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.3.e164.arpa&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt;  
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;1&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="nt"&gt;found&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;  
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;global&lt;/span&gt; &lt;span class="nt"&gt;options&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;cmd&lt;/span&gt;  
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;Got&lt;/span&gt; &lt;span class="nt"&gt;answer&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;HEADER&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;;;&lt;/span&gt; &lt;span class="nt"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;qr&lt;/span&gt; &lt;span class="nt"&gt;rd&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;QUERY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ANSWER&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;AUTHORITY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="nt"&gt;ADDITIONAL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;  
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;WARNING&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;recursion&lt;/span&gt; &lt;span class="nt"&gt;requested&lt;/span&gt; &lt;span class="nt"&gt;but&lt;/span&gt; &lt;span class="nt"&gt;not&lt;/span&gt; &lt;span class="nt"&gt;available&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;QUESTION&lt;/span&gt; &lt;span class="nt"&gt;SECTION&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  
+&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.3.e164.arpa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;IN&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;AUTHORITY&lt;/span&gt; &lt;span class="nt"&gt;SECTION&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  
+&lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.3.e164.arpa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;172800&lt;/span&gt; &lt;span class="nt"&gt;IN&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt; &lt;span class="nt"&gt;dns2&lt;/span&gt;&lt;span class="nc"&gt;.istsupcti.it&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.3.e164.arpa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;172800&lt;/span&gt; &lt;span class="nt"&gt;IN&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt; &lt;span class="nt"&gt;dns&lt;/span&gt;&lt;span class="nc"&gt;.istsupcti.it&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The 9.3.e164.arpa is delegated to dns2.istsupcti.it and
+dns.istsupcti.it, no one of them seems working:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ dig @dns2.istsupcti.it ANY
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.3-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; @dns2.istsupcti.it ANY  
+; (1 server found)  
+;; global options: +cmd  
+;; connection timed out; no servers could be reached  
+~ pietro$ dig @dns.istsupcti.it ANY
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.3-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; @dns.istsupcti.it ANY  
+; (1 server found)  
+;; global options: +cmd  
+;; connection timed out; no servers could be reached  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;&lt;strong&gt;Ok, ENUM is totally broken in Italy.&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;Let me dig a bit more:&lt;/p&gt;
+&lt;p&gt;Who is istsupcti.it (seems not have even a working web site)?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois istsupcti.it
+
+\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*  
+\* Please note that the following result could be a subgroup of \*  
+\* the data contained in the database. \*  
+\* \*  
+\* Additional information can be visualized at: \*  
+\* http://www.nic.it/cgi-bin/Whois/whois.cgi \*  
+
+\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+
+Domain: istsupcti.it  
+Status: ok  
+Created: 1998-12-23 00:00:00  
+Last Update: 2015-02-24 00:54:36  
+Expire Date: 2016-02-08
+
+Registrant  
+Organization: Istituto Superiore delle Comunicazioni e delle Tecnologie
+dell&amp;#39;Informazione  
+Address: Viale America, 201  
+Roma  
+00144  
+RM  
+IT  
+Created: 2008-02-08 12:11:24  
+Last Update: 2012-07-16 16:14:51
+
+Admin Contact  
+Name: Claudia Passaro  
+Organization: Istituto Superiore delle Comunicazioni e delle Tecnologie
+dell&amp;#39;Informazione  
+Address: Viale America, 201  
+Roma  
+00144  
+RM  
+IT  
+Created: 2012-07-16 14:30:02  
+Last Update: 2012-07-16 16:13:49
+
+Technical Contacts  
+Name: Gestione Domini  
+Address: Via Caracciolo, 51  
+MILANO  
+20155  
+MI  
+IT  
+Created: 2005-07-07 00:00:00  
+Last Update: 2014-06-20 14:07:55
+
+Registrar  
+Organization: Fastweb s.p.a.  
+Name: FASTWEB-REG
+
+Nameservers  
+dns1.fweds-spc.it  
+dns2.fweds-spc.it  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://lmgtfy.com/?q=Istituto+Superiore+delle+Comunicazioni+e+delle+Tecnologie+dell%27Informazione"&gt;Googling&lt;/a&gt;
+for "Istituto Superiore delle Comunicazioni e delle Tecnologie
+dell'Informazione" I found the &lt;a href="http://www.isticom.it/"&gt;website&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;10 years of testing&lt;/h1&gt;
+&lt;p&gt;Searching on the RIPE archive I found the &lt;a href="https://www.ripe.net/ripe/mail/archives/enum-announce/2005-October/000046.html"&gt;delegation
+request&lt;/a&gt;
+for the +39 ENUM prefix: it was in October 2005: Almost ten years ago!
+The request comes from the Voipex consortium (from the
+&lt;a href="http://www.voipex.it/"&gt;website&lt;/a&gt; it looks more or less died now).&lt;/p&gt;
+&lt;p&gt;Digging on the Internet you can find
+&lt;a href="http://www.voipblog.it/enum-e-regolamentazione-voip-281.html"&gt;some&lt;/a&gt; old
+&lt;a href="http://punto-informatico.it/1440878/Telefonia/News/enum-piu-vicina-vera-telefonia-ip.aspx"&gt;posts&lt;/a&gt;
+saying that we entered in a test phase for the ENUM introduction.&lt;/p&gt;
+&lt;p&gt;Searching on the AGCOM (The Italian Communications Authority) website
+you can see some &lt;a href="http://www.agcom.it/risultati?q=enum"&gt;documents&lt;/a&gt;
+mentioning ENUM as a maybe/future technology to adopt.&lt;/p&gt;
+&lt;p&gt;The result at the moment is that after 10 years of testing, a consortium
+foundation, various ISP involved, ENUM isn't working at all and we
+cannot find test results, adoptions guidelines nor regulation rules.&lt;/p&gt;
+&lt;h5&gt;Just for the taxpayers happiness!&lt;/h5&gt;
+&lt;p&gt;I just sent an email to urp.comunicazioni@mise.gov.it
+("Istituto Superiore delle Comunicazioni e delle Tecnologie
+dell'Informazione" &lt;a href="http://www.isticom.it/index.php/contatti"&gt;PR
+office&lt;/a&gt; ), I tried to send an
+email to AGCOM too but I crashed against this message:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="agcom" src="http://www.bertera.it/agcom-300x170.png" /&gt;]&lt;/p&gt;
+&lt;p&gt;If you have any information about ENUM in Italy, feel free to
+&lt;a href="http://www.bertera.it/index.php/contacts/"&gt;contact&lt;/a&gt; me.&lt;/p&gt;
+&lt;h5&gt;to be continued ...&lt;/h5&gt;</summary><category term="ENUM"></category><category term="Italy"></category><category term="VoIP"></category></entry><entry><title>SIP packets filtering with iptables</title><link href="http://www.bertera.it/sip-packet-filtering-with-iptables.html" rel="alternate"></link><published>2014-01-22T23:50:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2014-01-22:sip-packet-filtering-with-iptables.html</id><summary type="html">&lt;p&gt;One of the most powerful &lt;a href="http://www.netfilter.org"&gt;iptables&lt;/a&gt; match is
+the &lt;a href="http://www.netfilter.org/documentation/HOWTO/netfilter-extensions-HOWTO-3.html#ss3.21"&gt;u32
+module&lt;/a&gt;.&lt;br /&gt;
+Using the u32 match you are able to write a firewall rule matching
+against a single bit of a network packet.&lt;/p&gt;
+&lt;p&gt;If you wanna play with u32 module you have to be prepared to deal with a syntax very far away from the user friendliness: you have to fight
+with commands like the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;iptables -I OUTPUT &lt;span class="m"&gt;1&lt;/span&gt; -p udp  &lt;span class="se"&gt;\!&lt;/span&gt; -f -m u32 --u32 0&amp;gt;&amp;gt;22&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;0x3C@8&lt;span class="o"&gt;=&lt;/span&gt;0x494e5649&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;0&amp;gt;&amp;gt;22&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;0x3C@12&lt;span class="o"&gt;=&lt;/span&gt;0x54452073&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;0&amp;gt;&amp;gt;22&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;0x3C@16&lt;span class="o"&gt;=&lt;/span&gt;0x69703a33&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;0&amp;gt;&amp;gt;22&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;0x3C@20&lt;span class="o"&gt;=&lt;/span&gt;0x33383132&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;0&amp;gt;&amp;gt;22&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;0x3C@24&lt;span class="o"&gt;=&lt;/span&gt;0x33343536&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;0&amp;gt;&amp;gt;22&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;0x3C@28&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;0xFF000000&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0x37000000 -j LOG --log-prefix &lt;span class="s2"&gt;&amp;quot;--call-to-3381234567 &amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;More over checking contents in variable positions can be very difficult: you need to know the exact data position into the network frame.&lt;/p&gt;
+&lt;p&gt;Keeping that in mind you can write your rules.&lt;/p&gt;
+&lt;p&gt;Writing matching rules against SIP methods, SIP URI or response code is
+feasible: the IP header comes with a fixed size (this isn't really true,
+but you can workaround it) and the UDP header too has a fixed size.&lt;/p&gt;
+&lt;p&gt;For example this rule logs all the outgoing SIP INVITE to
+&lt;strong&gt;sip:3381234567&lt;/strong&gt;:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="n"&gt;bradbury&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;iptables&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;OUTPUT&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;udp&lt;/span&gt;  &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;u32&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;u32&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0x3C&lt;/span&gt;&lt;span class="mi"&gt;@8&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x494e5649&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0x3C&lt;/span&gt;&lt;span class="mi"&gt;@12&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x54452073&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0x3C&lt;/span&gt;&lt;span class="mi"&gt;@16&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x69703a33&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0x3C&lt;/span&gt;&lt;span class="mi"&gt;@20&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x33383132&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0x3C&lt;/span&gt;&lt;span class="mi"&gt;@24&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x33343536&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0x3C&lt;/span&gt;&lt;span class="mi"&gt;@28&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="mh"&gt;0xFF000000&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mh"&gt;0x37000000&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here you can see the network traffic (look at the hex data matching the iptables rule):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;root&lt;/span&gt;&lt;span class="k"&gt;@bradbury&lt;/span&gt; &lt;span class="o"&gt;~]&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;tcpdump&lt;/span&gt; &lt;span class="nt"&gt;-nn&lt;/span&gt; &lt;span class="nt"&gt;-i&lt;/span&gt; &lt;span class="nt"&gt;br0&lt;/span&gt; &lt;span class="nt"&gt;-XX&lt;/span&gt; &lt;span class="nt"&gt;udp&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;port&lt;/span&gt; &lt;span class="nt"&gt;5060&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;host&lt;/span&gt; &lt;span class="nt"&gt;xxx&lt;/span&gt;&lt;span class="nc"&gt;.xxxxxxxxxx.xx&lt;/span&gt;
+
+&lt;span class="nt"&gt;tcpdump&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;verbose&lt;/span&gt; &lt;span class="nt"&gt;output&lt;/span&gt; &lt;span class="nt"&gt;suppressed&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;use&lt;/span&gt; &lt;span class="nt"&gt;-v&lt;/span&gt; &lt;span class="nt"&gt;or&lt;/span&gt; &lt;span class="nt"&gt;-vv&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;full&lt;/span&gt; &lt;span class="nt"&gt;protocol&lt;/span&gt; &lt;span class="nt"&gt;decode&lt;/span&gt; &lt;span class="nt"&gt;listening&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;br0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;link-type&lt;/span&gt; &lt;span class="nt"&gt;EN10MB&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;Ethernet&lt;/span&gt;&lt;span class="o"&gt;),&lt;/span&gt; &lt;span class="nt"&gt;capture&lt;/span&gt; &lt;span class="nt"&gt;size&lt;/span&gt; &lt;span class="nt"&gt;65535&lt;/span&gt; &lt;span class="nt"&gt;bytes&lt;/span&gt;
+
+&lt;span class="nt"&gt;22&lt;/span&gt;&lt;span class="nd"&gt;:48:29&lt;/span&gt;&lt;span class="nc"&gt;.362185&lt;/span&gt; &lt;span class="nt"&gt;IP&lt;/span&gt; &lt;span class="nt"&gt;xxx&lt;/span&gt;&lt;span class="nc"&gt;.xxx.xxx.xxx.5060&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;xxx&lt;/span&gt;&lt;span class="nc"&gt;.xxx.xxx.xxx.5060&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;length&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;965&lt;/span&gt;
+&lt;span class="nt"&gt;0x0000&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nt"&gt;001f&lt;/span&gt; &lt;span class="nt"&gt;1249&lt;/span&gt; &lt;span class="nt"&gt;0acc&lt;/span&gt; &lt;span class="nt"&gt;5254&lt;/span&gt; &lt;span class="nt"&gt;00e7&lt;/span&gt; &lt;span class="nt"&gt;8e30&lt;/span&gt; &lt;span class="nt"&gt;0800&lt;/span&gt; &lt;span class="nt"&gt;45a0&lt;/span&gt;  &lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="nc"&gt;.I&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;.RT&lt;/span&gt;&lt;span class="o"&gt;..&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;.E&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="nt"&gt;0x0010&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nt"&gt;03e1&lt;/span&gt; &lt;span class="nt"&gt;0000&lt;/span&gt; &lt;span class="nt"&gt;4000&lt;/span&gt; &lt;span class="nt"&gt;4011&lt;/span&gt; &lt;span class="nt"&gt;01dd&lt;/span&gt; &lt;span class="nt"&gt;511d&lt;/span&gt; &lt;span class="nt"&gt;d3c4&lt;/span&gt; &lt;span class="nt"&gt;d461&lt;/span&gt;  &lt;span class="o"&gt;....@.@..&lt;/span&gt;&lt;span class="nc"&gt;.Q&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="nc"&gt;.a&lt;/span&gt;
+&lt;span class="nt"&gt;0x0020&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nt"&gt;3b4c&lt;/span&gt; &lt;span class="nt"&gt;13c4&lt;/span&gt; &lt;span class="nt"&gt;13c4&lt;/span&gt; &lt;span class="nt"&gt;03cd&lt;/span&gt; &lt;span class="nt"&gt;386e&lt;/span&gt; &lt;span class="nt"&gt;494e&lt;/span&gt; &lt;span class="nt"&gt;5649&lt;/span&gt; &lt;span class="nt"&gt;5445&lt;/span&gt;  &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;L&lt;/span&gt;&lt;span class="o"&gt;.....&lt;/span&gt;&lt;span class="nc"&gt;.8nINVITE&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;---&lt;/span&gt; &lt;span class="nt"&gt;HERE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;look&lt;/span&gt; &lt;span class="nt"&gt;at&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;494e&lt;/span&gt; &lt;span class="nt"&gt;5649&lt;/span&gt; &lt;span class="nt"&gt;5445&lt;/span&gt; &lt;span class="nt"&gt;matching&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;INVITE&amp;#39;&lt;/span&gt;
+&lt;span class="nt"&gt;0x0030&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nt"&gt;2073&lt;/span&gt; &lt;span class="nt"&gt;6970&lt;/span&gt; &lt;span class="nt"&gt;3a33&lt;/span&gt; &lt;span class="nt"&gt;3338&lt;/span&gt; &lt;span class="nt"&gt;3132&lt;/span&gt; &lt;span class="nt"&gt;3334&lt;/span&gt; &lt;span class="nt"&gt;3536&lt;/span&gt; &lt;span class="nt"&gt;3740&lt;/span&gt;  &lt;span class="nc"&gt;.sip&lt;/span&gt;&lt;span class="nd"&gt;:3381234567&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;---&lt;/span&gt; &lt;span class="nt"&gt;HERE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;look&lt;/span&gt; &lt;span class="nt"&gt;at&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt; &lt;span class="nt"&gt;URI&lt;/span&gt;
+&lt;span class="nt"&gt;0x0040&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nt"&gt;7878&lt;/span&gt; &lt;span class="nt"&gt;782e&lt;/span&gt; &lt;span class="nt"&gt;7878&lt;/span&gt; &lt;span class="nt"&gt;7878&lt;/span&gt; &lt;span class="nt"&gt;7878&lt;/span&gt; &lt;span class="nt"&gt;7878&lt;/span&gt; &lt;span class="nt"&gt;7878&lt;/span&gt; &lt;span class="nt"&gt;2e78&lt;/span&gt;  &lt;span class="nt"&gt;xxx&lt;/span&gt;&lt;span class="nc"&gt;.xxxxxxxxxx.x&lt;/span&gt;
+&lt;span class="nt"&gt;0x0050&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;  &lt;span class="nt"&gt;783b&lt;/span&gt; &lt;span class="nt"&gt;7573&lt;/span&gt; &lt;span class="nt"&gt;6572&lt;/span&gt; &lt;span class="nt"&gt;3d70&lt;/span&gt; &lt;span class="nt"&gt;686f&lt;/span&gt; &lt;span class="nt"&gt;6e65&lt;/span&gt; &lt;span class="nt"&gt;2053&lt;/span&gt; &lt;span class="nt"&gt;4950&lt;/span&gt;  &lt;span class="nt"&gt;x&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;phone&lt;/span&gt;&lt;span class="nc"&gt;.SIP&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Messages are logged (the first one is the INVITE without the
+authentication data):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[root@bradbury ~]# tail -f /var/log/messages
+Jan 22 23:00:28 bradbury kernel: --call-to-3381234567IN= OUT=br0 SRC=xxx.xxx.xxx.xxx DST=xxx.xxx.xxx.xxx LEN=993 TOS=0x00 PREC=0xA0 TTL=64 ID=0 DF PROTO=UDP SPT=5060 DPT=5060 LEN=973
+Jan 22 23:00:28 bradbury kernel: --call-to-3381234567IN= OUT=br0 SRC=xxx.xxx.xxx.xxx DST=xxx.xxx.xxx.xxx LEN=1285 TOS=0x00 PREC=0xA0 TTL=64 ID=0 DF PROTO=UDP SPT=5060 DPT=5060 LEN=1265
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can write your rules in a more simple way using my&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/pbertera/scripts/blob/master/iptables-SIPu32.py"&gt;iptables-SIPu32.py python script&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;iptables -I OUTPUT 1 -p udp  \! -f -m u32 --u32 $(./iptables-SIPu32.py &amp;quot;INVITE sip:3381234567&amp;quot;) -j LOG --log-prefix &amp;quot;-j LOG --log-prefix &amp;quot;--call-to-3381234567 &amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Please note that this script can works with every kind of UDP payload.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; now the script supports TCP too&lt;/p&gt;</summary><category term="iptables"></category><category term="netfilter"></category><category term="python"></category><category term="sip"></category></entry><entry><title>UAS Authenticating registrar SIPp scenario</title><link href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html" rel="alternate"></link><published>2013-05-30T16:42:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2013-05-30:uas-authenticating-registrar-sipp-scenario.html</id><summary type="html">&lt;p&gt;&lt;a href="http://sipp.sourceforge.net"&gt;SIPp&lt;/a&gt; is a real SIP swiss army knife. You
+can create various SIP scenario and test your devices and environments.&lt;/p&gt;
+&lt;p&gt;I never found a SIPp scenario implementing an UAs (User Agent server)
+registrar with authentication.&lt;/p&gt;
+&lt;p&gt;Following you can find this scenario:&lt;/p&gt;
+&lt;p&gt;The SIPp XML scenario file: &lt;strong&gt;sipp_register_auth_uas.xml&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot; ?&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;!DOCTYPE scenario SYSTEM &amp;quot;sipp.dtd&amp;quot;&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;scenario&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Basic UAS registrar with authentication&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;label&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badauth&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt; 
+&lt;span class="nt"&gt;&amp;lt;recv&lt;/span&gt; &lt;span class="na"&gt;request=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;REGISTER&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;send&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;![CDATA[&lt;/span&gt;
+
+&lt;span class="cp"&gt;      SIP/2.0 401 Authorization Required&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_Via:]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_From:]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_To:];tag=[pid]SIPpTag01[call_number]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_Call-ID:]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_CSeq:]&lt;/span&gt;
+&lt;span class="cp"&gt;      Contact: &amp;lt;sip:[local_ip]:[local_port];transport=[transport]&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;      WWW-Authenticate: Digest realm=&amp;quot;test.example.com&amp;quot;, nonce=&amp;quot;47ebe028cda119c35d4877b383027d28da013815&amp;quot;&lt;/span&gt;
+&lt;span class="cp"&gt;      Content-Length: [len]&lt;/span&gt;
+
+&lt;span class="cp"&gt;    ]]&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/send&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;recv&lt;/span&gt; &lt;span class="na"&gt;request=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;REGISTER&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;action&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;ereg&lt;/span&gt; &lt;span class="na"&gt;regexp=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Digest .*username=\&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;([^\&amp;quot;]*)\&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;search_in=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hdr&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;header=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Authorization:&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;assign_to=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;junk,username&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;lookup&lt;/span&gt; &lt;span class="na"&gt;assign_to=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;line&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;file=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;users.csv&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[$username]&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;assign&lt;/span&gt; &lt;span class="na"&gt;assign_to=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;junk&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;log&lt;/span&gt; &lt;span class="na"&gt;message=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Received REGISTER from user -[$username]-&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;log&lt;/span&gt; &lt;span class="na"&gt;message=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;searching in file at line [$line]: Username: [field0 line=\&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;[$line]\&amp;quot;]&lt;/span&gt; &lt;span class="err"&gt;Pass:&lt;/span&gt; &lt;span class="err"&gt;[field1&lt;/span&gt; &lt;span class="na"&gt;line=&lt;/span&gt;&lt;span class="s"&gt;\&amp;quot;[$line]\&amp;quot;]&amp;quot;/&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;verifyauth&lt;/span&gt; &lt;span class="na"&gt;assign_to=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;authvalid&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;username=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[field0 line=\&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;[$line]\&amp;quot;]&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;password=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[field1 line=\&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;[$line]\&amp;quot;]&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/recv&amp;gt;&lt;/span&gt;
+
+  &lt;span class="nt"&gt;&amp;lt;nop&lt;/span&gt; &lt;span class="na"&gt;hide=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;test=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;authvalid&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;next=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;goodauth&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;nop&lt;/span&gt; &lt;span class="na"&gt;hide=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;next=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;badauth&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+  &lt;span class="nt"&gt;&amp;lt;label&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;goodauth&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;send&amp;gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;&amp;lt;![CDATA[&lt;/span&gt;
+
+&lt;span class="cp"&gt;      SIP/2.0 200 OK&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_Via:]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_From:]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_To:];tag=[call_number]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_Call-ID:]&lt;/span&gt;
+&lt;span class="cp"&gt;      [last_CSeq:]&lt;/span&gt;
+&lt;span class="cp"&gt;      Contact: &amp;lt;sip:[local_ip]:[local_port];transport=[transport]&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;      Content-Length: 0&lt;/span&gt;
+&lt;span class="cp"&gt;      Expires: 3600&lt;/span&gt;
+
+&lt;span class="cp"&gt;    ]]&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/send&amp;gt;&lt;/span&gt;
+
+
+  &lt;span class="c"&gt;&amp;lt;!-- definition of the response time repartition table (unit is ms)   --&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;ResponseTimeRepartition&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;10, 20, 30, 40, 50, 100, 150, 200&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+  &lt;span class="c"&gt;&amp;lt;!-- definition of the call length repartition table (unit is ms)     --&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;CallLengthRepartition&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;10, 50, 100, 500, 1000, 5000, 10000&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;/scenario&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here the users file: a CSV containing users and password (first column
+is the username, second column the password). &lt;strong&gt;users.csv&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;USERS  
+pippero;1234  
+pippo;1234  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now you can run your scenario putting users.csv and
+sipp_register_auth_uas.xml in the same directory, and running SIPp
+inside the directory (SIPp handle in a stupid manned direcotories..):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sipp -sf sipp_register_auth_uas.xml -inf users.csv -infindex users.csv 0 -log_file sipp_register_auth_uas.log -trace_logs  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And you will see an output like this:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;------------------------------ Scenario Screen -------- [1-9]: Change Screen --
+  Port   Total-time  Total-calls  Transport
+  5060       4.00 s            0  UDP
+
+  0 new calls during 1.001 s period      1 ms scheduler resolution
+  0 calls                                Peak was 0 calls, after 0 s
+  0 Running, 1 Paused, 3 Woken up
+  0 dead call msg (discarded)          
+  3 open sockets                        
+
+                                 Messages  Retrans   Timeout   Unexpected-Msg
+  ----------&amp;gt; REGISTER           0         0         0         0        
+  &amp;lt;---------- 401                0         0                            
+  ----------&amp;gt; REGISTER           0         0         0         0        
+  &amp;lt;---------- 200                0         0                            
+------------------------------ Sipp Server Mode -------------------------------
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now you can register your device configuring the registrar address and
+credentials, when your device will send the REGISTER request you will
+the message flow:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;------------------------------ Scenario Screen -------- [1-9]: Change Screen --
+  Port   Total-time  Total-calls  Transport
+  5060     161.28 s            1  UDP
+
+  0 new calls during 1.001 s period      1 ms scheduler resolution
+  0 calls                                Peak was 1 calls, after 157 s
+  0 Running, 2 Paused, 4 Woken up
+  0 dead call msg (discarded)          
+  3 open sockets                        
+
+                                 Messages  Retrans   Timeout   Unexpected-Msg
+  ----------&amp;gt; REGISTER           1         0         0         0        
+  &amp;lt;---------- 401                1         0                            
+  ----------&amp;gt; REGISTER           1         0         0         0        
+  &amp;lt;---------- 200                1         0                            
+------------------------------ Sipp Server Mode -------------------------------
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Log messages will be saved in &lt;strong&gt;sipp_register_auth_uas.log&lt;/strong&gt;.&lt;br /&gt;
+Please note that the &lt;strong&gt;verifyauth&lt;/strong&gt; needs the OpenSSL support.&lt;/p&gt;</summary><category term="sip"></category><category term="SIPp"></category><category term="Testing"></category><category term="VoIP"></category></entry><entry><title>Ability to set codec in MulticastRTP Asterisk channels</title><link href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html" rel="alternate"></link><published>2012-12-12T21:08:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-12-12:ability-to-set-codec-in-multicastrtp-asterisk-channels.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.bertera.it/asterisk_trunk-377802_rtp_multicast_codec.patch"&gt;Here&lt;/a&gt;
+you can find a port for Asterisk trunk (rev. 377802) of this patch:
+&lt;a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html"&gt;http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html&lt;/a&gt;.&lt;br /&gt;
+This patch permits to set the codec of an outgoing multicast RTP stream
+via the variable MULTICAST_RTP_CODEC:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; 999,1,Answer()  
+exten =&amp;gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw)  
+exten =&amp;gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="code"></category><category term="patch"></category><category term="rtp"></category><category term="VoIP"></category></entry><entry><title>RTP timestamps fix in Asterisk MulticastRTP channels</title><link href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html" rel="alternate"></link><published>2012-12-12T19:09:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-12-12:rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html</id><summary type="html">&lt;p&gt;Starting from Asterisk 1.8 you can &lt;a href="http://www.voip-info.org/wiki/view/Asterisk+MulticastRTP+channels"&gt;send multicast rtp
+streams&lt;/a&gt;
+using the MulticastRTP channel driver. There is an &lt;a href="https://issues.asterisk.org/jira/browse/ASTERISK-19883"&gt;open
+issue&lt;/a&gt; that
+breaks outgoing RTP if the source channel doesn't contains timing
+informations (Eg. playing an audio file with
+&lt;strong&gt;Dial(MulticastRTP/basic/239.255.255.245:5555,,A(my-announce))&lt;/strong&gt;).&lt;br /&gt;
+All outgoing RTP frames a timestamp value of 0.&lt;/p&gt;
+&lt;p&gt;This &lt;a href="http://www.bertera.it/asterisk_trunk-377802-rtp-multicast-timestamp.patch"&gt;patch&lt;/a&gt; adds timing information in outgoing RTP stream.&lt;/p&gt;
+&lt;p&gt;Following an example usage in dialplan:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; 999,1,Answer()  
+exten =&amp;gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="multicast"></category><category term="patch"></category><category term="rtp"></category><category term="VoIP"></category></entry><entry><title>Asterisk callback from a failed blind transfer</title><link href="http://www.bertera.it/asterisk-callback-from-a-failed-blind-transfer.html" rel="alternate"></link><published>2012-10-07T15:34:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-07:asterisk-callback-from-a-failed-blind-transfer.html</id><summary type="html">&lt;p&gt;This little piece of extensions.conf implements a callback from a failed
+transfer (attendant and unattendant/bind)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exten =&amp;gt; _1XX,1,Dial(SIP/&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;EXTEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;,20,tT)
+exten =&amp;gt; _1XX,n,GotoIf($[ &amp;quot;a&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BLINDTRANSFER&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; = &amp;quot;a&amp;quot; ]?TransferFailed)
+exten =&amp;gt; _1XX,n,Set(CALLER=&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CUT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BLINDTRANSFER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;);
+exten =&amp;gt; _1XX,n,Goto(CallBack)
+exten =&amp;gt; _1XX,n(TransferFailed),GotoIf($[ &amp;quot;a&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;TRANSFERERNAME&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; = &amp;quot;a&amp;quot; ]?Fail)
+exten =&amp;gt; _1XX,n,Set(CALLER=&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CUT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TRANSFERERNAME&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;);
+exten =&amp;gt; _1XX,n(CallBack),Set(CALLERID(all)=&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;EXTEN&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CALLERID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;gt;)
+exten =&amp;gt; _1XX,n,Dial(&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;CALLER&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;,,tT)
+exten =&amp;gt; _1XX,n(Fail),Hangup()
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="sip"></category><category term="VoIP"></category></entry><entry><title>Asterisk and SIP session refresh with UPDATE request</title><link href="http://www.bertera.it/asterisk_and_sip_session_refresh_with_update-request.html" rel="alternate"></link><published>2012-02-15T07:12:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-02-15:asterisk_and_sip_session_refresh_with_update-request.html</id><summary type="html">&lt;p&gt;Using &lt;strong&gt;directmedia=update&lt;/strong&gt; or (&lt;strong&gt;canreinvite=update&lt;/strong&gt; in old-sytle
+configuration) in chan_sip.conf Asterisk sends SIP UPDATE request to
+refresh SIP session.&lt;/p&gt;
+&lt;p&gt;If this UPDATE requests refers to an inactive call the phone reply with
+&lt;strong&gt;SIP/2.0 481 Call Leg/Transaction Does Not Exist.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this situation Asterisk continue in resending UPDATE and doesn't tear
+down the previous allocated channel.&lt;br /&gt;
+Using INVITE instead UPDATE (&lt;strong&gt;directmedia=yes&lt;/strong&gt;) Asterisk correctly
+terminate the dialog.&lt;/p&gt;
+&lt;p&gt;This little chan_sip.c patch (Asterisk 1.8.9.1 version) correct this
+behavior:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gd"&gt;--- asterisk-1.8.9.1/channels/chan_sip.c 2012-02-06 22:40:37.000000000 +0100&lt;/span&gt;
+&lt;span class="gi"&gt;+++ /root/asterisk-1.8.9.1/channels/chan_sip.c 2012-02-08 15:30:04.552673312 +0100&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -20952,6 +20952,17 @@ static void handle_response(struct sip_p&lt;/span&gt;
+case 481: /* Call leg does not exist */
+if (sipmethod == SIP_INVITE) {
+handle_response_invite(p, resp, rest, req, seqno);
+&lt;span class="gi"&gt;+ }&lt;/span&gt;
+&lt;span class="gi"&gt;+ else if (sipmethod == SIP_UPDATE) {&lt;/span&gt;
+&lt;span class="gi"&gt;+ switch (resp) {&lt;/span&gt;
+&lt;span class="gi"&gt;+ case 481: /* Call leg does not exist */&lt;/span&gt;
+&lt;span class="gi"&gt;+ ast_log(LOG_WARNING, &amp;quot;Re-invite with UPDATE to non-existing call leg on other UA. SIP dialog &amp;#39;%s&amp;#39;. Giving up.\n&amp;quot;, p-&amp;gt;callid);&lt;/span&gt;
+&lt;span class="gi"&gt;+ //xmitres = transmit_request(p, SIP_ACK, seqno, XMIT_UNRELIABLE, FALSE);&lt;/span&gt;
+&lt;span class="gi"&gt;+ if (p-&amp;gt;owner)&lt;/span&gt;
+&lt;span class="gi"&gt;+ ast_queue_control(p-&amp;gt;owner, AST_CONTROL_CONGESTION);&lt;/span&gt;
+&lt;span class="gi"&gt;+ sip_scheddestroy(p, DEFAULT_TRANS_TIMEOUT);&lt;/span&gt;
+&lt;span class="gi"&gt;+ break;&lt;/span&gt;
+&lt;span class="gi"&gt;+ }&lt;/span&gt;
+} else if (sipmethod == SIP_SUBSCRIBE) {
+handle_response_subscribe(p, resp, rest, req, seqno);
+} else if (sipmethod == SIP_BYE) {
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can download the patch at
+&lt;a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch"&gt;https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.8.9.1-UPDATE-reinvite.patch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Asterisk reported issue: &lt;a href="https://issues.asterisk.org/jira/browse/ASTERISK-19313"&gt;ASTERISK-19313&lt;/a&gt;&lt;/p&gt;</summary><category term="asterisk"></category><category term="bug"></category><category term="sip"></category><category term="VoIP"></category></entry><entry><title>Authentication username in Astersik SIP peer</title><link href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html" rel="alternate"></link><published>2010-07-12T09:01:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2010-07-12:authentication-username-in-astersik-sip-peer.html</id><summary type="html">&lt;p&gt;Asterisk use peername as username during SIP inbound digest
+authentication.&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.patch"&gt;This
+patch&lt;/a&gt;
+add &lt;strong&gt;authuser&lt;/strong&gt; parameter in SIP peer definition and use authuser in
+digest authentication:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Peer definition in /etc/asterisk/sip.conf&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;...
+[pietro](sip-client-base)
+authuser=MyUsername
+secret=XXXXX
+qualify=yes
+nat=yes
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Peer definition in my SIP client (Twinkle)&lt;/strong&gt;&lt;br /&gt;
+&lt;img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;REGISTER message from my SIP client&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;REGISTER&lt;/span&gt; &lt;span class="nt"&gt;sip&lt;/span&gt;&lt;span class="nd"&gt;:bertera&lt;/span&gt;&lt;span class="nc"&gt;.it&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;
+&lt;span class="nt"&gt;Via&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;UDP&lt;/span&gt; &lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="nd"&gt;:10458&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;rport&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;z9hG4bKkqpevlic&lt;/span&gt;
+&lt;span class="nt"&gt;Max-Forwards&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;70&lt;/span&gt;
+&lt;span class="nt"&gt;To&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;From&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;ntlug&lt;/span&gt;
+&lt;span class="nt"&gt;Call-ID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;mqezxbywgtulavj&lt;/span&gt;&lt;span class="k"&gt;@bertuccia&lt;/span&gt;
+&lt;span class="nt"&gt;CSeq&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;681&lt;/span&gt; &lt;span class="nt"&gt;REGISTER&lt;/span&gt;
+&lt;span class="nt"&gt;Contact&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;3600&lt;/span&gt;
+&lt;span class="nt"&gt;Authorization&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Digest&lt;/span&gt; &lt;span class="nt"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;MyUsername&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;realm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bertera.it&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;nonce&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;27f804de&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;uri&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sip:bertera.it&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;response&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;47dbf0a57d80faffd148b58d84edc2db&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;MD5&lt;/span&gt; &lt;span class="nt"&gt;Allow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;INVITE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;ACK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;BYE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;CANCEL&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;OPTIONS&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;PRACK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;REFER&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;NOTIFY&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;SUBSCRIBE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;INFO&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;MESSAGE&lt;/span&gt;
+&lt;span class="nt"&gt;User-Agent&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Twinkle&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="nc"&gt;.4.2&lt;/span&gt;
+&lt;span class="nt"&gt;Content-Length&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Message in Asterisk CLI:&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Feb 4 23:23:35] NOTICE[24864]: chan_sip.c:13016 register_verify: Trying athenticate peer &amp;#39;pietro&amp;#39; using authuser: &amp;#39;MyUsername&amp;#39;
+-- Registered SIP &amp;#39;pietro&amp;#39; at 88.149.226.66 port 10458
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;REGISTER Confirmation from Asterisk:&lt;/strong&gt;  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt; &lt;span class="nt"&gt;200&lt;/span&gt; &lt;span class="nt"&gt;OK&lt;/span&gt;
+&lt;span class="nt"&gt;Via&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;SIP&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="nc"&gt;.0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;UDP&lt;/span&gt; &lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="nd"&gt;:10458&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;z9hG4bKkqpevlic&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;received&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;88&lt;/span&gt;&lt;span class="nc"&gt;.149.226.66&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;rport&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;10458&lt;/span&gt;
+&lt;span class="nt"&gt;From&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;ntlug&lt;/span&gt;
+&lt;span class="nt"&gt;To&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Pietro&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;as49faff1f&lt;/span&gt;
+&lt;span class="nt"&gt;Call-ID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;mqezxbywgtulavj&lt;/span&gt;&lt;span class="k"&gt;@bertuccia&lt;/span&gt;
+&lt;span class="nt"&gt;CSeq&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;681&lt;/span&gt; &lt;span class="nt"&gt;REGISTER&lt;/span&gt;
+&lt;span class="nt"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Asterisk&lt;/span&gt; &lt;span class="nt"&gt;PBX&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="nc"&gt;.6.2.2&lt;/span&gt;
+&lt;span class="nt"&gt;Allow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;INVITE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ACK&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;CANCEL&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;OPTIONS&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;BYE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;REFER&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;SUBSCRIBE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;NOTIFY&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;INFO&lt;/span&gt;
+&lt;span class="nt"&gt;Supported&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;replaces&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;timer&lt;/span&gt;
+&lt;span class="nt"&gt;Expires&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;3600&lt;/span&gt;
+&lt;span class="nt"&gt;Contact&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;expires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;3600&lt;/span&gt;
+&lt;span class="nt"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Thu&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;04&lt;/span&gt; &lt;span class="nt"&gt;Feb&lt;/span&gt; &lt;span class="nt"&gt;2010&lt;/span&gt; &lt;span class="nt"&gt;22&lt;/span&gt;&lt;span class="nd"&gt;:23:35&lt;/span&gt; &lt;span class="nt"&gt;GMT&lt;/span&gt;
+&lt;span class="nt"&gt;Content-Length&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here is the chan_sip.c patch against Asterisk 1.6.2.2&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;Index: channels/chan_sip.c&lt;/span&gt;
+&lt;span class="gh"&gt;===================================================================&lt;/span&gt;
+&lt;span class="gd"&gt;--- channels/chan_sip.c (revision 244766)&lt;/span&gt;
+&lt;span class="gi"&gt;+++ channels/chan_sip.c (working copy)&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -1825,6 +1825,7 @@&lt;/span&gt;
+        AST_STRING_FIELD(context);      /*!&amp;lt; Default context for incoming calls */
+        AST_STRING_FIELD(subscribecontext); /*!&amp;lt; Default context for subscriptions */
+        AST_STRING_FIELD(username);     /*!&amp;lt; Temporary username until registration */ 
+&lt;span class="gi"&gt;+       AST_STRING_FIELD(authuser);     /*!&amp;lt; Username used during inbound authentication */ &lt;/span&gt;
+        AST_STRING_FIELD(accountcode);      /*!&amp;lt; Account code */
+        AST_STRING_FIELD(tohost);       /*!&amp;lt; If not dynamic, IP address */
+        AST_STRING_FIELD(regexten);         /*!&amp;lt; Extension to register (if regcontext is used) */
+&lt;span class="gu"&gt;@@ -13011,7 +13012,9 @@&lt;/span&gt;
+            ast_copy_flags(&amp;amp;p-&amp;gt;flags[0], &amp;amp;peer-&amp;gt;flags[0], SIP_NAT);
+            if (ast_test_flag(&amp;amp;p-&amp;gt;flags[1], SIP_PAGE2_REGISTERTRYING))
+                transmit_response(p, &amp;quot;100 Trying&amp;quot;, req);
+&lt;span class="gd"&gt;-           if (!(res = check_auth(p, req, peer-&amp;gt;name, peer-&amp;gt;secret, peer-&amp;gt;md5secret, SIP_REGISTER, uri, XMIT_UNRELIABLE, req-&amp;gt;ignore))) {&lt;/span&gt;
+&lt;span class="gi"&gt;+           if (strcmp(peer-&amp;gt;authuser, peer-&amp;gt;name))&lt;/span&gt;
+&lt;span class="gi"&gt;+               ast_log(LOG_NOTICE, &amp;quot;Trying athenticate peer &amp;#39;%s&amp;#39; using authuser: &amp;#39;%s&amp;#39;\n&amp;quot;, peer-&amp;gt;name, peer-&amp;gt;authuser);&lt;/span&gt;
+&lt;span class="gi"&gt;+           if (!(res = check_auth(p, req, peer-&amp;gt;authuser, peer-&amp;gt;secret, peer-&amp;gt;md5secret, SIP_REGISTER, uri, XMIT_UNRELIABLE, req-&amp;gt;ignore))) {&lt;/span&gt;
+                if (sip_cancel_destroy(p))
+                    ast_log(LOG_WARNING, &amp;quot;Unable to cancel SIP destruction.  Expect bad things.\n&amp;quot;);
+
+&lt;span class="gu"&gt;@@ -14006,7 +14009,7 @@&lt;/span&gt;
+        ast_string_field_set(p, peersecret, NULL);
+        ast_string_field_set(p, peermd5secret, NULL);
+    }
+&lt;span class="gd"&gt;-   if (!(res = check_auth(p, req, peer-&amp;gt;name, p-&amp;gt;peersecret, p-&amp;gt;peermd5secret, sipmethod, uri2, reliable, req-&amp;gt;ignore))) {&lt;/span&gt;
+&lt;span class="gi"&gt;+   if (!(res = check_auth(p, req, peer-&amp;gt;authuser, p-&amp;gt;peersecret, p-&amp;gt;peermd5secret, sipmethod, uri2, reliable, req-&amp;gt;ignore))) {&lt;/span&gt;
+        ast_copy_flags(&amp;amp;p-&amp;gt;flags[0], &amp;amp;peer-&amp;gt;flags[0], SIP_FLAGS_TO_COPY);
+        ast_copy_flags(&amp;amp;p-&amp;gt;flags[1], &amp;amp;peer-&amp;gt;flags[1], SIP_PAGE2_FLAGS_TO_COPY);
+        /* If we have a call limit, set flag */
+&lt;span class="gu"&gt;@@ -15386,6 +15389,7 @@&lt;/span&gt;
+        }
+        ast_cli(fd, &amp;quot;  Secret       : %s\n&amp;quot;, ast_strlen_zero(peer-&amp;gt;secret)?&amp;quot;&amp;lt;Not set&amp;gt;&amp;quot;:&amp;quot;&amp;lt;Set&amp;gt;&amp;quot;);
+        ast_cli(fd, &amp;quot;  MD5Secret    : %s\n&amp;quot;, ast_strlen_zero(peer-&amp;gt;md5secret)?&amp;quot;&amp;lt;Not set&amp;gt;&amp;quot;:&amp;quot;&amp;lt;Set&amp;gt;&amp;quot;);
+&lt;span class="gi"&gt;+       ast_cli(fd, &amp;quot;  Auth User    : %s\n&amp;quot;, peer-&amp;gt;authuser);&lt;/span&gt;
+        ast_cli(fd, &amp;quot;  Remote Secret: %s\n&amp;quot;, ast_strlen_zero(peer-&amp;gt;remotesecret)?&amp;quot;&amp;lt;Not set&amp;gt;&amp;quot;:&amp;quot;&amp;lt;Set&amp;gt;&amp;quot;);
+        for (auth = peer-&amp;gt;auth; auth; auth = auth-&amp;gt;next) {
+            ast_cli(fd, &amp;quot;  Realm-auth   : Realm %-15.15s User %-10.20s &amp;quot;, auth-&amp;gt;realm, auth-&amp;gt;username);
+&lt;span class="gu"&gt;@@ -23706,8 +23710,10 @@&lt;/span&gt;
+        set_peer_defaults(peer);    /* Set peer defaults */
+        peer-&amp;gt;type = 0;
+    }
+&lt;span class="gd"&gt;-   if (!found &amp;amp;&amp;amp; name)&lt;/span&gt;
+&lt;span class="gi"&gt;+   if (!found &amp;amp;&amp;amp; name) {&lt;/span&gt;
+        ast_copy_string(peer-&amp;gt;name, name, sizeof(peer-&amp;gt;name));
+&lt;span class="gi"&gt;+       ast_string_field_set(peer, authuser, name); /* Set default authuser == peername*/&lt;/span&gt;
+&lt;span class="gi"&gt;+   }&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="asterisk"></category><category term="c"></category><category term="patch"></category><category term="VoIP"></category></entry></feed>
