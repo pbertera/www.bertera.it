@@ -108,7 +108,7 @@ and clusters.
 
 ----------------------------
 
-**January 2001 - December 2005:** *Freelance consultant and developer*
+I**January 2001 - December 2005:** *Freelance consultant and developer*
 
 ###### Duties and responsibilities: Sysadmin and developer
 

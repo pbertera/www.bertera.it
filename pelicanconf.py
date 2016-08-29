@@ -33,6 +33,9 @@ EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 PLUGIN_PATHS = ['pelican-plugins', 'plugins']
 
+# Organise the posts in folders per category
+USE_FOLDER_AS_CATEGORY = True
+
 # Pelican plugins:
 PLUGINS = [# These plugins are part of the official `pelican-plugins` repo:
            #'summary',
@@ -44,6 +47,7 @@ PLUGINS = [# These plugins are part of the official `pelican-plugins` repo:
 DISQUS_SITENAME = "bertera-it"
 
 LINKS = ()
+
 # Blogroll
 #LINKS = (('Pelican', 'http://getpelican.com/'),
 #         ('Python.org', 'http://python.org/'),
@@ -67,7 +71,6 @@ CC_LICENSE = {
 }
 
 DEFAULT_PAGINATION = 10
-
 COPYRIGHT_YEAR = 2016
 
 # Uncomment following line if you want document-relative URLs when developing
