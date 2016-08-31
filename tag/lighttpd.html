@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.bertera.it"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
 
-  <title>Pietro Bertera's Blog &ndash; Category: Hacks</title>
+  <title>Pietro Bertera's Blog &ndash; Tag: lighttpd</title>
 </head>
 <body>
   <aside>
@@ -71,80 +71,23 @@
 
 <article>
   <header>
-    <h2><a href="http://www.bertera.it/nettester.html#nettester">Nettester</a></h2>
+    <h2><a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">How to simulate a slow HTTP server with a Dockerized lighttpd</a></h2>
     <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
+      Posted on Tue 30 August 2016 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/codin.html">codin</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>      &#8226; <a href="http://www.bertera.it/nettester.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/lighttpd.html">lighttpd</a>,      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/testing.html">testing</a>      &#8226; <a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p>un clone di netcat con supporto UDP<br />
-<a href="https://github.com/pbertera/junk/tree/master/nettester">nettester</a></p>
-      <a class="btn" href="http://www.bertera.it/nettester.html#nettester">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/rtcp.html#rtcp">rTCP</a></h2>
-    <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/kernel.html">kernel</a>      &#8226; <a href="http://www.bertera.it/rtcp.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
-diretti verso un dato host.<br />
-Installato su due host permette di comunicare con un TCP “inverso”<br />
-<a href="https://github.com/pbertera/junk/tree/master/rtcp">rtcp</a></p>
-      <a class="btn" href="http://www.bertera.it/rtcp.html#rtcp">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/arpiglio.html#arpiglio">Arpiglio</a></h2>
-    <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/arp.html">arp</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>      &#8226; <a href="http://www.bertera.it/arpiglio.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>un tool per forgiare pacchetti ARP/RARP da linea di comando.<br />
-<a href="https://github.com/pbertera/junk/tree/master/arpiglio">arpiglio.c</a></p>
-      <a class="btn" href="http://www.bertera.it/arpiglio.html#arpiglio">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/software.html#software">Software</a></h2>
-    <p>
-      Posted on Sun 05 February 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/bacula.html">bacula</a>,      <a href="http://www.bertera.it/tag/nagios.html">nagios</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>,      <a href="http://www.bertera.it/tag/rsync.html">rsync</a>,      <a href="http://www.bertera.it/tag/script.html">script</a>      &#8226; <a href="http://www.bertera.it/software.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>Era un progettino che avevo dato all’università : esegue dei backup
-differenziali o full utilizzando rsync:
-<a href="https://github.com/pbertera/junk/tree/master/batbu">Batbu</a></p>
-<p>Bacula: i .deb per sarge della 1.38.5
-<a href="http://www.bertera.it/software/bacula-1.38.5/">bacula-1.38.5</a> <strong>UPDATE:</strong> non piu' mantenuto</p>
-<p>Plugin nagios:</p>
-<ul>
-<li><strong>check-imap-login</strong> Un plugin per nagios per eseguire un login su un server IMAP (o IMAPS ...</li></ul>
-      <a class="btn" href="http://www.bertera.it/software.html#software">Continue reading</a>
+      <p>Today I had to work on an issue related to troubled HTTP connections.
+So in order to reproduce such issue I had to find a way to easily reduce the bandwidth of the HTTP transfer.</p>
+<p>After a quick Google search I landed on <a href="http://stackoverflow.com/a/13656825/143819">this</a> Stackoverflow answer 
+which suggested me the ...</p>
+      <a class="btn" href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">Continue reading</a>
   </div>
 </article>
 
   <div class="pagination">
-    <a class="btn float-right" href="http://www.bertera.it/category/hacks.html">
-      Newer Posts <i class="fa fa-angle-right"></i>
-    </a>
   </div>
 
     <footer>

@@ -71,6 +71,30 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">GNU/Find posix acl support</a></h2>
+    <p>
+      Posted on Mon 28 September 2009 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/find.html">find</a>,      <a href="http://www.bertera.it/tag/gnu.html">gnu</a>      &#8226; <a href="http://www.bertera.it/gnufind-posix-acl-support.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Cercare file che corrispondono a delle acl posix all'interno di un
+filesystem molto intricato è sempre un delirio.</p>
+<p><a href="https://github.com/pbertera/junk/tree/master/findutils-acl">Questa</a> patch aggiunge
+l'opzione -acl al comando find
+(<a href="http://www.gnu.org/software/findutils/">GNU/Findutils</a>).</p>
+<p>Esempio d'uso:</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+<span class="err">$</span> <span class="s s-Atom">mkdir</span> <span class="mi">5</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rx</span> <span class="mi">1</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">bin ...</span></pre></div>
+      <a class="btn" href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/verbose-bash-history.html#verbose-bash-history">Verbose bash history</a></h2>
     <p>
       Posted on Thu 02 July 2009 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
@@ -266,24 +290,6 @@ procedure esegue il dump di tutti i database utente in file .BAK.</p>
       <p>un clone di netcat con supporto UDP<br />
 <a href="https://github.com/pbertera/junk/tree/master/nettester">nettester</a></p>
       <a class="btn" href="http://www.bertera.it/nettester.html#nettester">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/rtcp.html#rtcp">rTCP</a></h2>
-    <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/kernel.html">kernel</a>      &#8226; <a href="http://www.bertera.it/rtcp.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
-diretti verso un dato host.<br />
-Installato su due host permette di comunicare con un TCP “inverso”<br />
-<a href="https://github.com/pbertera/junk/tree/master/rtcp">rtcp</a></p>
-      <a class="btn" href="http://www.bertera.it/rtcp.html#rtcp">Continue reading</a>
   </div>
 </article>
 

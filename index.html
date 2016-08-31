@@ -71,6 +71,24 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">How to simulate a slow HTTP server with a Dockerized lighttpd</a></h2>
+    <p>
+      Posted on Tue 30 August 2016 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/lighttpd.html">lighttpd</a>,      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/testing.html">testing</a>      &#8226; <a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Today I had to work on an issue related to troubled HTTP connections.
+So in order to reproduce such issue I had to find a way to easily reduce the bandwidth of the HTTP transfer.</p>
+<p>After a quick Google search I landed on <a href="http://stackoverflow.com/a/13656825/143819">this</a> Stackoverflow answer 
+which suggested me the ...</p>
+      <a class="btn" href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/how-this-website-works.html#how-this-website-works">How this website works</a></h2>
     <p>
       Posted on Wed 29 June 2016 in <a href="http://www.bertera.it/category/cloud.html">Cloud</a>
@@ -253,27 +271,6 @@ via the variable MULTICAST_RTP_CODEC:</p>
 <div class="highlight"><pre><span></span>exten =&gt; 999,1,Answer()  
 exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw ...</pre></div>
       <a class="btn" href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html#rtp-timestamps-fix-in-asterisk-multicastrtp-channels">RTP timestamps fix in Asterisk MulticastRTP channels</a></h2>
-    <p>
-      Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/multicast.html">multicast</a>,      <a href="http://www.bertera.it/tag/patch.html">patch</a>,      <a href="http://www.bertera.it/tag/rtp.html">rtp</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>Starting from Asterisk 1.8 you can <a href="http://www.voip-info.org/wiki/view/Asterisk+MulticastRTP+channels">send multicast rtp
-streams</a>
-using the MulticastRTP channel driver. There is an <a href="https://issues.asterisk.org/jira/browse/ASTERISK-19883">open
-issue</a> that
-breaks outgoing RTP if the source channel doesn't contains timing
-informations (Eg. playing an audio file with
-<strong>Dial(MulticastRTP/basic/239.255.255.245:5555,,A(my-announce ...</strong></p>
-      <a class="btn" href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html#rtp-timestamps-fix-in-asterisk-multicastrtp-channels">Continue reading</a>
   </div>
 </article>
 
