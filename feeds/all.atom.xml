@@ -1,5 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/all.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2016-08-30T00:00:00+02:00</updated><entry><title>How to simulate a slow HTTP server with a Dockerized lighttpd</title><link href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html" rel="alternate"></link><published>2016-08-30T00:00:00+02:00</published><author><name>pietro</name></author><id>tag:www.bertera.it,2016-08-30:how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html</id><summary type="html">&lt;p&gt;Today I had to work on an issue related to troubled HTTP connections.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/all.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2016-09-06T03:25:00+02:00</updated><entry><title>A DNS server with Batteries Included with PowerDNS, Docker and Python</title><link href="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html" rel="alternate"></link><published>2016-09-06T03:25:00+02:00</published><author><name>Pietro</name></author><id>tag:www.bertera.it,2016-09-06:a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html</id><summary type="html">&lt;p&gt;If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind &lt;a href="http://www.zytrax.com/books/dns/ch6/mydomain.html"&gt;zone file&lt;/a&gt; is an annoying and error-prone task.&lt;/p&gt;
+&lt;p&gt;In order to make this job simpler I worked on &lt;a href="https://hub.docker.com/r/pbertera/pdns/"&gt;this&lt;/a&gt; Docker container: the container instantiate a &lt;a href="https://www.powerdns.com/"&gt;PowerDNS&lt;/a&gt; and provides an easy-to-use &lt;a href="https://github.com/pbertera/PowerDNS-CLI"&gt;CLI script&lt;/a&gt; interacting with the REST API.&lt;/p&gt;
+&lt;h2&gt;How to use:&lt;/h2&gt;
+&lt;p&gt;Inspired by the illuminating &lt;a href="https://twitter.com/jessfraz"&gt;@jessfraz&lt;/a&gt; &lt;a href="https://blog.jessfraz.com/post/docker-containers-on-the-desktop/"&gt;post&lt;/a&gt; about containerizing everything, I added to my &lt;a href="https://github.com/pbertera/dotfiles/blob/master/.dockerfunc"&gt;.dockerfunc&lt;/a&gt; some helper functions: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pdns&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pdns
+    &lt;span class="k"&gt;if&lt;/span&gt; is_running &lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        bailout &lt;span class="s2"&gt;&amp;quot;Container &lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="s2"&gt; is already running&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+
+    del_stopped &lt;span class="nv"&gt;$name&lt;/span&gt;
+
+    docker run -it --name &lt;span class="nv"&gt;$name&lt;/span&gt; -e &lt;span class="nv"&gt;API_KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;MySecretKey -e &lt;span class="nv"&gt;WEB_PORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;8081&lt;/span&gt; -v &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;PDNS_DB&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;:/data/pdns.db -p 8081:8081 -p 53:53 -p 53:53/udp pbertera/&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+pdns.py&lt;span class="o"&gt;(){&lt;/span&gt;
+    relies_on pdns
+    docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it pdns pdns.py &lt;span class="nv"&gt;$@&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;NOTE:&lt;/em&gt; for the first run you will need to create an empty database file: &lt;code&gt;touch ${PDNS_DB}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Then I can start the container:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hank-2:~ pietro$ pdns
+pdns
+Error: near line 3: table domains already exists
+Error: near line 13: index name_index already exists
+Error: near line 16: table records already exists
+Error: near line 31: index rec_name_index already exists
+Error: near line 32: index nametype_index already exists
+Error: near line 33: index domain_id already exists
+Error: near line 34: index orderindex already exists
+Error: near line 37: table supermasters already exists
+Error: near line 43: index ip_nameserver_pk already exists
+Error: near line 46: table comments already exists
+Error: near line 57: index comments_domain_id_index already exists
+Error: near line 58: index comments_nametype_index already exists
+Error: near line 59: index comments_order_idx already exists
+Error: near line 62: table domainmetadata already exists
+Error: near line 70: index domainmetaidindex already exists
+Error: near line 73: table cryptokeys already exists
+Error: near line 82: index domainidindex already exists
+Error: near line 85: table tsigkeys already exists
+Error: near line 92: index namealgoindex already exists
+Imported schema structure
+Sep 06 01:24:36 Reading random entropy from &amp;#39;/dev/urandom&amp;#39;
+Sep 06 01:24:36 Loading &amp;#39;/usr/lib/x86_64-linux-gnu/pdns/libgsqlite3backend.so&amp;#39;
+Sep 06 01:24:36 This is a standalone pdns
+Sep 06 01:24:36 Listening on controlsocket in &amp;#39;/var/run/pdns.controlsocket&amp;#39;
+Sep 06 01:24:36 UDP server bound to 0.0.0.0:53
+Sep 06 01:24:36 Unable to enable timestamp reporting for socket
+Sep 06 01:24:36 UDPv6 server bound to [::]:53
+Sep 06 01:24:36 TCP server bound to 0.0.0.0:53
+Sep 06 01:24:36 TCPv6 server bound to [::]:53
+Sep 06 01:24:36 PowerDNS Authoritative Server 4.0.0-alpha2 (C) 2001-2016 PowerDNS.COM BV
+Sep 06 01:24:36 Using 64-bits mode. Built using gcc 5.3.1 20160330.
+Sep 06 01:24:36 PowerDNS comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it according to the terms of the GPL version 2.
+Sep 06 01:24:36 Listening for HTTP requests on 0.0.0.0:8081
+Sep 06 01:24:36 Creating backend connection for TCP
+Sep 06 01:24:36 About to create 3 backend threads for UDP
+Sep 06 01:24:36 Done launching threads, ready to distribute questions
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now PowerDNS is running and listening on the port &lt;code&gt;8081&lt;/code&gt; for the REST API and the port &lt;code&gt;53&lt;/code&gt; UDP and TCP for the DNS queries, the database is permanently stored into the SQLite DB file &lt;code&gt;${PDNS_DB}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Using the command &lt;code&gt;pdns.py&lt;/code&gt; you can manage the zones:&lt;/p&gt;
+&lt;h3&gt;Creating a zone:&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameservers ns.example.com.  add_zone
+2016-09-06 01:57:09,938 pdns         INFO     DNS Zone &amp;#39;example.com.&amp;#39; Successfully Added...
+hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.com. --content 172.16.18.15 add_record
+2016-09-06 01:58:04,316 pdns         INFO     DNS Record &amp;#39;ns.example.com.&amp;#39; Successfully Added/Updated
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Digging the zone:&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;hank-2&lt;/span&gt;&lt;span class="o"&gt;:~&lt;/span&gt; &lt;span class="nt"&gt;pietro&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nt"&gt;dig&lt;/span&gt; &lt;span class="k"&gt;@localhost&lt;/span&gt; &lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="nc"&gt;.com&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt;
+
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;DiG&lt;/span&gt; &lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.8.3-P1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;@localhost&lt;/span&gt; &lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="nc"&gt;.com&lt;/span&gt; &lt;span class="nt"&gt;NS&lt;/span&gt;
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt; &lt;span class="nt"&gt;servers&lt;/span&gt; &lt;span class="nt"&gt;found&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;global&lt;/span&gt; &lt;span class="nt"&gt;options&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;cmd&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;Got&lt;/span&gt; &lt;span class="nt"&gt;answer&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;HEADER&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;opcode&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;QUERY&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;NOERROR&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;57709&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;qr&lt;/span&gt; &lt;span class="nt"&gt;aa&lt;/span&gt; &lt;span class="nt"&gt;rd&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;QUERY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ANSWER&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;AUTHORITY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ADDITIONAL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;WARNING&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;recursion&lt;/span&gt; &lt;span class="nt"&gt;requested&lt;/span&gt; &lt;span class="nt"&gt;but&lt;/span&gt; &lt;span class="nt"&gt;not&lt;/span&gt; &lt;span class="nt"&gt;available&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;QUESTION&lt;/span&gt; &lt;span class="nt"&gt;SECTION&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="nc"&gt;.com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;           &lt;span class="nt"&gt;IN&lt;/span&gt;  &lt;span class="nt"&gt;NS&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;ANSWER&lt;/span&gt; &lt;span class="nt"&gt;SECTION&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="nc"&gt;.com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;        &lt;span class="nt"&gt;3600&lt;/span&gt;    &lt;span class="nt"&gt;IN&lt;/span&gt;  &lt;span class="nt"&gt;NS&lt;/span&gt;  &lt;span class="nt"&gt;ns&lt;/span&gt;&lt;span class="nc"&gt;.example.com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;Query&lt;/span&gt; &lt;span class="nt"&gt;time&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;16&lt;/span&gt; &lt;span class="nt"&gt;msec&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;SERVER&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;127&lt;/span&gt;&lt;span class="nc"&gt;.0.0.1&lt;/span&gt;&lt;span class="nn"&gt;#53&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;127&lt;/span&gt;&lt;span class="nc"&gt;.0.0.1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;WHEN&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Tue&lt;/span&gt; &lt;span class="nt"&gt;Sep&lt;/span&gt;  &lt;span class="nt"&gt;6&lt;/span&gt; &lt;span class="nt"&gt;03&lt;/span&gt;&lt;span class="nd"&gt;:59:18&lt;/span&gt; &lt;span class="nt"&gt;2016&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;MSG&lt;/span&gt; &lt;span class="nt"&gt;SIZE&lt;/span&gt;  &lt;span class="nt"&gt;rcvd&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;46&lt;/span&gt;
+
+&lt;span class="nt"&gt;hank-2&lt;/span&gt;&lt;span class="o"&gt;:~&lt;/span&gt; &lt;span class="nt"&gt;pietro&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="nt"&gt;dig&lt;/span&gt; &lt;span class="k"&gt;@localhost&lt;/span&gt; &lt;span class="nt"&gt;ns&lt;/span&gt;&lt;span class="nc"&gt;.example.com&lt;/span&gt; 
+
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nt"&gt;DiG&lt;/span&gt; &lt;span class="nt"&gt;9&lt;/span&gt;&lt;span class="nc"&gt;.8.3-P1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;@localhost&lt;/span&gt; &lt;span class="nt"&gt;ns&lt;/span&gt;&lt;span class="nc"&gt;.example.com&lt;/span&gt;
+&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt; &lt;span class="nt"&gt;servers&lt;/span&gt; &lt;span class="nt"&gt;found&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;global&lt;/span&gt; &lt;span class="nt"&gt;options&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;cmd&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;Got&lt;/span&gt; &lt;span class="nt"&gt;answer&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;HEADER&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;-&lt;/span&gt; &lt;span class="nt"&gt;opcode&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;QUERY&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;NOERROR&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;49682&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;qr&lt;/span&gt; &lt;span class="nt"&gt;aa&lt;/span&gt; &lt;span class="nt"&gt;rd&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;QUERY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ANSWER&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;AUTHORITY&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;ADDITIONAL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;0&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;WARNING&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;recursion&lt;/span&gt; &lt;span class="nt"&gt;requested&lt;/span&gt; &lt;span class="nt"&gt;but&lt;/span&gt; &lt;span class="nt"&gt;not&lt;/span&gt; &lt;span class="nt"&gt;available&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;QUESTION&lt;/span&gt; &lt;span class="nt"&gt;SECTION&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="nt"&gt;ns&lt;/span&gt;&lt;span class="nc"&gt;.example.com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;            &lt;span class="nt"&gt;IN&lt;/span&gt;  &lt;span class="nt"&gt;A&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;ANSWER&lt;/span&gt; &lt;span class="nt"&gt;SECTION&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nt"&gt;ns&lt;/span&gt;&lt;span class="nc"&gt;.example.com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;     &lt;span class="nt"&gt;3600&lt;/span&gt;    &lt;span class="nt"&gt;IN&lt;/span&gt;  &lt;span class="nt"&gt;A&lt;/span&gt;   &lt;span class="nt"&gt;172&lt;/span&gt;&lt;span class="nc"&gt;.16.18.15&lt;/span&gt;
+
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;Query&lt;/span&gt; &lt;span class="nt"&gt;time&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;13&lt;/span&gt; &lt;span class="nt"&gt;msec&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;SERVER&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;127&lt;/span&gt;&lt;span class="nc"&gt;.0.0.1&lt;/span&gt;&lt;span class="nn"&gt;#53&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;127&lt;/span&gt;&lt;span class="nc"&gt;.0.0.1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;WHEN&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;Tue&lt;/span&gt; &lt;span class="nt"&gt;Sep&lt;/span&gt;  &lt;span class="nt"&gt;6&lt;/span&gt; &lt;span class="nt"&gt;03&lt;/span&gt;&lt;span class="nd"&gt;:59:58&lt;/span&gt; &lt;span class="nt"&gt;2016&lt;/span&gt;
+&lt;span class="o"&gt;;;&lt;/span&gt; &lt;span class="nt"&gt;MSG&lt;/span&gt; &lt;span class="nt"&gt;SIZE&lt;/span&gt;  &lt;span class="nt"&gt;rcvd&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;48&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Credits&lt;/h2&gt;
+&lt;p&gt;All the credits to &lt;a href="http://everythingshouldbevirtual.com/"&gt;Larry Smith Jr.&lt;/a&gt; for the original pdns.py script and &lt;a href="https://github.com/renan"&gt;Renan Gonçalves&lt;/a&gt; for the original &lt;a href="https://github.com/renan/powerdns-docker"&gt;PowerDNS+MySQL&lt;/a&gt; Docker container&lt;/p&gt;</summary><category term="Docker"></category><category term="Python"></category><category term="REST"></category><category term="PowerDNS"></category></entry><entry><title>How to simulate a slow HTTP server with a Dockerized lighttpd</title><link href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html" rel="alternate"></link><published>2016-08-30T00:00:00+02:00</published><author><name>pietro</name></author><id>tag:www.bertera.it,2016-08-30:how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html</id><summary type="html">&lt;p&gt;Today I had to work on an issue related to troubled HTTP connections.
 So in order to reproduce such issue I had to find a way to easily reduce the bandwidth of the HTTP transfer.&lt;/p&gt;
 &lt;p&gt;After a quick Google search I landed on &lt;a href="http://stackoverflow.com/a/13656825/143819"&gt;this&lt;/a&gt; Stackoverflow answer 
 which suggested me the idea to create a simple Docker container for that.&lt;/p&gt;

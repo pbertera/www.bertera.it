@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Pietro" />
+<meta name="description" content="If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides ..." />
+<meta name="keywords" content="Docker, Python, REST, PowerDNS">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="A DNS server with Batteries Included with PowerDNS, Docker and Python"/>
+<meta property="og:description" content="If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-09-06 03:25:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://www.bertera.it/author/pietro.html">
+<meta property="article:section" content="Systems"/>
+<meta property="article:tag" content="Docker"/>
+<meta property="article:tag" content="Python"/>
+<meta property="article:tag" content="REST"/>
+<meta property="article:tag" content="PowerDNS"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; A DNS server with Batteries Included with PowerDNS, Docker and Python</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://www.bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
+<p>Something about ...</p>      <nav>
+        <ul class="list">
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://www.bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="a-dns-server-with-batteries-included-with-powerdns-docker-and-python">A DNS server with Batteries Included with PowerDNS, Docker and Python</h1>
+    <p>Posted on Tue 06 September 2016 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
+  </header>
+  <div>
+    <p>If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind <a href="http://www.zytrax.com/books/dns/ch6/mydomain.html">zone file</a> is an annoying and error-prone task.</p>
+<p>In order to make this job simpler I worked on <a href="https://hub.docker.com/r/pbertera/pdns/">this</a> Docker container: the container instantiate a <a href="https://www.powerdns.com/">PowerDNS</a> and provides an easy-to-use <a href="https://github.com/pbertera/PowerDNS-CLI">CLI script</a> interacting with the REST API.</p>
+<h2>How to use:</h2>
+<p>Inspired by the illuminating <a href="https://twitter.com/jessfraz">@jessfraz</a> <a href="https://blog.jessfraz.com/post/docker-containers-on-the-desktop/">post</a> about containerizing everything, I added to my <a href="https://github.com/pbertera/dotfiles/blob/master/.dockerfunc">.dockerfunc</a> some helper functions: </p>
+<div class="highlight"><pre><span></span>pdns<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local</span> <span class="nv">name</span><span class="o">=</span>pdns
+    <span class="k">if</span> is_running <span class="nv">$name</span><span class="p">;</span> <span class="k">then</span>
+        bailout <span class="s2">&quot;Container </span><span class="nv">$name</span><span class="s2"> is already running&quot;</span>
+        <span class="k">return</span>
+    <span class="k">fi</span>
+
+    del_stopped <span class="nv">$name</span>
+
+    docker run -it --name <span class="nv">$name</span> -e <span class="nv">API_KEY</span><span class="o">=</span>MySecretKey -e <span class="nv">WEB_PORT</span><span class="o">=</span><span class="m">8081</span> -v <span class="si">${</span><span class="nv">PDNS_DB</span><span class="si">}</span>:/data/pdns.db -p 8081:8081 -p 53:53 -p 53:53/udp pbertera/<span class="si">${</span><span class="nv">name</span><span class="si">}</span>
+<span class="o">}</span>
+
+pdns.py<span class="o">(){</span>
+    relies_on pdns
+    docker <span class="nb">exec</span> -it pdns pdns.py <span class="nv">$@</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p><em>NOTE:</em> for the first run you will need to create an empty database file: <code>touch ${PDNS_DB}</code></p>
+<p>Then I can start the container:</p>
+<div class="highlight"><pre><span></span>hank-2:~ pietro$ pdns
+pdns
+Error: near line 3: table domains already exists
+Error: near line 13: index name_index already exists
+Error: near line 16: table records already exists
+Error: near line 31: index rec_name_index already exists
+Error: near line 32: index nametype_index already exists
+Error: near line 33: index domain_id already exists
+Error: near line 34: index orderindex already exists
+Error: near line 37: table supermasters already exists
+Error: near line 43: index ip_nameserver_pk already exists
+Error: near line 46: table comments already exists
+Error: near line 57: index comments_domain_id_index already exists
+Error: near line 58: index comments_nametype_index already exists
+Error: near line 59: index comments_order_idx already exists
+Error: near line 62: table domainmetadata already exists
+Error: near line 70: index domainmetaidindex already exists
+Error: near line 73: table cryptokeys already exists
+Error: near line 82: index domainidindex already exists
+Error: near line 85: table tsigkeys already exists
+Error: near line 92: index namealgoindex already exists
+Imported schema structure
+Sep 06 01:24:36 Reading random entropy from &#39;/dev/urandom&#39;
+Sep 06 01:24:36 Loading &#39;/usr/lib/x86_64-linux-gnu/pdns/libgsqlite3backend.so&#39;
+Sep 06 01:24:36 This is a standalone pdns
+Sep 06 01:24:36 Listening on controlsocket in &#39;/var/run/pdns.controlsocket&#39;
+Sep 06 01:24:36 UDP server bound to 0.0.0.0:53
+Sep 06 01:24:36 Unable to enable timestamp reporting for socket
+Sep 06 01:24:36 UDPv6 server bound to [::]:53
+Sep 06 01:24:36 TCP server bound to 0.0.0.0:53
+Sep 06 01:24:36 TCPv6 server bound to [::]:53
+Sep 06 01:24:36 PowerDNS Authoritative Server 4.0.0-alpha2 (C) 2001-2016 PowerDNS.COM BV
+Sep 06 01:24:36 Using 64-bits mode. Built using gcc 5.3.1 20160330.
+Sep 06 01:24:36 PowerDNS comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it according to the terms of the GPL version 2.
+Sep 06 01:24:36 Listening for HTTP requests on 0.0.0.0:8081
+Sep 06 01:24:36 Creating backend connection for TCP
+Sep 06 01:24:36 About to create 3 backend threads for UDP
+Sep 06 01:24:36 Done launching threads, ready to distribute questions
+</pre></div>
+
+
+<p>Now PowerDNS is running and listening on the port <code>8081</code> for the REST API and the port <code>53</code> UDP and TCP for the DNS queries, the database is permanently stored into the SQLite DB file <code>${PDNS_DB}</code>.</p>
+<p>Using the command <code>pdns.py</code> you can manage the zones:</p>
+<h3>Creating a zone:</h3>
+<div class="highlight"><pre><span></span>hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameservers ns.example.com.  add_zone
+2016-09-06 01:57:09,938 pdns         INFO     DNS Zone &#39;example.com.&#39; Successfully Added...
+hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.com. --content 172.16.18.15 add_record
+2016-09-06 01:58:04,316 pdns         INFO     DNS Record &#39;ns.example.com.&#39; Successfully Added/Updated
+</pre></div>
+
+
+<h4>Digging the zone:</h4>
+<div class="highlight"><pre><span></span><span class="nt">hank-2</span><span class="o">:~</span> <span class="nt">pietro</span><span class="o">$</span> <span class="nt">dig</span> <span class="k">@localhost</span> <span class="nt">example</span><span class="nc">.com</span> <span class="nt">NS</span>
+
+<span class="p">;</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="nt">DiG</span> <span class="nt">9</span><span class="nc">.8.3-P1</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="k">@localhost</span> <span class="nt">example</span><span class="nc">.com</span> <span class="nt">NS</span>
+<span class="p">;</span> <span class="o">(</span><span class="nt">2</span> <span class="nt">servers</span> <span class="nt">found</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">global</span> <span class="nt">options</span><span class="o">:</span> <span class="o">+</span><span class="nt">cmd</span>
+<span class="o">;;</span> <span class="nt">Got</span> <span class="nt">answer</span><span class="o">:</span>
+<span class="o">;;</span> <span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span> <span class="nt">opcode</span><span class="o">:</span> <span class="nt">QUERY</span><span class="o">,</span> <span class="nt">status</span><span class="o">:</span> <span class="nt">NOERROR</span><span class="o">,</span> <span class="nt">id</span><span class="o">:</span> <span class="nt">57709</span>
+<span class="o">;;</span> <span class="nt">flags</span><span class="o">:</span> <span class="nt">qr</span> <span class="nt">aa</span> <span class="nt">rd</span><span class="o">;</span> <span class="nt">QUERY</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">ANSWER</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">AUTHORITY</span><span class="o">:</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">ADDITIONAL</span><span class="o">:</span> <span class="nt">0</span>
+<span class="o">;;</span> <span class="nt">WARNING</span><span class="o">:</span> <span class="nt">recursion</span> <span class="nt">requested</span> <span class="nt">but</span> <span class="nt">not</span> <span class="nt">available</span>
+
+<span class="o">;;</span> <span class="nt">QUESTION</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="o">;</span><span class="nt">example</span><span class="nc">.com</span><span class="o">.</span>           <span class="nt">IN</span>  <span class="nt">NS</span>
+
+<span class="o">;;</span> <span class="nt">ANSWER</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="nt">example</span><span class="nc">.com</span><span class="o">.</span>        <span class="nt">3600</span>    <span class="nt">IN</span>  <span class="nt">NS</span>  <span class="nt">ns</span><span class="nc">.example.com</span><span class="o">.</span>
+
+<span class="o">;;</span> <span class="nt">Query</span> <span class="nt">time</span><span class="o">:</span> <span class="nt">16</span> <span class="nt">msec</span>
+<span class="o">;;</span> <span class="nt">SERVER</span><span class="o">:</span> <span class="nt">127</span><span class="nc">.0.0.1</span><span class="nn">#53</span><span class="o">(</span><span class="nt">127</span><span class="nc">.0.0.1</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">WHEN</span><span class="o">:</span> <span class="nt">Tue</span> <span class="nt">Sep</span>  <span class="nt">6</span> <span class="nt">03</span><span class="nd">:59:18</span> <span class="nt">2016</span>
+<span class="o">;;</span> <span class="nt">MSG</span> <span class="nt">SIZE</span>  <span class="nt">rcvd</span><span class="o">:</span> <span class="nt">46</span>
+
+<span class="nt">hank-2</span><span class="o">:~</span> <span class="nt">pietro</span><span class="o">$</span> <span class="nt">dig</span> <span class="k">@localhost</span> <span class="nt">ns</span><span class="nc">.example.com</span> 
+
+<span class="p">;</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="nt">DiG</span> <span class="nt">9</span><span class="nc">.8.3-P1</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="k">@localhost</span> <span class="nt">ns</span><span class="nc">.example.com</span>
+<span class="p">;</span> <span class="o">(</span><span class="nt">2</span> <span class="nt">servers</span> <span class="nt">found</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">global</span> <span class="nt">options</span><span class="o">:</span> <span class="o">+</span><span class="nt">cmd</span>
+<span class="o">;;</span> <span class="nt">Got</span> <span class="nt">answer</span><span class="o">:</span>
+<span class="o">;;</span> <span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span> <span class="nt">opcode</span><span class="o">:</span> <span class="nt">QUERY</span><span class="o">,</span> <span class="nt">status</span><span class="o">:</span> <span class="nt">NOERROR</span><span class="o">,</span> <span class="nt">id</span><span class="o">:</span> <span class="nt">49682</span>
+<span class="o">;;</span> <span class="nt">flags</span><span class="o">:</span> <span class="nt">qr</span> <span class="nt">aa</span> <span class="nt">rd</span><span class="o">;</span> <span class="nt">QUERY</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">ANSWER</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">AUTHORITY</span><span class="o">:</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">ADDITIONAL</span><span class="o">:</span> <span class="nt">0</span>
+<span class="o">;;</span> <span class="nt">WARNING</span><span class="o">:</span> <span class="nt">recursion</span> <span class="nt">requested</span> <span class="nt">but</span> <span class="nt">not</span> <span class="nt">available</span>
+
+<span class="o">;;</span> <span class="nt">QUESTION</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="o">;</span><span class="nt">ns</span><span class="nc">.example.com</span><span class="o">.</span>            <span class="nt">IN</span>  <span class="nt">A</span>
+
+<span class="o">;;</span> <span class="nt">ANSWER</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="nt">ns</span><span class="nc">.example.com</span><span class="o">.</span>     <span class="nt">3600</span>    <span class="nt">IN</span>  <span class="nt">A</span>   <span class="nt">172</span><span class="nc">.16.18.15</span>
+
+<span class="o">;;</span> <span class="nt">Query</span> <span class="nt">time</span><span class="o">:</span> <span class="nt">13</span> <span class="nt">msec</span>
+<span class="o">;;</span> <span class="nt">SERVER</span><span class="o">:</span> <span class="nt">127</span><span class="nc">.0.0.1</span><span class="nn">#53</span><span class="o">(</span><span class="nt">127</span><span class="nc">.0.0.1</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">WHEN</span><span class="o">:</span> <span class="nt">Tue</span> <span class="nt">Sep</span>  <span class="nt">6</span> <span class="nt">03</span><span class="nd">:59:58</span> <span class="nt">2016</span>
+<span class="o">;;</span> <span class="nt">MSG</span> <span class="nt">SIZE</span>  <span class="nt">rcvd</span><span class="o">:</span> <span class="nt">48</span>
+</pre></div>
+
+
+<h2>Credits</h2>
+<p>All the credits to <a href="http://everythingshouldbevirtual.com/">Larry Smith Jr.</a> for the original pdns.py script and <a href="https://github.com/renan">Renan Gonçalves</a> for the original <a href="https://github.com/renan/powerdns-docker">PowerDNS+MySQL</a> Docker container</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://www.bertera.it/tag/docker.html">Docker</a>
+      <a href="http://www.bertera.it/tag/python.html">Python</a>
+      <a href="http://www.bertera.it/tag/rest.html">REST</a>
+      <a href="http://www.bertera.it/tag/powerdns.html">PowerDNS</a>
+    </p>
+  </div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bertera-it';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://www.bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "A DNS server with Batteries Included with PowerDNS, Docker and Python",
+  "headline": "A DNS server with Batteries Included with PowerDNS, Docker and Python",
+  "datePublished": "2016-09-06 03:25:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Pietro",
+    "url": "http://www.bertera.it/author/pietro.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html",
+  "description": "If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides ..."
+}
+</script></body>
+</html>

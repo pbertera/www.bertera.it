@@ -71,6 +71,27 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Ability to set codec in MulticastRTP Asterisk channels</a></h2>
+    <p>
+      Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/code.html">code</a>,      <a href="http://www.bertera.it/tag/patch.html">patch</a>,      <a href="http://www.bertera.it/tag/rtp.html">rtp</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p><a href="http://www.bertera.it/asterisk_trunk-377802_rtp_multicast_codec.patch">Here</a>
+you can find a port for Asterisk trunk (rev. 377802) of this patch:
+<a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html">http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html</a>.<br />
+This patch permits to set the codec of an outgoing multicast RTP stream
+via the variable MULTICAST_RTP_CODEC:</p>
+<div class="highlight"><pre><span></span>exten =&gt; 999,1,Answer()  
+exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw ...</pre></div>
+      <a class="btn" href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/rtp-timestamps-fix-in-asterisk-multicastrtp-channels.html#rtp-timestamps-fix-in-asterisk-multicastrtp-channels">RTP timestamps fix in Asterisk MulticastRTP channels</a></h2>
     <p>
       Posted on Wed 12 December 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
@@ -254,26 +275,6 @@ refresh SIP session.</p>
 <strong>SIP/2.0 481 Call Leg/Transaction Does Not Exist.</strong></p>
 <p>In this situation Asterisk continue in ...</p>
       <a class="btn" href="http://www.bertera.it/asterisk_and_sip_session_refresh_with_update-request.html#asterisk_and_sip_session_refresh_with_update-request">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html#how-to-split-dns-name-resolution-in-vpn-environment">How to split DNS name resolution in VPN environment</a></h2>
-    <p>
-      Posted on Wed 30 November 2011 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/dns.html">dns</a>,      <a href="http://www.bertera.it/tag/openvpn.html">openvpn</a>,      <a href="http://www.bertera.it/tag/powerdns.html">powerdns</a>,      <a href="http://www.bertera.it/tag/scripting.html">scripting</a>,      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>      &#8226; <a href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>I'm in this situation:<br />
-a VPN to remote concentrator that load many routes to private networks,
-vpn server push DNS configuration via OpenVPN protocol (see
---dhcp-option DNS in openvpn(8) ).<br />
-The scope of this post is to explain how you can use remote DNS pushed
-by VPN concentrator only ...</p>
-      <a class="btn" href="http://www.bertera.it/how-to-split-dns-name-resolution-in-vpn-environment.html#how-to-split-dns-name-resolution-in-vpn-environment">Continue reading</a>
   </div>
 </article>
 

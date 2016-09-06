@@ -71,6 +71,40 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Authentication username in Astersik SIP peer</a></h2>
+    <p>
+      Posted on Mon 12 July 2010 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/asterisk.html">asterisk</a>,      <a href="http://www.bertera.it/tag/c.html">c</a>,      <a href="http://www.bertera.it/tag/patch.html">patch</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Asterisk use peername as username during SIP inbound digest
+authentication.<br />
+<a href="https://github.com/pbertera/junk/blob/master/asterisk-stuff/asterisk-1.6.2.2-sip-peer-authuser-patch.patch">This
+patch</a>
+add <strong>authuser</strong> parameter in SIP peer definition and use authuser in
+digest authentication:</p>
+<p><strong>Peer definition in /etc/asterisk/sip.conf</strong>  </p>
+<div class="highlight"><pre><span></span>...
+[pietro](sip-client-base)
+authuser=MyUsername
+secret=XXXXX
+qualify=yes
+nat=yes
+...
+</pre></div>
+
+
+<p><strong>Peer definition in my SIP client (Twinkle)</strong><br />
+<img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /></p>
+<p><strong>REGISTER ...</strong></p>
+      <a class="btn" href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/gnufind-posix-acl-support.html#gnufind-posix-acl-support">GNU/Find posix acl support</a></h2>
     <p>
       Posted on Mon 28 September 2009 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
@@ -274,22 +308,6 @@ procedure esegue il dump di tutti i database utente in file .BAK.</p>
       <p>Kernel echo è un esempio di comunicazione tra userspace e kernelspace<br />
 <a href="https://github.com/pbertera/junk/tree/master/kecho">kecho</a></p>
       <a class="btn" href="http://www.bertera.it/kecho.html#kecho">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/nettester.html#nettester">Nettester</a></h2>
-    <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/codin.html">codin</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>      &#8226; <a href="http://www.bertera.it/nettester.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>un clone di netcat con supporto UDP<br />
-<a href="https://github.com/pbertera/junk/tree/master/nettester">nettester</a></p>
-      <a class="btn" href="http://www.bertera.it/nettester.html#nettester">Continue reading</a>
   </div>
 </article>
 
