@@ -17,7 +17,7 @@
 
 pdns.py&lt;span class="o"&gt;(){&lt;/span&gt;
     relies_on pdns
-    docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it pdns pdns.py &lt;span class="nv"&gt;$@&lt;/span&gt;
+    docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it pdns pdns.py &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -68,7 +68,7 @@ Sep 06 01:24:36 Done launching threads, ready to distribute questions
 &lt;p&gt;Now PowerDNS is running and listening on the port &lt;code&gt;8081&lt;/code&gt; for the REST API and the port &lt;code&gt;53&lt;/code&gt; UDP and TCP for the DNS queries, the database is permanently stored into the SQLite DB file &lt;code&gt;${PDNS_DB}&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Using the command &lt;code&gt;pdns.py&lt;/code&gt; you can manage the zones:&lt;/p&gt;
 &lt;h3&gt;Creating a zone:&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameservers ns.example.com.  add_zone
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameserver ns.example.com.  add_zone
 2016-09-06 01:57:09,938 pdns         INFO     DNS Zone &amp;#39;example.com.&amp;#39; Successfully Added...
 hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.com. --content 172.16.18.15 add_record
 2016-09-06 01:58:04,316 pdns         INFO     DNS Record &amp;#39;ns.example.com.&amp;#39; Successfully Added/Updated

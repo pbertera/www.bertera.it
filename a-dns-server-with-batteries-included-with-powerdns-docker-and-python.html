@@ -101,7 +101,7 @@
 
 pdns.py<span class="o">(){</span>
     relies_on pdns
-    docker <span class="nb">exec</span> -it pdns pdns.py <span class="nv">$@</span>
+    docker <span class="nb">exec</span> -it pdns pdns.py <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 <span class="o">}</span>
 </pre></div>
 
@@ -152,7 +152,7 @@ Sep 06 01:24:36 Done launching threads, ready to distribute questions
 <p>Now PowerDNS is running and listening on the port <code>8081</code> for the REST API and the port <code>53</code> UDP and TCP for the DNS queries, the database is permanently stored into the SQLite DB file <code>${PDNS_DB}</code>.</p>
 <p>Using the command <code>pdns.py</code> you can manage the zones:</p>
 <h3>Creating a zone:</h3>
-<div class="highlight"><pre><span></span>hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameservers ns.example.com.  add_zone
+<div class="highlight"><pre><span></span>hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameserver ns.example.com.  add_zone
 2016-09-06 01:57:09,938 pdns         INFO     DNS Zone &#39;example.com.&#39; Successfully Added...
 hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.com. --content 172.16.18.15 add_record
 2016-09-06 01:58:04,316 pdns         INFO     DNS Record &#39;ns.example.com.&#39; Successfully Added/Updated
