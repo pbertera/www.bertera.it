@@ -27,7 +27,7 @@ pdns() {
 
 pdns.py(){
     relies_on pdns
-    docker exec -it pdns pdns.py $@
+    docker exec -it pdns pdns.py "$@"
 }
 ```
 
@@ -83,7 +83,7 @@ Using the command `pdns.py` you can manage the zones:
 ### Creating a zone:
 
 ```
-hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameservers ns.example.com.  add_zone
+hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameserver ns.example.com.  add_zone
 2016-09-06 01:57:09,938 pdns         INFO     DNS Zone 'example.com.' Successfully Added...
 hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.com. --content 172.16.18.15 add_record
 2016-09-06 01:58:04,316 pdns         INFO     DNS Record 'ns.example.com.' Successfully Added/Updated
