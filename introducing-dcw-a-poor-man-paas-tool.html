@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Pietro" />
+<meta name="description" content="Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the docker-compose command. The meaning of such wrapper is to expose some docker-compose operations and a set of well defined commands on the host machine. The typical use-case is an SSH command executed via the ~/.ssh/authorized_keys file ..." />
+<meta name="keywords" content="Docker, Bash, SSH">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="Introducing dcw: a Poor Man PaaS tool"/>
+<meta property="og:description" content="Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the docker-compose command. The meaning of such wrapper is to expose some docker-compose operations and a set of well defined commands on the host machine. The typical use-case is an SSH command executed via the ~/.ssh/authorized_keys file ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-03-28 22:25:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://www.bertera.it/author/pietro.html">
+<meta property="article:section" content="Systems"/>
+<meta property="article:tag" content="Docker"/>
+<meta property="article:tag" content="Bash"/>
+<meta property="article:tag" content="SSH"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; Introducing dcw: a Poor Man PaaS tool</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://www.bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
+<p>Something about ...</p>      <nav>
+        <ul class="list">
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://www.bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="introducing-dcw-a-poor-man-paas-tool">Introducing dcw: a Poor Man PaaS tool</h1>
+    <p>Posted on Tue 28 March 2017 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
+  </header>
+  <div>
+    <p>Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> command. The meaning of such wrapper is to expose some <code>docker-compose</code> <a href="https://docs.docker.com/compose/reference/">operations</a>  and a set of well defined commands on the host machine.</p>
+<p>The typical use-case is an SSH command executed via the <code>~/.ssh/authorized_keys</code> file, in this way you can provide provide some <code>docker-compose</code> commands that can be execute with some specific <code>docker-compose</code> config files.</p>
+<h2>The containers pool</h2>
+<p>A pool is defined via a <code>docker-compose</code> YAML config file. The name of the config file defines the pool name.</p>
+<p>All the YAML config files must reside into the folder defined via the <code>dc_confd</code> variable.</p>
+<p>Once you created the config file you are ready to use <code>dcw</code> as an SSH command.</p>
+<h2>Usage</h2>
+<p>First of all you have to clone the <a href="https://github.com/pbertera/dcw">git repo</a>:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /opt
+$ git clone https://github.com/pbertera/dcw
+</pre></div>
+
+
+<p>The git repository contains a ready to use <code>docker-compose</code> config file named <code>nginx.yaml</code>.</p>
+<p>This file defines a pool of 3 <a href="https://www.nginx.com">NGINX</a> containers, each container exposes an HTTP and HTTPS port and defines some data volumes, please refer to the <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> documentation for the file syntax.</p>
+<p>The <code>nginx.yaml</code> defines also a label named <code>management.command.shell</code> with value <code>docker exec -it nginx1 /bin/bash</code>.</p>
+<p>Configuring <code>dcw</code> is quite simple: you have to properly configure the following variables:</p>
+<ul>
+<li><strong>dc_confd</strong>: the directory conatining all the docker-compose YAML files (in this case <code>/opt/dcw</code>)</li>
+<li><strong>dc_denied_commands</strong>: (optional) a regex defining all the not allowed <code>docker-compose</code>, default <code>^kill|^rm</code></li>
+<li>In case you want to have the <a href="https://slack.com/">Slack</a> or <a href="https://www.hipchat.com/">HipChat</a> integration all the other needed vars.</li>
+</ul>
+<p>Now you are ready to use dcw into the <code>~/.ssh/authorized_keys</code> file: edit the <code>authorized_keys</code> in order to use the <code>dcw</code> script as an SSH command associated with an SSH public key:</p>
+<div class="highlight"><pre><span></span>command=&quot;/opt/dcw/dcw&quot;,no-port-forwarding,no-agent-forwarding,no-X11-forwarding ssh-rsa AAAAB3NzaC1 [..] == pietro@hank
+</pre></div>
+
+
+<p>At this point everything should be ready and you can start using the tool: connect to the remote host using the proper SSH key and user:</p>
+<div class="highlight"><pre><span></span>$ ssh pietro.bertera@server <span class="nb">help</span>
+INFO: SSH Original command: <span class="nb">help</span>
+Usage:
+
+ssh user@remote-host &lt;pool<span class="p">|</span>command&gt; &lt;args&gt;
+
+Examples:
+
+Run the docker-compose ps over the ldap service pool:
+    ssh user@remote-host pool ldap ps
+
+Start the service ldap1 from the ldap pool:
+    ssh user@remote-host pool ldap start ldap1
+
+Execute the <span class="nb">command</span> defined into the label <span class="s1">&#39;management.command&#39;</span> of the ldap1 container:
+    ssh user@remote-host <span class="nb">command</span> ldap1 shell
+
+List all the available commands into the container ldap1:
+    ssh user@remote-host <span class="nb">command</span> ldap1 <span class="nb">help</span>
+</pre></div>
+
+
+<p>List all the containers in the <code>nginx</code> pool:</p>
+<div class="highlight"><pre><span></span>$ ssh pietro.bertera@server pool nginx ps
+INFO: SSH Original command: pool nginx ps
+INFO: executing docker-compose ps on nginx
+ Name               Command                State                         Ports                     
+--------------------------------------------------------------------------------------------------
+nginx1   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10081-&gt;443/tcp, 0.0.0.0:10080-&gt;80/tcp 
+nginx2   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10083-&gt;443/tcp, 0.0.0.0:10082-&gt;80/tcp 
+nginx3   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10085-&gt;443/tcp, 0.0.0.0:10084-&gt;80/tcp 
+nginx4   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10087-&gt;443/tcp, 0.0.0.0:10086-&gt;80/tcp 
+</pre></div>
+
+
+<p>Start the container <code>nginx1</code>:</p>
+<div class="highlight"><pre><span></span>$ ssh pietro.bertera@server pool nginx up -d nginx1
+INFO: SSH Original command: pool nginx up -d nginx1
+INFO: executing docker-compose up -d nginx1 on nginx
+Creating network <span class="s2">&quot;nginx_default&quot;</span> with the default driver
+Creating nginx1
+</pre></div>
+
+
+<p>Execute the command defined by the <code>management.command.shell</code> Docker label executing the command <code>docker exec -it nginx1 /bin/bash</code> on the host, in this case the <code>-t</code> SSH option is needed in order to allocate a pseudo terminal:</p>
+<div class="highlight"><pre><span></span>$ ssh -t pietro.bertera@server <span class="nb">command</span> nginx1 shell
+INFO: SSH Original command: <span class="nb">command</span> nginx1 shell
+INFO: executing <span class="nb">command</span> from label management.command.shell into container nginx1
+root@23047d54e97b:/#
+</pre></div>
+
+
+<p>If you configured also the <a href="https://slack.com/">Slack</a> or <a href="https://www.hipchat.com/">HipChat</a> integration all the command will be logged on Slack or HipChat too.</p>
+<h2>Security</h2>
+<p>This tool doesn't provide any security feature, so should be used only to provide a simplified way to start/stop containers and execute commands to trusted users only.</p>
+<p>For any suggestion, improvement or idea feel free to contact me.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://www.bertera.it/tag/docker.html">Docker</a>
+      <a href="http://www.bertera.it/tag/bash.html">Bash</a>
+      <a href="http://www.bertera.it/tag/ssh.html">SSH</a>
+    </p>
+  </div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bertera-it';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://www.bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Introducing dcw: a Poor Man PaaS tool",
+  "headline": "Introducing dcw: a Poor Man PaaS tool",
+  "datePublished": "2017-03-28 22:25:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Pietro",
+    "url": "http://www.bertera.it/author/pietro.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html",
+  "description": "Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the docker-compose command. The meaning of such wrapper is to expose some docker-compose operations and a set of well defined commands on the host machine. The typical use-case is an SSH command executed via the ~/.ssh/authorized_keys file ..."
+}
+</script></body>
+</html>

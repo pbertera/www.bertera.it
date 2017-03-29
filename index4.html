@@ -71,6 +71,28 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">cisco IOS contextual config diffs via syslog</a></h2>
+    <p>
+      Posted on Mon 11 October 2010 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/cisco.html">cisco</a>,      <a href="http://www.bertera.it/tag/cli.html">cli</a>,      <a href="http://www.bertera.it/tag/syslog.html">syslog</a>      &#8226; <a href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Event amanager applet per salvare il diff tra stratup-config e
+running-config via syslog.</p>
+<div class="highlight"><pre><span></span><span class="x">event manager applet wr-mem-match </span>
+<span class="x"> event cli pattern &quot;wr.* mem.*&quot; sync yes</span>
+<span class="x"> action 1.0 cli command &quot;enable&quot;</span>
+<span class="x"> action 1.1 cli command &quot;show archive config differences nvram:/startup-config system:/running-config&quot;</span>
+<span class="x"> action 1.2 syslog msg &quot;</span><span class="p">$</span><span class="nv">_cli_result</span><span class="x">&quot;</span>
+<span class="x"> set ...</span></pre></div>
+      <a class="btn" href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Authentication username in Astersik SIP peer</a></h2>
     <p>
       Posted on Mon 12 July 2010 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
@@ -292,22 +314,6 @@ Per chi non si fida
 procedure esegue il dump di tutti i database utente in file .BAK.</p>
 <p>Viene installata ed eseguita ...</p>
       <a class="btn" href="http://www.bertera.it/sql-server-backup-con-bacula.html#sql-server-backup-con-bacula">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/kecho.html#kecho">Kecho</a></h2>
-    <p>
-      Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/kernel.html">kernel</a>,      <a href="http://www.bertera.it/tag/networking.html">networking</a>      &#8226; <a href="http://www.bertera.it/kecho.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>Kernel echo è un esempio di comunicazione tra userspace e kernelspace<br />
-<a href="https://github.com/pbertera/junk/tree/master/kecho">kecho</a></p>
-      <a class="btn" href="http://www.bertera.it/kecho.html#kecho">Continue reading</a>
   </div>
 </article>
 

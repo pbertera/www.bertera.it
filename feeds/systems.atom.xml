@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2016-09-06T03:25:00+02:00</updated><entry><title>A DNS server with Batteries Included with PowerDNS, Docker and Python</title><link href="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html" rel="alternate"></link><published>2016-09-06T03:25:00+02:00</published><author><name>Pietro</name></author><id>tag:www.bertera.it,2016-09-06:a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html</id><summary type="html">&lt;p&gt;If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind &lt;a href="http://www.zytrax.com/books/dns/ch6/mydomain.html"&gt;zone file&lt;/a&gt; is an annoying and error-prone task.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2017-03-28T22:25:00+02:00</updated><entry><title>Introducing dcw: a Poor Man PaaS tool</title><link href="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html" rel="alternate"></link><published>2017-03-28T22:25:00+02:00</published><author><name>Pietro</name></author><id>tag:www.bertera.it,2017-03-28:introducing-dcw-a-poor-man-paas-tool.html</id><summary type="html">&lt;p&gt;Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the &lt;a href="https://docs.docker.com/compose/"&gt;&lt;code&gt;docker-compose&lt;/code&gt;&lt;/a&gt; command. The meaning of such wrapper is to expose some &lt;code&gt;docker-compose&lt;/code&gt; &lt;a href="https://docs.docker.com/compose/reference/"&gt;operations&lt;/a&gt;  and a set of well defined commands on the host machine.&lt;/p&gt;
+&lt;p&gt;The typical use-case is an SSH command executed via the &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; file, in this way you can provide provide some &lt;code&gt;docker-compose&lt;/code&gt; commands that can be execute with some specific &lt;code&gt;docker-compose&lt;/code&gt; config files.&lt;/p&gt;
+&lt;h2&gt;The containers pool&lt;/h2&gt;
+&lt;p&gt;A pool is defined via a &lt;code&gt;docker-compose&lt;/code&gt; YAML config file. The name of the config file defines the pool name.&lt;/p&gt;
+&lt;p&gt;All the YAML config files must reside into the folder defined via the &lt;code&gt;dc_confd&lt;/code&gt; variable.&lt;/p&gt;
+&lt;p&gt;Once you created the config file you are ready to use &lt;code&gt;dcw&lt;/code&gt; as an SSH command.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;First of all you have to clone the &lt;a href="https://github.com/pbertera/dcw"&gt;git repo&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; /opt
+$ git clone https://github.com/pbertera/dcw
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The git repository contains a ready to use &lt;code&gt;docker-compose&lt;/code&gt; config file named &lt;code&gt;nginx.yaml&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This file defines a pool of 3 &lt;a href="https://www.nginx.com"&gt;NGINX&lt;/a&gt; containers, each container exposes an HTTP and HTTPS port and defines some data volumes, please refer to the &lt;a href="https://docs.docker.com/compose/"&gt;&lt;code&gt;docker-compose&lt;/code&gt;&lt;/a&gt; documentation for the file syntax.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;nginx.yaml&lt;/code&gt; defines also a label named &lt;code&gt;management.command.shell&lt;/code&gt; with value &lt;code&gt;docker exec -it nginx1 /bin/bash&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Configuring &lt;code&gt;dcw&lt;/code&gt; is quite simple: you have to properly configure the following variables:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;dc_confd&lt;/strong&gt;: the directory conatining all the docker-compose YAML files (in this case &lt;code&gt;/opt/dcw&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;dc_denied_commands&lt;/strong&gt;: (optional) a regex defining all the not allowed &lt;code&gt;docker-compose&lt;/code&gt;, default &lt;code&gt;^kill|^rm&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;In case you want to have the &lt;a href="https://slack.com/"&gt;Slack&lt;/a&gt; or &lt;a href="https://www.hipchat.com/"&gt;HipChat&lt;/a&gt; integration all the other needed vars.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now you are ready to use dcw into the &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; file: edit the &lt;code&gt;authorized_keys&lt;/code&gt; in order to use the &lt;code&gt;dcw&lt;/code&gt; script as an SSH command associated with an SSH public key:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;command=&amp;quot;/opt/dcw/dcw&amp;quot;,no-port-forwarding,no-agent-forwarding,no-X11-forwarding ssh-rsa AAAAB3NzaC1 [..] == pietro@hank
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At this point everything should be ready and you can start using the tool: connect to the remote host using the proper SSH key and user:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh pietro.bertera@server &lt;span class="nb"&gt;help&lt;/span&gt;
+INFO: SSH Original command: &lt;span class="nb"&gt;help&lt;/span&gt;
+Usage:
+
+ssh user@remote-host &amp;lt;pool&lt;span class="p"&gt;|&lt;/span&gt;command&amp;gt; &amp;lt;args&amp;gt;
+
+Examples:
+
+Run the docker-compose ps over the ldap service pool:
+    ssh user@remote-host pool ldap ps
+
+Start the service ldap1 from the ldap pool:
+    ssh user@remote-host pool ldap start ldap1
+
+Execute the &lt;span class="nb"&gt;command&lt;/span&gt; defined into the label &lt;span class="s1"&gt;&amp;#39;management.command&amp;#39;&lt;/span&gt; of the ldap1 container:
+    ssh user@remote-host &lt;span class="nb"&gt;command&lt;/span&gt; ldap1 shell
+
+List all the available commands into the container ldap1:
+    ssh user@remote-host &lt;span class="nb"&gt;command&lt;/span&gt; ldap1 &lt;span class="nb"&gt;help&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;List all the containers in the &lt;code&gt;nginx&lt;/code&gt; pool:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh pietro.bertera@server pool nginx ps
+INFO: SSH Original command: pool nginx ps
+INFO: executing docker-compose ps on nginx
+ Name               Command                State                         Ports                     
+--------------------------------------------------------------------------------------------------
+nginx1   /entrypoint.sh nginx -g da ...   Exit &lt;span class="m"&gt;137&lt;/span&gt;   0.0.0.0:10081-&amp;gt;443/tcp, 0.0.0.0:10080-&amp;gt;80/tcp 
+nginx2   /entrypoint.sh nginx -g da ...   Exit &lt;span class="m"&gt;137&lt;/span&gt;   0.0.0.0:10083-&amp;gt;443/tcp, 0.0.0.0:10082-&amp;gt;80/tcp 
+nginx3   /entrypoint.sh nginx -g da ...   Exit &lt;span class="m"&gt;137&lt;/span&gt;   0.0.0.0:10085-&amp;gt;443/tcp, 0.0.0.0:10084-&amp;gt;80/tcp 
+nginx4   /entrypoint.sh nginx -g da ...   Exit &lt;span class="m"&gt;137&lt;/span&gt;   0.0.0.0:10087-&amp;gt;443/tcp, 0.0.0.0:10086-&amp;gt;80/tcp 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Start the container &lt;code&gt;nginx1&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh pietro.bertera@server pool nginx up -d nginx1
+INFO: SSH Original command: pool nginx up -d nginx1
+INFO: executing docker-compose up -d nginx1 on nginx
+Creating network &lt;span class="s2"&gt;&amp;quot;nginx_default&amp;quot;&lt;/span&gt; with the default driver
+Creating nginx1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Execute the command defined by the &lt;code&gt;management.command.shell&lt;/code&gt; Docker label executing the command &lt;code&gt;docker exec -it nginx1 /bin/bash&lt;/code&gt; on the host, in this case the &lt;code&gt;-t&lt;/code&gt; SSH option is needed in order to allocate a pseudo terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh -t pietro.bertera@server &lt;span class="nb"&gt;command&lt;/span&gt; nginx1 shell
+INFO: SSH Original command: &lt;span class="nb"&gt;command&lt;/span&gt; nginx1 shell
+INFO: executing &lt;span class="nb"&gt;command&lt;/span&gt; from label management.command.shell into container nginx1
+root@23047d54e97b:/#
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you configured also the &lt;a href="https://slack.com/"&gt;Slack&lt;/a&gt; or &lt;a href="https://www.hipchat.com/"&gt;HipChat&lt;/a&gt; integration all the command will be logged on Slack or HipChat too.&lt;/p&gt;
+&lt;h2&gt;Security&lt;/h2&gt;
+&lt;p&gt;This tool doesn't provide any security feature, so should be used only to provide a simplified way to start/stop containers and execute commands to trusted users only.&lt;/p&gt;
+&lt;p&gt;For any suggestion, improvement or idea feel free to contact me.&lt;/p&gt;</summary><category term="Docker"></category><category term="Bash"></category><category term="SSH"></category></entry><entry><title>A DNS server with Batteries Included with PowerDNS, Docker and Python</title><link href="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html" rel="alternate"></link><published>2016-09-06T03:25:00+02:00</published><author><name>Pietro</name></author><id>tag:www.bertera.it,2016-09-06:a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html</id><summary type="html">&lt;p&gt;If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind &lt;a href="http://www.zytrax.com/books/dns/ch6/mydomain.html"&gt;zone file&lt;/a&gt; is an annoying and error-prone task.&lt;/p&gt;
 &lt;p&gt;In order to make this job simpler I worked on &lt;a href="https://hub.docker.com/r/pbertera/pdns/"&gt;this&lt;/a&gt; Docker container: the container instantiate a &lt;a href="https://www.powerdns.com/"&gt;PowerDNS&lt;/a&gt; and provides an easy-to-use &lt;a href="https://github.com/pbertera/PowerDNS-CLI"&gt;CLI script&lt;/a&gt; interacting with the REST API.&lt;/p&gt;
 &lt;h2&gt;How to use:&lt;/h2&gt;
 &lt;p&gt;Inspired by the illuminating &lt;a href="https://twitter.com/jessfraz"&gt;@jessfraz&lt;/a&gt; &lt;a href="https://blog.jessfraz.com/post/docker-containers-on-the-desktop/"&gt;post&lt;/a&gt; about containerizing everything, I added to my &lt;a href="https://github.com/pbertera/dotfiles/blob/master/.dockerfunc"&gt;.dockerfunc&lt;/a&gt; some helper functions: &lt;/p&gt;
