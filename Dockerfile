@@ -7,9 +7,15 @@ RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /
+COPY shutil.py.diff /tmp/
 RUN pip install -r /requirements.txt
 #RUN pip install pelican Markdown ghp-import
 #RUN pip install --upgrade pelican Markdown ghp-import
+
+# Workaround shutil see:
+# https://github.com/containers/podman/issues/4963
+# https://github.com/freeipa/freeipa-container/issues/313
+RUN patch /usr/local/lib/python3.8/shutil.py /tmp/shutil.py.diff
 
 WORKDIR /site
 

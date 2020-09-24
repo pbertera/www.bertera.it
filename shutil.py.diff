@@ -1,0 +1,11 @@
+--- /usr/local/lib/python3.8/shutil.py.orig	2020-09-24 08:28:23.769505229 +0000
++++ /usr/local/lib/python3.8/shutil.py	2020-09-24 08:28:54.135481332 +0000
+@@ -321,6 +321,8 @@
+                 raise
+             return
+         for name in names:
++            if name == 'security.selinux':
++                continue
+             try:
+                 value = os.getxattr(src, name, follow_symlinks=follow_symlinks)
+                 os.setxattr(dst, name, value, follow_symlinks=follow_symlinks)
