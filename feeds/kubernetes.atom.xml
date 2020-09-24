@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/kubernetes.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2020-09-24T20:25:00+02:00</updated><entry><title>Kubernetes semaphore Validating Webhook</title><link href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html" rel="alternate"></link><published>2020-09-24T20:25:00+02:00</published><updated>2020-09-24T20:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2020-09-24:kubernetes-semaphore-validating-webhook.html</id><summary type="html">&lt;p&gt;After more than 2 years a new post!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/kubernetes.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2020-09-24T20:25:00+02:00</updated><entry><title>Kubernetes semaphore Validating Webhook</title><link href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html" rel="alternate"></link><published>2020-09-24T20:25:00+02:00</published><updated>2020-09-24T20:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2020-09-24:kubernetes-semaphore-validating-webhook.html</id><summary type="html">&lt;p&gt;After more than 3 years a new post!&lt;/p&gt;
 &lt;p&gt;In the path of learning Kubernetes &lt;a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/"&gt;Dynamic Admission Control&lt;/a&gt; I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/pbertera/k8s-semaphore"&gt;k8s-semaphore&lt;/a&gt; is a quick and dirty &lt;a href="https://webpy.org/"&gt;web.py&lt;/a&gt; app implementing the webhook, can be deployed on any Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;Here is a self-explaining usage of the admission controller:&lt;/p&gt;
@@ -9,7 +9,7 @@
 &lt;span class="s"&gt;metadata:&lt;/span&gt;
 &lt;span class="s"&gt;  annotations:&lt;/span&gt;
 &lt;span class="s"&gt;    bertera.it/k8s-semaphore: red&lt;/span&gt;
-&lt;span class="s"&gt;  name: k8s-semaphore-test&lt;/span&gt;
+&lt;span class="s"&gt;  name: test&lt;/span&gt;
 &lt;span class="s"&gt;spec:&lt;/span&gt;
 &lt;span class="s"&gt;  containers:&lt;/span&gt;
 &lt;span class="s"&gt;  - name: test&lt;/span&gt;

@@ -28,11 +28,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Pietro" />
-<meta name="description" content="After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..." />
+<meta name="description" content="After more than 3 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..." />
 <meta name="keywords" content="Kubernetes, OpenShift">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="Kubernetes semaphore Validating Webhook"/>
-<meta property="og:description" content="After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..."/>
+<meta property="og:description" content="After more than 3 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html"/>
 <meta property="og:type" content="article"/>
@@ -81,7 +81,7 @@
     <p>Posted on Thu 24 September 2020 in <a href="http://www.bertera.it/category/kubernetes.html">Kubernetes</a></p>
   </header>
   <div>
-    <p>After more than 2 years a new post!</p>
+    <p>After more than 3 years a new post!</p>
 <p>In the path of learning Kubernetes <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">Dynamic Admission Control</a> I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label.</p>
 <p><a href="https://github.com/pbertera/k8s-semaphore">k8s-semaphore</a> is a quick and dirty <a href="https://webpy.org/">web.py</a> app implementing the webhook, can be deployed on any Kubernetes cluster.</p>
 <p>Here is a self-explaining usage of the admission controller:</p>
@@ -91,7 +91,7 @@
 <span class="s">metadata:</span>
 <span class="s">  annotations:</span>
 <span class="s">    bertera.it/k8s-semaphore: red</span>
-<span class="s">  name: k8s-semaphore-test</span>
+<span class="s">  name: test</span>
 <span class="s">spec:</span>
 <span class="s">  containers:</span>
 <span class="s">  - name: test</span>
@@ -185,7 +185,7 @@ pod <span class="s2">&quot;test&quot;</span> deleted
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "url": "http://www.bertera.it/kubernetes-semaphore-validating-webhook.html",
-  "description": "After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..."
+  "description": "After more than 3 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..."
 }
 </script></body>
 </html>
