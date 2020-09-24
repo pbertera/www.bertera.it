@@ -25,6 +25,7 @@ Specialities: VoIP and communication technologies, networking, virtualisation an
 
 ### Technical skills and competencies:
 
+- *Containers orchestration:* Kubernetes OpenShift, Docker, Podman, CRI-O
 - *VoIP:* VoIP networks, Good experience in managing of complex and distributed
 VoIP infrastructures. Cisco CUCM (6.x - 7.x - 8.x), Cisco CM Express, Asterisk,
 OpenSIPS. Deep knowledge in snom products: phones and PBX (snom ONE).
@@ -38,7 +39,7 @@ Cisco devices (IOS, PIX), Vyatta appliances and network softwares (OpenVPN,
 Openswan, iproute2, iptables, vlan, bridge, VRF), excellent knowledge in issues
 relating to VoIP protocols.
 - *Virtualization:* Good knowledge in virtual infrastructure management, planning
-and migration to virtual systems. VMWare (GSX - ESX 4.1), KVM. Integration
+and migration to virtual systems. VMWare (GSX - ESX - VSphere), KVM. Integration
 of virtual systems with backup and disaster recovery.
 - *Systems:* management integration of systems: GNU/Linux (Red Hat, Debian,
 Ubuntu), Postfix, Bacula, Apache, Bind, PowerDNS, MySQL, PostgreSQL, dhcpd,
@@ -47,8 +48,10 @@ Zimbra, Nagios , Samba with integration in Windows networks.
 - *Other:* active in several communities and open source projects, maintainer of software and various projects at [http://www.bertera.it](http://www.bertera.it) and [https://github.com/pbertera](https://github.com/pbertera).
 
 ## Work experience
+**November 2019 - Now:** *Senior OpenShift Technical Account Manager ar Red Hat*
 
-**July 2015 - Now:** *Head of global support and training at Snom Technology AG*
+----------------------------
+**July 2015 - November 2019:** *Head of global support and training at Snom Technology AG*
 
 ###### Duties and responsibilities:
 
