@@ -28,11 +28,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="Asterisk use peername as username during SIP inbound digest authentication. This patch add authuser parameter in SIP peer definition and use authuser in digest authentication: Peer definition in /etc/asterisk/sip.conf ... [pietro](sip-client-base) authuser=MyUsername secret=XXXXX qualify=yes nat=yes ... Peer definition in my SIP client (Twinkle) REGISTER ..." />
+<meta name="description" content="Asterisk use peername as username during SIP inbound digest authentication. This patch add authuser parameter in SIP peer definition and use authuser in digest authentication: Peer definition in /etc/asterisk/sip.conf ... [pietro](sip-client-base) authuser=MyUsername secret=XXXXX qualify=yes nat=yes ... Peer definition in my SIP client ..." />
 <meta name="keywords" content="asterisk, c, patch, VoIP">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="Authentication username in Astersik SIP peer"/>
-<meta property="og:description" content="Asterisk use peername as username during SIP inbound digest authentication. This patch add authuser parameter in SIP peer definition and use authuser in digest authentication: Peer definition in /etc/asterisk/sip.conf ... [pietro](sip-client-base) authuser=MyUsername secret=XXXXX qualify=yes nat=yes ... Peer definition in my SIP client (Twinkle) REGISTER ..."/>
+<meta property="og:description" content="Asterisk use peername as username during SIP inbound digest authentication. This patch add authuser parameter in SIP peer definition and use authuser in digest authentication: Peer definition in /etc/asterisk/sip.conf ... [pietro](sip-client-base) authuser=MyUsername secret=XXXXX qualify=yes nat=yes ... Peer definition in my SIP client ..."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html"/>
 <meta property="og:type" content="article"/>
@@ -90,53 +90,53 @@ patch</a>
 add <strong>authuser</strong> parameter in SIP peer definition and use authuser in
 digest authentication:</p>
 <p><strong>Peer definition in /etc/asterisk/sip.conf</strong>  </p>
-<div class="highlight"><pre><span></span>...
-[pietro](sip-client-base)
-authuser=MyUsername
-secret=XXXXX
-qualify=yes
-nat=yes
-...
+<div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+<span class="o">[</span><span class="n">pietro</span><span class="o">]</span><span class="p">(</span><span class="n">sip</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">base</span><span class="p">)</span><span class="w"></span>
+<span class="n">authuser</span><span class="o">=</span><span class="n">MyUsername</span><span class="w"></span>
+<span class="n">secret</span><span class="o">=</span><span class="n">XXXXX</span><span class="w"></span>
+<span class="n">qualify</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="n">nat</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 </pre></div>
 
 
 <p><strong>Peer definition in my SIP client (Twinkle)</strong><br />
 <img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /></p>
 <p><strong>REGISTER message from my SIP client</strong>  </p>
-<div class="highlight"><pre><span></span><span class="nt">REGISTER</span> <span class="nt">sip</span><span class="nd">:bertera</span><span class="nc">.it</span> <span class="nt">SIP</span><span class="o">/</span><span class="nt">2</span><span class="nc">.0</span>
-<span class="nt">Via</span><span class="o">:</span> <span class="nt">SIP</span><span class="o">/</span><span class="nt">2</span><span class="nc">.0</span><span class="o">/</span><span class="nt">UDP</span> <span class="nt">88</span><span class="nc">.149.226.66</span><span class="nd">:10458</span><span class="o">;</span><span class="nt">rport</span><span class="o">;</span><span class="nt">branch</span><span class="o">=</span><span class="nt">z9hG4bKkqpevlic</span>
-<span class="nt">Max-Forwards</span><span class="o">:</span> <span class="nt">70</span>
-<span class="nt">To</span><span class="o">:</span> <span class="s2">&quot;Pietro&quot;</span>
-<span class="nt">From</span><span class="o">:</span> <span class="s2">&quot;Pietro&quot;</span> <span class="o">;</span><span class="nt">tag</span><span class="o">=</span><span class="nt">ntlug</span>
-<span class="nt">Call-ID</span><span class="o">:</span> <span class="nt">mqezxbywgtulavj</span><span class="k">@bertuccia</span>
-<span class="nt">CSeq</span><span class="o">:</span> <span class="nt">681</span> <span class="nt">REGISTER</span>
-<span class="nt">Contact</span><span class="o">:</span> <span class="p">;</span><span class="nt">expires</span><span class="o">=</span><span class="nt">3600</span>
-<span class="nt">Authorization</span><span class="o">:</span> <span class="nt">Digest</span> <span class="nt">username</span><span class="o">=</span><span class="s2">&quot;MyUsername&quot;</span><span class="o">,</span><span class="nt">realm</span><span class="o">=</span><span class="s2">&quot;bertera.it&quot;</span><span class="o">,</span><span class="nt">nonce</span><span class="o">=</span><span class="s2">&quot;27f804de&quot;</span><span class="o">,</span><span class="nt">uri</span><span class="o">=</span><span class="s2">&quot;sip:bertera.it&quot;</span><span class="o">,</span><span class="nt">response</span><span class="o">=</span><span class="s2">&quot;47dbf0a57d80faffd148b58d84edc2db&quot;</span><span class="o">,</span><span class="nt">algorithm</span><span class="o">=</span><span class="nt">MD5</span> <span class="nt">Allow</span><span class="o">:</span> <span class="nt">INVITE</span><span class="o">,</span><span class="nt">ACK</span><span class="o">,</span><span class="nt">BYE</span><span class="o">,</span><span class="nt">CANCEL</span><span class="o">,</span><span class="nt">OPTIONS</span><span class="o">,</span><span class="nt">PRACK</span><span class="o">,</span><span class="nt">REFER</span><span class="o">,</span><span class="nt">NOTIFY</span><span class="o">,</span><span class="nt">SUBSCRIBE</span><span class="o">,</span><span class="nt">INFO</span><span class="o">,</span><span class="nt">MESSAGE</span>
-<span class="nt">User-Agent</span><span class="o">:</span> <span class="nt">Twinkle</span><span class="o">/</span><span class="nt">1</span><span class="nc">.4.2</span>
-<span class="nt">Content-Length</span><span class="o">:</span> <span class="nt">0</span>
+<div class="highlight"><pre><span></span><span class="err">REGISTER sip:bertera.it SIP/2.0</span>
+<span class="c">Via: SIP/2.0/UDP 88.149.226.66:10458;rport;branch=z9hG4bKkqpevlic</span>
+<span class="c">Max-Forwards: 70</span>
+<span class="c">To: &quot;Pietro&quot;</span>
+<span class="c">From: &quot;Pietro&quot; ;tag=ntlug</span>
+<span class="c">Call-ID: mqezxbywgtulavj@bertuccia</span>
+<span class="c">CSeq: 681 REGISTER</span>
+<span class="c">Contact: ;expires=3600</span>
+<span class="c">Authorization: Digest username=&quot;MyUsername&quot;,realm=&quot;bertera.it&quot;,nonce=&quot;27f804de&quot;,uri=&quot;sip:bertera.it&quot;,response=&quot;47dbf0a57d80faffd148b58d84edc2db&quot;,algorithm=MD5 Allow: INVITE,ACK,BYE,CANCEL,OPTIONS,PRACK,REFER,NOTIFY,SUBSCRIBE,INFO,MESSAGE</span>
+<span class="c">User-Agent: Twinkle/1.4.2</span>
+<span class="c">Content-Length: 0</span>
 </pre></div>
 
 
 <p><strong>Message in Asterisk CLI:</strong>  </p>
-<div class="highlight"><pre><span></span>[Feb 4 23:23:35] NOTICE[24864]: chan_sip.c:13016 register_verify: Trying athenticate peer &#39;pietro&#39; using authuser: &#39;MyUsername&#39;
--- Registered SIP &#39;pietro&#39; at 88.149.226.66 port 10458
+<div class="highlight"><pre><span></span><span class="err">[Feb 4 23:23:35] NOTICE[24864]: chan_sip.c:13016 register_verify: Trying athenticate peer &#39;pietro&#39; using authuser: &#39;MyUsername&#39;</span>
+<span class="err">-- Registered SIP &#39;pietro&#39; at 88.149.226.66 port 10458</span>
 </pre></div>
 
 
 <p><strong>REGISTER Confirmation from Asterisk:</strong>  </p>
-<div class="highlight"><pre><span></span><span class="nt">SIP</span><span class="o">/</span><span class="nt">2</span><span class="nc">.0</span> <span class="nt">200</span> <span class="nt">OK</span>
-<span class="nt">Via</span><span class="o">:</span> <span class="nt">SIP</span><span class="o">/</span><span class="nt">2</span><span class="nc">.0</span><span class="o">/</span><span class="nt">UDP</span> <span class="nt">88</span><span class="nc">.149.226.66</span><span class="nd">:10458</span><span class="o">;</span><span class="nt">branch</span><span class="o">=</span><span class="nt">z9hG4bKkqpevlic</span><span class="o">;</span><span class="nt">received</span><span class="o">=</span><span class="nt">88</span><span class="nc">.149.226.66</span><span class="o">;</span><span class="nt">rport</span><span class="o">=</span><span class="nt">10458</span>
-<span class="nt">From</span><span class="o">:</span> <span class="s2">&quot;Pietro&quot;</span> <span class="o">;</span><span class="nt">tag</span><span class="o">=</span><span class="nt">ntlug</span>
-<span class="nt">To</span><span class="o">:</span> <span class="s2">&quot;Pietro&quot;</span> <span class="o">;</span><span class="nt">tag</span><span class="o">=</span><span class="nt">as49faff1f</span>
-<span class="nt">Call-ID</span><span class="o">:</span> <span class="nt">mqezxbywgtulavj</span><span class="k">@bertuccia</span>
-<span class="nt">CSeq</span><span class="o">:</span> <span class="nt">681</span> <span class="nt">REGISTER</span>
-<span class="nt">Server</span><span class="o">:</span> <span class="nt">Asterisk</span> <span class="nt">PBX</span> <span class="nt">1</span><span class="nc">.6.2.2</span>
-<span class="nt">Allow</span><span class="o">:</span> <span class="nt">INVITE</span><span class="o">,</span> <span class="nt">ACK</span><span class="o">,</span> <span class="nt">CANCEL</span><span class="o">,</span> <span class="nt">OPTIONS</span><span class="o">,</span> <span class="nt">BYE</span><span class="o">,</span> <span class="nt">REFER</span><span class="o">,</span> <span class="nt">SUBSCRIBE</span><span class="o">,</span> <span class="nt">NOTIFY</span><span class="o">,</span> <span class="nt">INFO</span>
-<span class="nt">Supported</span><span class="o">:</span> <span class="nt">replaces</span><span class="o">,</span> <span class="nt">timer</span>
-<span class="nt">Expires</span><span class="o">:</span> <span class="nt">3600</span>
-<span class="nt">Contact</span><span class="o">:</span> <span class="p">;</span><span class="nt">expires</span><span class="o">=</span><span class="nt">3600</span>
-<span class="nt">Date</span><span class="o">:</span> <span class="nt">Thu</span><span class="o">,</span> <span class="nt">04</span> <span class="nt">Feb</span> <span class="nt">2010</span> <span class="nt">22</span><span class="nd">:23:35</span> <span class="nt">GMT</span>
-<span class="nt">Content-Length</span><span class="o">:</span> <span class="nt">0</span>
+<div class="highlight"><pre><span></span><span class="err">SIP/2.0 200 OK</span>
+<span class="c">Via: SIP/2.0/UDP 88.149.226.66:10458;branch=z9hG4bKkqpevlic;received=88.149.226.66;rport=10458</span>
+<span class="c">From: &quot;Pietro&quot; ;tag=ntlug</span>
+<span class="c">To: &quot;Pietro&quot; ;tag=as49faff1f</span>
+<span class="c">Call-ID: mqezxbywgtulavj@bertuccia</span>
+<span class="c">CSeq: 681 REGISTER</span>
+<span class="c">Server: Asterisk PBX 1.6.2.2</span>
+<span class="c">Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO</span>
+<span class="c">Supported: replaces, timer</span>
+<span class="c">Expires: 3600</span>
+<span class="c">Contact: ;expires=3600</span>
+<span class="c">Date: Thu, 04 Feb 2010 22:23:35 GMT</span>
+<span class="c">Content-Length: 0</span>
 </pre></div>
 
 
@@ -259,7 +259,7 @@ nat=yes
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "url": "http://www.bertera.it/authentication-username-in-astersik-sip-peer.html",
-  "description": "Asterisk use peername as username during SIP inbound digest authentication. This patch add authuser parameter in SIP peer definition and use authuser in digest authentication: Peer definition in /etc/asterisk/sip.conf ... [pietro](sip-client-base) authuser=MyUsername secret=XXXXX qualify=yes nat=yes ... Peer definition in my SIP client (Twinkle) REGISTER ..."
+  "description": "Asterisk use peername as username during SIP inbound digest authentication. This patch add authuser parameter in SIP peer definition and use authuser in digest authentication: Peer definition in /etc/asterisk/sip.conf ... [pietro](sip-client-base) authuser=MyUsername secret=XXXXX qualify=yes nat=yes ... Peer definition in my SIP client ..."
 }
 </script></body>
 </html>

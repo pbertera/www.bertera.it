@@ -135,49 +135,49 @@ below:</p>
 40
 41
 42
-43</pre></div></td><td class="code"><div class="highlight"><pre><span></span>#! /usr/bin/pdmenu -c
-#
-## Version 2.0
-#
-## Title
-preproc: echo &quot;Title: test&quot;
-color:desktop:blue:blue
-color:title:red:white
-color:base:blue:white
-# File manager
-menu:provisioning: Provisioning file management : 
-group:_Edit a file
-    exec::makemenu: (\
-            /usr/share/pdmenu/editdir.pl /var/www &quot;&quot; show_directory \
-            ) 2&gt;/dev/null
-    show:::show_directory
-    remove:::show_directory
-endgroup
-group:_Remove a file or directory
-    exec::makemenu: (\
-            /usr/share/pdmenu/deldir.pl /var/www &quot;&quot; del_directory \
-            ) 2&gt;/dev/null
-    show:::del_directory
-    remove:::del_directory
-endgroup
-group:Add a _directory
-    exec::makemenu: (\
-            /usr/share/pdmenu/adddir.pl /var/www &quot;&quot; add_directory \
-            ) 2&gt;/dev/null
-    show:::add_directory
-    remove:::add_directory
-endgroup
-group:Add a _file
-    exec::makemenu: (\
-            /usr/share/pdmenu/addfile.pl /var/www &quot;&quot; add_file \
-            ) 2&gt;/dev/null
-    show:::add_file
-    remove:::add_file
-endgroup
-nop
+43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">#! /usr/bin/pdmenu -c</span>
+<span class="c1">#</span>
+<span class="c1">## Version 2.0</span>
+<span class="c1">#</span>
+<span class="c1">## Title</span>
+<span class="n">preproc</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;Title: test&quot;</span>
+<span class="n">color</span><span class="p">:</span><span class="n">desktop</span><span class="p">:</span><span class="n">blue</span><span class="p">:</span><span class="n">blue</span>
+<span class="n">color</span><span class="p">:</span><span class="n">title</span><span class="p">:</span><span class="n">red</span><span class="p">:</span><span class="n">white</span>
+<span class="n">color</span><span class="p">:</span><span class="n">base</span><span class="p">:</span><span class="n">blue</span><span class="p">:</span><span class="n">white</span>
+<span class="c1"># File manager</span>
+<span class="n">menu</span><span class="p">:</span><span class="n">provisioning</span><span class="p">:</span> <span class="n">Provisioning</span> <span class="n">file</span> <span class="n">management</span> <span class="p">:</span> 
+<span class="n">group</span><span class="p">:</span><span class="n">_Edit</span> <span class="n">a</span> <span class="n">file</span>
+    <span class="n">exec</span><span class="p">::</span><span class="n">makemenu</span><span class="p">:</span> <span class="p">(</span>\
+            <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">pdmenu</span><span class="o">/</span><span class="n">editdir</span><span class="o">.</span><span class="n">pl</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span> <span class="s2">&quot;&quot;</span> <span class="n">show_directory</span> \
+            <span class="p">)</span> <span class="mi">2</span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="nb nb-Type">null</span>
+    <span class="n">show</span><span class="p">:::</span><span class="n">show_directory</span>
+    <span class="n">remove</span><span class="p">:::</span><span class="n">show_directory</span>
+<span class="n">endgroup</span>
+<span class="n">group</span><span class="p">:</span><span class="n">_Remove</span> <span class="n">a</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+    <span class="n">exec</span><span class="p">::</span><span class="n">makemenu</span><span class="p">:</span> <span class="p">(</span>\
+            <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">pdmenu</span><span class="o">/</span><span class="n">deldir</span><span class="o">.</span><span class="n">pl</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span> <span class="s2">&quot;&quot;</span> <span class="n">del_directory</span> \
+            <span class="p">)</span> <span class="mi">2</span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="nb nb-Type">null</span>
+    <span class="n">show</span><span class="p">:::</span><span class="n">del_directory</span>
+    <span class="n">remove</span><span class="p">:::</span><span class="n">del_directory</span>
+<span class="n">endgroup</span>
+<span class="n">group</span><span class="p">:</span><span class="n">Add</span> <span class="n">a</span> <span class="n">_directory</span>
+    <span class="n">exec</span><span class="p">::</span><span class="n">makemenu</span><span class="p">:</span> <span class="p">(</span>\
+            <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">pdmenu</span><span class="o">/</span><span class="n">adddir</span><span class="o">.</span><span class="n">pl</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span> <span class="s2">&quot;&quot;</span> <span class="n">add_directory</span> \
+            <span class="p">)</span> <span class="mi">2</span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="nb nb-Type">null</span>
+    <span class="n">show</span><span class="p">:::</span><span class="n">add_directory</span>
+    <span class="n">remove</span><span class="p">:::</span><span class="n">add_directory</span>
+<span class="n">endgroup</span>
+<span class="n">group</span><span class="p">:</span><span class="n">Add</span> <span class="n">a</span> <span class="n">_file</span>
+    <span class="n">exec</span><span class="p">::</span><span class="n">makemenu</span><span class="p">:</span> <span class="p">(</span>\
+            <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">pdmenu</span><span class="o">/</span><span class="n">addfile</span><span class="o">.</span><span class="n">pl</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span> <span class="s2">&quot;&quot;</span> <span class="n">add_file</span> \
+            <span class="p">)</span> <span class="mi">2</span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="nb nb-Type">null</span>
+    <span class="n">show</span><span class="p">:::</span><span class="n">add_file</span>
+    <span class="n">remove</span><span class="p">:::</span><span class="n">add_file</span>
+<span class="n">endgroup</span>
+<span class="n">nop</span>
 
-nop
-exit:E_xit
+<span class="n">nop</span>
+<span class="n">exit</span><span class="p">:</span><span class="n">E_xit</span>
 </pre></div>
 </td></tr></table>
 

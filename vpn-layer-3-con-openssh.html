@@ -90,25 +90,25 @@ occupa di fare il discover dei device tun da utilizzare, assegnare gli
 indirizzi e le rotte al tunnel (locali e sul peer remoto) ed eseguire
 comandi aggiuntivi tramite un file di configurazione.</p>
 <p><strong><a href="https://github.com/pbertera/ssh-vpn/blob/master/example.conf">testvpn.conf</a>:</strong></p>
-<div class="highlight"><pre><span></span><span class="x">SSH_OPTS=&quot;-i /home/pietro/.ssh/id_dsa&quot; </span><span class="err">#</span><span class="x"> optional: options for ssh command</span>
-<span class="x">RUSER=root  </span><span class="err">#</span><span class="x"> user to login on remote peer</span>
-<span class="x">PEER=172.42.10.2 </span><span class="err">#</span><span class="x"> ip of remote peer</span>
-<span class="x">RTUNADDR=10.10.100.2 </span><span class="err">#</span><span class="x"> remote ip of tunnel</span>
-<span class="x">LTUNADDR=10.10.100.1 </span><span class="err">#</span><span class="x"> local ip of tunnel</span>
-<span class="cp">#</span><span class="nf">LOCAL_TUN</span><span class="x">=tun0 </span><span class="cp">#</span><span class="nf">optional</span><span class="x">: static definition of local tun device</span>
-<span class="cp">#</span><span class="nf">REMOTE_TUN</span><span class="x">=tun1 </span><span class="cp">#</span><span class="nf">optional</span><span class="x">: static definition of remote tun device</span>
-<span class="x">REMOTE_NET=172.16.40.1 </span><span class="err">#</span><span class="x"> remote network</span>
-<span class="x">ENABLE_PEER_IP_FORWARD=true </span><span class="err">#</span><span class="x"> enable ip forwarding on remote host</span>
-<span class="x">TRY_LOAD_PEER_TUN_MOD=true </span><span class="err">#</span><span class="x"> try loading tun/tap kernel module</span>
-<span class="x">BAILOUT_COMMAND=&quot;logger died&quot;</span>
-<span class="err">#</span><span class="x"> in POST_TUN_PEER_COMMAND and POST_TUN_LOCAL_COMMAND use &#39; instead &quot; !!!</span>
-<span class="err">#</span><span class="x"> </span><span class="p">$</span><span class="nv">LOCAL_TUN</span><span class="x"> is local tun device</span>
-<span class="err">#</span><span class="x"> </span><span class="p">$</span><span class="nv">REMOTE_TUN</span><span class="x"> is remote tun device</span>
-<span class="x">POST_TUN_PEER_COMMAND=&#39;iptables -I FORWARD -i </span><span class="p">$</span><span class="nv">REMOTE_TUN</span><span class="x"> -j ACCEPT&#39; </span><span class="err">#</span><span class="x"> optional: command to execute on remote peer</span>
-<span class="x">POST_TUN_LOCAL_COMMAND=&#39;ip route add 192.168.6.0/24 via </span><span class="p">$</span><span class="nv">RTUNADDR</span><span class="x"> dev </span><span class="p">$</span><span class="nv">LOCAL_TUN</span><span class="x">&#39; </span><span class="err">#</span><span class="x"> optional: command to execute on local peer</span>
-<span class="x">LOCAL_IP=&quot;ip&quot; </span><span class="err">#</span><span class="x"> optional: local ip command binary</span>
-<span class="x">REMOTE_IP=&quot;ip&quot; </span><span class="err">#</span><span class="x"> optional: remote ip command binary</span>
-<span class="x">SSH=&quot;ssh&quot; </span><span class="err">#</span><span class="x"> optional: ssh binary</span>
+<div class="highlight"><pre><span></span><span class="n">SSH_OPTS</span><span class="o">=</span><span class="s2">&quot;-i /home/pietro/.ssh/id_dsa&quot;</span> <span class="c1"># optional: options for ssh command</span>
+<span class="n">RUSER</span><span class="o">=</span><span class="n">root</span>  <span class="c1"># user to login on remote peer</span>
+<span class="n">PEER</span><span class="o">=</span><span class="mf">172.42</span><span class="o">.</span><span class="mf">10.2</span> <span class="c1"># ip of remote peer</span>
+<span class="n">RTUNADDR</span><span class="o">=</span><span class="mf">10.10</span><span class="o">.</span><span class="mf">100.2</span> <span class="c1"># remote ip of tunnel</span>
+<span class="n">LTUNADDR</span><span class="o">=</span><span class="mf">10.10</span><span class="o">.</span><span class="mf">100.1</span> <span class="c1"># local ip of tunnel</span>
+<span class="c1">#LOCAL_TUN=tun0 #optional: static definition of local tun device</span>
+<span class="c1">#REMOTE_TUN=tun1 #optional: static definition of remote tun device</span>
+<span class="n">REMOTE_NET</span><span class="o">=</span><span class="mf">172.16</span><span class="o">.</span><span class="mf">40.1</span> <span class="c1"># remote network</span>
+<span class="n">ENABLE_PEER_IP_FORWARD</span><span class="o">=</span><span class="bp">true</span> <span class="c1"># enable ip forwarding on remote host</span>
+<span class="n">TRY_LOAD_PEER_TUN_MOD</span><span class="o">=</span><span class="bp">true</span> <span class="c1"># try loading tun/tap kernel module</span>
+<span class="n">BAILOUT_COMMAND</span><span class="o">=</span><span class="s2">&quot;logger died&quot;</span>
+<span class="c1"># in POST_TUN_PEER_COMMAND and POST_TUN_LOCAL_COMMAND use &#39; instead &quot; !!!</span>
+<span class="c1"># $LOCAL_TUN is local tun device</span>
+<span class="c1"># $REMOTE_TUN is remote tun device</span>
+<span class="n">POST_TUN_PEER_COMMAND</span><span class="o">=</span><span class="s1">&#39;iptables -I FORWARD -i $REMOTE_TUN -j ACCEPT&#39;</span> <span class="c1"># optional: command to execute on remote peer</span>
+<span class="n">POST_TUN_LOCAL_COMMAND</span><span class="o">=</span><span class="s1">&#39;ip route add 192.168.6.0/24 via $RTUNADDR dev $LOCAL_TUN&#39;</span> <span class="c1"># optional: command to execute on local peer</span>
+<span class="n">LOCAL_IP</span><span class="o">=</span><span class="s2">&quot;ip&quot;</span> <span class="c1"># optional: local ip command binary</span>
+<span class="n">REMOTE_IP</span><span class="o">=</span><span class="s2">&quot;ip&quot;</span> <span class="c1"># optional: remote ip command binary</span>
+<span class="n">SSH</span><span class="o">=</span><span class="s2">&quot;ssh&quot;</span> <span class="c1"># optional: ssh binary</span>
 </pre></div>
   </div>
   <div class="tag-cloud">

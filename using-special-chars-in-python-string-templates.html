@@ -88,9 +88,9 @@ Python templating feature.<br />
 Templates placehoder names are subject to some
 restrictions,<a href="http://docs.python.org/3/library/string.html#template-strings">Documentation</a>
 says:</p>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">identifier</span><span class="x"> names a substitution placeholder matching a mapping key of &quot;identifier&quot;.</span>
-<span class="x">By default, &quot;identifier&quot; must spell a Python identifier.</span>
-<span class="x">The first non-identifier character after the </span><span class="p">$</span><span class="x"> character terminates this placeholder specification.</span>
+<div class="highlight"><pre><span></span><span class="err">$identifier names a substitution placeholder matching a mapping key of &quot;identifier&quot;.</span>
+<span class="err">By default, &quot;identifier&quot; must spell a Python identifier.</span>
+<span class="err">The first non-identifier character after the $ character terminates this placeholder specification.</span>
 </pre></div>
 
 
@@ -98,7 +98,7 @@ says:</p>
 identifier syntax: dots (.), hyphen (-) or other special chars are not
 allowed.<br />
 The default regex that must match the placeolder is:</p>
-<div class="highlight"><pre><span></span>r&#39;[\_a-z][\_a-z0-9]\*&#39;  
+<div class="highlight"><pre><span></span><span class="err">r&#39;[\_a-z][\_a-z0-9]\*&#39;  </span>
 </pre></div>
 
 
@@ -107,7 +107,7 @@ in <strong>Template</strong> class.</p>
 <p>Here a quick example:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Template</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">MyTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
-<span class="o">...</span>     <span class="n">idpattern</span> <span class="o">=</span> <span class="s1">r&#39;[a-z][\.\-_a-z0-9]*&#39;</span>
+<span class="o">...</span>     <span class="n">idpattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;[a-z][\.\-_a-z0-9]*&#39;</span>
 <span class="o">...</span> 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">MyTemplate</span><span class="p">(</span><span class="s2">&quot;a=${ciccio_pippo-b}&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">substitute</span><span class="p">({</span><span class="s1">&#39;ciccio_pippo-b&#39;</span><span class="p">:</span> <span class="s2">&quot;pasticcio&quot;</span><span class="p">})</span>
 <span class="s1">&#39;a=pasticcio&#39;</span>

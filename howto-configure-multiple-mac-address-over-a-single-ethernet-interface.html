@@ -140,80 +140,80 @@ eth3: c.c.c.254</p>
 <ol>
 <li>set-up link on physical device:</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip link set up dev eth0
+<div class="highlight"><pre><span></span><span class="err">    ip link set up dev eth0</span>
 </pre></div>
 
 
 <ol>
 <li>create logical interfaces:</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa
-    ip link add link eth0 dev peth1 type macvlan address bb:bb:bb:bb:bb:bb
-    ip link add link eth0 dev peth2 type macvlan address cc:cc:cc:cc:cc:cc
+<div class="highlight"><pre><span></span><span class="err">    ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa</span>
+<span class="err">    ip link add link eth0 dev peth1 type macvlan address bb:bb:bb:bb:bb:bb</span>
+<span class="err">    ip link add link eth0 dev peth2 type macvlan address cc:cc:cc:cc:cc:cc</span>
 </pre></div>
 
 
 <ol>
 <li>Assign ip address and activate link:</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip addr add A.A.A.A/26 dev peth0
-    ip addr add B.B.B.B/26 dev peth1
-    ip addr add C.C.C.C/26 dev peth2
-    ip link set up dev peth0
-    ip link set up dev peth1
-    ip link set up dev peth2
+<div class="highlight"><pre><span></span><span class="err">    ip addr add A.A.A.A/26 dev peth0</span>
+<span class="err">    ip addr add B.B.B.B/26 dev peth1</span>
+<span class="err">    ip addr add C.C.C.C/26 dev peth2</span>
+<span class="err">    ip link set up dev peth0</span>
+<span class="err">    ip link set up dev peth1</span>
+<span class="err">    ip link set up dev peth2</span>
 </pre></div>
 
 
 <ol>
 <li>Normally configure the internal interfaces (eth1, eth2 eth3):</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip addr add a.a.a.245/24 dev eth1
-    ip addr add b.b.b.245/24 dev eth2
-    ip addr add b.b.b.245/24 dev eth3
-    ip link set up dev eth1
-    ip link set up dev eth2
-    ip link set up dev eth3
+<div class="highlight"><pre><span></span><span class="err">    ip addr add a.a.a.245/24 dev eth1</span>
+<span class="err">    ip addr add b.b.b.245/24 dev eth2</span>
+<span class="err">    ip addr add b.b.b.245/24 dev eth3</span>
+<span class="err">    ip link set up dev eth1</span>
+<span class="err">    ip link set up dev eth2</span>
+<span class="err">    ip link set up dev eth3</span>
 </pre></div>
 
 
 <ol>
 <li>This is the routing situation:</li>
 </ol>
-<div class="highlight"><pre><span></span># ip route sh
-127.0.0.0/8 dev lo  proto kernel  scope link  src 127.0.0.1
-a.a.a.0/24 dev eth1  proto kernel  scope link  src a.a.a.254
-a.a.a.0/24 dev eth2  proto kernel  scope link  src b.b.b.254
-a.a.a.0/24 dev eth3  proto kernel  scope link  src c.c.c.254
-A.A.A.A/26 dev peth0  proto kernel  scope link  src A.A.A.A
-B.B.B.B/26 dev peth1  proto kernel  scope link  src B.B.B.B
-C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C
+<div class="highlight"><pre><span></span><span class="err"># ip route sh</span>
+<span class="err">127.0.0.0/8 dev lo  proto kernel  scope link  src 127.0.0.1</span>
+<span class="err">a.a.a.0/24 dev eth1  proto kernel  scope link  src a.a.a.254</span>
+<span class="err">a.a.a.0/24 dev eth2  proto kernel  scope link  src b.b.b.254</span>
+<span class="err">a.a.a.0/24 dev eth3  proto kernel  scope link  src c.c.c.254</span>
+<span class="err">A.A.A.A/26 dev peth0  proto kernel  scope link  src A.A.A.A</span>
+<span class="err">B.B.B.B/26 dev peth1  proto kernel  scope link  src B.B.B.B</span>
+<span class="err">C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C</span>
 </pre></div>
 
 
 <ol>
 <li>You must create a routing table for all outgoing interface:</li>
 </ol>
-<div class="highlight"><pre><span></span>    echo &quot;500 ipA&quot; &gt;&gt; /etc/iproute2/rt_tables
-    echo &quot;600 ipB&quot; &gt;&gt; /etc/iproute2/rt_tables
-    echo &quot;700 ipC&quot; &gt;&gt; /etc/iproute2/rt_tables
+<div class="highlight"><pre><span></span><span class="err">    echo &quot;500 ipA&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
+<span class="err">    echo &quot;600 ipB&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
+<span class="err">    echo &quot;700 ipC&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
 </pre></div>
 
 
 <ol>
 <li>Add a "catch all" routing table:</li>
 </ol>
-<div class="highlight"><pre><span></span>    echo &quot;1000 catch_all&quot; &gt;&gt; /etc/iproute2/rt_tables
+<div class="highlight"><pre><span></span><span class="err">    echo &quot;1000 catch_all&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
 </pre></div>
 
 
 <ol>
 <li>Add gateways for tables:</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip route add default via X.X.X.X dev peth0 table ipA
-    ip route add default via X.X.X.X dev peth1 table ipB
-    ip route add default via X.X.X.X dev peth1 table ipC
-    ip route add default via X.X.X.X dev peth0 table catch_all
+<div class="highlight"><pre><span></span><span class="err">    ip route add default via X.X.X.X dev peth0 table ipA</span>
+<span class="err">    ip route add default via X.X.X.X dev peth1 table ipB</span>
+<span class="err">    ip route add default via X.X.X.X dev peth1 table ipC</span>
+<span class="err">    ip route add default via X.X.X.X dev peth0 table catch_all</span>
 </pre></div>
 
 
@@ -222,34 +222,34 @@ C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C
 be greater than the priority used for the normal and default tables (for
 show all rules: ip rule show )</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip rule add from a.a.a.0/24 lookup ipA pref 60000
-    ip rule add from b.b.b.0/24 lookup ipB pref 60001
-    ip rule add from c.c.c.0/24 lookup ipC pref 60002
+<div class="highlight"><pre><span></span><span class="err">    ip rule add from a.a.a.0/24 lookup ipA pref 60000</span>
+<span class="err">    ip rule add from b.b.b.0/24 lookup ipB pref 60001</span>
+<span class="err">    ip rule add from c.c.c.0/24 lookup ipC pref 60002</span>
 </pre></div>
 
 
 <ol>
 <li>Add routing policy for local IPs:</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip rule add from A.A.A.254 lookup ipA pref 60010
-    ip rule add from B.B.B.254 lookup ipB pref 60011
-    ip rule add from C.C.C.254 lookup ipC pref 60012
+<div class="highlight"><pre><span></span><span class="err">    ip rule add from A.A.A.254 lookup ipA pref 60010</span>
+<span class="err">    ip rule add from B.B.B.254 lookup ipB pref 60011</span>
+<span class="err">    ip rule add from C.C.C.254 lookup ipC pref 60012</span>
 </pre></div>
 
 
 <ol>
 <li>Add a catch all routing policy (with preference greater than all):</li>
 </ol>
-<div class="highlight"><pre><span></span>    ip rule add from all lookup catch_all pref 70000
+<div class="highlight"><pre><span></span><span class="err">    ip rule add from all lookup catch_all pref 70000</span>
 </pre></div>
 
 
 <ol>
 <li>Configure the NAT:</li>
 </ol>
-<div class="highlight"><pre><span></span>    iptables -t nat -I POSTROUTING -o peth0 -s a.a.a.0/24 -j SNAT --to-source A.A.A.A
-    iptables -t nat -I POSTROUTING -o peth1 -s b.b.b.0/24 -j SNAT --to-source B.B.B.B
-    iptables -t nat -I POSTROUTING -o peth2 -s c.c.c.0/24 -j SNAT --to-source C.C.C.C
+<div class="highlight"><pre><span></span><span class="err">    iptables -t nat -I POSTROUTING -o peth0 -s a.a.a.0/24 -j SNAT --to-source A.A.A.A</span>
+<span class="err">    iptables -t nat -I POSTROUTING -o peth1 -s b.b.b.0/24 -j SNAT --to-source B.B.B.B</span>
+<span class="err">    iptables -t nat -I POSTROUTING -o peth2 -s c.c.c.0/24 -j SNAT --to-source C.C.C.C</span>
 </pre></div>
   </div>
   <div class="tag-cloud">

@@ -98,10 +98,10 @@ e in caso di down effettua il reload della VPN.</p>
 sicuri di utilizzare il tunnel cifrato e lo scheduling in modo da
 eseguire il test sempre. E' possibile impostare una frequenza di
 esecuzione, di default è 60 secondi.</p>
-<div class="highlight"><pre><span></span> ip sla monitor 5
- type echo protocol ipIcmpEcho 192.168.8.1 source-ipaddr 192.168.2.1
- exit
- ip sla monitor schedule 1 life forever start-time now
+<div class="highlight"><pre><span></span><span class="err"> ip sla monitor 5</span>
+<span class="err"> type echo protocol ipIcmpEcho 192.168.8.1 source-ipaddr 192.168.2.1</span>
+<span class="err"> exit</span>
+<span class="err"> ip sla monitor schedule 1 life forever start-time now</span>
 </pre></div>
 
 
@@ -109,8 +109,8 @@ esecuzione, di default è 60 secondi.</p>
 vogliamo monitorare quando lo <strong>sla monitor 5</strong> ritorna route
 unreachable e reagire solo se lo stato di down permane per piu' di 60
 secondi.</p>
-<div class="highlight"><pre><span></span> track 1 rtr 5 reachability
- delay down 60
+<div class="highlight"><pre><span></span><span class="err"> track 1 rtr 5 reachability</span>
+<span class="err"> delay down 60</span>
 </pre></div>
 
 
@@ -120,12 +120,12 @@ Le configurazioni immesse finora fanno in modo che se l'host
 un evento nel syslog locale. L'event manager applet seguente si occupa
 di intercettare l'evento syslog, eseguire il reload della VPN e loggare
 il messaggio "VPN Reloaded"</p>
-<div class="highlight"><pre><span></span> event manager applet VPN-IS-DOWN
- event syslog pattern &quot;TRACKING-5-STATE: 5 .*Up-&gt;Down&quot;
- action 1.0 cli command &quot;enable&quot;
- action 2.0 cli command &quot;clear crypto session remote b.public.ip&quot;
- action 3.0 cli command &quot;end&quot;
- action 4.0 syslog msg &quot;VPN Reloaded&quot;
+<div class="highlight"><pre><span></span> <span class="n">event</span> <span class="n">manager</span> <span class="n">applet</span> <span class="n">VPN</span><span class="o">-</span><span class="n">IS</span><span class="o">-</span><span class="n">DOWN</span>
+ <span class="n">event</span> <span class="n">syslog</span> <span class="n">pattern</span> <span class="s2">&quot;TRACKING-5-STATE: 5 .*Up-&gt;Down&quot;</span>
+ <span class="n">action</span> <span class="mf">1.0</span> <span class="n">cli</span> <span class="n">command</span> <span class="s2">&quot;enable&quot;</span>
+ <span class="n">action</span> <span class="mf">2.0</span> <span class="n">cli</span> <span class="n">command</span> <span class="s2">&quot;clear crypto session remote b.public.ip&quot;</span>
+ <span class="n">action</span> <span class="mf">3.0</span> <span class="n">cli</span> <span class="n">command</span> <span class="s2">&quot;end&quot;</span>
+ <span class="n">action</span> <span class="mf">4.0</span> <span class="n">syslog</span> <span class="n">msg</span> <span class="s2">&quot;VPN Reloaded&quot;</span>
 </pre></div>
 
 

@@ -232,7 +232,7 @@ files.</p>
     <span class="k">pass</span>
 
 <span class="c1"># RUN!</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">myApp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
@@ -241,53 +241,53 @@ files.</p>
 <div class="highlight"><pre><span></span>$def with (page, title=&quot;&quot;)
 
 <span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xml:lang=</span><span class="s">&quot;cs&quot;</span> <span class="na">lang=</span><span class="s">&quot;cs&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Single Page Markdown CMS<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xml:lang</span><span class="o">=</span><span class="s">&quot;cs&quot;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;cs&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Single Page Markdown CMS<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;h1&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>
 Custom header here      
-<span class="nt">&lt;/h1&gt;</span>
+<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 
-    <span class="nt">&lt;ul&gt;</span>        
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>        
 $for item in pages:
     $ attr = &#39;&#39;
     $if ctx.path == item[&#39;link&#39;]:
         $ attr=&#39; id=&quot;current&quot;&#39;
-    <span class="nt">&lt;li</span><span class="err">$:(attr)</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;$item[&#39;link&#39;]&quot;</span><span class="nt">&gt;</span>$item[&#39;name&#39;]<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="err">$</span><span class="na">:</span><span class="err">(</span><span class="na">attr</span><span class="err">)</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;$item[&#39;link&#39;]&quot;</span><span class="p">&gt;</span>$item[&#39;name&#39;]<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 $pass
-        <span class="nt">&lt;/ul&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;hr/&gt;</span>
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">/&gt;</span>
 $:page
-<span class="nt">&lt;hr/&gt;</span>    
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">/&gt;</span>    
 
     Custom footer here 
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 
 
 <p>3) content template: views/page.html</p>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">def</span><span class="x"> with (html)</span>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">def</span> <span class="k">with</span> <span class="p">(</span><span class="n">html</span><span class="p">)</span>
 
-<span class="p">$</span><span class="x">:html</span>
+<span class="err">$</span><span class="p">:</span><span class="n">html</span>
 </pre></div>
 
 
 <p>4) markdown contents:</p>
 <p><strong>contents/home.md</strong></p>
-<div class="highlight"><pre><span></span>## Welcome !!
+<div class="highlight"><pre><span></span><span class="o">##</span> <span class="n">Welcome</span> <span class="o">!!</span>
 
-### This is an Hello word Page!
+<span class="o">###</span> <span class="n">This</span> <span class="k">is</span> <span class="n">an</span> <span class="n">Hello</span> <span class="n">word</span> <span class="n">Page</span><span class="o">!</span>
 
-**web.py** the best python framework for webapps [web.py][].
+<span class="o">**</span><span class="n">web</span><span class="p">.</span><span class="n">py</span><span class="o">**</span> <span class="n">the</span> <span class="n">best</span> <span class="n">python</span> <span class="n">framework</span> <span class="k">for</span> <span class="n">webapps</span> <span class="p">[</span><span class="n">web</span><span class="p">.</span><span class="n">py</span><span class="p">][].</span>
 
-This is a simple page from a markdown file
+<span class="n">This</span> <span class="k">is</span> <span class="n">a</span> <span class="k">simple</span> <span class="n">page</span> <span class="k">from</span> <span class="n">a</span> <span class="n">markdown</span> <span class="n">file</span>
 
-  [web.py]: http://www.webpy.org
+  <span class="p">[</span><span class="n">web</span><span class="p">.</span><span class="n">py</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">webpy</span><span class="p">.</span><span class="n">org</span>
 </pre></div>
 
 

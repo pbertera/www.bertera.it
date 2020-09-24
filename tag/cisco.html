@@ -101,12 +101,12 @@ In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B
   <div>
       <p>Event amanager applet per salvare il diff tra stratup-config e
 running-config via syslog.</p>
-<div class="highlight"><pre><span></span><span class="x">event manager applet wr-mem-match </span>
-<span class="x"> event cli pattern &quot;wr.* mem.*&quot; sync yes</span>
-<span class="x"> action 1.0 cli command &quot;enable&quot;</span>
-<span class="x"> action 1.1 cli command &quot;show archive config differences nvram:/startup-config system:/running-config&quot;</span>
-<span class="x"> action 1.2 syslog msg &quot;</span><span class="p">$</span><span class="nv">_cli_result</span><span class="x">&quot;</span>
-<span class="x"> set ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="err">event manager applet wr-mem-match </span>
+<span class="err"> event cli pattern &quot;wr.* mem.*&quot; sync yes</span>
+<span class="err"> action 1.0 cli command &quot;enable&quot;</span>
+<span class="err"> action 1.1 cli command &quot;show archive config differences nvram:/startup-config system:/running-config&quot;</span>
+<span class="err"> action 1.2 syslog msg &quot;$_cli_result&quot;</span>
+<span class="err"> set ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">Continue reading</a>
   </div>
 </article>

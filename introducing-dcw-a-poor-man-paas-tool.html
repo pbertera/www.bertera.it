@@ -105,7 +105,7 @@ $ git clone https://github.com/pbertera/dcw
 <li>In case you want to have the <a href="https://slack.com/">Slack</a> or <a href="https://www.hipchat.com/">HipChat</a> integration all the other needed vars.</li>
 </ul>
 <p>Now you are ready to use dcw into the <code>~/.ssh/authorized_keys</code> file: edit the <code>authorized_keys</code> in order to use the <code>dcw</code> script as an SSH command associated with an SSH public key:</p>
-<div class="highlight"><pre><span></span>command=&quot;/opt/dcw/dcw&quot;,no-port-forwarding,no-agent-forwarding,no-X11-forwarding ssh-rsa AAAAB3NzaC1 [..] == pietro@hank
+<div class="highlight"><pre><span></span><span class="err">command=&quot;/opt/dcw/dcw&quot;,no-port-forwarding,no-agent-forwarding,no-X11-forwarding ssh-rsa AAAAB3NzaC1 [..] == pietro@hank</span>
 </pre></div>
 
 
@@ -138,10 +138,10 @@ INFO: SSH Original command: pool nginx ps
 INFO: executing docker-compose ps on nginx
  Name               Command                State                         Ports                     
 --------------------------------------------------------------------------------------------------
-nginx1   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10081-&gt;443/tcp, 0.0.0.0:10080-&gt;80/tcp 
-nginx2   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10083-&gt;443/tcp, 0.0.0.0:10082-&gt;80/tcp 
-nginx3   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10085-&gt;443/tcp, 0.0.0.0:10084-&gt;80/tcp 
-nginx4   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   0.0.0.0:10087-&gt;443/tcp, 0.0.0.0:10086-&gt;80/tcp 
+nginx1   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   <span class="m">0</span>.0.0.0:10081-&gt;443/tcp, <span class="m">0</span>.0.0.0:10080-&gt;80/tcp 
+nginx2   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   <span class="m">0</span>.0.0.0:10083-&gt;443/tcp, <span class="m">0</span>.0.0.0:10082-&gt;80/tcp 
+nginx3   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   <span class="m">0</span>.0.0.0:10085-&gt;443/tcp, <span class="m">0</span>.0.0.0:10084-&gt;80/tcp 
+nginx4   /entrypoint.sh nginx -g da ...   Exit <span class="m">137</span>   <span class="m">0</span>.0.0.0:10087-&gt;443/tcp, <span class="m">0</span>.0.0.0:10086-&gt;80/tcp 
 </pre></div>
 
 

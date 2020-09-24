@@ -84,8 +84,8 @@ you can find a port for Asterisk trunk (rev. 377802) of this patch:
 <a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html">http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html</a>.<br />
 This patch permits to set the codec of an outgoing multicast RTP stream
 via the variable MULTICAST_RTP_CODEC:</p>
-<div class="highlight"><pre><span></span>exten =&gt; 999,1,Answer()  
-exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw ...</pre></div>
+<div class="highlight"><pre><span></span><span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Answer</span><span class="p">()</span>  
+<span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">Set</span><span class="p">(</span><span class="n">MULTICAST_RTP_CODEC</span><span class="o">=</span><span class="n">alaw ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Continue reading</a>
   </div>
   <hr />
@@ -128,19 +128,17 @@ patch</a>
 add <strong>authuser</strong> parameter in SIP peer definition and use authuser in
 digest authentication:</p>
 <p><strong>Peer definition in /etc/asterisk/sip.conf</strong>  </p>
-<div class="highlight"><pre><span></span>...
-[pietro](sip-client-base)
-authuser=MyUsername
-secret=XXXXX
-qualify=yes
-nat=yes
-...
+<div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+<span class="o">[</span><span class="n">pietro</span><span class="o">]</span><span class="p">(</span><span class="n">sip</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">base</span><span class="p">)</span><span class="w"></span>
+<span class="n">authuser</span><span class="o">=</span><span class="n">MyUsername</span><span class="w"></span>
+<span class="n">secret</span><span class="o">=</span><span class="n">XXXXX</span><span class="w"></span>
+<span class="n">qualify</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="n">nat</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 </pre></div>
 
 
-<p><strong>Peer definition in my SIP client (Twinkle)</strong><br />
-<img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /></p>
-<p><strong>REGISTER ...</strong></p>
+<p><strong>Peer definition in my SIP client ...</strong></p>
       <a class="btn" href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Continue reading</a>
   </div>
 </article>

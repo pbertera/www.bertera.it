@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.bertera.it"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
 
-  <title>Pietro Bertera's Blog &ndash; Tag: testing</title>
+  <title>Pietro Bertera's Blog &ndash; Category: Kubernetes</title>
 </head>
 <body>
   <aside>
@@ -71,40 +71,18 @@
 
 <article>
   <header>
-    <h2><a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">How to simulate a slow HTTP server with a Dockerized lighttpd</a></h2>
+    <h2><a href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html#kubernetes-semaphore-validating-webhook">Kubernetes semaphore Validating Webhook</a></h2>
     <p>
-      Posted on Tue 30 August 2016 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
+      Posted on Thu 24 September 2020 in <a href="http://www.bertera.it/category/kubernetes.html">Kubernetes</a>
       &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/lighttpd.html">lighttpd</a>,      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/testing.html">testing</a>      &#8226; <a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/kubernetes.html">Kubernetes</a>,      <a href="http://www.bertera.it/tag/openshift.html">OpenShift</a>      &#8226; <a href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p>Today I had to work on an issue related to troubled HTTP connections.
-So in order to reproduce such issue I had to find a way to easily reduce the bandwidth of the HTTP transfer.</p>
-<p>After a quick Google search I landed on <a href="http://stackoverflow.com/a/13656825/143819">this</a> Stackoverflow answer 
-which suggested me the ...</p>
-      <a class="btn" href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">UAS Authenticating registrar SIPp scenario</a></h2>
-    <p>
-      Posted on Thu 30 May 2013 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/sip.html">sip</a>,      <a href="http://www.bertera.it/tag/sipp.html">SIPp</a>,      <a href="http://www.bertera.it/tag/testing.html">Testing</a>,      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>      &#8226; <a href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p><a href="http://sipp.sourceforge.net">SIPp</a> is a real SIP swiss army knife. You
-can create various SIP scenario and test your devices and environments.</p>
-<p>I never found a SIPp scenario implementing an UAs (User Agent server)
-registrar with authentication.</p>
-<p>Following you can find this scenario:</p>
-<p>The SIPp XML scenario file: <strong>sipp_register_auth_uas.xml</strong>  </p>
-<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="vm">?</span><span class="nc">xml</span><span class="w"> </span><span class="n">version ...</span></pre></div>
-      <a class="btn" href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">Continue reading</a>
+      <p>After more than 2 years a new post!</p>
+<p>In the path of learning Kubernetes <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">Dynamic Admission Control</a> I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label.</p>
+<p><a href="https://github.com/pbertera/k8s-semaphore">k8s-semaphore</a> is a quick and dirty <a href="https://webpy.org/">web.py</a> app implementing the ...</p>
+      <a class="btn" href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html#kubernetes-semaphore-validating-webhook">Continue reading</a>
   </div>
 </article>
 

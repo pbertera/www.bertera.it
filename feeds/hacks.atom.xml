@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/hacks.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2016-08-30T00:00:00+02:00</updated><entry><title>How to simulate a slow HTTP server with a Dockerized lighttpd</title><link href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html" rel="alternate"></link><published>2016-08-30T00:00:00+02:00</published><author><name>pietro</name></author><id>tag:www.bertera.it,2016-08-30:how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html</id><summary type="html">&lt;p&gt;Today I had to work on an issue related to troubled HTTP connections.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/hacks.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2016-08-30T00:00:00+02:00</updated><entry><title>How to simulate a slow HTTP server with a Dockerized lighttpd</title><link href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html" rel="alternate"></link><published>2016-08-30T00:00:00+02:00</published><updated>2016-08-30T00:00:00+02:00</updated><author><name>pietro</name></author><id>tag:www.bertera.it,2016-08-30:how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html</id><summary type="html">&lt;p&gt;Today I had to work on an issue related to troubled HTTP connections.
 So in order to reproduce such issue I had to find a way to easily reduce the bandwidth of the HTTP transfer.&lt;/p&gt;
 &lt;p&gt;After a quick Google search I landed on &lt;a href="http://stackoverflow.com/a/13656825/143819"&gt;this&lt;/a&gt; Stackoverflow answer 
 which suggested me the idea to create a simple Docker container for that.&lt;/p&gt;
 &lt;p&gt;The container image is automatically build on &lt;a href="https://hub.docker.com/r/pbertera/lighttpd-throttle/"&gt;Dockerhub&lt;/a&gt; from the &lt;a href="https://github.com/pbertera/dockerfiles/blob/master/lighttpd-throttle/Dockerfile"&gt;Dockerfile&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The container can be easily used to &lt;a href="https://github.com/pbertera/dockerfiles/tree/master/lighttpd-throttle#server-mode"&gt;serve a local folder&lt;/a&gt; or as a &lt;a href="https://github.com/pbertera/dockerfiles/tree/master/lighttpd-throttle#proxy-mode"&gt;proxy&lt;/a&gt; in front of another HTTP server.&lt;/p&gt;</summary><category term="lighttpd"></category><category term="Docker"></category><category term="testing"></category></entry><entry><title>Overwriting Latex image positioning in pandoc generated pdf</title><link href="http://www.bertera.it/overwriting-latex-image-positioning-in-pandoc-generated-pdf.html" rel="alternate"></link><published>2015-04-14T20:25:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2015-04-14:overwriting-latex-image-positioning-in-pandoc-generated-pdf.html</id><summary type="html">&lt;p&gt;Pandoc is a very powerful tool, I'm extensively using it for writing
+&lt;p&gt;The container can be easily used to &lt;a href="https://github.com/pbertera/dockerfiles/tree/master/lighttpd-throttle#server-mode"&gt;serve a local folder&lt;/a&gt; or as a &lt;a href="https://github.com/pbertera/dockerfiles/tree/master/lighttpd-throttle#proxy-mode"&gt;proxy&lt;/a&gt; in front of another HTTP server.&lt;/p&gt;</summary><category term="lighttpd"></category><category term="Docker"></category><category term="testing"></category></entry><entry><title>Overwriting Latex image positioning in pandoc generated pdf</title><link href="http://www.bertera.it/overwriting-latex-image-positioning-in-pandoc-generated-pdf.html" rel="alternate"></link><published>2015-04-14T20:25:00+02:00</published><updated>2015-04-14T20:25:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2015-04-14:overwriting-latex-image-positioning-in-pandoc-generated-pdf.html</id><summary type="html">&lt;p&gt;Pandoc is a very powerful tool, I'm extensively using it for writing
 documentation, papers and so on.&lt;br /&gt;
 You can generate pdf, html, docx and many other formats trough a
 compilation of markdown source file.&lt;/p&gt;
@@ -17,11 +17,11 @@ the &lt;strong&gt;htbp&lt;/strong&gt; floating positioning, this is hardcoded in
 &lt;p&gt;Markdown code:&lt;br /&gt;
 &lt;code&gt;![I/O connector](img/1.jpg)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Latex code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;\begin{figure}[htbp]
-\centering
-\includegraphics{img/1.jpg}
-\caption{I/O connector}
-\end{figure}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="k"&gt;begin&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;htbp&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;centering&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;includegraphics&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;caption&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;connector&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -32,16 +32,16 @@ Markdown in a Latex file, parse the file with sed and then use pdflatex
 to generate the PDF.&lt;/p&gt;
 &lt;p&gt;Now, I found a way to overwrite the Latex {figure} environment directly
 into the Latex template:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% Overwrite \begin{figure}[htbp] with \begin{figure}[H]&lt;/span&gt;
-&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;usepackage&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;float&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;origfigure&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;
-&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endorigfigure&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endfigure&lt;/span&gt;
-&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;renewenvironment&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;}[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;][]{&lt;/span&gt;&lt;span class="c"&gt;%&lt;/span&gt;
-   &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;origfigure&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;}{&lt;/span&gt;&lt;span class="c"&gt;%&lt;/span&gt;
-   &lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endorigfigure&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Latex"></category><category term="markdown"></category></entry><entry><title>Little file browser with pdmenu</title><link href="http://www.bertera.it/little-file-browser-with-pdmenu.html" rel="alternate"></link><published>2012-03-10T02:15:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2012-03-10:little-file-browser-with-pdmenu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://kitenet.net/programs/pdmenu/"&gt;Pdmenu&lt;/a&gt; is a menu system for Unix.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Overwrite&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="k"&gt;begin&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;htbp&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="k"&gt;begin&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;usepackage&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="nc"&gt;float&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;origfigure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;let&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endorigfigure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endfigure&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;renewenvironment&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;[]{&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;origfigure&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}{&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;endorigfigure&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Latex"></category><category term="markdown"></category></entry><entry><title>Little file browser with pdmenu</title><link href="http://www.bertera.it/little-file-browser-with-pdmenu.html" rel="alternate"></link><published>2012-03-10T02:15:00+01:00</published><updated>2012-03-10T02:15:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2012-03-10:little-file-browser-with-pdmenu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://kitenet.net/programs/pdmenu/"&gt;Pdmenu&lt;/a&gt; is a menu system for Unix.
 It is designed to be easy to use, and is suitable for a login shell for
 inexperienced users, or it can just be run at the command line as a
 handy menu program.&lt;/p&gt;
@@ -94,85 +94,85 @@ below:&lt;/p&gt;
 40
 41
 42
-43&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#! /usr/bin/pdmenu -c
-#
-## Version 2.0
-#
-## Title
-preproc: echo &amp;quot;Title: test&amp;quot;
-color:desktop:blue:blue
-color:title:red:white
-color:base:blue:white
-# File manager
-menu:provisioning: Provisioning file management : 
-group:_Edit a file
-    exec::makemenu: (\
-            /usr/share/pdmenu/editdir.pl /var/www &amp;quot;&amp;quot; show_directory \
-            ) 2&amp;gt;/dev/null
-    show:::show_directory
-    remove:::show_directory
-endgroup
-group:_Remove a file or directory
-    exec::makemenu: (\
-            /usr/share/pdmenu/deldir.pl /var/www &amp;quot;&amp;quot; del_directory \
-            ) 2&amp;gt;/dev/null
-    show:::del_directory
-    remove:::del_directory
-endgroup
-group:Add a _directory
-    exec::makemenu: (\
-            /usr/share/pdmenu/adddir.pl /var/www &amp;quot;&amp;quot; add_directory \
-            ) 2&amp;gt;/dev/null
-    show:::add_directory
-    remove:::add_directory
-endgroup
-group:Add a _file
-    exec::makemenu: (\
-            /usr/share/pdmenu/addfile.pl /var/www &amp;quot;&amp;quot; add_file \
-            ) 2&amp;gt;/dev/null
-    show:::add_file
-    remove:::add_file
-endgroup
-nop
+43&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#! /usr/bin/pdmenu -c&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;## Version 2.0&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;## Title&lt;/span&gt;
+&lt;span class="n"&gt;preproc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Title: test&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;desktop&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;blue&lt;/span&gt;
+&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;red&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;white&lt;/span&gt;
+&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;white&lt;/span&gt;
+&lt;span class="c1"&gt;# File manager&lt;/span&gt;
+&lt;span class="n"&gt;menu&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;provisioning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Provisioning&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;management&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; 
+&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;_Edit&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;
+    &lt;span class="n"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;makemenu&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;\
+            &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pdmenu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;editdir&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;show_directory&lt;/span&gt; \
+            &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb nb-Type"&gt;null&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;show_directory&lt;/span&gt;
+    &lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;show_directory&lt;/span&gt;
+&lt;span class="n"&gt;endgroup&lt;/span&gt;
+&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;_Remove&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;
+    &lt;span class="n"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;makemenu&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;\
+            &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pdmenu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;deldir&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;del_directory&lt;/span&gt; \
+            &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb nb-Type"&gt;null&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;del_directory&lt;/span&gt;
+    &lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;del_directory&lt;/span&gt;
+&lt;span class="n"&gt;endgroup&lt;/span&gt;
+&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Add&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;_directory&lt;/span&gt;
+    &lt;span class="n"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;makemenu&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;\
+            &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pdmenu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;adddir&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;add_directory&lt;/span&gt; \
+            &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb nb-Type"&gt;null&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;add_directory&lt;/span&gt;
+    &lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;add_directory&lt;/span&gt;
+&lt;span class="n"&gt;endgroup&lt;/span&gt;
+&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Add&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;_file&lt;/span&gt;
+    &lt;span class="n"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;makemenu&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;\
+            &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pdmenu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;addfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;add_file&lt;/span&gt; \
+            &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb nb-Type"&gt;null&lt;/span&gt;
+    &lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;add_file&lt;/span&gt;
+    &lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;:::&lt;/span&gt;&lt;span class="n"&gt;add_file&lt;/span&gt;
+&lt;span class="n"&gt;endgroup&lt;/span&gt;
+&lt;span class="n"&gt;nop&lt;/span&gt;
 
-nop
-exit:E_xit
+&lt;span class="n"&gt;nop&lt;/span&gt;
+&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;E_xit&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;you can download the showdir.pl script &lt;a href="https://github.com/pbertera/junk/blob/master/showdir/showdir.pl"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;All files &lt;code&gt;/usr/share/pdmenu/editdir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/deldir.pl&lt;/code&gt;
 &lt;code&gt;/usr/share/pdmenu/adddir.pl&lt;/code&gt; &lt;code&gt;/usr/share/pdmenu/addfile.pl&lt;/code&gt; are symlink to
-&lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>bash snippet: dumping function call trace</title><link href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html" rel="alternate"></link><published>2011-07-18T12:44:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-18:bash-snippet-dumping-function-call-trace.html</id><summary type="html">&lt;p&gt;Uno snippet di codice bash utile nel debugging di script.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#@.. function:: __cm_exit_error([text],[...])
-#@
-#@   Stampa la stringa passata in stderr ed esce
-#@   Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni
-#@
-#@   :param text: la stringa da stampare
-#@   :type text: String
-#@
-__cm_exit_error()
+&lt;code&gt;showdir.pl&lt;/code&gt;&lt;/p&gt;</summary><category term="coding"></category><category term="pdmenu"></category><category term="perl"></category></entry><entry><title>bash snippet: dumping function call trace</title><link href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html" rel="alternate"></link><published>2011-07-18T12:44:00+02:00</published><updated>2011-07-18T12:44:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-07-18:bash-snippet-dumping-function-call-trace.html</id><summary type="html">&lt;p&gt;Uno snippet di codice bash utile nel debugging di script.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;__cm_exit_error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;...&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;Stampa&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;la&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stringa&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;passata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stderr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;esce&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;Se&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;è&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;impostata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;la&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;variabile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;__cm_debug&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stampa&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;di&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;chiamata&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;delle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;funzioni&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;param&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;text&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;la&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stringa&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;da&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stampare&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;text&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#@&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;__cm_exit_error&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-{
-        echo &amp;quot;Error in &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;:&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_LINENO&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;: $*&amp;quot; 1&amp;gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;2
-        local i=0
-        [ &lt;span class="nv"&gt;$__cm_debug&lt;/span&gt; ] &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; while [ &lt;span class="nv"&gt;$i&lt;/span&gt; -lt &lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="c1"&gt;#FUNCNAME&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt; ]; do
-                [ &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; == &amp;quot;main&amp;quot; ] &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; break
-                echo &amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_SOURCE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;::&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;::&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_LINENO&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot; 1&amp;gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;2
-                i=$(expr &lt;span class="nv"&gt;$i&lt;/span&gt; + 1)
-        done
-        exit 1
-}
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="debugging"></category><category term="script"></category></entry><entry><title>cisco IOS contextual config diffs via syslog</title><link href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html" rel="alternate"></link><published>2010-10-11T11:11:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2010-10-11:cisco-ios-contextual-config-diffs-via-syslog.html</id><summary type="html">&lt;p&gt;Event amanager applet per salvare il diff tra stratup-config e
+&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Error in ${FUNCNAME[1]}:${BASH_LINENO[0]}: $*&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt; $__cm_debug &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt; $i -lt ${#FUNCNAME} &lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;do&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt; &amp;quot;${FUNCNAME[$i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot; == &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot; ] &amp;amp;&amp;amp; break&lt;/span&gt;
+&lt;span class="ss"&gt;                echo &amp;quot;&lt;/span&gt;&lt;span class="err"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_SOURCE&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="err"&gt;${&lt;/span&gt;&lt;span class="n"&gt;FUNCNAME&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;$i + 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="err"&gt;${&lt;/span&gt;&lt;span class="n"&gt;BASH_LINENO&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;}&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;exit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="debugging"></category><category term="script"></category></entry><entry><title>cisco IOS contextual config diffs via syslog</title><link href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html" rel="alternate"></link><published>2010-10-11T11:11:00+02:00</published><updated>2010-10-11T11:11:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2010-10-11:cisco-ios-contextual-config-diffs-via-syslog.html</id><summary type="html">&lt;p&gt;Event amanager applet per salvare il diff tra stratup-config e
 running-config via syslog.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;event manager applet wr-mem-match &lt;/span&gt;
-&lt;span class="x"&gt; event cli pattern &amp;quot;wr.* mem.*&amp;quot; sync yes&lt;/span&gt;
-&lt;span class="x"&gt; action 1.0 cli command &amp;quot;enable&amp;quot;&lt;/span&gt;
-&lt;span class="x"&gt; action 1.1 cli command &amp;quot;show archive config differences nvram:/startup-config system:/running-config&amp;quot;&lt;/span&gt;
-&lt;span class="x"&gt; action 1.2 syslog msg &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;_cli_result&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&lt;/span&gt;
-&lt;span class="x"&gt; set 2.0 _exit_status 1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="cisco"></category><category term="cli"></category><category term="syslog"></category></entry><entry><title>GNU/Find posix acl support</title><link href="http://www.bertera.it/gnufind-posix-acl-support.html" rel="alternate"></link><published>2009-09-28T18:25:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-09-28:gnufind-posix-acl-support.html</id><summary type="html">&lt;p&gt;Cercare file che corrispondono a delle acl posix all'interno di un
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;event manager applet wr-mem-match &lt;/span&gt;
+&lt;span class="err"&gt; event cli pattern &amp;quot;wr.* mem.*&amp;quot; sync yes&lt;/span&gt;
+&lt;span class="err"&gt; action 1.0 cli command &amp;quot;enable&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt; action 1.1 cli command &amp;quot;show archive config differences nvram:/startup-config system:/running-config&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt; action 1.2 syslog msg &amp;quot;$_cli_result&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt; set 2.0 _exit_status 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="cisco"></category><category term="cli"></category><category term="syslog"></category></entry><entry><title>GNU/Find posix acl support</title><link href="http://www.bertera.it/gnufind-posix-acl-support.html" rel="alternate"></link><published>2009-09-28T18:25:00+02:00</published><updated>2009-09-28T18:25:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2009-09-28:gnufind-posix-acl-support.html</id><summary type="html">&lt;p&gt;Cercare file che corrispondono a delle acl posix all'interno di un
 filesystem molto intricato è sempre un delirio.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;Questa&lt;/a&gt; patch aggiunge
 l'opzione -acl al comando find
@@ -208,7 +208,7 @@ l'opzione -acl al comando find
 
 &lt;p&gt;Questa patch e' stata testata solo su Linux, è scaricabile qua:
 &lt;a href="https://github.com/pbertera/junk/tree/master/findutils-acl"&gt;https://github.com/pbertera/junk/tree/master/findutils-acl&lt;/a&gt; è disponibile per la
-versione 4.42 e 4.5.6 di findutils&lt;/p&gt;</summary><category term="c"></category><category term="find"></category><category term="gnu"></category></entry><entry><title>Verbose bash history</title><link href="http://www.bertera.it/verbose-bash-history.html" rel="alternate"></link><published>2009-07-02T08:58:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2009-07-02:verbose-bash-history.html</id><summary type="html">&lt;p&gt;Usando questo codice durante l'inizializzasione della shell viene
+versione 4.42 e 4.5.6 di findutils&lt;/p&gt;</summary><category term="c"></category><category term="find"></category><category term="gnu"></category></entry><entry><title>Verbose bash history</title><link href="http://www.bertera.it/verbose-bash-history.html" rel="alternate"></link><published>2009-07-02T08:58:00+02:00</published><updated>2009-07-02T08:58:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2009-07-02:verbose-bash-history.html</id><summary type="html">&lt;p&gt;Usando questo codice durante l'inizializzasione della shell viene
 salvata una command history nel file &lt;em&gt;.bash_verbose_history&lt;/em&gt; contenete
 data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando
 eseguito. Inoltre evita la sovrascrittura del file
@@ -231,7 +231,7 @@ else
 fi
 
 PROMPT_COMMAND=&amp;quot;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="n"&gt;PROMPT_COMMAND&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PROMPT_COMMAND&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;&amp;quot;&amp;#39;echo `date +&amp;quot;%Y-%m-%d %k:%M:%S&amp;quot;` &lt;span class="nv"&gt;$USER&lt;/span&gt; &lt;span class="nv"&gt;$TTY&lt;/span&gt; &amp;quot;$(history 1)&amp;quot; &amp;gt;&amp;gt; ~/.bash_verbose_history&amp;#39;
-&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Reading Windows and Office product key</title><link href="http://www.bertera.it/reading-windows-and-office-product-key.html" rel="alternate"></link><published>2008-12-17T15:04:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-12-17:reading-windows-and-office-product-key.html</id><summary type="html">&lt;p&gt;I product key di M\$ Windows e Office vengono salvati nel registro in
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Reading Windows and Office product key</title><link href="http://www.bertera.it/reading-windows-and-office-product-key.html" rel="alternate"></link><published>2008-12-17T15:04:00+01:00</published><updated>2008-12-17T15:04:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2008-12-17:reading-windows-and-office-product-key.html</id><summary type="html">&lt;p&gt;I product key di M\$ Windows e Office vengono salvati nel registro in
 alcune chiavi cifrate&lt;br /&gt;
 Pygetkey decifra le chiavi e le stampa a video oppure le salva in
 chiaro in un'altra chiave di registro. Puo' inoltre preleveare i product
@@ -240,7 +240,7 @@ key da un pc remoto.&lt;/p&gt;
 per windows&lt;/p&gt;
 &lt;p&gt;Esempio:  &lt;code&gt;pygetkey -c SYSTEMTest&lt;/code&gt; creerà i valori WINDOWS-KEY e OFFICE-2007-KEY all'interno della chiave
 HKEY_LOCAL_MACHINESYSTEMTest:  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[HKEY_LOCAL_MACHINESYSTEMTest] &amp;quot;WINDOWS-KEY&amp;quot;=&amp;quot;XQM13-K3M7R-32HRX-XF3Q-GMF63&amp;quot; &amp;quot;OFFICE-2007-KEY&amp;quot;=&amp;quot;JPBW9-BPY6B-79M9M-RJYJV-6G5B6&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;HKEY_LOCAL_MACHINESYSTEMTest&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;WINDOWS-KEY&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;XQM13-K3M7R-32HRX-XF3Q-GMF63&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;OFFICE-2007-KEY&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;JPBW9-BPY6B-79M9M-RJYJV-6G5B6&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -277,18 +277,18 @@ necessari all'esecuzione di pygetkey.exe e readrreg.exe sono:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Download:&lt;/strong&gt;  &lt;/p&gt;
 &lt;p&gt;pygetkey è scaricabile &lt;a href="https://github.com/pbertera/junk/tree/master/pygetkey"&gt;qua&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;python è scaricabile all'indirizzo: &lt;a href="http://www.python.org"&gt;http://www.python.org&lt;/a&gt;&lt;br /&gt;
-py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; getfacl -R
+py2exe è scaricabile all'indirizzo: &lt;a href="http://www.py2exe.org"&gt;http://www.py2exe.org&lt;/a&gt;&lt;/p&gt;</summary><category term="product key"></category><category term="python"></category><category term="registry"></category><category term="windows"></category></entry><entry><title>Worstbit posix acl</title><link href="http://www.bertera.it/worstbit-posix-acl.html" rel="alternate"></link><published>2008-09-26T18:05:00+02:00</published><updated>2008-09-26T18:05:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2008-09-26:worstbit-posix-acl.html</id><summary type="html">&lt;p&gt;Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt; getfacl -R&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/worstbit"&gt;https://github.com/pbertera/junk/tree/master/worstbit&lt;/a&gt;&lt;/p&gt;</summary><category term="acl posix"></category><category term="c"></category></entry><entry><title>Kecho</title><link href="http://www.bertera.it/kecho.html" rel="alternate"></link><published>2006-05-21T16:41:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:kecho.html</id><summary type="html">&lt;p&gt;Kernel echo è un esempio di comunicazione tra userspace e kernelspace&lt;br /&gt;
-&lt;a href="https://github.com/pbertera/junk/tree/master/kecho"&gt;kecho&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category><category term="networking"></category></entry><entry><title>Nettester</title><link href="http://www.bertera.it/nettester.html" rel="alternate"></link><published>2006-05-21T16:41:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:nettester.html</id><summary type="html">&lt;p&gt;un clone di netcat con supporto UDP&lt;br /&gt;
-&lt;a href="https://github.com/pbertera/junk/tree/master/nettester"&gt;nettester&lt;/a&gt;&lt;/p&gt;</summary><category term="codin"></category><category term="networking"></category></entry><entry><title>rTCP</title><link href="http://www.bertera.it/rtcp.html" rel="alternate"></link><published>2006-05-21T16:40:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:rtcp.html</id><summary type="html">&lt;p&gt;rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
+&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/worstbit"&gt;https://github.com/pbertera/junk/tree/master/worstbit&lt;/a&gt;&lt;/p&gt;</summary><category term="acl posix"></category><category term="c"></category></entry><entry><title>Kecho</title><link href="http://www.bertera.it/kecho.html" rel="alternate"></link><published>2006-05-21T16:41:00+02:00</published><updated>2006-05-21T16:41:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:kecho.html</id><summary type="html">&lt;p&gt;Kernel echo è un esempio di comunicazione tra userspace e kernelspace&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/kecho"&gt;kecho&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category><category term="networking"></category></entry><entry><title>Nettester</title><link href="http://www.bertera.it/nettester.html" rel="alternate"></link><published>2006-05-21T16:41:00+02:00</published><updated>2006-05-21T16:41:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:nettester.html</id><summary type="html">&lt;p&gt;un clone di netcat con supporto UDP&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/nettester"&gt;nettester&lt;/a&gt;&lt;/p&gt;</summary><category term="codin"></category><category term="networking"></category></entry><entry><title>rTCP</title><link href="http://www.bertera.it/rtcp.html" rel="alternate"></link><published>2006-05-21T16:40:00+02:00</published><updated>2006-05-21T16:40:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:rtcp.html</id><summary type="html">&lt;p&gt;rTCP è un modulo kernel che inverte i flag fin e syn dei pacchetti tcp
 diretti verso un dato host.&lt;br /&gt;
 Installato su due host permette di comunicare con un TCP “inverso”&lt;br /&gt;
-&lt;a href="https://github.com/pbertera/junk/tree/master/rtcp"&gt;rtcp&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category></entry><entry><title>Arpiglio</title><link href="http://www.bertera.it/arpiglio.html" rel="alternate"></link><published>2006-05-21T16:36:00+02:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:arpiglio.html</id><summary type="html">&lt;p&gt;un tool per forgiare pacchetti ARP/RARP da linea di comando.&lt;br /&gt;
-&lt;a href="https://github.com/pbertera/junk/tree/master/arpiglio"&gt;arpiglio.c&lt;/a&gt;&lt;/p&gt;</summary><category term="arp"></category><category term="c"></category></entry><entry><title>Software</title><link href="http://www.bertera.it/software.html" rel="alternate"></link><published>2006-02-05T16:22:00+01:00</published><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-05:software.html</id><summary type="html">&lt;p&gt;Era un progettino che avevo dato all’università : esegue dei backup
+&lt;a href="https://github.com/pbertera/junk/tree/master/rtcp"&gt;rtcp&lt;/a&gt;&lt;/p&gt;</summary><category term="kernel"></category></entry><entry><title>Arpiglio</title><link href="http://www.bertera.it/arpiglio.html" rel="alternate"></link><published>2006-05-21T16:36:00+02:00</published><updated>2006-05-21T16:36:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:arpiglio.html</id><summary type="html">&lt;p&gt;un tool per forgiare pacchetti ARP/RARP da linea di comando.&lt;br /&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/arpiglio"&gt;arpiglio.c&lt;/a&gt;&lt;/p&gt;</summary><category term="arp"></category><category term="c"></category></entry><entry><title>Software</title><link href="http://www.bertera.it/software.html" rel="alternate"></link><published>2006-02-05T16:22:00+01:00</published><updated>2006-02-05T16:22:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-05:software.html</id><summary type="html">&lt;p&gt;Era un progettino che avevo dato all’università : esegue dei backup
 differenziali o full utilizzando rsync:
 &lt;a href="https://github.com/pbertera/junk/tree/master/batbu"&gt;Batbu&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bacula: i .deb per sarge della 1.38.5

@@ -126,18 +126,18 @@ For bacula integration of pvmcb you can see the instruction on bacula <a href="h
   </header>
   <div>
       <p>Uno snippet di codice bash utile nel debugging di script.</p>
-<div class="highlight"><pre><span></span>#@.. function:: __cm_exit_error([text],[...])
-#@
-#@   Stampa la stringa passata in stderr ed esce
-#@   Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni
-#@
-#@   :param text: la stringa da stampare
-#@   :type text: String
-#@
-__cm_exit_error()
+<div class="highlight"><pre><span></span><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="n">__cm_exit_error</span><span class="p">()</span><span class="w"></span>
 
-{
-        echo &quot;Error in <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">BASH_LINENO ...</span></pre></div>
+<span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">Continue reading</a>
   </div>
   <hr />

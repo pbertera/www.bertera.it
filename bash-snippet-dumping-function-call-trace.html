@@ -83,26 +83,26 @@
   </header>
   <div>
     <p>Uno snippet di codice bash utile nel debugging di script.</p>
-<div class="highlight"><pre><span></span>#@.. function:: __cm_exit_error([text],[...])
-#@
-#@   Stampa la stringa passata in stderr ed esce
-#@   Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni
-#@
-#@   :param text: la stringa da stampare
-#@   :type text: String
-#@
-__cm_exit_error()
+<div class="highlight"><pre><span></span><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="n">__cm_exit_error</span><span class="p">()</span><span class="w"></span>
 
-{
-        echo &quot;Error in <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">BASH_LINENO</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="cp">}</span>: $*&quot; 1&gt;<span class="err">&amp;</span>2
-        local i=0
-        [ <span class="nv">$__cm_debug</span> ] <span class="err">&amp;&amp;</span> while [ <span class="nv">$i</span> -lt <span class="cp">${</span><span class="c1">#FUNCNAME</span><span class="cp">}</span> ]; do
-                [ &quot;<span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span>&quot; == &quot;main&quot; ] <span class="err">&amp;&amp;</span> break
-                echo &quot;<span class="cp">${</span><span class="n">BASH_SOURCE</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span>::<span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="err">$</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="cp">}</span>::<span class="cp">${</span><span class="n">BASH_LINENO</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span>&quot; 1&gt;<span class="err">&amp;</span>2
-                i=$(expr <span class="nv">$i</span> + 1)
-        done
-        exit 1
-}
+<span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO[0]}: $*&quot;</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&amp;</span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="k">local</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="n"> $__cm_debug </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="n"> $i -lt ${#FUNCNAME} </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="n">do</span><span class="w"></span>
+<span class="w">                </span><span class="o">[</span><span class="n"> &quot;${FUNCNAME[$i</span><span class="o">]</span><span class="err">}</span><span class="ss">&quot; == &quot;</span><span class="n">main</span><span class="ss">&quot; ] &amp;&amp; break</span>
+<span class="ss">                echo &quot;</span><span class="err">${</span><span class="n">BASH_SOURCE</span><span class="o">[</span><span class="n">$i</span><span class="o">]</span><span class="err">}</span><span class="o">::</span><span class="err">${</span><span class="n">FUNCNAME</span><span class="o">[</span><span class="n">$i + 1</span><span class="o">]</span><span class="err">}</span><span class="o">::</span><span class="err">${</span><span class="n">BASH_LINENO</span><span class="o">[</span><span class="n">$i</span><span class="o">]</span><span class="err">}&quot;</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&amp;</span><span class="mi">2</span><span class="w"></span>
+<span class="w">                </span><span class="n">i</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">expr</span><span class="w"> </span><span class="err">$</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">done</span><span class="w"></span>
+<span class="w">        </span><span class="k">exit</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 </pre></div>
   </div>
   <div class="tag-cloud">

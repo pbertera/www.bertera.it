@@ -71,6 +71,27 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html#how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel">How to push a public IP on your laptop using SSH bridged tunnel</a></h2>
+    <p>
+      Posted on Sun 04 March 2012 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/routing.html">routing</a>,      <a href="http://www.bertera.it/tag/ssh.html">ssh</a>,      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>      &#8226; <a href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>In my <a href="http://www.bertera.it/index.php/2008/12/22/vpn-layer-3-con-openssh/" title="VPN layer 3 con OpenSSH">previous
+post</a> I
+talked about Layer 3 VPN feature of OpenSSH (starting from version
+4.3).<br />
+Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature
+you can create a virtual network device that, through the encrypted
+tunnel, is connected on the same network ...</p>
+      <a class="btn" href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html#how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/asterisk_and_sip_session_refresh_with_update-request.html#asterisk_and_sip_session_refresh_with_update-request">Asterisk and SIP session refresh with UPDATE request</a></h2>
     <p>
       Posted on Wed 15 February 2012 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
@@ -159,9 +180,9 @@ files.</p>
   </header>
   <div>
       <p>A useful snipped of php code:  </p>
-<div class="highlight"><pre><span></span>echo file_get_contents(&#39;http://www.example.com/foo.html&#39;,\
-  FALSE, stream_context_create(array\
-  (&#39;http&#39;=&gt;;array(&#39;ignore_errors&#39; =&gt;; TRUE))))
+<div class="highlight"><pre><span></span><span class="err">echo file_get_contents(&#39;http://www.example.com/foo.html&#39;,\</span>
+<span class="err">  FALSE, stream_context_create(array\</span>
+<span class="err">  (&#39;http&#39;=&gt;;array(&#39;ignore_errors&#39; =&gt;; TRUE))))</span>
 </pre></div>
       <a class="btn" href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html#php-sinippet-howto-ignore-http-errors-in-file_get_contents">Continue reading</a>
   </div>
@@ -265,33 +286,6 @@ For bacula integration of pvmcb you can see the instruction on bacula <a href="h
 <ul>
 <li>eseguire uno snapshot ...</li></ul>
       <a class="btn" href="http://www.bertera.it/poor-man-vmware-consolidate-backup.html#poor-man-vmware-consolidate-backup">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">bash snippet: dumping function call trace</a></h2>
-    <p>
-      Posted on Mon 18 July 2011 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/bash.html">bash</a>,      <a href="http://www.bertera.it/tag/debugging.html">debugging</a>,      <a href="http://www.bertera.it/tag/script.html">script</a>      &#8226; <a href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>Uno snippet di codice bash utile nel debugging di script.</p>
-<div class="highlight"><pre><span></span>#@.. function:: __cm_exit_error([text],[...])
-#@
-#@   Stampa la stringa passata in stderr ed esce
-#@   Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni
-#@
-#@   :param text: la stringa da stampare
-#@   :type text: String
-#@
-__cm_exit_error()
-
-{
-        echo &quot;Error in <span class="cp">${</span><span class="n">FUNCNAME</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">BASH_LINENO ...</span></pre></div>
-      <a class="btn" href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">Continue reading</a>
   </div>
 </article>
 

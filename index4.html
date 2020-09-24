@@ -71,6 +71,33 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">bash snippet: dumping function call trace</a></h2>
+    <p>
+      Posted on Mon 18 July 2011 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/bash.html">bash</a>,      <a href="http://www.bertera.it/tag/debugging.html">debugging</a>,      <a href="http://www.bertera.it/tag/script.html">script</a>      &#8226; <a href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p>Uno snippet di codice bash utile nel debugging di script.</p>
+<div class="highlight"><pre><span></span><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span><span class="w"></span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">#@</span><span class="w"></span>
+<span class="n">__cm_exit_error</span><span class="p">()</span><span class="w"></span>
+
+<span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO ...</span></pre></div>
+      <a class="btn" href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">cisco IOS contextual config diffs via syslog</a></h2>
     <p>
       Posted on Mon 11 October 2010 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
@@ -81,12 +108,12 @@
   <div>
       <p>Event amanager applet per salvare il diff tra stratup-config e
 running-config via syslog.</p>
-<div class="highlight"><pre><span></span><span class="x">event manager applet wr-mem-match </span>
-<span class="x"> event cli pattern &quot;wr.* mem.*&quot; sync yes</span>
-<span class="x"> action 1.0 cli command &quot;enable&quot;</span>
-<span class="x"> action 1.1 cli command &quot;show archive config differences nvram:/startup-config system:/running-config&quot;</span>
-<span class="x"> action 1.2 syslog msg &quot;</span><span class="p">$</span><span class="nv">_cli_result</span><span class="x">&quot;</span>
-<span class="x"> set ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="err">event manager applet wr-mem-match </span>
+<span class="err"> event cli pattern &quot;wr.* mem.*&quot; sync yes</span>
+<span class="err"> action 1.0 cli command &quot;enable&quot;</span>
+<span class="err"> action 1.1 cli command &quot;show archive config differences nvram:/startup-config system:/running-config&quot;</span>
+<span class="err"> action 1.2 syslog msg &quot;$_cli_result&quot;</span>
+<span class="err"> set ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/cisco-ios-contextual-config-diffs-via-syslog.html#cisco-ios-contextual-config-diffs-via-syslog">Continue reading</a>
   </div>
   <hr />
@@ -108,19 +135,17 @@ patch</a>
 add <strong>authuser</strong> parameter in SIP peer definition and use authuser in
 digest authentication:</p>
 <p><strong>Peer definition in /etc/asterisk/sip.conf</strong>  </p>
-<div class="highlight"><pre><span></span>...
-[pietro](sip-client-base)
-authuser=MyUsername
-secret=XXXXX
-qualify=yes
-nat=yes
-...
+<div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+<span class="o">[</span><span class="n">pietro</span><span class="o">]</span><span class="p">(</span><span class="n">sip</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">base</span><span class="p">)</span><span class="w"></span>
+<span class="n">authuser</span><span class="o">=</span><span class="n">MyUsername</span><span class="w"></span>
+<span class="n">secret</span><span class="o">=</span><span class="n">XXXXX</span><span class="w"></span>
+<span class="n">qualify</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="n">nat</span><span class="o">=</span><span class="n">yes</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
 </pre></div>
 
 
-<p><strong>Peer definition in my SIP client (Twinkle)</strong><br />
-<img alt="client configuration" src="http://www.bertera.it/Twinkle-conf.png" /></p>
-<p><strong>REGISTER ...</strong></p>
+<p><strong>Peer definition in my SIP client ...</strong></p>
       <a class="btn" href="http://www.bertera.it/authentication-username-in-astersik-sip-peer.html#authentication-username-in-astersik-sip-peer">Continue reading</a>
   </div>
   <hr />
@@ -219,7 +244,7 @@ key da un pc remoto.</p>
   </header>
   <div>
       <p>Software C che si occupa dell'encode e decode dei filename contenuti nei dump del comando</p>
-<div class="highlight"><pre><span></span> getfacl -R
+<div class="highlight"><pre><span></span><span class="err"> getfacl -R</span>
 </pre></div>
 
 
@@ -293,27 +318,6 @@ protocollo PowerChute di APC:</p>
 <span><a href="http://www.bertera.it/software/apcupsd/">http://www.bertera.it/software/apcupsd</a><br />
 </span></p>
       <a class="btn" href="http://www.bertera.it/powerchute-con-apcupsd.html#powerchute-con-apcupsd">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/sql-server-backup-con-bacula.html#sql-server-backup-con-bacula">SQL Server backup con Bacula</a></h2>
-    <p>
-      Posted on Fri 30 May 2008 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/bacula.html">bacula</a>,      <a href="http://www.bertera.it/tag/sql-server.html">sql server</a>,      <a href="http://www.bertera.it/tag/windows.html">windows</a>      &#8226; <a href="http://www.bertera.it/sql-server-backup-con-bacula.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>In teoria con una versione recente di Bacula ed il supporto VSS si
-dovrebbe poter eseguire il backup in maniera consistente prelevando
-direttamente i file dei database.<br />
-Per chi non si fida
-<a href="https://github.com/pbertera/junk/blob/master/mssql-backup/dump.sql">questa</a> stored
-procedure esegue il dump di tutti i database utente in file .BAK.</p>
-<p>Viene installata ed eseguita ...</p>
-      <a class="btn" href="http://www.bertera.it/sql-server-backup-con-bacula.html#sql-server-backup-con-bacula">Continue reading</a>
   </div>
 </article>
 

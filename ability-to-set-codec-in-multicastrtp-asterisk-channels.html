@@ -90,9 +90,9 @@ you can find a port for Asterisk trunk (rev. 377802) of this patch:
 <a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html">http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html</a>.<br />
 This patch permits to set the codec of an outgoing multicast RTP stream
 via the variable MULTICAST_RTP_CODEC:</p>
-<div class="highlight"><pre><span></span>exten =&gt; 999,1,Answer()  
-exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw)  
-exten =&gt; 999,n,Dial(MulticastRTP/basic/239.255.255.245:5555,,A(/var/lib/asterisk/moh/mymoh))
+<div class="highlight"><pre><span></span><span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Answer</span><span class="p">()</span>  
+<span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">Set</span><span class="p">(</span><span class="n">MULTICAST_RTP_CODEC</span><span class="o">=</span><span class="n">alaw</span><span class="p">)</span>  
+<span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">Dial</span><span class="p">(</span><span class="n">MulticastRTP</span><span class="o">/</span><span class="n">basic</span><span class="o">/</span><span class="mf">239.255</span><span class="o">.</span><span class="mf">255.245</span><span class="p">:</span><span class="mi">5555</span><span class="p">,,</span><span class="n">A</span><span class="p">(</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">asterisk</span><span class="o">/</span><span class="n">moh</span><span class="o">/</span><span class="n">mymoh</span><span class="p">))</span>
 </pre></div>
   </div>
   <div class="tag-cloud">

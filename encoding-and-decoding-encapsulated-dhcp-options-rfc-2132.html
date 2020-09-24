@@ -92,51 +92,51 @@ can encode and decode vendor encapsulated option according to <a href="http://ww
 2132</a>.</p>
 <p>For example with this command you can tunnel options 66 (TFTP Server),
 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS):</p>
-<div class="highlight"><pre><span></span>$ ./dhcp-encapsulated-options.py encode <span class="m">66</span> http://provisionig.example.com <span class="m">67</span> settings.xml <span class="m">132</span> <span class="m">33</span> <span class="m">133</span> 6
-Encoding part 1: http://provisionig.example.com
- Option ID: 66
- Option length: 30
- Encoded Option part: 42:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
+<div class="highlight"><pre><span></span>$ ./dhcp-encapsulated-options.py encode <span class="m">66</span> http://provisionig.example.com <span class="m">67</span> settings.xml <span class="m">132</span> <span class="m">33</span> <span class="m">133</span> <span class="m">6</span>
+Encoding part <span class="m">1</span>: http://provisionig.example.com
+ Option ID: <span class="m">66</span>
+ Option length: <span class="m">30</span>
+ Encoded Option part: <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
 
-Encoding part 2: settings.xml
- Option ID: 67
- Option length: 12
- Encoded Option part: 43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+Encoding part <span class="m">2</span>: settings.xml
+ Option ID: <span class="m">67</span>
+ Option length: <span class="m">12</span>
+ Encoded Option part: <span class="m">43</span>:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
 
-Encoding part 3: 33
- Option ID: 132
- Option length: 2
- Encoded Option part: 84:02:33:33
+Encoding part <span class="m">3</span>: <span class="m">33</span>
+ Option ID: <span class="m">132</span>
+ Option length: <span class="m">2</span>
+ Encoded Option part: <span class="m">84</span>:02:33:33
 
-Encoding part 4: 6
- Option ID: 133
- Option length: 1
- Encoded Option part: 85:01:36
+Encoding part <span class="m">4</span>: <span class="m">6</span>
+ Option ID: <span class="m">133</span>
+ Option length: <span class="m">1</span>
+ Encoded Option part: <span class="m">85</span>:01:36
 
-Full encoded options: 42:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36
+Full encoded options: <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36
 </pre></div>
 
 
 <p>And then you can add the encoded options in you dhcpd config file:</p>
-<div class="highlight"><pre><span></span><span class="nt">host</span> <span class="nt">device</span><span class="nc">.labo.local</span> <span class="p">{</span>  
-    <span class="n">hardware</span> <span class="n">ethernet</span> <span class="m">01</span><span class="o">:</span><span class="m">04</span><span class="o">:</span><span class="m">23</span><span class="o">:</span><span class="m">3</span><span class="n">b</span><span class="o">:</span><span class="n">d0</span><span class="o">:</span><span class="m">21</span><span class="p">;</span>  
-    <span class="nb">fixed</span><span class="o">-</span><span class="n">address</span> <span class="m">172</span><span class="o">.</span><span class="m">16</span><span class="o">.</span><span class="m">18</span><span class="o">.</span><span class="m">30</span><span class="p">;</span>  
-    <span class="n">option</span> <span class="n">vendor</span><span class="o">-</span><span class="n">encapsulated</span><span class="o">-</span><span class="n">options</span>
-    <span class="m">42</span><span class="o">:</span><span class="m">1</span><span class="n">E</span><span class="o">:</span><span class="m">68</span><span class="o">:</span><span class="m">74</span><span class="o">:</span><span class="m">74</span><span class="o">:</span><span class="m">70</span><span class="o">:</span><span class="m">3</span><span class="n">A</span><span class="o">:</span><span class="m">2</span><span class="n">F</span><span class="o">:</span><span class="m">2</span><span class="n">F</span><span class="o">:</span><span class="m">70</span><span class="o">:</span><span class="m">72</span><span class="o">:</span><span class="m">6</span><span class="n">F</span><span class="o">:</span><span class="m">76</span><span class="o">:</span><span class="m">69</span><span class="o">:</span><span class="m">73</span><span class="o">:</span><span class="m">69</span><span class="o">:</span><span class="m">6</span><span class="n">F</span><span class="o">:</span><span class="m">6</span><span class="n">E</span><span class="o">:</span><span class="m">69</span><span class="o">:</span><span class="m">67</span><span class="o">:</span><span class="m">2</span><span class="n">E</span><span class="o">:</span><span class="m">65</span><span class="o">:</span><span class="m">78</span><span class="o">:</span><span class="m">61</span><span class="o">:</span><span class="m">6</span><span class="n">D</span><span class="o">:</span><span class="m">70</span><span class="o">:</span><span class="m">6</span><span class="n">C</span><span class="o">:</span><span class="m">65</span><span class="o">:</span><span class="m">2</span><span class="n">E</span><span class="o">:</span><span class="m">63</span><span class="o">:</span><span class="m">6</span><span class="n">F</span><span class="o">:</span><span class="m">6</span><span class="n">D</span><span class="o">:</span><span class="m">43</span><span class="o">:</span><span class="m">0</span><span class="n">C</span><span class="o">:</span><span class="m">73</span><span class="o">:</span><span class="m">65</span><span class="o">:</span><span class="m">74</span><span class="o">:</span><span class="m">74</span><span class="o">:</span><span class="m">69</span><span class="o">:</span><span class="m">6</span><span class="n">E</span><span class="o">:</span><span class="m">67</span><span class="o">:</span><span class="m">73</span><span class="o">:</span><span class="m">2</span><span class="n">E</span><span class="o">:</span><span class="m">78</span><span class="o">:</span><span class="m">6</span><span class="n">D</span><span class="o">:</span><span class="m">6</span><span class="n">C</span><span class="o">:</span><span class="m">84</span><span class="o">:</span><span class="m">02</span><span class="o">:</span><span class="m">33</span><span class="o">:</span><span class="m">33</span><span class="o">:</span><span class="m">85</span><span class="o">:</span><span class="m">01</span><span class="o">:</span><span class="m">36</span><span class="p">;</span>  
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="err">host device.labo.local {  </span>
+<span class="err">    hardware ethernet 01:04:23:3b:d0:21;  </span>
+<span class="err">    fixed-address 172.16.18.30;  </span>
+<span class="err">    option vendor-encapsulated-options</span>
+<span class="err">    42:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36;  </span>
+<span class="err">}</span>
 </pre></div>
 
 
 <p>And viceversa you can decode an encapsulated option:</p>
-<div class="highlight"><pre><span></span>$ ./dhcp-encapsulated-options.py decode 42:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
-Decoding part 1: 42:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
- Option ID: 66
- Option lenght: 30
+<div class="highlight"><pre><span></span>$ ./dhcp-encapsulated-options.py decode <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+Decoding part <span class="m">1</span>: <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
+ Option ID: <span class="m">66</span>
+ Option lenght: <span class="m">30</span>
  Option value: <span class="s2">&quot;http://provisionig.example.com&quot;</span>
 
-Decoding part 2: 43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
- Option ID: 67
- Option lenght: 12
+Decoding part <span class="m">2</span>: <span class="m">43</span>:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+ Option ID: <span class="m">67</span>
+ Option lenght: <span class="m">12</span>
  Option value: <span class="s2">&quot;settings.xml&quot;</span>
 
 End of encoded options

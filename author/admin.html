@@ -185,9 +185,9 @@ Python templating feature.<br />
 Templates placehoder names are subject to some
 restrictions,<a href="http://docs.python.org/3/library/string.html#template-strings">Documentation</a>
 says:</p>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">identifier</span><span class="x"> names a substitution placeholder matching a mapping key of &quot;identifier&quot;.</span>
-<span class="x">By default, &quot;identifier&quot; must spell a Python identifier.</span>
-<span class="x">The first non-identifier character after the </span><span class="p">$</span><span class="x"> character terminates this placeholder specification.</span>
+<div class="highlight"><pre><span></span><span class="err">$identifier names a substitution placeholder matching a mapping key of &quot;identifier&quot;.</span>
+<span class="err">By default, &quot;identifier&quot; must spell a Python identifier.</span>
+<span class="err">The first non-identifier character after the $ character terminates this placeholder specification.</span>
 </pre></div>
 
 
@@ -212,7 +212,7 @@ can create various SIP scenario and test your devices and environments.</p>
 registrar with authentication.</p>
 <p>Following you can find this scenario:</p>
 <p>The SIPp XML scenario file: <strong>sipp_register_auth_uas.xml</strong>  </p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="vm">?</span><span class="nc">xml</span><span class="w"> </span><span class="n">version ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">Continue reading</a>
   </div>
   <hr />
@@ -232,8 +232,8 @@ you can find a port for Asterisk trunk (rev. 377802) of this patch:
 <a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html">http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html</a>.<br />
 This patch permits to set the codec of an outgoing multicast RTP stream
 via the variable MULTICAST_RTP_CODEC:</p>
-<div class="highlight"><pre><span></span>exten =&gt; 999,1,Answer()  
-exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw ...</pre></div>
+<div class="highlight"><pre><span></span><span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Answer</span><span class="p">()</span>  
+<span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">Set</span><span class="p">(</span><span class="n">MULTICAST_RTP_CODEC</span><span class="o">=</span><span class="n">alaw ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Continue reading</a>
   </div>
   <hr />

@@ -98,9 +98,9 @@ I use it for sharing non-important documents.</p>
 <li>run it: <code>LC_ALL=C python26 ./dropbox.py start</code></li>
 <li>Now Dropbox start reply with a link:</li>
 </ul>
-<div class="highlight"><pre><span></span>To link this computer to a dropbox account, visit the following url:  
+<div class="highlight"><pre><span></span><span class="k">To</span> <span class="n">link</span> <span class="n">this</span> <span class="n">computer</span> <span class="k">to</span> <span class="n">a</span> <span class="n">dropbox</span> <span class="n">account</span><span class="p">,</span> <span class="n">visit</span> <span class="n">the</span> <span class="n">following</span> <span class="n">url</span><span class="p">:</span>  
 
-https://www.dropbox.com/cli_link?host_id=4258saj1921sa123aa17329a12e3&amp;cl=en_US  
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">dropbox</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">cli_link</span><span class="o">?</span><span class="n">host_id</span><span class="o">=</span><span class="mi">4258</span><span class="n">saj1921sa123aa17329a12e3</span><span class="o">&amp;</span><span class="n">cl</span><span class="o">=</span><span class="n">en_US</span>  
 </pre></div>
 
 
@@ -152,7 +152,7 @@ your bacula job.</p>
 
 do_ok<span class="o">(){</span>
         <span class="nv">$dropbox</span> stop
-        <span class="nb">exit</span> 0
+        <span class="nb">exit</span> <span class="m">0</span>
 <span class="o">}</span>
 
 <span class="nb">cd</span> ~
@@ -161,7 +161,7 @@ do_ok<span class="o">(){</span>
 <span class="nv">$dropbox</span> start
 
 
-<span class="nv">x</span><span class="o">=</span>0
+<span class="nv">x</span><span class="o">=</span><span class="m">0</span>
 <span class="k">while</span> <span class="o">[</span> <span class="nv">$x</span> -le <span class="nv">$maxwait</span> <span class="o">]</span>
 <span class="k">do</span>
         sleep <span class="nv">$recheck</span>
@@ -172,33 +172,33 @@ do_ok<span class="o">(){</span>
 <span class="k">done</span>
 <span class="nb">echo</span> <span class="s2">&quot;Timeout reached.&quot;</span>
 <span class="nv">$dropbox</span> stop
-<span class="nb">exit</span> 255
+<span class="nb">exit</span> <span class="m">255</span>
 </pre></div>
 </td></tr></table>
 
 <p>Following the bacula configuration for this job: Job definition and
 FilSet:</p>
-<div class="highlight"><pre><span></span>FileSet {
-  Name = &quot;DropBox Full Set&quot;
-  Include {
-    Options {
-      signature = MD5
-    }
-    File = /root/Dropbox
-  }
-}
+<div class="highlight"><pre><span></span><span class="n">FileSet</span> <span class="err">{</span>
+  <span class="n">Name</span> <span class="o">=</span> <span class="ss">&quot;DropBox Full Set&quot;</span>
+  <span class="n">Include</span> <span class="err">{</span>
+    <span class="k">Options</span> <span class="err">{</span>
+      <span class="n">signature</span> <span class="o">=</span> <span class="n">MD5</span>
+    <span class="err">}</span>
+    <span class="n">File</span> <span class="o">=</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">Dropbox</span>
+  <span class="err">}</span>
+<span class="err">}</span>
 
-Job {
-  Name = &quot;BackupDropBox&quot;
-  Client = stoker-fd
-  FileSet = &quot;DropBox Full Set&quot;
-  JobDefs = &quot;DefaultJob&quot;
-  RunScript {
-    RunsWhen = Before
-    FailJobOnError = Yes
-    Command = &quot;/etc/bacula/scripts/sync-dropbox.sh&quot;
-  }
-}
+<span class="n">Job</span> <span class="err">{</span>
+  <span class="n">Name</span> <span class="o">=</span> <span class="ss">&quot;BackupDropBox&quot;</span>
+  <span class="n">Client</span> <span class="o">=</span> <span class="n">stoker</span><span class="o">-</span><span class="n">fd</span>
+  <span class="n">FileSet</span> <span class="o">=</span> <span class="ss">&quot;DropBox Full Set&quot;</span>
+  <span class="n">JobDefs</span> <span class="o">=</span> <span class="ss">&quot;DefaultJob&quot;</span>
+  <span class="n">RunScript</span> <span class="err">{</span>
+    <span class="n">RunsWhen</span> <span class="o">=</span> <span class="k">Before</span>
+    <span class="n">FailJobOnError</span> <span class="o">=</span> <span class="n">Yes</span>
+    <span class="n">Command</span> <span class="o">=</span> <span class="ss">&quot;/etc/bacula/scripts/sync-dropbox.sh&quot;</span>
+  <span class="err">}</span>
+<span class="err">}</span>
 </pre></div>
   </div>
   <div class="tag-cloud">

@@ -89,123 +89,123 @@ can create various SIP scenario and test your devices and environments.</p>
 registrar with authentication.</p>
 <p>Following you can find this scenario:</p>
 <p>The SIPp XML scenario file: <strong>sipp_register_auth_uas.xml</strong>  </p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;</span>
-<span class="cp">&lt;!DOCTYPE scenario SYSTEM &quot;sipp.dtd&quot;&gt;</span>
+<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="vm">?</span><span class="nc">xml</span><span class="w"> </span><span class="n">version</span><span class="o">=</span><span class="ss">&quot;1.0&quot;</span><span class="w"> </span><span class="n">encoding</span><span class="o">=</span><span class="ss">&quot;ISO-8859-1&quot;</span><span class="w"> </span><span class="vm">?</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="n">DOCTYPE</span><span class="w"> </span><span class="n">scenario</span><span class="w"> </span><span class="k">SYSTEM</span><span class="w"> </span><span class="ss">&quot;sipp.dtd&quot;</span><span class="o">&gt;</span><span class="w"></span>
 
-<span class="nt">&lt;scenario</span> <span class="na">name=</span><span class="s">&quot;Basic UAS registrar with authentication&quot;</span><span class="nt">&gt;</span>
+<span class="o">&lt;</span><span class="n">scenario</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;Basic UAS registrar with authentication&quot;</span><span class="o">&gt;</span><span class="w"></span>
 
-<span class="nt">&lt;label</span> <span class="na">id=</span><span class="s">&quot;badauth&quot;</span><span class="nt">/&gt;</span> 
-<span class="nt">&lt;recv</span> <span class="na">request=</span><span class="s">&quot;REGISTER&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;send&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="o">&lt;</span><span class="n">label</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="ss">&quot;badauth&quot;</span><span class="o">/&gt;</span><span class="w"> </span>
+<span class="o">&lt;</span><span class="n">recv</span><span class="w"> </span><span class="n">request</span><span class="o">=</span><span class="ss">&quot;REGISTER&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">send</span><span class="o">&gt;&lt;</span><span class="err">!</span><span class="o">[</span><span class="n">CDATA[</span>
 
-<span class="cp">      SIP/2.0 401 Authorization Required</span>
-<span class="cp">      [last_Via:]</span>
-<span class="cp">      [last_From:]</span>
-<span class="cp">      [last_To:];tag=[pid]SIPpTag01[call_number]</span>
-<span class="cp">      [last_Call-ID:]</span>
-<span class="cp">      [last_CSeq:]</span>
-<span class="cp">      Contact: &lt;sip:[local_ip]:[local_port];transport=[transport]&gt;</span>
-<span class="cp">      WWW-Authenticate: Digest realm=&quot;test.example.com&quot;, nonce=&quot;47ebe028cda119c35d4877b383027d28da013815&quot;</span>
-<span class="cp">      Content-Length: [len]</span>
+<span class="n">      SIP/2.0 401 Authorization Required</span>
+<span class="n">      [last_Via:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_From:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_To:</span><span class="o">]</span><span class="p">;</span><span class="n">tag</span><span class="o">=[</span><span class="n">pid</span><span class="o">]</span><span class="n">SIPpTag01</span><span class="o">[</span><span class="n">call_number</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_Call-ID:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_CSeq:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="nl">Contact</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">sip</span><span class="p">:</span><span class="o">[</span><span class="n">local_ip</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">local_port</span><span class="o">]</span><span class="p">;</span><span class="n">transport</span><span class="o">=[</span><span class="n">transport</span><span class="o">]&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="n">WWW</span><span class="o">-</span><span class="nl">Authenticate</span><span class="p">:</span><span class="w"> </span><span class="n">Digest</span><span class="w"> </span><span class="n">realm</span><span class="o">=</span><span class="ss">&quot;test.example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="o">=</span><span class="ss">&quot;47ebe028cda119c35d4877b383027d28da013815&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="n">Content</span><span class="o">-</span><span class="nl">Length</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">len</span><span class="o">]</span><span class="w"></span>
 
-<span class="cp">    ]]&gt;</span>
-  <span class="nt">&lt;/send&gt;</span>
-  <span class="nt">&lt;recv</span> <span class="na">request=</span><span class="s">&quot;REGISTER&quot;</span> <span class="nt">&gt;</span>
-        <span class="nt">&lt;action&gt;</span>
-                <span class="nt">&lt;ereg</span> <span class="na">regexp=</span><span class="s">&quot;Digest .*username=\&quot;</span><span class="err">([^\&quot;]*)\&quot;&quot;</span> <span class="na">search_in=</span><span class="s">&quot;hdr&quot;</span> <span class="na">header=</span><span class="s">&quot;Authorization:&quot;</span> <span class="na">assign_to=</span><span class="s">&quot;junk,username&quot;</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;lookup</span> <span class="na">assign_to=</span><span class="s">&quot;line&quot;</span> <span class="na">file=</span><span class="s">&quot;users.csv&quot;</span> <span class="na">key=</span><span class="s">&quot;[$username]&quot;</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;assign</span> <span class="na">assign_to=</span><span class="s">&quot;junk&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;log</span> <span class="na">message=</span><span class="s">&quot;Received REGISTER from user -[$username]-&quot;</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;log</span> <span class="na">message=</span><span class="s">&quot;searching in file at line [$line]: Username: [field0 line=\&quot;</span><span class="err">[$line]\&quot;]</span> <span class="err">Pass:</span> <span class="err">[field1</span> <span class="na">line=</span><span class="s">\&quot;[$line]\&quot;]&quot;/</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;verifyauth</span> <span class="na">assign_to=</span><span class="s">&quot;authvalid&quot;</span> <span class="na">username=</span><span class="s">&quot;[field0 line=\&quot;</span><span class="err">[$line]\&quot;]&quot;</span> <span class="na">password=</span><span class="s">&quot;[field1 line=\&quot;</span><span class="err">[$line]\&quot;]&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/action&gt;</span>
-  <span class="nt">&lt;/recv&gt;</span>
+<span class="w">    </span><span class="err">]]</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">send</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">recv</span><span class="w"> </span><span class="n">request</span><span class="o">=</span><span class="ss">&quot;REGISTER&quot;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="k">action</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;</span><span class="n">ereg</span><span class="w"> </span><span class="n">regexp</span><span class="o">=</span><span class="ss">&quot;Digest .*username=\&quot;</span><span class="p">(</span><span class="o">[</span><span class="n">^\&quot;</span><span class="o">]*</span><span class="p">)</span><span class="err">\</span><span class="ss">&quot;&quot;</span><span class="w"> </span><span class="n">search_in</span><span class="o">=</span><span class="ss">&quot;hdr&quot;</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="ss">&quot;Authorization:&quot;</span><span class="w"> </span><span class="n">assign_to</span><span class="o">=</span><span class="ss">&quot;junk,username&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;</span><span class="n">lookup</span><span class="w"> </span><span class="n">assign_to</span><span class="o">=</span><span class="ss">&quot;line&quot;</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="ss">&quot;users.csv&quot;</span><span class="w"> </span><span class="k">key</span><span class="o">=</span><span class="ss">&quot;[$username]&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;</span><span class="n">assign</span><span class="w"> </span><span class="n">assign_to</span><span class="o">=</span><span class="ss">&quot;junk&quot;</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="ss">&quot;0&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;</span><span class="nf">log</span><span class="w"> </span><span class="n">message</span><span class="o">=</span><span class="ss">&quot;Received REGISTER from user -[$username]-&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;</span><span class="nf">log</span><span class="w"> </span><span class="n">message</span><span class="o">=</span><span class="ss">&quot;searching in file at line [$line]: Username: [field0 line=\&quot;</span><span class="o">[</span><span class="n">$line</span><span class="o">]</span><span class="err">\</span><span class="ss">&quot;] Pass: [field1 line=\&quot;</span><span class="o">[</span><span class="n">$line</span><span class="o">]</span><span class="err">\</span><span class="ss">&quot;]&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">                </span><span class="o">&lt;</span><span class="n">verifyauth</span><span class="w"> </span><span class="n">assign_to</span><span class="o">=</span><span class="ss">&quot;authvalid&quot;</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="ss">&quot;[field0 line=\&quot;</span><span class="o">[</span><span class="n">$line</span><span class="o">]</span><span class="err">\</span><span class="ss">&quot;]&quot;</span><span class="w"> </span><span class="n">password</span><span class="o">=</span><span class="ss">&quot;[field1 line=\&quot;</span><span class="o">[</span><span class="n">$line</span><span class="o">]</span><span class="err">\</span><span class="ss">&quot;]&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="k">action</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">recv</span><span class="o">&gt;</span><span class="w"></span>
 
-  <span class="nt">&lt;nop</span> <span class="na">hide=</span><span class="s">&quot;true&quot;</span> <span class="na">test=</span><span class="s">&quot;authvalid&quot;</span> <span class="na">next=</span><span class="s">&quot;goodauth&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;nop</span> <span class="na">hide=</span><span class="s">&quot;true&quot;</span> <span class="na">next=</span><span class="s">&quot;badauth&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">nop</span><span class="w"> </span><span class="n">hide</span><span class="o">=</span><span class="ss">&quot;true&quot;</span><span class="w"> </span><span class="n">test</span><span class="o">=</span><span class="ss">&quot;authvalid&quot;</span><span class="w"> </span><span class="k">next</span><span class="o">=</span><span class="ss">&quot;goodauth&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">nop</span><span class="w"> </span><span class="n">hide</span><span class="o">=</span><span class="ss">&quot;true&quot;</span><span class="w"> </span><span class="k">next</span><span class="o">=</span><span class="ss">&quot;badauth&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
 
-  <span class="nt">&lt;label</span> <span class="na">id=</span><span class="s">&quot;goodauth&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;send&gt;</span>
-    <span class="cp">&lt;![CDATA[</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">label</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="ss">&quot;goodauth&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">send</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">!</span><span class="o">[</span><span class="n">CDATA[</span>
 
-<span class="cp">      SIP/2.0 200 OK</span>
-<span class="cp">      [last_Via:]</span>
-<span class="cp">      [last_From:]</span>
-<span class="cp">      [last_To:];tag=[call_number]</span>
-<span class="cp">      [last_Call-ID:]</span>
-<span class="cp">      [last_CSeq:]</span>
-<span class="cp">      Contact: &lt;sip:[local_ip]:[local_port];transport=[transport]&gt;</span>
-<span class="cp">      Content-Length: 0</span>
-<span class="cp">      Expires: 3600</span>
+<span class="n">      SIP/2.0 200 OK</span>
+<span class="n">      [last_Via:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_From:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_To:</span><span class="o">]</span><span class="p">;</span><span class="n">tag</span><span class="o">=[</span><span class="n">call_number</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_Call-ID:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">last_CSeq:</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="nl">Contact</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">sip</span><span class="p">:</span><span class="o">[</span><span class="n">local_ip</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">local_port</span><span class="o">]</span><span class="p">;</span><span class="n">transport</span><span class="o">=[</span><span class="n">transport</span><span class="o">]&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="n">Content</span><span class="o">-</span><span class="nl">Length</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">      </span><span class="nl">Expires</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="w"></span>
 
-<span class="cp">    ]]&gt;</span>
-  <span class="nt">&lt;/send&gt;</span>
+<span class="w">    </span><span class="err">]]</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">send</span><span class="o">&gt;</span><span class="w"></span>
 
 
-  <span class="c">&lt;!-- definition of the response time repartition table (unit is ms)   --&gt;</span>
-  <span class="nt">&lt;ResponseTimeRepartition</span> <span class="na">value=</span><span class="s">&quot;10, 20, 30, 40, 50, 100, 150, 200&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="err">!</span><span class="o">--</span><span class="w"> </span><span class="n">definition</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="n">repartition</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ms</span><span class="p">)</span><span class="w">   </span><span class="o">--&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">ResponseTimeRepartition</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="ss">&quot;10, 20, 30, 40, 50, 100, 150, 200&quot;</span><span class="o">/&gt;</span><span class="w"></span>
 
-  <span class="c">&lt;!-- definition of the call length repartition table (unit is ms)     --&gt;</span>
-  <span class="nt">&lt;CallLengthRepartition</span> <span class="na">value=</span><span class="s">&quot;10, 50, 100, 500, 1000, 5000, 10000&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="err">!</span><span class="o">--</span><span class="w"> </span><span class="n">definition</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="n">repartition</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ms</span><span class="p">)</span><span class="w">     </span><span class="o">--&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">CallLengthRepartition</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="ss">&quot;10, 50, 100, 500, 1000, 5000, 10000&quot;</span><span class="o">/&gt;</span><span class="w"></span>
 
-<span class="nt">&lt;/scenario&gt;</span>
+<span class="o">&lt;/</span><span class="n">scenario</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 
 
 <p>Here the users file: a CSV containing users and password (first column
 is the username, second column the password). <strong>users.csv</strong></p>
-<div class="highlight"><pre><span></span>USERS  
-pippero;1234  
-pippo;1234  
+<div class="highlight"><pre><span></span><span class="err">USERS  </span>
+<span class="err">pippero;1234  </span>
+<span class="err">pippo;1234  </span>
 </pre></div>
 
 
 <p>Now you can run your scenario putting users.csv and
 sipp_register_auth_uas.xml in the same directory, and running SIPp
 inside the directory (SIPp handle in a stupid manned direcotories..):</p>
-<div class="highlight"><pre><span></span>sipp -sf sipp_register_auth_uas.xml -inf users.csv -infindex users.csv 0 -log_file sipp_register_auth_uas.log -trace_logs  
+<div class="highlight"><pre><span></span><span class="err">sipp -sf sipp_register_auth_uas.xml -inf users.csv -infindex users.csv 0 -log_file sipp_register_auth_uas.log -trace_logs  </span>
 </pre></div>
 
 
 <p>And you will see an output like this:  </p>
-<div class="highlight"><pre><span></span>------------------------------ Scenario Screen -------- [1-9]: Change Screen --
-  Port   Total-time  Total-calls  Transport
-  5060       4.00 s            0  UDP
+<div class="highlight"><pre><span></span><span class="c1">------------------------------ Scenario Screen -------- [1-9]: Change Screen --</span>
+  <span class="n">Port</span>   <span class="n">Total</span><span class="o">-</span><span class="k">time</span>  <span class="n">Total</span><span class="o">-</span><span class="n">calls</span>  <span class="n">Transport</span>
+  <span class="mi">5060</span>       <span class="mi">4</span><span class="p">.</span><span class="mi">00</span> <span class="n">s</span>            <span class="mi">0</span>  <span class="n">UDP</span>
 
-  0 new calls during 1.001 s period      1 ms scheduler resolution
-  0 calls                                Peak was 0 calls, after 0 s
-  0 Running, 1 Paused, 3 Woken up
-  0 dead call msg (discarded)          
-  3 open sockets                        
+  <span class="mi">0</span> <span class="k">new</span> <span class="n">calls</span> <span class="n">during</span> <span class="mi">1</span><span class="p">.</span><span class="mi">001</span> <span class="n">s</span> <span class="k">period</span>      <span class="mi">1</span> <span class="n">ms</span> <span class="n">scheduler</span> <span class="n">resolution</span>
+  <span class="mi">0</span> <span class="n">calls</span>                                <span class="n">Peak</span> <span class="n">was</span> <span class="mi">0</span> <span class="n">calls</span><span class="p">,</span> <span class="k">after</span> <span class="mi">0</span> <span class="n">s</span>
+  <span class="mi">0</span> <span class="n">Running</span><span class="p">,</span> <span class="mi">1</span> <span class="n">Paused</span><span class="p">,</span> <span class="mi">3</span> <span class="n">Woken</span> <span class="n">up</span>
+  <span class="mi">0</span> <span class="n">dead</span> <span class="k">call</span> <span class="n">msg</span> <span class="p">(</span><span class="n">discarded</span><span class="p">)</span>          
+  <span class="mi">3</span> <span class="k">open</span> <span class="n">sockets</span>                        
 
-                                 Messages  Retrans   Timeout   Unexpected-Msg
-  ----------&gt; REGISTER           0         0         0         0        
-  &lt;---------- 401                0         0                            
-  ----------&gt; REGISTER           0         0         0         0        
-  &lt;---------- 200                0         0                            
------------------------------- Sipp Server Mode -------------------------------
+                                 <span class="n">Messages</span>  <span class="n">Retrans</span>   <span class="n">Timeout</span>   <span class="n">Unexpected</span><span class="o">-</span><span class="n">Msg</span>
+  <span class="c1">----------&gt; REGISTER           0         0         0         0        </span>
+  <span class="o">&lt;</span><span class="c1">---------- 401                0         0                            </span>
+  <span class="c1">----------&gt; REGISTER           0         0         0         0        </span>
+  <span class="o">&lt;</span><span class="c1">---------- 200                0         0                            </span>
+<span class="c1">------------------------------ Sipp Server Mode -------------------------------</span>
 </pre></div>
 
 
 <p>Now you can register your device configuring the registrar address and
 credentials, when your device will send the REGISTER request you will
 the message flow:</p>
-<div class="highlight"><pre><span></span>------------------------------ Scenario Screen -------- [1-9]: Change Screen --
-  Port   Total-time  Total-calls  Transport
-  5060     161.28 s            1  UDP
+<div class="highlight"><pre><span></span><span class="c1">------------------------------ Scenario Screen -------- [1-9]: Change Screen --</span>
+  <span class="n">Port</span>   <span class="n">Total</span><span class="o">-</span><span class="k">time</span>  <span class="n">Total</span><span class="o">-</span><span class="n">calls</span>  <span class="n">Transport</span>
+  <span class="mi">5060</span>     <span class="mi">161</span><span class="p">.</span><span class="mi">28</span> <span class="n">s</span>            <span class="mi">1</span>  <span class="n">UDP</span>
 
-  0 new calls during 1.001 s period      1 ms scheduler resolution
-  0 calls                                Peak was 1 calls, after 157 s
-  0 Running, 2 Paused, 4 Woken up
-  0 dead call msg (discarded)          
-  3 open sockets                        
+  <span class="mi">0</span> <span class="k">new</span> <span class="n">calls</span> <span class="n">during</span> <span class="mi">1</span><span class="p">.</span><span class="mi">001</span> <span class="n">s</span> <span class="k">period</span>      <span class="mi">1</span> <span class="n">ms</span> <span class="n">scheduler</span> <span class="n">resolution</span>
+  <span class="mi">0</span> <span class="n">calls</span>                                <span class="n">Peak</span> <span class="n">was</span> <span class="mi">1</span> <span class="n">calls</span><span class="p">,</span> <span class="k">after</span> <span class="mi">157</span> <span class="n">s</span>
+  <span class="mi">0</span> <span class="n">Running</span><span class="p">,</span> <span class="mi">2</span> <span class="n">Paused</span><span class="p">,</span> <span class="mi">4</span> <span class="n">Woken</span> <span class="n">up</span>
+  <span class="mi">0</span> <span class="n">dead</span> <span class="k">call</span> <span class="n">msg</span> <span class="p">(</span><span class="n">discarded</span><span class="p">)</span>          
+  <span class="mi">3</span> <span class="k">open</span> <span class="n">sockets</span>                        
 
-                                 Messages  Retrans   Timeout   Unexpected-Msg
-  ----------&gt; REGISTER           1         0         0         0        
-  &lt;---------- 401                1         0                            
-  ----------&gt; REGISTER           1         0         0         0        
-  &lt;---------- 200                1         0                            
------------------------------- Sipp Server Mode -------------------------------
+                                 <span class="n">Messages</span>  <span class="n">Retrans</span>   <span class="n">Timeout</span>   <span class="n">Unexpected</span><span class="o">-</span><span class="n">Msg</span>
+  <span class="c1">----------&gt; REGISTER           1         0         0         0        </span>
+  <span class="o">&lt;</span><span class="c1">---------- 401                1         0                            </span>
+  <span class="c1">----------&gt; REGISTER           1         0         0         0        </span>
+  <span class="o">&lt;</span><span class="c1">---------- 200                1         0                            </span>
+<span class="c1">------------------------------ Sipp Server Mode -------------------------------</span>
 </pre></div>
 
 

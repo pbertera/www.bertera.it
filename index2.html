@@ -71,6 +71,32 @@
 
 <article>
   <header>
+    <h2><a href="http://www.bertera.it/using-special-chars-in-python-string-templates.html#using-special-chars-in-python-string-templates">Using special chars in Python string Templates</a></h2>
+    <p>
+      Posted on Wed 05 June 2013 in <a href="http://www.bertera.it/category/python.html">Python</a>
+      &#8226; Tagged with
+      <a href="http://www.bertera.it/tag/coding.html">coding</a>,      <a href="http://www.bertera.it/tag/python.html">python</a>,      <a href="http://www.bertera.it/tag/strings.html">strings</a>,      <a href="http://www.bertera.it/tag/templating.html">templating</a>      &#8226; <a href="http://www.bertera.it/using-special-chars-in-python-string-templates.html#disqus_thread">Leave a comment</a>
+    </p>
+  </header>
+  <div>
+      <p><a href="http://www.python.org/dev/peps/pep-0292">PEP-292</a> introduced a nice
+Python templating feature.<br />
+Templates placehoder names are subject to some
+restrictions,<a href="http://docs.python.org/3/library/string.html#template-strings">Documentation</a>
+says:</p>
+<div class="highlight"><pre><span></span><span class="err">$identifier names a substitution placeholder matching a mapping key of &quot;identifier&quot;.</span>
+<span class="err">By default, &quot;identifier&quot; must spell a Python identifier.</span>
+<span class="err">The first non-identifier character after the $ character terminates this placeholder specification.</span>
+</pre></div>
+
+
+<p>This means that ...</p>
+      <a class="btn" href="http://www.bertera.it/using-special-chars-in-python-string-templates.html#using-special-chars-in-python-string-templates">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">UAS Authenticating registrar SIPp scenario</a></h2>
     <p>
       Posted on Thu 30 May 2013 in <a href="http://www.bertera.it/category/voip.html">VoIP</a>
@@ -85,7 +111,7 @@ can create various SIP scenario and test your devices and environments.</p>
 registrar with authentication.</p>
 <p>Following you can find this scenario:</p>
 <p>The SIPp XML scenario file: <strong>sipp_register_auth_uas.xml</strong>  </p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version ...</span></pre></div>
+<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="vm">?</span><span class="nc">xml</span><span class="w"> </span><span class="n">version ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/uas-authenticating-registrar-sipp-scenario.html#uas-authenticating-registrar-sipp-scenario">Continue reading</a>
   </div>
   <hr />
@@ -105,8 +131,8 @@ you can find a port for Asterisk trunk (rev. 377802) of this patch:
 <a href="http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html">http://lists.digium.com/pipermail/asterisk-dev/2011-September/051262.html</a>.<br />
 This patch permits to set the codec of an outgoing multicast RTP stream
 via the variable MULTICAST_RTP_CODEC:</p>
-<div class="highlight"><pre><span></span>exten =&gt; 999,1,Answer()  
-exten =&gt; 999,n,Set(MULTICAST_RTP_CODEC=alaw ...</pre></div>
+<div class="highlight"><pre><span></span><span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Answer</span><span class="p">()</span>  
+<span class="n">exten</span> <span class="o">=&gt;</span> <span class="mi">999</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">Set</span><span class="p">(</span><span class="n">MULTICAST_RTP_CODEC</span><span class="o">=</span><span class="n">alaw ...</span></pre></div>
       <a class="btn" href="http://www.bertera.it/ability-to-set-codec-in-multicastrtp-asterisk-channels.html#ability-to-set-codec-in-multicastrtp-asterisk-channels">Continue reading</a>
   </div>
   <hr />
@@ -255,27 +281,6 @@ inexperienced users, or it can just be run at the command line as a
 handy menu program.</p>
 <p>I just modified showdir.pl script in order to implement ...</p>
       <a class="btn" href="http://www.bertera.it/little-file-browser-with-pdmenu.html#little-file-browser-with-pdmenu">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html#how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel">How to push a public IP on your laptop using SSH bridged tunnel</a></h2>
-    <p>
-      Posted on Sun 04 March 2012 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
-      &#8226; Tagged with
-      <a href="http://www.bertera.it/tag/routing.html">routing</a>,      <a href="http://www.bertera.it/tag/ssh.html">ssh</a>,      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>      &#8226; <a href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>In my <a href="http://www.bertera.it/index.php/2008/12/22/vpn-layer-3-con-openssh/" title="VPN layer 3 con OpenSSH">previous
-post</a> I
-talked about Layer 3 VPN feature of OpenSSH (starting from version
-4.3).<br />
-Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature
-you can create a virtual network device that, through the encrypted
-tunnel, is connected on the same network ...</p>
-      <a class="btn" href="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html#how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel">Continue reading</a>
   </div>
 </article>
 

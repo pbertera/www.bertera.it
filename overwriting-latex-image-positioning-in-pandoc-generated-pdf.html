@@ -94,11 +94,11 @@ the <strong>htbp</strong> floating positioning, this is hardcoded in pandoc.</p>
 <p>Markdown code:<br />
 <code>![I/O connector](img/1.jpg)</code></p>
 <p>Latex code:</p>
-<div class="highlight"><pre><span></span>\begin{figure}[htbp]
-\centering
-\includegraphics{img/1.jpg}
-\caption{I/O connector}
-\end{figure}
+<div class="highlight"><pre><span></span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">htbp</span><span class="o">]</span><span class="w"></span>
+<span class="err">\</span><span class="n">centering</span><span class="w"></span>
+<span class="err">\</span><span class="n">includegraphics</span><span class="err">{</span><span class="n">img</span><span class="o">/</span><span class="mf">1.</span><span class="n">jpg</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="n">caption</span><span class="err">{</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="n">connector</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="k">end</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="w"></span>
 </pre></div>
 
 
@@ -109,15 +109,15 @@ Markdown in a Latex file, parse the file with sed and then use pdflatex
 to generate the PDF.</p>
 <p>Now, I found a way to overwrite the Latex {figure} environment directly
 into the Latex template:</p>
-<div class="highlight"><pre><span></span><span class="c">% Overwrite \begin{figure}[htbp] with \begin{figure}[H]</span>
-<span class="o">\</span><span class="n">usepackage</span><span class="p">{</span><span class="n">float</span><span class="p">}</span>
-<span class="o">\</span><span class="n">let</span><span class="o">\</span><span class="n">origfigure</span><span class="p">=</span><span class="o">\</span><span class="n">figure</span>
-<span class="o">\</span><span class="n">let</span><span class="o">\</span><span class="n">endorigfigure</span><span class="p">=</span><span class="o">\</span><span class="n">endfigure</span>
-<span class="o">\</span><span class="n">renewenvironment</span><span class="p">{</span><span class="n">figure</span><span class="p">}[</span><span class="mi">1</span><span class="p">][]{</span><span class="c">%</span>
-   <span class="o">\</span><span class="n">origfigure</span><span class="p">[</span><span class="n">H</span><span class="p">]</span>
-<span class="p">}{</span><span class="c">%</span>
-   <span class="o">\</span><span class="n">endorigfigure</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="w"> </span><span class="n">Overwrite</span><span class="w"> </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">htbp</span><span class="o">]</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="err">\</span><span class="k">begin</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="err">\</span><span class="n">usepackage</span><span class="err">{</span><span class="nc">float</span><span class="err">}</span><span class="w"></span>
+<span class="err">\</span><span class="n">let</span><span class="err">\</span><span class="n">origfigure</span><span class="o">=</span><span class="err">\</span><span class="n">figure</span><span class="w"></span>
+<span class="err">\</span><span class="n">let</span><span class="err">\</span><span class="n">endorigfigure</span><span class="o">=</span><span class="err">\</span><span class="n">endfigure</span><span class="w"></span>
+<span class="err">\</span><span class="n">renewenvironment</span><span class="err">{</span><span class="n">figure</span><span class="err">}</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="err">[]{</span><span class="o">%</span><span class="w"></span>
+<span class="w">   </span><span class="err">\</span><span class="n">origfigure</span><span class="o">[</span><span class="n">H</span><span class="o">]</span><span class="w"></span>
+<span class="err">}{</span><span class="o">%</span><span class="w"></span>
+<span class="w">   </span><span class="err">\</span><span class="n">endorigfigure</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
 </pre></div>
   </div>
   <div class="tag-cloud">
