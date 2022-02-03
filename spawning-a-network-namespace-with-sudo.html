@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#ff3333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#ff3333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Pietro" />
+<meta name="description" content="After 1 year and half a new post! I'm improving :) This post is to keep track of some subtle issues that took me some hours to face and solve. The intention In a setup I needed to script the creation of two unnamed Kernel network namespaces and connect them ..." />
+<meta name="keywords" content="Systems, Linux, Network namespaces">
+<meta property="og:site_name" content="Pietro Bertera's Blog"/>
+<meta property="og:title" content="Spawning a network namespace with sudo"/>
+<meta property="og:description" content="After 1 year and half a new post! I'm improving :) This post is to keep track of some subtle issues that took me some hours to face and solve. The intention In a setup I needed to script the creation of two unnamed Kernel network namespaces and connect them ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://www.bertera.it/spawning-a-network-namespace-with-sudo.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2022-01-31 00:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://www.bertera.it/author/pietro.html">
+<meta property="article:section" content="Systems"/>
+<meta property="article:tag" content="Systems"/>
+<meta property="article:tag" content="Linux"/>
+<meta property="article:tag" content="Network namespaces"/>
+<meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
+  <title>Pietro Bertera's Blog &ndash; Spawning a network namespace with sudo</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://www.bertera.it">
+        <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
+      </a>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
+<p>Something about ...</p>      <nav>
+        <ul class="list">
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/pietrobertera" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/pbertera" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/pbertera" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="//bertera.it/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://www.bertera.it">Home</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="spawning-a-network-namespace-with-sudo">Spawning a network namespace with sudo</h1>
+    <p>Posted on Mon 31 January 2022 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
+  </header>
+  <div>
+    <p>After 1 year and half a new post! I'm improving :)</p>
+<p>This post is to keep track of some subtle issues that took me some hours to face and solve.</p>
+<h2>The intention</h2>
+<p>In a setup I needed to script the creation of two unnamed Kernel <a href="https://man7.org/linux/man-pages/man7/network_namespaces.7.html">network namespaces</a> and connect them with a <a href="https://man7.org/linux/man-pages/man4/veth.4.html">veth</a> network interfaces pair.</p>
+<p>This is pretty a simple thing, as root on a system:</p>
+<ul>
+<li>Spawn two background processes holding the netns and gather the PID:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> unshare --net -- sleep inf <span class="p">&amp;</span>
+<span class="gp">#</span> <span class="nv">netns1_pid</span><span class="o">=</span><span class="nv">$!</span>
+<span class="gp">#</span> unshare --net -- sleep inf <span class="p">&amp;</span>
+<span class="gp">#</span> <span class="nv">netns2_pid</span><span class="o">=</span><span class="nv">$!</span>
+</pre></div>
+
+
+<ul>
+<li>Create the veth pairs:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> ip link add veth1 <span class="nb">type</span> veth peer name veth2
+</pre></div>
+
+
+<ul>
+<li>Assign the <code>veth</code> pairs to the netns:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> ip link <span class="nb">set</span> veth1 netns <span class="nv">$netns1_pid</span> up
+<span class="gp">#</span> ip link <span class="nb">set</span> veth2 netns <span class="nv">$netns2_pid</span> up
+</pre></div>
+
+
+<ul>
+<li>Assign them an IP address:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nsenter -n -t <span class="nv">$netns1_pid</span> ip addr add <span class="m">192</span>.168.1.10/24 dev veth1
+<span class="gp">#</span> nsenter -n -t <span class="nv">$netns2_pid</span> ip addr add <span class="m">192</span>.168.1.20/24 dev veth2
+</pre></div>
+
+
+<ul>
+<li>Test the connectivity between the two netns</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="gp">#</span> nsenter -n -t <span class="nv">$netns1_pid</span> ip addr
+<span class="gp">#</span> nsenter -n -t <span class="nv">$netns2_pid</span> ip addr
+<span class="gp">#</span> nsenter -n -t <span class="nv">$netns2_pid</span> ping <span class="m">192</span>.168.1.10 -c <span class="m">3</span>
+</pre></div>
+
+
+<p>This works flawlessly on a root terminal. Putting everything in a script raised some issues.</p>
+<h2>The subshell blocks spawning a new namespace</h2>
+<p>First I put the netns creation in a function:</p>
+<div class="highlight"><pre><span></span><span class="gp">#</span> cat ns.sh
+<span class="gp">#</span>!/bin/bash
+
+<span class="go">set -x</span>
+
+<span class="go">function spawnNS {</span>
+<span class="go">  unshare --net -- sleep inf &amp;</span>
+<span class="go">  echo $!</span>
+<span class="go">}</span>
+
+<span class="go">netns1_pid=$(spawnNS)</span>
+<span class="go">echo &quot;New netns spawn: $netns1_pid&quot;</span>
+
+<span class="gp">#</span> ./ns.sh 
+<span class="go">++ spawnNS</span>
+<span class="go">++ echo 83586</span>
+<span class="go">++ unshare --net sleep inf</span>
+</pre></div>
+
+
+<p>Now: the <code>ns.sh</code> script never terminates until you kill the process (83586 here).
+Ok, this has nothing to do with namespaces: is a known shell behaviour with command substiution.
+Command substitution creates a pipe in the main shell, the subshell where <code>spawnNS</code> is executed owns the writing end of that pipe: the main shell remains blocked because it never gets an <code>EOF</code> from the pipe.
+Redirecting the output of <code>unshare</code> solves the issue:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">set</span> -x
+
+<span class="k">function</span> spawnNS <span class="o">{</span>
+  unshare --net -- sleep inf &gt;/dev/null <span class="p">&amp;</span>
+  <span class="nb">echo</span> <span class="nv">$!</span>
+<span class="o">}</span>
+
+<span class="nv">netns1_pid</span><span class="o">=</span><span class="k">$(</span>spawnNS<span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&quot;New netns spawn: </span><span class="nv">$netns1_pid</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<p>Another solution is to avoid command substitution when invoking the <code>spawnNS</code> function:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">set</span> -x
+
+<span class="nv">ns_pid</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="k">function</span> spawnNS <span class="o">{</span>
+  <span class="nv">ns_pid</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+  unshare --net -- sleep inf <span class="p">&amp;</span>
+  <span class="nv">ns_pid</span><span class="o">=</span><span class="nv">$!</span>
+<span class="o">}</span>
+
+spawnNS
+<span class="nv">netns1_pid</span><span class="o">=</span><span class="nv">$ns_pid</span>
+<span class="nb">echo</span> <span class="s2">&quot;New netns spawn: </span><span class="nv">$netns1_pid</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<h2>Dealing with sudo</h2>
+<p>I wanted to run the script from an unprivileged user and use <code>sudo</code> to invoke <code>unshare</code>:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> ./ns.sh
+<span class="go">++ spawnNS</span>
+<span class="go">++ echo 110799</span>
+<span class="go">++ sudo unshare --net -- sleep inf</span>
+<span class="go">+ netns1_pid=110799</span>
+<span class="go">+ echo &#39;New netns spawn: 110799&#39;</span>
+<span class="go">New netns spawn: 110799</span>
+</pre></div>
+
+
+<p>Now, let's check the networking within the netns:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo nsenter -t <span class="m">110799</span> -n ip -o a
+</pre></div>
+
+
+<p><code>nsenter</code> returns all the host network interfaces: something is wrong here!</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> pstree -apl <span class="m">110799</span>
+<span class="go">sudo,110799 unshare --net -- sleep inf</span>
+<span class="go">  └─sleep,110805 inf</span>
+</pre></div>
+
+
+<p>Oh yes, <code>sudo</code> forks, so <code>$!</code> returns the <code>sudo</code> PID, so let's grab the children PID:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> cat ns.sh
+<span class="gp">#</span>!/bin/bash                              
+
+<span class="go">set -x                                   </span>
+
+<span class="go">function spawnNS {                       </span>
+<span class="go">  sudo unshare --net -- sleep inf &gt; /dev/null &amp;</span>
+<span class="go">  ns_pid=$(ps --ppid $! -o pid=)</span>
+<span class="go">  echo $ns_pid</span>
+<span class="go">}                                        </span>
+
+<span class="go">netns1_pid=$(spawnNS)                    </span>
+<span class="go">echo &quot;New netns spawn: $netns1_pid&quot;</span>
+
+<span class="gp">$</span>./ns.sh
+<span class="go">++ spawnNS</span>
+<span class="go">++ sudo unshare --net -- sleep inf</span>
+<span class="go">+++ ps --ppid 112780 -o pid=</span>
+<span class="go">++ ns_pid=</span>
+<span class="go">++ echo</span>
+<span class="go">+ netns1_pid=</span>
+<span class="go">+ echo &#39;New netns spawn: &#39;</span>
+<span class="go">New netns spawn:</span>
+</pre></div>
+
+
+<p>Even if the namespace has been created something is still wrong: the PID of <code>sleep</code> is not reported.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo lsns -t net
+<span class="go">        NS TYPE NPROCS    PID USER      NETNSID NSFS COMMAND</span>
+<span class="go">4026532836 net       1 113284 root   unassigned      sleep inf</span>
+</pre></div>
+
+
+<p>After some digging with <code>strace</code> I found out that the reason was a race condition between the <code>unshare</code> and <code>pid</code> processes: <code>pid --ppid $!</code> spawn too quickly and the sudo process did not fork yet. Adding a sufficient delay solved the problem:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> cat ns.sh
+<span class="gp">#</span>!/bin/bash                              
+
+<span class="go">set -x                                   </span>
+
+<span class="go">function spawnNS {                       </span>
+<span class="go">  sudo unshare --net -- sleep inf &gt; /dev/null &amp;</span>
+<span class="go">  ppid=$!</span>
+<span class="go">  sleep 0.1</span>
+<span class="go">  ns_pid=$(ps --ppid $ppid -o pid=)</span>
+<span class="go">  echo $ns_pid</span>
+<span class="go">}                                        </span>
+
+<span class="go">netns1_pid=$(spawnNS)                    </span>
+<span class="go">echo &quot;New netns spawn: $netns1_pid&quot;</span>
+
+<span class="gp">$</span> ./ns.sh
+<span class="go">++ spawnNS</span>
+<span class="go">++ ppid=114064</span>
+<span class="go">++ sleep 0.1</span>
+<span class="go">++ sudo unshare --net -- sleep inf</span>
+<span class="go">+++ ps --ppid 114064 -o pid=</span>
+<span class="go">++ ns_pid=&#39; 114067&#39;</span>
+<span class="go">++ echo 114067</span>
+<span class="go">+ netns1_pid=114067</span>
+<span class="go">+ echo &#39;New netns spawn: 114067&#39;</span>
+<span class="go">New netns spawn: 114067</span>
+</pre></div>
+
+
+<p>So here is the full code snippet to setup two network namespaces and connecting them with a <code>veth</code> pair</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="k">function</span> bailout <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;ERROR: </span><span class="nv">$@</span><span class="s2">&quot;</span>
+    <span class="nb">exit</span>
+<span class="o">}</span>
+
+<span class="k">function</span> newNetNs <span class="o">{</span>
+    <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> bailout <span class="s2">&quot;</span><span class="nv">$0</span><span class="s2"> requires a netns name&quot;</span>
+    <span class="nv">name</span><span class="o">=</span><span class="nv">$1</span>
+    sudo unshare --net --uts -- sleep inf <span class="p">&amp;</span> 
+    <span class="nv">i</span><span class="o">=</span><span class="m">0</span>
+    <span class="nv">ns_pid</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+    <span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$ns_pid</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nv">ns_pid</span><span class="o">=</span><span class="k">$(</span>ps --ppid <span class="nv">$!</span> -o <span class="nv">pid</span><span class="o">=</span><span class="k">)</span>
+        sleep <span class="m">0</span>.01 
+        <span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span> <span class="o">+</span> <span class="m">1</span> <span class="k">))</span>
+        <span class="o">[</span> <span class="nv">$i</span> -gt <span class="m">10</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> bailout <span class="s2">&quot;Cannot get the PID of namespace </span><span class="nv">$name</span><span class="s2">&quot;</span>
+    <span class="k">done</span>
+    sudo nsenter -t <span class="nv">$ns_pid</span> -u hostname <span class="nv">$name</span>
+<span class="o">}</span>
+
+newNetNs netns1
+<span class="nv">netns1_pid</span><span class="o">=</span><span class="nv">$ns_pid</span>
+<span class="nb">echo</span> <span class="s2">&quot;Created netns1 </span><span class="nv">$netns1_pid</span><span class="s2">&quot;</span>
+newNetNs netns2
+<span class="nv">netns2_pid</span><span class="o">=</span><span class="nv">$ns_pid</span>
+<span class="nb">echo</span> <span class="s2">&quot;Created netns2 </span><span class="nv">$netns2_pid</span><span class="s2">&quot;</span>
+
+sudo ip link add veth1 <span class="nb">type</span> veth peer name veth2
+sudo ip link <span class="nb">set</span> veth1 netns <span class="nv">$netns1_pid</span> up
+sudo ip link <span class="nb">set</span> veth2 netns <span class="nv">$netns2_pid</span> up
+sudo nsenter -n -t <span class="nv">$netns1_pid</span> ip addr add <span class="m">192</span>.168.1.10/24 dev veth1
+sudo nsenter -n -t <span class="nv">$netns2_pid</span> ip addr add <span class="m">192</span>.168.1.20/24 dev veth2
+
+sudo nsenter -n -t <span class="nv">$netns2_pid</span> ping <span class="m">192</span>.168.1.10 -c <span class="m">3</span>
+
+<span class="c1"># Destroy everything</span>
+sudo <span class="nb">kill</span> -9 <span class="nv">$netns1_pid</span> <span class="nv">$netns2_pid</span>
+sudo ip link delete veth1
+</pre></div>
+
+
+<p>Putting together those lines of bash took me a full morning, as usual I understimated the complexity (or overstimated myself).</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://www.bertera.it/tag/systems.html">Systems</a>
+      <a href="http://www.bertera.it/tag/linux.html">Linux</a>
+      <a href="http://www.bertera.it/tag/network-namespaces.html">Network namespaces</a>
+    </p>
+  </div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bertera-it';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+
+    <footer>
+<p>
+  &copy; Pietro Bertera 2016 - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+</p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p><p>
+  <a rel="license"
+     href="http://creativecommons.org/licenses/by-sa/4.0/"
+     target="_blank">
+    <img alt="Creative Commons License"
+         title="Creative Commons License"
+         style="border-width:0"
+         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"
+         width="80"
+         height="15"/>
+  </a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Pietro Bertera's Blog ",
+  "url" : "http://www.bertera.it",
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "description": "Pietro Bertera's Thoughts and Writings"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Spawning a network namespace with sudo",
+  "headline": "Spawning a network namespace with sudo",
+  "datePublished": "2022-01-31 00:00:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Pietro",
+    "url": "http://www.bertera.it/author/pietro.html"
+  },
+  "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
+  "url": "http://www.bertera.it/spawning-a-network-namespace-with-sudo.html",
+  "description": "After 1 year and half a new post! I'm improving :) This post is to keep track of some subtle issues that took me some hours to face and solve. The intention In a setup I needed to script the creation of two unnamed Kernel network namespaces and connect them ..."
+}
+</script></body>
+</html>

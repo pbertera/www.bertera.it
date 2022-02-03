@@ -1,5 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2017-03-28T22:25:00+02:00</updated><entry><title>Introducing dcw: a Poor Man PaaS tool</title><link href="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html" rel="alternate"></link><published>2017-03-28T22:25:00+02:00</published><updated>2017-03-28T22:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2017-03-28:introducing-dcw-a-poor-man-paas-tool.html</id><summary type="html">&lt;p&gt;Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the &lt;a href="https://docs.docker.com/compose/"&gt;&lt;code&gt;docker-compose&lt;/code&gt;&lt;/a&gt; command. The meaning of such wrapper is to expose some &lt;code&gt;docker-compose&lt;/code&gt; &lt;a href="https://docs.docker.com/compose/reference/"&gt;operations&lt;/a&gt;  and a set of well defined commands on the host machine.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2022-01-31T00:00:00+01:00</updated><entry><title>Spawning a network namespace with sudo</title><link href="http://www.bertera.it/spawning-a-network-namespace-with-sudo.html" rel="alternate"></link><published>2022-01-31T00:00:00+01:00</published><updated>2022-01-31T00:00:00+01:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2022-01-31:spawning-a-network-namespace-with-sudo.html</id><summary type="html">&lt;p&gt;After 1 year and half a new post! I'm improving :)&lt;/p&gt;
+&lt;p&gt;This post is to keep track of some subtle issues that took me some hours to face and solve.&lt;/p&gt;
+&lt;h2&gt;The intention&lt;/h2&gt;
+&lt;p&gt;In a setup I needed to script the creation of two unnamed Kernel &lt;a href="https://man7.org/linux/man-pages/man7/network_namespaces.7.html"&gt;network namespaces&lt;/a&gt; and connect them with a &lt;a href="https://man7.org/linux/man-pages/man4/veth.4.html"&gt;veth&lt;/a&gt; network interfaces pair.&lt;/p&gt;
+&lt;p&gt;This is pretty a simple thing, as root on a system:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spawn two background processes holding the netns and gather the PID:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; unshare --net -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; unshare --net -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;netns2_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Create the veth pairs:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ip link add veth1 &lt;span class="nb"&gt;type&lt;/span&gt; veth peer name veth2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Assign the &lt;code&gt;veth&lt;/code&gt; pairs to the netns:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth1 netns &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; up
+&lt;span class="gp"&gt;#&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth2 netns &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; up
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Assign them an IP address:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10/24 dev veth1
+&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.20/24 dev veth2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Test the connectivity between the two netns&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; ip addr
+&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ip addr
+&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ping &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10 -c &lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This works flawlessly on a root terminal. Putting everything in a script raised some issues.&lt;/p&gt;
+&lt;h2&gt;The subshell blocks spawning a new namespace&lt;/h2&gt;
+&lt;p&gt;First I put the netns creation in a function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cat ns.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;!/bin/bash
+
+&lt;span class="go"&gt;set -x&lt;/span&gt;
+
+&lt;span class="go"&gt;function spawnNS {&lt;/span&gt;
+&lt;span class="go"&gt;  unshare --net -- sleep inf &amp;amp;&lt;/span&gt;
+&lt;span class="go"&gt;  echo $!&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+
+&lt;span class="go"&gt;netns1_pid=$(spawnNS)&lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;New netns spawn: $netns1_pid&amp;quot;&lt;/span&gt;
+
+&lt;span class="gp"&gt;#&lt;/span&gt; ./ns.sh 
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ echo 83586&lt;/span&gt;
+&lt;span class="go"&gt;++ unshare --net sleep inf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now: the &lt;code&gt;ns.sh&lt;/code&gt; script never terminates until you kill the process (83586 here).
+Ok, this has nothing to do with namespaces: is a known shell behaviour with command substiution.
+Command substitution creates a pipe in the main shell, the subshell where &lt;code&gt;spawnNS&lt;/code&gt; is executed owns the writing end of that pipe: the main shell remains blocked because it never gets an &lt;code&gt;EOF&lt;/code&gt; from the pipe.
+Redirecting the output of &lt;code&gt;unshare&lt;/code&gt; solves the issue:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nb"&gt;set&lt;/span&gt; -x
+
+&lt;span class="k"&gt;function&lt;/span&gt; spawnNS &lt;span class="o"&gt;{&lt;/span&gt;
+  unshare --net -- sleep inf &amp;gt;/dev/null &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;spawnNS&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;New netns spawn: &lt;/span&gt;&lt;span class="nv"&gt;$netns1_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Another solution is to avoid command substitution when invoking the &lt;code&gt;spawnNS&lt;/code&gt; function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nb"&gt;set&lt;/span&gt; -x
+
+&lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;function&lt;/span&gt; spawnNS &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+  unshare --net -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+  &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+spawnNS
+&lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;New netns spawn: &lt;/span&gt;&lt;span class="nv"&gt;$netns1_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Dealing with sudo&lt;/h2&gt;
+&lt;p&gt;I wanted to run the script from an unprivileged user and use &lt;code&gt;sudo&lt;/code&gt; to invoke &lt;code&gt;unshare&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ./ns.sh
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ echo 110799&lt;/span&gt;
+&lt;span class="go"&gt;++ sudo unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;+ netns1_pid=110799&lt;/span&gt;
+&lt;span class="go"&gt;+ echo &amp;#39;New netns spawn: 110799&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;New netns spawn: 110799&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, let's check the networking within the netns:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nsenter -t &lt;span class="m"&gt;110799&lt;/span&gt; -n ip -o a
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;nsenter&lt;/code&gt; returns all the host network interfaces: something is wrong here!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pstree -apl &lt;span class="m"&gt;110799&lt;/span&gt;
+&lt;span class="go"&gt;sudo,110799 unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;  └─sleep,110805 inf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Oh yes, &lt;code&gt;sudo&lt;/code&gt; forks, so &lt;code&gt;$!&lt;/code&gt; returns the &lt;code&gt;sudo&lt;/code&gt; PID, so let's grab the children PID:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat ns.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;!/bin/bash                              
+
+&lt;span class="go"&gt;set -x                                   &lt;/span&gt;
+
+&lt;span class="go"&gt;function spawnNS {                       &lt;/span&gt;
+&lt;span class="go"&gt;  sudo unshare --net -- sleep inf &amp;gt; /dev/null &amp;amp;&lt;/span&gt;
+&lt;span class="go"&gt;  ns_pid=$(ps --ppid $! -o pid=)&lt;/span&gt;
+&lt;span class="go"&gt;  echo $ns_pid&lt;/span&gt;
+&lt;span class="go"&gt;}                                        &lt;/span&gt;
+
+&lt;span class="go"&gt;netns1_pid=$(spawnNS)                    &lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;New netns spawn: $netns1_pid&amp;quot;&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt;./ns.sh
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ sudo unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;+++ ps --ppid 112780 -o pid=&lt;/span&gt;
+&lt;span class="go"&gt;++ ns_pid=&lt;/span&gt;
+&lt;span class="go"&gt;++ echo&lt;/span&gt;
+&lt;span class="go"&gt;+ netns1_pid=&lt;/span&gt;
+&lt;span class="go"&gt;+ echo &amp;#39;New netns spawn: &amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;New netns spawn:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Even if the namespace has been created something is still wrong: the PID of &lt;code&gt;sleep&lt;/code&gt; is not reported.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo lsns -t net
+&lt;span class="go"&gt;        NS TYPE NPROCS    PID USER      NETNSID NSFS COMMAND&lt;/span&gt;
+&lt;span class="go"&gt;4026532836 net       1 113284 root   unassigned      sleep inf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After some digging with &lt;code&gt;strace&lt;/code&gt; I found out that the reason was a race condition between the &lt;code&gt;unshare&lt;/code&gt; and &lt;code&gt;pid&lt;/code&gt; processes: &lt;code&gt;pid --ppid $!&lt;/code&gt; spawn too quickly and the sudo process did not fork yet. Adding a sufficient delay solved the problem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat ns.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;!/bin/bash                              
+
+&lt;span class="go"&gt;set -x                                   &lt;/span&gt;
+
+&lt;span class="go"&gt;function spawnNS {                       &lt;/span&gt;
+&lt;span class="go"&gt;  sudo unshare --net -- sleep inf &amp;gt; /dev/null &amp;amp;&lt;/span&gt;
+&lt;span class="go"&gt;  ppid=$!&lt;/span&gt;
+&lt;span class="go"&gt;  sleep 0.1&lt;/span&gt;
+&lt;span class="go"&gt;  ns_pid=$(ps --ppid $ppid -o pid=)&lt;/span&gt;
+&lt;span class="go"&gt;  echo $ns_pid&lt;/span&gt;
+&lt;span class="go"&gt;}                                        &lt;/span&gt;
+
+&lt;span class="go"&gt;netns1_pid=$(spawnNS)                    &lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;New netns spawn: $netns1_pid&amp;quot;&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt; ./ns.sh
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ ppid=114064&lt;/span&gt;
+&lt;span class="go"&gt;++ sleep 0.1&lt;/span&gt;
+&lt;span class="go"&gt;++ sudo unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;+++ ps --ppid 114064 -o pid=&lt;/span&gt;
+&lt;span class="go"&gt;++ ns_pid=&amp;#39; 114067&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;++ echo 114067&lt;/span&gt;
+&lt;span class="go"&gt;+ netns1_pid=114067&lt;/span&gt;
+&lt;span class="go"&gt;+ echo &amp;#39;New netns spawn: 114067&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;New netns spawn: 114067&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So here is the full code snippet to setup two network namespaces and connecting them with a &lt;code&gt;veth&lt;/code&gt; pair&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; bailout &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ERROR: &lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; newNetNs &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; bailout &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt; requires a netns name&amp;quot;&lt;/span&gt;
+    &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
+    sudo unshare --net --uts -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; 
+    &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+        &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;ps --ppid &lt;span class="nv"&gt;$!&lt;/span&gt; -o &lt;span class="nv"&gt;pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+        sleep &lt;span class="m"&gt;0&lt;/span&gt;.01 
+        &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="k"&gt;))&lt;/span&gt;
+        &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt; -gt &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; bailout &lt;span class="s2"&gt;&amp;quot;Cannot get the PID of namespace &lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;done&lt;/span&gt;
+    sudo nsenter -t &lt;span class="nv"&gt;$ns_pid&lt;/span&gt; -u hostname &lt;span class="nv"&gt;$name&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+newNetNs netns1
+&lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Created netns1 &lt;/span&gt;&lt;span class="nv"&gt;$netns1_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+newNetNs netns2
+&lt;span class="nv"&gt;netns2_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Created netns2 &lt;/span&gt;&lt;span class="nv"&gt;$netns2_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+sudo ip link add veth1 &lt;span class="nb"&gt;type&lt;/span&gt; veth peer name veth2
+sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth1 netns &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; up
+sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth2 netns &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; up
+sudo nsenter -n -t &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10/24 dev veth1
+sudo nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.20/24 dev veth2
+
+sudo nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ping &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10 -c &lt;span class="m"&gt;3&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Destroy everything&lt;/span&gt;
+sudo &lt;span class="nb"&gt;kill&lt;/span&gt; -9 &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt;
+sudo ip link delete veth1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Putting together those lines of bash took me a full morning, as usual I understimated the complexity (or overstimated myself).&lt;/p&gt;</summary><category term="Systems"></category><category term="Linux"></category><category term="Network namespaces"></category></entry><entry><title>Introducing dcw: a Poor Man PaaS tool</title><link href="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html" rel="alternate"></link><published>2017-03-28T22:25:00+02:00</published><updated>2017-03-28T22:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2017-03-28:introducing-dcw-a-poor-man-paas-tool.html</id><summary type="html">&lt;p&gt;Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the &lt;a href="https://docs.docker.com/compose/"&gt;&lt;code&gt;docker-compose&lt;/code&gt;&lt;/a&gt; command. The meaning of such wrapper is to expose some &lt;code&gt;docker-compose&lt;/code&gt; &lt;a href="https://docs.docker.com/compose/reference/"&gt;operations&lt;/a&gt;  and a set of well defined commands on the host machine.&lt;/p&gt;
 &lt;p&gt;The typical use-case is an SSH command executed via the &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; file, in this way you can provide provide some &lt;code&gt;docker-compose&lt;/code&gt; commands that can be execute with some specific &lt;code&gt;docker-compose&lt;/code&gt; config files.&lt;/p&gt;
 &lt;h2&gt;The containers pool&lt;/h2&gt;
 &lt;p&gt;A pool is defined via a &lt;code&gt;docker-compose&lt;/code&gt; YAML config file. The name of the config file defines the pool name.&lt;/p&gt;

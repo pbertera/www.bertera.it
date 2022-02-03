@@ -1,5 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/all.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2020-09-24T20:25:00+02:00</updated><entry><title>Kubernetes semaphore Validating Webhook</title><link href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html" rel="alternate"></link><published>2020-09-24T20:25:00+02:00</published><updated>2020-09-24T20:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2020-09-24:kubernetes-semaphore-validating-webhook.html</id><summary type="html">&lt;p&gt;After more than 3 years a new post!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/all.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2022-01-31T00:00:00+01:00</updated><entry><title>Spawning a network namespace with sudo</title><link href="http://www.bertera.it/spawning-a-network-namespace-with-sudo.html" rel="alternate"></link><published>2022-01-31T00:00:00+01:00</published><updated>2022-01-31T00:00:00+01:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2022-01-31:spawning-a-network-namespace-with-sudo.html</id><summary type="html">&lt;p&gt;After 1 year and half a new post! I'm improving :)&lt;/p&gt;
+&lt;p&gt;This post is to keep track of some subtle issues that took me some hours to face and solve.&lt;/p&gt;
+&lt;h2&gt;The intention&lt;/h2&gt;
+&lt;p&gt;In a setup I needed to script the creation of two unnamed Kernel &lt;a href="https://man7.org/linux/man-pages/man7/network_namespaces.7.html"&gt;network namespaces&lt;/a&gt; and connect them with a &lt;a href="https://man7.org/linux/man-pages/man4/veth.4.html"&gt;veth&lt;/a&gt; network interfaces pair.&lt;/p&gt;
+&lt;p&gt;This is pretty a simple thing, as root on a system:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spawn two background processes holding the netns and gather the PID:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; unshare --net -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; unshare --net -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nv"&gt;netns2_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Create the veth pairs:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ip link add veth1 &lt;span class="nb"&gt;type&lt;/span&gt; veth peer name veth2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Assign the &lt;code&gt;veth&lt;/code&gt; pairs to the netns:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth1 netns &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; up
+&lt;span class="gp"&gt;#&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth2 netns &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; up
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Assign them an IP address:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10/24 dev veth1
+&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.20/24 dev veth2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Test the connectivity between the two netns&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; ip addr
+&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ip addr
+&lt;span class="gp"&gt;#&lt;/span&gt; nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ping &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10 -c &lt;span class="m"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This works flawlessly on a root terminal. Putting everything in a script raised some issues.&lt;/p&gt;
+&lt;h2&gt;The subshell blocks spawning a new namespace&lt;/h2&gt;
+&lt;p&gt;First I put the netns creation in a function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; cat ns.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;!/bin/bash
+
+&lt;span class="go"&gt;set -x&lt;/span&gt;
+
+&lt;span class="go"&gt;function spawnNS {&lt;/span&gt;
+&lt;span class="go"&gt;  unshare --net -- sleep inf &amp;amp;&lt;/span&gt;
+&lt;span class="go"&gt;  echo $!&lt;/span&gt;
+&lt;span class="go"&gt;}&lt;/span&gt;
+
+&lt;span class="go"&gt;netns1_pid=$(spawnNS)&lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;New netns spawn: $netns1_pid&amp;quot;&lt;/span&gt;
+
+&lt;span class="gp"&gt;#&lt;/span&gt; ./ns.sh 
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ echo 83586&lt;/span&gt;
+&lt;span class="go"&gt;++ unshare --net sleep inf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now: the &lt;code&gt;ns.sh&lt;/code&gt; script never terminates until you kill the process (83586 here).
+Ok, this has nothing to do with namespaces: is a known shell behaviour with command substiution.
+Command substitution creates a pipe in the main shell, the subshell where &lt;code&gt;spawnNS&lt;/code&gt; is executed owns the writing end of that pipe: the main shell remains blocked because it never gets an &lt;code&gt;EOF&lt;/code&gt; from the pipe.
+Redirecting the output of &lt;code&gt;unshare&lt;/code&gt; solves the issue:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nb"&gt;set&lt;/span&gt; -x
+
+&lt;span class="k"&gt;function&lt;/span&gt; spawnNS &lt;span class="o"&gt;{&lt;/span&gt;
+  unshare --net -- sleep inf &amp;gt;/dev/null &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;spawnNS&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;New netns spawn: &lt;/span&gt;&lt;span class="nv"&gt;$netns1_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Another solution is to avoid command substitution when invoking the &lt;code&gt;spawnNS&lt;/code&gt; function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nb"&gt;set&lt;/span&gt; -x
+
+&lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;function&lt;/span&gt; spawnNS &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+  unshare --net -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
+  &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$!&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+spawnNS
+&lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;New netns spawn: &lt;/span&gt;&lt;span class="nv"&gt;$netns1_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Dealing with sudo&lt;/h2&gt;
+&lt;p&gt;I wanted to run the script from an unprivileged user and use &lt;code&gt;sudo&lt;/code&gt; to invoke &lt;code&gt;unshare&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ./ns.sh
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ echo 110799&lt;/span&gt;
+&lt;span class="go"&gt;++ sudo unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;+ netns1_pid=110799&lt;/span&gt;
+&lt;span class="go"&gt;+ echo &amp;#39;New netns spawn: 110799&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;New netns spawn: 110799&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, let's check the networking within the netns:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo nsenter -t &lt;span class="m"&gt;110799&lt;/span&gt; -n ip -o a
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;nsenter&lt;/code&gt; returns all the host network interfaces: something is wrong here!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; pstree -apl &lt;span class="m"&gt;110799&lt;/span&gt;
+&lt;span class="go"&gt;sudo,110799 unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;  └─sleep,110805 inf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Oh yes, &lt;code&gt;sudo&lt;/code&gt; forks, so &lt;code&gt;$!&lt;/code&gt; returns the &lt;code&gt;sudo&lt;/code&gt; PID, so let's grab the children PID:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat ns.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;!/bin/bash                              
+
+&lt;span class="go"&gt;set -x                                   &lt;/span&gt;
+
+&lt;span class="go"&gt;function spawnNS {                       &lt;/span&gt;
+&lt;span class="go"&gt;  sudo unshare --net -- sleep inf &amp;gt; /dev/null &amp;amp;&lt;/span&gt;
+&lt;span class="go"&gt;  ns_pid=$(ps --ppid $! -o pid=)&lt;/span&gt;
+&lt;span class="go"&gt;  echo $ns_pid&lt;/span&gt;
+&lt;span class="go"&gt;}                                        &lt;/span&gt;
+
+&lt;span class="go"&gt;netns1_pid=$(spawnNS)                    &lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;New netns spawn: $netns1_pid&amp;quot;&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt;./ns.sh
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ sudo unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;+++ ps --ppid 112780 -o pid=&lt;/span&gt;
+&lt;span class="go"&gt;++ ns_pid=&lt;/span&gt;
+&lt;span class="go"&gt;++ echo&lt;/span&gt;
+&lt;span class="go"&gt;+ netns1_pid=&lt;/span&gt;
+&lt;span class="go"&gt;+ echo &amp;#39;New netns spawn: &amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;New netns spawn:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Even if the namespace has been created something is still wrong: the PID of &lt;code&gt;sleep&lt;/code&gt; is not reported.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo lsns -t net
+&lt;span class="go"&gt;        NS TYPE NPROCS    PID USER      NETNSID NSFS COMMAND&lt;/span&gt;
+&lt;span class="go"&gt;4026532836 net       1 113284 root   unassigned      sleep inf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After some digging with &lt;code&gt;strace&lt;/code&gt; I found out that the reason was a race condition between the &lt;code&gt;unshare&lt;/code&gt; and &lt;code&gt;pid&lt;/code&gt; processes: &lt;code&gt;pid --ppid $!&lt;/code&gt; spawn too quickly and the sudo process did not fork yet. Adding a sufficient delay solved the problem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat ns.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;!/bin/bash                              
+
+&lt;span class="go"&gt;set -x                                   &lt;/span&gt;
+
+&lt;span class="go"&gt;function spawnNS {                       &lt;/span&gt;
+&lt;span class="go"&gt;  sudo unshare --net -- sleep inf &amp;gt; /dev/null &amp;amp;&lt;/span&gt;
+&lt;span class="go"&gt;  ppid=$!&lt;/span&gt;
+&lt;span class="go"&gt;  sleep 0.1&lt;/span&gt;
+&lt;span class="go"&gt;  ns_pid=$(ps --ppid $ppid -o pid=)&lt;/span&gt;
+&lt;span class="go"&gt;  echo $ns_pid&lt;/span&gt;
+&lt;span class="go"&gt;}                                        &lt;/span&gt;
+
+&lt;span class="go"&gt;netns1_pid=$(spawnNS)                    &lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;New netns spawn: $netns1_pid&amp;quot;&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt; ./ns.sh
+&lt;span class="go"&gt;++ spawnNS&lt;/span&gt;
+&lt;span class="go"&gt;++ ppid=114064&lt;/span&gt;
+&lt;span class="go"&gt;++ sleep 0.1&lt;/span&gt;
+&lt;span class="go"&gt;++ sudo unshare --net -- sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;+++ ps --ppid 114064 -o pid=&lt;/span&gt;
+&lt;span class="go"&gt;++ ns_pid=&amp;#39; 114067&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;++ echo 114067&lt;/span&gt;
+&lt;span class="go"&gt;+ netns1_pid=114067&lt;/span&gt;
+&lt;span class="go"&gt;+ echo &amp;#39;New netns spawn: 114067&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;New netns spawn: 114067&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So here is the full code snippet to setup two network namespaces and connecting them with a &lt;code&gt;veth&lt;/code&gt; pair&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; bailout &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ERROR: &lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; newNetNs &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; bailout &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="s2"&gt; requires a netns name&amp;quot;&lt;/span&gt;
+    &lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
+    sudo unshare --net --uts -- sleep inf &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; 
+    &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+        &lt;span class="nv"&gt;ns_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;ps --ppid &lt;span class="nv"&gt;$!&lt;/span&gt; -o &lt;span class="nv"&gt;pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+        sleep &lt;span class="m"&gt;0&lt;/span&gt;.01 
+        &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$((&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="k"&gt;))&lt;/span&gt;
+        &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt; -gt &lt;span class="m"&gt;10&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; bailout &lt;span class="s2"&gt;&amp;quot;Cannot get the PID of namespace &lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;done&lt;/span&gt;
+    sudo nsenter -t &lt;span class="nv"&gt;$ns_pid&lt;/span&gt; -u hostname &lt;span class="nv"&gt;$name&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+newNetNs netns1
+&lt;span class="nv"&gt;netns1_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Created netns1 &lt;/span&gt;&lt;span class="nv"&gt;$netns1_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+newNetNs netns2
+&lt;span class="nv"&gt;netns2_pid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$ns_pid&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Created netns2 &lt;/span&gt;&lt;span class="nv"&gt;$netns2_pid&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+sudo ip link add veth1 &lt;span class="nb"&gt;type&lt;/span&gt; veth peer name veth2
+sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth1 netns &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; up
+sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth2 netns &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; up
+sudo nsenter -n -t &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10/24 dev veth1
+sudo nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ip addr add &lt;span class="m"&gt;192&lt;/span&gt;.168.1.20/24 dev veth2
+
+sudo nsenter -n -t &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt; ping &lt;span class="m"&gt;192&lt;/span&gt;.168.1.10 -c &lt;span class="m"&gt;3&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Destroy everything&lt;/span&gt;
+sudo &lt;span class="nb"&gt;kill&lt;/span&gt; -9 &lt;span class="nv"&gt;$netns1_pid&lt;/span&gt; &lt;span class="nv"&gt;$netns2_pid&lt;/span&gt;
+sudo ip link delete veth1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Putting together those lines of bash took me a full morning, as usual I understimated the complexity (or overstimated myself).&lt;/p&gt;</summary><category term="Systems"></category><category term="Linux"></category><category term="Network namespaces"></category></entry><entry><title>Kubernetes semaphore Validating Webhook</title><link href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html" rel="alternate"></link><published>2020-09-24T20:25:00+02:00</published><updated>2020-09-24T20:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2020-09-24:kubernetes-semaphore-validating-webhook.html</id><summary type="html">&lt;p&gt;After more than 3 years a new post!&lt;/p&gt;
 &lt;p&gt;In the path of learning Kubernetes &lt;a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/"&gt;Dynamic Admission Control&lt;/a&gt; I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/pbertera/k8s-semaphore"&gt;k8s-semaphore&lt;/a&gt; is a quick and dirty &lt;a href="https://webpy.org/"&gt;web.py&lt;/a&gt; app implementing the webhook, can be deployed on any Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;Here is a self-explaining usage of the admission controller:&lt;/p&gt;
@@ -783,63 +1022,63 @@ dns.istsupcti.it, no one of them seems working:&lt;/p&gt;
 &lt;h5&gt;&lt;strong&gt;Ok, ENUM is totally broken in Italy.&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;Let me dig a bit more:&lt;/p&gt;
 &lt;p&gt;Who is istsupcti.it (seems not have even a working web site)?&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;pietro$&lt;/span&gt; &lt;span class="n"&gt;whois&lt;/span&gt; &lt;span class="n"&gt;istsupcti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;~ pietro$ whois istsupcti.it
 
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;following&lt;/span&gt; &lt;span class="k"&gt;result&lt;/span&gt; &lt;span class="n"&gt;could&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;subgroup&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;data&lt;/span&gt; &lt;span class="n"&gt;contained&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;database&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Additional&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;visualized&lt;/span&gt; &lt;span class="k"&gt;at&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Whois&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;whois&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cgi&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;  
+\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*  
+\* Please note that the following result could be a subgroup of \*  
+\* the data contained in the database. \*  
+\* \*  
+\* Additional information can be visualized at: \*  
+\* http://www.nic.it/cgi-bin/Whois/whois.cgi \*  
 
-&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;
+\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
-&lt;span class="k"&gt;Domain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;istsupcti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;  
-&lt;span class="n"&gt;Status&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;  
-&lt;span class="n"&gt;Created&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1998&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;  
-&lt;span class="k"&gt;Last&lt;/span&gt; &lt;span class="k"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2015&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt; &lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;  
-&lt;span class="n"&gt;Expire&lt;/span&gt; &lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2016&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;
+Domain: istsupcti.it  
+Status: ok  
+Created: 1998-12-23 00:00:00  
+Last Update: 2015-02-24 00:54:36  
+Expire Date: 2016-02-08
 
-&lt;span class="n"&gt;Registrant&lt;/span&gt;  
-&lt;span class="n"&gt;Organization&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Istituto&lt;/span&gt; &lt;span class="n"&gt;Superiore&lt;/span&gt; &lt;span class="n"&gt;delle&lt;/span&gt; &lt;span class="n"&gt;Comunicazioni&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="n"&gt;delle&lt;/span&gt; &lt;span class="n"&gt;Tecnologie&lt;/span&gt;
-&lt;span class="n"&gt;dell&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Informazione  &lt;/span&gt;
-&lt;span class="s1"&gt;Address: Viale America, 201  &lt;/span&gt;
-&lt;span class="s1"&gt;Roma  &lt;/span&gt;
-&lt;span class="s1"&gt;00144  &lt;/span&gt;
-&lt;span class="s1"&gt;RM  &lt;/span&gt;
-&lt;span class="s1"&gt;IT  &lt;/span&gt;
-&lt;span class="s1"&gt;Created: 2008-02-08 12:11:24  &lt;/span&gt;
-&lt;span class="s1"&gt;Last Update: 2012-07-16 16:14:51&lt;/span&gt;
+Registrant  
+Organization: Istituto Superiore delle Comunicazioni e delle Tecnologie
+dell&amp;#39;Informazione  
+Address: Viale America, 201  
+Roma  
+00144  
+RM  
+IT  
+Created: 2008-02-08 12:11:24  
+Last Update: 2012-07-16 16:14:51
 
-&lt;span class="s1"&gt;Admin Contact  &lt;/span&gt;
-&lt;span class="s1"&gt;Name: Claudia Passaro  &lt;/span&gt;
-&lt;span class="s1"&gt;Organization: Istituto Superiore delle Comunicazioni e delle Tecnologie&lt;/span&gt;
-&lt;span class="s1"&gt;dell&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Informazione&lt;/span&gt;  
-&lt;span class="n"&gt;Address&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Viale&lt;/span&gt; &lt;span class="n"&gt;America&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;201&lt;/span&gt;  
-&lt;span class="n"&gt;Roma&lt;/span&gt;  
-&lt;span class="mi"&gt;00144&lt;/span&gt;  
-&lt;span class="n"&gt;RM&lt;/span&gt;  
-&lt;span class="n"&gt;IT&lt;/span&gt;  
-&lt;span class="n"&gt;Created&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2012&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;  
-&lt;span class="k"&gt;Last&lt;/span&gt; &lt;span class="k"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2012&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;49&lt;/span&gt;
+Admin Contact  
+Name: Claudia Passaro  
+Organization: Istituto Superiore delle Comunicazioni e delle Tecnologie
+dell&amp;#39;Informazione  
+Address: Viale America, 201  
+Roma  
+00144  
+RM  
+IT  
+Created: 2012-07-16 14:30:02  
+Last Update: 2012-07-16 16:13:49
 
-&lt;span class="n"&gt;Technical&lt;/span&gt; &lt;span class="n"&gt;Contacts&lt;/span&gt;  
-&lt;span class="n"&gt;Name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Gestione&lt;/span&gt; &lt;span class="n"&gt;Domini&lt;/span&gt;  
-&lt;span class="n"&gt;Address&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Via&lt;/span&gt; &lt;span class="n"&gt;Caracciolo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;51&lt;/span&gt;  
-&lt;span class="n"&gt;MILANO&lt;/span&gt;  
-&lt;span class="mi"&gt;20155&lt;/span&gt;  
-&lt;span class="n"&gt;MI&lt;/span&gt;  
-&lt;span class="n"&gt;IT&lt;/span&gt;  
-&lt;span class="n"&gt;Created&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2005&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt; &lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;  
-&lt;span class="k"&gt;Last&lt;/span&gt; &lt;span class="k"&gt;Update&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;06&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;07&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;55&lt;/span&gt;
+Technical Contacts  
+Name: Gestione Domini  
+Address: Via Caracciolo, 51  
+MILANO  
+20155  
+MI  
+IT  
+Created: 2005-07-07 00:00:00  
+Last Update: 2014-06-20 14:07:55
 
-&lt;span class="n"&gt;Registrar&lt;/span&gt;  
-&lt;span class="n"&gt;Organization&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Fastweb&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;  
-&lt;span class="n"&gt;Name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;FASTWEB&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;REG&lt;/span&gt;
+Registrar  
+Organization: Fastweb s.p.a.  
+Name: FASTWEB-REG
 
-&lt;span class="n"&gt;Nameservers&lt;/span&gt;  
-&lt;span class="n"&gt;dns1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fweds&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;spc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;  
-&lt;span class="n"&gt;dns2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fweds&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;spc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;  
+Nameservers  
+dns1.fweds-spc.it  
+dns2.fweds-spc.it  
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1037,44 +1276,44 @@ inside the directory (SIPp handle in a stupid manned direcotories..):&lt;/p&gt;
 
 
 &lt;p&gt;And you will see an output like this:  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;------------------------------ Scenario Screen -------- [1-9]: Change Screen --&lt;/span&gt;
-  &lt;span class="n"&gt;Port&lt;/span&gt;   &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;time&lt;/span&gt;  &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;calls&lt;/span&gt;  &lt;span class="n"&gt;Transport&lt;/span&gt;
-  &lt;span class="mi"&gt;5060&lt;/span&gt;       &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;            &lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="n"&gt;UDP&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;------------------------------&lt;/span&gt; &lt;span class="n"&gt;Scenario&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt; &lt;span class="o"&gt;--------&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Change&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;
+  &lt;span class="n"&gt;Port&lt;/span&gt;   &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;  &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;calls&lt;/span&gt;  &lt;span class="n"&gt;Transport&lt;/span&gt;
+  &lt;span class="mi"&gt;5060&lt;/span&gt;       &lt;span class="mf"&gt;4.00&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;            &lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="n"&gt;UDP&lt;/span&gt;
 
-  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="n"&gt;during&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;001&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="k"&gt;period&lt;/span&gt;      &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="n"&gt;scheduler&lt;/span&gt; &lt;span class="n"&gt;resolution&lt;/span&gt;
-  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;                                &lt;span class="n"&gt;Peak&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;after&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="n"&gt;during&lt;/span&gt; &lt;span class="mf"&gt;1.001&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;period&lt;/span&gt;      &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="n"&gt;scheduler&lt;/span&gt; &lt;span class="n"&gt;resolution&lt;/span&gt;
+  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;                                &lt;span class="n"&gt;Peak&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
   &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;Running&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;Paused&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;Woken&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt;
-  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;dead&lt;/span&gt; &lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;discarded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          
-  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;open&lt;/span&gt; &lt;span class="n"&gt;sockets&lt;/span&gt;                        
+  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;dead&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;discarded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          
+  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="n"&gt;sockets&lt;/span&gt;                        
 
                                  &lt;span class="n"&gt;Messages&lt;/span&gt;  &lt;span class="n"&gt;Retrans&lt;/span&gt;   &lt;span class="n"&gt;Timeout&lt;/span&gt;   &lt;span class="n"&gt;Unexpected&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Msg&lt;/span&gt;
-  &lt;span class="c1"&gt;----------&amp;gt; REGISTER           0         0         0         0        &lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="c1"&gt;---------- 401                0         0                            &lt;/span&gt;
-  &lt;span class="c1"&gt;----------&amp;gt; REGISTER           0         0         0         0        &lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="c1"&gt;---------- 200                0         0                            &lt;/span&gt;
-&lt;span class="c1"&gt;------------------------------ Sipp Server Mode -------------------------------&lt;/span&gt;
+  &lt;span class="o"&gt;----------&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;REGISTER&lt;/span&gt;           &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;        
+  &lt;span class="o"&gt;&amp;lt;----------&lt;/span&gt; &lt;span class="mi"&gt;401&lt;/span&gt;                &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;                            
+  &lt;span class="o"&gt;----------&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;REGISTER&lt;/span&gt;           &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;        
+  &lt;span class="o"&gt;&amp;lt;----------&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;                &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;                            
+&lt;span class="o"&gt;------------------------------&lt;/span&gt; &lt;span class="n"&gt;Sipp&lt;/span&gt; &lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="n"&gt;Mode&lt;/span&gt; &lt;span class="o"&gt;-------------------------------&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now you can register your device configuring the registrar address and
 credentials, when your device will send the REGISTER request you will
 the message flow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;------------------------------ Scenario Screen -------- [1-9]: Change Screen --&lt;/span&gt;
-  &lt;span class="n"&gt;Port&lt;/span&gt;   &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;time&lt;/span&gt;  &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;calls&lt;/span&gt;  &lt;span class="n"&gt;Transport&lt;/span&gt;
-  &lt;span class="mi"&gt;5060&lt;/span&gt;     &lt;span class="mi"&gt;161&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;28&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;            &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="n"&gt;UDP&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;------------------------------&lt;/span&gt; &lt;span class="n"&gt;Scenario&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt; &lt;span class="o"&gt;--------&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Change&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;
+  &lt;span class="n"&gt;Port&lt;/span&gt;   &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;  &lt;span class="n"&gt;Total&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;calls&lt;/span&gt;  &lt;span class="n"&gt;Transport&lt;/span&gt;
+  &lt;span class="mi"&gt;5060&lt;/span&gt;     &lt;span class="mf"&gt;161.28&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;            &lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="n"&gt;UDP&lt;/span&gt;
 
-  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="n"&gt;during&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;001&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="k"&gt;period&lt;/span&gt;      &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="n"&gt;scheduler&lt;/span&gt; &lt;span class="n"&gt;resolution&lt;/span&gt;
-  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;                                &lt;span class="n"&gt;Peak&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;after&lt;/span&gt; &lt;span class="mi"&gt;157&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
+  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="n"&gt;during&lt;/span&gt; &lt;span class="mf"&gt;1.001&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;period&lt;/span&gt;      &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ms&lt;/span&gt; &lt;span class="n"&gt;scheduler&lt;/span&gt; &lt;span class="n"&gt;resolution&lt;/span&gt;
+  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;                                &lt;span class="n"&gt;Peak&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="mi"&gt;157&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;
   &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;Running&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;Paused&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;Woken&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt;
-  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;dead&lt;/span&gt; &lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;discarded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          
-  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="k"&gt;open&lt;/span&gt; &lt;span class="n"&gt;sockets&lt;/span&gt;                        
+  &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;dead&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;discarded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;          
+  &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;open&lt;/span&gt; &lt;span class="n"&gt;sockets&lt;/span&gt;                        
 
                                  &lt;span class="n"&gt;Messages&lt;/span&gt;  &lt;span class="n"&gt;Retrans&lt;/span&gt;   &lt;span class="n"&gt;Timeout&lt;/span&gt;   &lt;span class="n"&gt;Unexpected&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Msg&lt;/span&gt;
-  &lt;span class="c1"&gt;----------&amp;gt; REGISTER           1         0         0         0        &lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="c1"&gt;---------- 401                1         0                            &lt;/span&gt;
-  &lt;span class="c1"&gt;----------&amp;gt; REGISTER           1         0         0         0        &lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="c1"&gt;---------- 200                1         0                            &lt;/span&gt;
-&lt;span class="c1"&gt;------------------------------ Sipp Server Mode -------------------------------&lt;/span&gt;
+  &lt;span class="o"&gt;----------&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;REGISTER&lt;/span&gt;           &lt;span class="mi"&gt;1&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;        
+  &lt;span class="o"&gt;&amp;lt;----------&lt;/span&gt; &lt;span class="mi"&gt;401&lt;/span&gt;                &lt;span class="mi"&gt;1&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;                            
+  &lt;span class="o"&gt;----------&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;REGISTER&lt;/span&gt;           &lt;span class="mi"&gt;1&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;        
+  &lt;span class="o"&gt;&amp;lt;----------&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;                &lt;span class="mi"&gt;1&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;                            
+&lt;span class="o"&gt;------------------------------&lt;/span&gt; &lt;span class="n"&gt;Sipp&lt;/span&gt; &lt;span class="n"&gt;Server&lt;/span&gt; &lt;span class="n"&gt;Mode&lt;/span&gt; &lt;span class="o"&gt;-------------------------------&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

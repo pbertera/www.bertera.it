@@ -168,44 +168,44 @@ inside the directory (SIPp handle in a stupid manned direcotories..):</p>
 
 
 <p>And you will see an output like this:  </p>
-<div class="highlight"><pre><span></span><span class="c1">------------------------------ Scenario Screen -------- [1-9]: Change Screen --</span>
-  <span class="n">Port</span>   <span class="n">Total</span><span class="o">-</span><span class="k">time</span>  <span class="n">Total</span><span class="o">-</span><span class="n">calls</span>  <span class="n">Transport</span>
-  <span class="mi">5060</span>       <span class="mi">4</span><span class="p">.</span><span class="mi">00</span> <span class="n">s</span>            <span class="mi">0</span>  <span class="n">UDP</span>
+<div class="highlight"><pre><span></span><span class="o">------------------------------</span> <span class="n">Scenario</span> <span class="n">Screen</span> <span class="o">--------</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="o">:</span> <span class="n">Change</span> <span class="n">Screen</span> <span class="o">--</span>
+  <span class="n">Port</span>   <span class="n">Total</span><span class="o">-</span><span class="n">time</span>  <span class="n">Total</span><span class="o">-</span><span class="n">calls</span>  <span class="n">Transport</span>
+  <span class="mi">5060</span>       <span class="mf">4.00</span> <span class="n">s</span>            <span class="mi">0</span>  <span class="n">UDP</span>
 
-  <span class="mi">0</span> <span class="k">new</span> <span class="n">calls</span> <span class="n">during</span> <span class="mi">1</span><span class="p">.</span><span class="mi">001</span> <span class="n">s</span> <span class="k">period</span>      <span class="mi">1</span> <span class="n">ms</span> <span class="n">scheduler</span> <span class="n">resolution</span>
-  <span class="mi">0</span> <span class="n">calls</span>                                <span class="n">Peak</span> <span class="n">was</span> <span class="mi">0</span> <span class="n">calls</span><span class="p">,</span> <span class="k">after</span> <span class="mi">0</span> <span class="n">s</span>
+  <span class="mi">0</span> <span class="n">new</span> <span class="n">calls</span> <span class="n">during</span> <span class="mf">1.001</span> <span class="n">s</span> <span class="n">period</span>      <span class="mi">1</span> <span class="n">ms</span> <span class="n">scheduler</span> <span class="n">resolution</span>
+  <span class="mi">0</span> <span class="n">calls</span>                                <span class="n">Peak</span> <span class="n">was</span> <span class="mi">0</span> <span class="n">calls</span><span class="p">,</span> <span class="n">after</span> <span class="mi">0</span> <span class="n">s</span>
   <span class="mi">0</span> <span class="n">Running</span><span class="p">,</span> <span class="mi">1</span> <span class="n">Paused</span><span class="p">,</span> <span class="mi">3</span> <span class="n">Woken</span> <span class="n">up</span>
-  <span class="mi">0</span> <span class="n">dead</span> <span class="k">call</span> <span class="n">msg</span> <span class="p">(</span><span class="n">discarded</span><span class="p">)</span>          
-  <span class="mi">3</span> <span class="k">open</span> <span class="n">sockets</span>                        
+  <span class="mi">0</span> <span class="n">dead</span> <span class="n">call</span> <span class="n">msg</span> <span class="p">(</span><span class="n">discarded</span><span class="p">)</span>          
+  <span class="mi">3</span> <span class="n">open</span> <span class="n">sockets</span>                        
 
                                  <span class="n">Messages</span>  <span class="n">Retrans</span>   <span class="n">Timeout</span>   <span class="n">Unexpected</span><span class="o">-</span><span class="n">Msg</span>
-  <span class="c1">----------&gt; REGISTER           0         0         0         0        </span>
-  <span class="o">&lt;</span><span class="c1">---------- 401                0         0                            </span>
-  <span class="c1">----------&gt; REGISTER           0         0         0         0        </span>
-  <span class="o">&lt;</span><span class="c1">---------- 200                0         0                            </span>
-<span class="c1">------------------------------ Sipp Server Mode -------------------------------</span>
+  <span class="o">----------&gt;</span> <span class="n">REGISTER</span>           <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span>        
+  <span class="o">&lt;----------</span> <span class="mi">401</span>                <span class="mi">0</span>         <span class="mi">0</span>                            
+  <span class="o">----------&gt;</span> <span class="n">REGISTER</span>           <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span>        
+  <span class="o">&lt;----------</span> <span class="mi">200</span>                <span class="mi">0</span>         <span class="mi">0</span>                            
+<span class="o">------------------------------</span> <span class="n">Sipp</span> <span class="n">Server</span> <span class="n">Mode</span> <span class="o">-------------------------------</span>
 </pre></div>
 
 
 <p>Now you can register your device configuring the registrar address and
 credentials, when your device will send the REGISTER request you will
 the message flow:</p>
-<div class="highlight"><pre><span></span><span class="c1">------------------------------ Scenario Screen -------- [1-9]: Change Screen --</span>
-  <span class="n">Port</span>   <span class="n">Total</span><span class="o">-</span><span class="k">time</span>  <span class="n">Total</span><span class="o">-</span><span class="n">calls</span>  <span class="n">Transport</span>
-  <span class="mi">5060</span>     <span class="mi">161</span><span class="p">.</span><span class="mi">28</span> <span class="n">s</span>            <span class="mi">1</span>  <span class="n">UDP</span>
+<div class="highlight"><pre><span></span><span class="o">------------------------------</span> <span class="n">Scenario</span> <span class="n">Screen</span> <span class="o">--------</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="o">:</span> <span class="n">Change</span> <span class="n">Screen</span> <span class="o">--</span>
+  <span class="n">Port</span>   <span class="n">Total</span><span class="o">-</span><span class="n">time</span>  <span class="n">Total</span><span class="o">-</span><span class="n">calls</span>  <span class="n">Transport</span>
+  <span class="mi">5060</span>     <span class="mf">161.28</span> <span class="n">s</span>            <span class="mi">1</span>  <span class="n">UDP</span>
 
-  <span class="mi">0</span> <span class="k">new</span> <span class="n">calls</span> <span class="n">during</span> <span class="mi">1</span><span class="p">.</span><span class="mi">001</span> <span class="n">s</span> <span class="k">period</span>      <span class="mi">1</span> <span class="n">ms</span> <span class="n">scheduler</span> <span class="n">resolution</span>
-  <span class="mi">0</span> <span class="n">calls</span>                                <span class="n">Peak</span> <span class="n">was</span> <span class="mi">1</span> <span class="n">calls</span><span class="p">,</span> <span class="k">after</span> <span class="mi">157</span> <span class="n">s</span>
+  <span class="mi">0</span> <span class="n">new</span> <span class="n">calls</span> <span class="n">during</span> <span class="mf">1.001</span> <span class="n">s</span> <span class="n">period</span>      <span class="mi">1</span> <span class="n">ms</span> <span class="n">scheduler</span> <span class="n">resolution</span>
+  <span class="mi">0</span> <span class="n">calls</span>                                <span class="n">Peak</span> <span class="n">was</span> <span class="mi">1</span> <span class="n">calls</span><span class="p">,</span> <span class="n">after</span> <span class="mi">157</span> <span class="n">s</span>
   <span class="mi">0</span> <span class="n">Running</span><span class="p">,</span> <span class="mi">2</span> <span class="n">Paused</span><span class="p">,</span> <span class="mi">4</span> <span class="n">Woken</span> <span class="n">up</span>
-  <span class="mi">0</span> <span class="n">dead</span> <span class="k">call</span> <span class="n">msg</span> <span class="p">(</span><span class="n">discarded</span><span class="p">)</span>          
-  <span class="mi">3</span> <span class="k">open</span> <span class="n">sockets</span>                        
+  <span class="mi">0</span> <span class="n">dead</span> <span class="n">call</span> <span class="n">msg</span> <span class="p">(</span><span class="n">discarded</span><span class="p">)</span>          
+  <span class="mi">3</span> <span class="n">open</span> <span class="n">sockets</span>                        
 
                                  <span class="n">Messages</span>  <span class="n">Retrans</span>   <span class="n">Timeout</span>   <span class="n">Unexpected</span><span class="o">-</span><span class="n">Msg</span>
-  <span class="c1">----------&gt; REGISTER           1         0         0         0        </span>
-  <span class="o">&lt;</span><span class="c1">---------- 401                1         0                            </span>
-  <span class="c1">----------&gt; REGISTER           1         0         0         0        </span>
-  <span class="o">&lt;</span><span class="c1">---------- 200                1         0                            </span>
-<span class="c1">------------------------------ Sipp Server Mode -------------------------------</span>
+  <span class="o">----------&gt;</span> <span class="n">REGISTER</span>           <span class="mi">1</span>         <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span>        
+  <span class="o">&lt;----------</span> <span class="mi">401</span>                <span class="mi">1</span>         <span class="mi">0</span>                            
+  <span class="o">----------&gt;</span> <span class="n">REGISTER</span>           <span class="mi">1</span>         <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span>        
+  <span class="o">&lt;----------</span> <span class="mi">200</span>                <span class="mi">1</span>         <span class="mi">0</span>                            
+<span class="o">------------------------------</span> <span class="n">Sipp</span> <span class="n">Server</span> <span class="n">Mode</span> <span class="o">-------------------------------</span>
 </pre></div>
 
 
