@@ -1,5 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2022-01-31T00:00:00+01:00</updated><entry><title>Spawning a network namespace with sudo</title><link href="http://www.bertera.it/spawning-a-network-namespace-with-sudo.html" rel="alternate"></link><published>2022-01-31T00:00:00+01:00</published><updated>2022-01-31T00:00:00+01:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2022-01-31:spawning-a-network-namespace-with-sudo.html</id><summary type="html">&lt;p&gt;After 1 year and half a new post! I'm improving :)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2022-02-04T00:00:00+01:00</updated><entry><title>Mirroring pod network traffic to another pod on OpenShift</title><link href="http://www.bertera.it/mirroring-pod-network-traffic-to-another-pod-on-openshift.html" rel="alternate"></link><published>2022-02-04T00:00:00+01:00</published><updated>2022-02-04T00:00:00+01:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2022-02-04:mirroring-pod-network-traffic-to-another-pod-on-openshift.html</id><summary type="html">&lt;h2&gt;What ?&lt;/h2&gt;
+&lt;p&gt;This article explain how to setup traffic mirroring on two pods on Red Hat OpenShift Container Platform.
+This solution is based on &lt;code&gt;tc&lt;/code&gt; and &lt;code&gt;vxlan&lt;/code&gt; tunnel, this post refer to OpenShift but the general concepts apply to Kubernetes, with some variations depending on specific networking implementation.&lt;/p&gt;
+&lt;p&gt;The main goal is to send all the network packets (from the link layer) in transit on the main network interface of a pod to a different pod.
+This approach investigates how to mirror the network traffic on a running pod, without restarting it.
+Implementing a persistent solution is out of the scope of this article (maybe a next one? :) ).&lt;/p&gt;
+&lt;p&gt;For clarity we will use the following names to identify the pods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;app-pod&lt;/code&gt;: the application pod that we want to monitor&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;receiver-pod&lt;/code&gt;: the pod receiving the mirrored network trafic from &lt;code&gt;app-pod&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="mirror pod" src="http://www.bertera.it/mirror-pods.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Why ?&lt;/h2&gt;
+&lt;p&gt;A network mirror con be useful in many cases: setup a network monitor to debug weird issues, for security resons (Eg. an IDS) or analyse network performance issues.
+Usually traffic mirroring solutions are based on hardware network switches, this approach is difficult to integrate on orchestrated container environments where networsk are software-defined.
+In this article we will setup a network mirroring fully software without the need of any harware.&lt;/p&gt;
+&lt;h2&gt;How ?&lt;/h2&gt;
+&lt;p&gt;In order to deliver the mirrored packets to a different pod we need to encapsulate the frames into a tunnel network between the &lt;code&gt;app-pod&lt;/code&gt; and the &lt;code&gt;receiver-pod&lt;/code&gt;.
+Theoretically would be possible to deliver the mirrored packet to a pod running on a different node or even on a different cluster.
+In this example the &lt;code&gt;app-pod&lt;/code&gt; and &lt;code&gt;receiver-pod&lt;/code&gt; must run on the same node.&lt;/p&gt;
+&lt;p&gt;In this way the &lt;code&gt;receiver-pod&lt;/code&gt; can decapsulate the outer frame to extract the mirrored data.
+In our example we will use VxLAN as a tunneling protocol, but many other options are possible (GRE, IP-IP, IPSec, etc..).&lt;/p&gt;
+&lt;p&gt;First of all we need to start the two pods:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bastion $&lt;/span&gt; cat &amp;lt;&amp;lt; EOF &lt;span class="p"&gt;|&lt;/span&gt; oc create -f -
+&lt;span class="go"&gt;apiVersion: v1&lt;/span&gt;
+&lt;span class="go"&gt;kind: Pod&lt;/span&gt;
+&lt;span class="go"&gt;metadata:&lt;/span&gt;
+&lt;span class="go"&gt;  name: app-pod&lt;/span&gt;
+&lt;span class="go"&gt;spec:&lt;/span&gt;
+&lt;span class="gp"&gt;  #&lt;/span&gt; same node of app-pod
+&lt;span class="go"&gt;  nodeName: worker-3&lt;/span&gt;
+&lt;span class="go"&gt;  containers:&lt;/span&gt;
+&lt;span class="go"&gt;  - name: main&lt;/span&gt;
+&lt;span class="go"&gt;    image: quay.io/pbertera/net-tools&lt;/span&gt;
+&lt;span class="gp"&gt;    #&lt;/span&gt; execute ping to generate dummy network traffic
+&lt;span class="go"&gt;    command:&lt;/span&gt;
+&lt;span class="go"&gt;    - /bin/bash&lt;/span&gt;
+&lt;span class="go"&gt;    - -c&lt;/span&gt;
+&lt;span class="go"&gt;    - ping 8.8.8.8&lt;/span&gt;
+&lt;span class="go"&gt;---&lt;/span&gt;
+&lt;span class="go"&gt;apiVersion: v1&lt;/span&gt;
+&lt;span class="go"&gt;kind: Pod&lt;/span&gt;
+&lt;span class="go"&gt;metadata:&lt;/span&gt;
+&lt;span class="go"&gt;  name: receiver-pod&lt;/span&gt;
+&lt;span class="go"&gt;spec:&lt;/span&gt;
+&lt;span class="go"&gt;  nodeName: worker-3 &lt;/span&gt;
+&lt;span class="go"&gt;  containers:&lt;/span&gt;
+&lt;span class="go"&gt;  - name: main&lt;/span&gt;
+&lt;span class="go"&gt;    image: quay.io/pbertera/net-tools&lt;/span&gt;
+&lt;span class="gp"&gt;    #&lt;/span&gt; Run as root so we can execute tcpdump to verify the mirroring
+&lt;span class="go"&gt;    securityContext:&lt;/span&gt;
+&lt;span class="go"&gt;      privileged: true&lt;/span&gt;
+&lt;span class="go"&gt;      runAsUser: 0&lt;/span&gt;
+&lt;span class="go"&gt;    command:&lt;/span&gt;
+&lt;span class="go"&gt;    - /bin/bash&lt;/span&gt;
+&lt;span class="go"&gt;    - -c&lt;/span&gt;
+&lt;span class="go"&gt;    - sleep inf&lt;/span&gt;
+&lt;span class="go"&gt;EOF&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The two pods should be running on the same node:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bastion $&lt;/span&gt; oc get pods -o wide
+&lt;span class="go"&gt;NAME           READY   STATUS    RESTARTS   AGE   IP             NODE       NOMINATED NODE   READINESS GATES&lt;/span&gt;
+&lt;span class="go"&gt;app-pod        1/1     Running   0          27s   10.130.2.247   worker-3   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;&lt;/span&gt;
+&lt;span class="go"&gt;receiver-pod   1/1     Running   0          27s   10.130.2.246   worker-3   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now on the node where the pods are running we have to identify the network namespaces of each pod&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; &lt;span class="nv"&gt;app_pod_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo crictl pods --name app-pod -q&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; &lt;span class="nv"&gt;netns_app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo crictl inspectp &lt;span class="nv"&gt;$app_pod_id&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; jq -r &lt;span class="s1"&gt;&amp;#39;.info.runtimeSpec.linux.namespaces[] | select(.type == &amp;quot;network&amp;quot;) | .path&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="se"&gt;\/&lt;/span&gt; -f &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; &lt;span class="nv"&gt;receiver_pod_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo crictl pods --name receiver-pod -q&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; &lt;span class="nv"&gt;netns_receiver&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;sudo crictl inspectp &lt;span class="nv"&gt;$receiver_pod_id&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; jq -r &lt;span class="s1"&gt;&amp;#39;.info.runtimeSpec.linux.namespaces[] | select(.type == &amp;quot;network&amp;quot;) | .path&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; cut -d &lt;span class="se"&gt;\/&lt;/span&gt; -f &lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we create the &lt;code&gt;mirror0&lt;/code&gt; bridge device on the node&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link add mirror0 &lt;span class="nb"&gt;type&lt;/span&gt; bridge
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip addr add &lt;span class="m"&gt;10&lt;/span&gt;.1.99.1/24 dev mirror0
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; up dev mirror0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At this point we create an additional network device in the &lt;code&gt;app_pod&lt;/code&gt;, we will use this device to setup the VxLAN tunnel&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link add veth1 &lt;span class="nb"&gt;type&lt;/span&gt; veth peer name peer1
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; peer1 netns &lt;span class="nv"&gt;$netns_app&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; peer1 name eth1 &lt;span class="c1"&gt;# rname to eth1&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; ip addr add &lt;span class="m"&gt;10&lt;/span&gt;.1.99.2/24 dev eth1
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; eth1 up
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let's check the &lt;code&gt;eth1&lt;/code&gt; device into the pod &lt;code&gt;app-pod&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bastion $&lt;/span&gt; oc &lt;span class="nb"&gt;exec&lt;/span&gt; app-pod -- ip addr show dev eth1
+&lt;span class="go"&gt;268: eth1@if269: &amp;lt;BROADCAST,MULTICAST&amp;gt; mtu 1500 qdisc noop state LOWERLAYERDOWN group default qlen 1000&lt;/span&gt;
+&lt;span class="go"&gt;    link/ether 9a:a4:12:d0:af:45 brd ff:ff:ff:ff:ff:ff link-netnsid 0&lt;/span&gt;
+&lt;span class="go"&gt;    inet 10.1.99.2/23 scope global eth1&lt;/span&gt;
+&lt;span class="go"&gt;       valid_lft forever preferred_lft forever&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we can add the &lt;code&gt;veth1&lt;/code&gt; network pair to the &lt;code&gt;mirror0&lt;/code&gt; bridge&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth1 master mirror0
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth1 up
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At this point we have the &lt;code&gt;app-pod&lt;/code&gt; with an additional network interface (&lt;code&gt;eth1&lt;/code&gt;) connected to the &lt;code&gt;mirror0&lt;/code&gt; bridge on the host networ knamespace.
+Now we have to connect the receiver pod to the bridge:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link add veth2 &lt;span class="nb"&gt;type&lt;/span&gt; veth peer name peer2
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; peer2 netns &lt;span class="nv"&gt;$netns_receiver&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_receiver&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; peer2 name eth1
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_receiver&lt;/span&gt; ip addr add &lt;span class="m"&gt;10&lt;/span&gt;.1.99.3/24 dev eth1
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_receiver&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; eth1 up
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth2 master mirror0
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip link &lt;span class="nb"&gt;set&lt;/span&gt; veth2 up
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that both pods are connected to the &lt;code&gt;mirror0&lt;/code&gt; bridge we can test the connectivity between the 2 pods through the newly added &lt;code&gt;veth&lt;/code&gt; pairs&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bastion $&lt;/span&gt; oc &lt;span class="nb"&gt;exec&lt;/span&gt; -it receiver-pod -- ping &lt;span class="m"&gt;10&lt;/span&gt;.1.99.2 -c3
+&lt;span class="go"&gt;PING 10.1.99.2 (10.1.99.2) 56(84) bytes of data.&lt;/span&gt;
+&lt;span class="go"&gt;64 bytes from 10.1.99.2: icmp_seq=1 ttl=63 time=1.24 ms&lt;/span&gt;
+&lt;span class="go"&gt;64 bytes from 10.1.99.2: icmp_seq=2 ttl=63 time=0.169 ms&lt;/span&gt;
+&lt;span class="go"&gt;64 bytes from 10.1.99.2: icmp_seq=3 ttl=63 time=0.243 ms&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that the two pods are connected through the bridge we can setup the VxLAN tunnel&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; ip link add vxlan0 &lt;span class="nb"&gt;type&lt;/span&gt; vxlan id &lt;span class="m"&gt;100&lt;/span&gt; &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.1.99.2 remote &lt;span class="m"&gt;10&lt;/span&gt;.1.99.3 dev eth1 dstport &lt;span class="m"&gt;4789&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; vxlan0 up
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_receiver&lt;/span&gt; ip link add vxlan0 &lt;span class="nb"&gt;type&lt;/span&gt; vxlan id &lt;span class="m"&gt;100&lt;/span&gt; &lt;span class="nb"&gt;local&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;.1.99.3 remote &lt;span class="m"&gt;10&lt;/span&gt;.1.99.2 dev eth1 dstport &lt;span class="m"&gt;4789&lt;/span&gt;
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_receiver&lt;/span&gt; ip link &lt;span class="nb"&gt;set&lt;/span&gt; vxlan0 up
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The following commands will configure &lt;code&gt;tc&lt;/code&gt; to mirror all the ingress traffic of &lt;code&gt;eth0&lt;/code&gt; of the &lt;code&gt;app-pod&lt;/code&gt; to the &lt;code&gt;vxlan0&lt;/code&gt; device:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; tc qdisc add dev eth0 handle ffff: ingress
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; tc filter add dev eth0 parent ffff: protocol all u32 match u32 &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; action mirred egress mirror dev vxlan0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here we do the same for the egress traffic on &lt;code&gt;app_pod&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; tc qdisc add dev eth0 handle &lt;span class="m"&gt;1&lt;/span&gt;: root prio
+&lt;span class="gp"&gt;core@worker-3 $&lt;/span&gt; sudo ip netns &lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$netns_app&lt;/span&gt; tc filter add dev eth0 parent &lt;span class="m"&gt;1&lt;/span&gt;: protocol all u32 match u8 &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; action mirred egress mirror dev vxlan0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here the mirroring should be completed and we can verify running tcpdump on the receiver pod:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;user@bastion $&lt;/span&gt; oc &lt;span class="nb"&gt;exec&lt;/span&gt; -it receiver-pod -- tcpdump -nn -i vxlan0 -e
+&lt;span class="go"&gt;dropped privs to tcpdump&lt;/span&gt;
+&lt;span class="go"&gt;tcpdump: verbose output suppressed, use -v or -vv for full protocol decode&lt;/span&gt;
+&lt;span class="go"&gt;listening on vxlan0, link-type EN10MB (Ethernet), capture size 262144 bytes&lt;/span&gt;
+&lt;span class="go"&gt;20:52:42.791473 0a:58:0a:82:02:f7 &amp;gt; 96:44:79:fb:bc:a1, ethertype IPv4 (0x0800), length 98: 10.130.2.247 &amp;gt; 8.8.8.8: ICMP echo request, id 6, seq 2256, length 64&lt;/span&gt;
+&lt;span class="go"&gt;20:52:42.805062 96:44:79:fb:bc:a1 &amp;gt; 0a:58:0a:82:02:f7, ethertype IPv4 (0x0800), length 98: 8.8.8.8 &amp;gt; 10.130.2.247: ICMP echo reply, id 6, seq 2256, length 64&lt;/span&gt;
+&lt;span class="go"&gt;20:52:43.791666 0a:58:0a:82:02:f7 &amp;gt; 96:44:79:fb:bc:a1, ethertype IPv4 (0x0800), length 98: 10.130.2.247 &amp;gt; 8.8.8.8: ICMP echo request, id 6, seq 2257, length 64&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see the &lt;code&gt;receiver-pod&lt;/code&gt; is getting the ICMP requests and reply the &lt;code&gt;app-pod&lt;/code&gt; on transit on &lt;code&gt;eth0&lt;/code&gt; of &lt;code&gt;app-pod&lt;/code&gt;.&lt;/p&gt;</summary><category term="Systems"></category><category term="Network namespaces"></category><category term="OpenShift"></category><category term="Kubernetes"></category></entry><entry><title>Spawning a network namespace with sudo</title><link href="http://www.bertera.it/spawning-a-network-namespace-with-sudo.html" rel="alternate"></link><published>2022-01-31T00:00:00+01:00</published><updated>2022-01-31T00:00:00+01:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2022-01-31:spawning-a-network-namespace-with-sudo.html</id><summary type="html">&lt;p&gt;After 1 year and half a new post! I'm improving :)&lt;/p&gt;
 &lt;p&gt;This post is to keep track of some subtle issues that took me some hours to face and solve.&lt;/p&gt;
 &lt;h2&gt;The intention&lt;/h2&gt;
 &lt;p&gt;In a setup I needed to script the creation of two unnamed Kernel &lt;a href="https://man7.org/linux/man-pages/man7/network_namespaces.7.html"&gt;network namespaces&lt;/a&gt; and connect them with a &lt;a href="https://man7.org/linux/man-pages/man4/veth.4.html"&gt;veth&lt;/a&gt; network interfaces pair.&lt;/p&gt;
