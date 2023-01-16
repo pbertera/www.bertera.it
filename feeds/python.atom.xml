@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="https://www.bertera.it/" rel="alternate"></link><link href="https://www.bertera.it/feeds/python.atom.xml" rel="self"></link><id>https://www.bertera.it/</id><updated>2015-03-13T15:12:00+01:00</updated><entry><title>A server launcher with log console in Python Tkinter</title><link href="https://www.bertera.it/a-server-launcher-with-log-console-in-python-tkinter.html" rel="alternate"></link><published>2015-03-13T15:12:00+01:00</published><updated>2015-03-13T15:12:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-13:a-server-launcher-with-log-console-in-python-tkinter.html</id><summary type="html">&lt;p&gt;I'm working on an Tk application that should start and stop an UDP
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog - Python</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/python.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2015-03-13T15:12:00+01:00</updated><subtitle>Something about ...</subtitle><entry><title>A server launcher with log console in Python Tkinter</title><link href="http://www.bertera.it/a-server-launcher-with-log-console-in-python-tkinter.html" rel="alternate"></link><published>2015-03-13T15:12:00+01:00</published><updated>2015-03-13T15:12:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2015-03-13:/a-server-launcher-with-log-console-in-python-tkinter.html</id><summary type="html">&lt;p&gt;I'm working on an Tk application that should start and stop an UDP
+server, I need to show server logs in the Tk GUI with a "Pause &amp;amp; Resume"
+button.&lt;/p&gt;
+&lt;p&gt;I already have the UDP server implemented using the
+blocking &lt;a href="https://docs.python.org/2/library/socketserver.html"&gt;SocketServer.BaseRequestHandler &lt;/a&gt;,
+so in order to wrap a GUI to the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm working on an Tk application that should start and stop an UDP
 server, I need to show server logs in the Tk GUI with a "Pause &amp;amp; Resume"
 button.&lt;/p&gt;
 &lt;p&gt;I already have the UDP server implemented using the
@@ -22,7 +27,7 @@ Queue, the Tk widget will read and display the Queue contents using a
 recursive &lt;a href="http://effbot.org/tkinterbook/widget.htm#Tkinter.Widget.after-method"&gt;after&lt;/a&gt;
 callback.&lt;/p&gt;
 &lt;p&gt;Here the code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Copyright 2015 Pietro Bertera \&amp;lt;pietro@bertera.it\&amp;gt;  &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Copyright 2015 Pietro Bertera \&amp;lt;pietro@bertera.it\&amp;gt;  &lt;/span&gt;
 &lt;span class="c1"&gt;#  &lt;/span&gt;
 &lt;span class="c1"&gt;# This program is free software: you can redistribute it and/or modify  &lt;/span&gt;
 &lt;span class="c1"&gt;# it under the terms of the GNU General Public License as published by  &lt;/span&gt;
@@ -180,173 +185,121 @@ callback.&lt;/p&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Error: you must specify address and port..&amp;quot;&lt;/span&gt;
         &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here a screenshot of the UDP server in action:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A screenshot of the logging server in action" src="https://www.bertera.it/tsafe.png" /&gt;&lt;/p&gt;</summary><category term="GUI"></category><category term="Multithreading"></category><category term="python"></category><category term="Tkinter"></category><category term="UDP"></category></entry><entry><title>Using special chars in Python string Templates</title><link href="https://www.bertera.it/using-special-chars-in-python-string-templates.html" rel="alternate"></link><published>2013-06-05T21:55:00+02:00</published><updated>2013-06-05T21:55:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2013-06-05:using-special-chars-in-python-string-templates.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.python.org/dev/peps/pep-0292"&gt;PEP-292&lt;/a&gt; introduced a nice
-Python templating feature.&lt;br /&gt;
+&lt;p&gt;&lt;img alt="A screenshot of the logging server in action" src="http://www.bertera.it/tsafe.png"&gt;&lt;/p&gt;</content><category term="Python"></category><category term="GUI"></category><category term="Multithreading"></category><category term="python"></category><category term="Tkinter"></category><category term="UDP"></category></entry><entry><title>Using special chars in Python string Templates</title><link href="http://www.bertera.it/using-special-chars-in-python-string-templates.html" rel="alternate"></link><published>2013-06-05T21:55:00+02:00</published><updated>2013-06-05T21:55:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2013-06-05:/using-special-chars-in-python-string-templates.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.python.org/dev/peps/pep-0292"&gt;PEP-292&lt;/a&gt; introduced a nice
+Python templating feature.&lt;br&gt;
 Templates placehoder names are subject to some
 restrictions,&lt;a href="http://docs.python.org/3/library/string.html#template-strings"&gt;Documentation&lt;/a&gt;
 says:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$identifier names a substitution placeholder matching a mapping key of &amp;quot;identifier&amp;quot;.&lt;/span&gt;
-&lt;span class="err"&gt;By default, &amp;quot;identifier&amp;quot; must spell a Python identifier.&lt;/span&gt;
-&lt;span class="err"&gt;The first non-identifier character after the $ character terminates this placeholder specification.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$identifier names a substitution placeholder matching a mapping key of &amp;quot;identifier&amp;quot;.
+By default, &amp;quot;identifier&amp;quot; must spell a Python identifier.
+The first non-identifier character after the $ character terminates this placeholder specification.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+&lt;p&gt;This means that …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.python.org/dev/peps/pep-0292"&gt;PEP-292&lt;/a&gt; introduced a nice
+Python templating feature.&lt;br&gt;
+Templates placehoder names are subject to some
+restrictions,&lt;a href="http://docs.python.org/3/library/string.html#template-strings"&gt;Documentation&lt;/a&gt;
+says:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$identifier names a substitution placeholder matching a mapping key of &amp;quot;identifier&amp;quot;.
+By default, &amp;quot;identifier&amp;quot; must spell a Python identifier.
+The first non-identifier character after the $ character terminates this placeholder specification.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This means that &lt;strong&gt;\${placeholder}&lt;/strong&gt; names must spell the Python
 identifier syntax: dots (.), hyphen (-) or other special chars are not
-allowed.&lt;br /&gt;
+allowed.&lt;br&gt;
 The default regex that must match the placeolder is:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;r&amp;#39;[\_a-z][\_a-z0-9]\*&amp;#39;  &lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;r&amp;#39;[\_a-z][\_a-z0-9]\*&amp;#39;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You can simply extend this regex overwriting the &lt;strong&gt;idpattern&lt;/strong&gt; property
 in &lt;strong&gt;Template&lt;/strong&gt; class.&lt;/p&gt;
 &lt;p&gt;Here a quick example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;string&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Template&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;string&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Template&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyTemplate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Template&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="n"&gt;idpattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[a-z][\.\-_a-z0-9]*&amp;#39;&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt; 
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;MyTemplate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;a=${ciccio_pippo-b}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;substitute&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ciccio_pippo-b&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;pasticcio&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;a=pasticcio&amp;#39;&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="coding"></category><category term="python"></category><category term="strings"></category><category term="templating"></category></entry><entry><title>Encoding and decoding Encapsulated DHCP options (RFC 2132)</title><link href="https://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html" rel="alternate"></link><published>2012-10-19T10:38:00+02:00</published><updated>2012-10-19T10:38:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-19:encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html</id><summary type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
-43.&lt;br /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category><category term="coding"></category><category term="python"></category><category term="strings"></category><category term="templating"></category></entry><entry><title>Encoding and decoding Encapsulated DHCP options (RFC 2132)</title><link href="http://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html" rel="alternate"></link><published>2012-10-19T10:38:00+02:00</published><updated>2012-10-19T10:38:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2012-10-19:/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html</id><summary type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
+43.&lt;br&gt;
+With &lt;a href="https://github.com/pbertera/junk/tree/master/dhcp-encapsulated-options"&gt;this little script&lt;/a&gt; you
+can encode and decode vendor encapsulated option according to &lt;a href="http://www.ietf.org/rfc/rfc2132.txt"&gt;RFC
+2132&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For example with this command you can tunnel options 66 (TFTP Server),
+67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Vendor specific DHCP options may be provided encapsulated in DHCP option
+43.&lt;br&gt;
 With &lt;a href="https://github.com/pbertera/junk/tree/master/dhcp-encapsulated-options"&gt;this little script&lt;/a&gt; you
 can encode and decode vendor encapsulated option according to &lt;a href="http://www.ietf.org/rfc/rfc2132.txt"&gt;RFC
 2132&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For example with this command you can tunnel options 66 (TFTP Server),
 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./dhcp-encapsulated-options.py encode &lt;span class="m"&gt;66&lt;/span&gt; http://provisionig.example.com &lt;span class="m"&gt;67&lt;/span&gt; settings.xml &lt;span class="m"&gt;132&lt;/span&gt; &lt;span class="m"&gt;33&lt;/span&gt; &lt;span class="m"&gt;133&lt;/span&gt; &lt;span class="m"&gt;6&lt;/span&gt;
-Encoding part &lt;span class="m"&gt;1&lt;/span&gt;: http://provisionig.example.com
- Option ID: &lt;span class="m"&gt;66&lt;/span&gt;
- Option length: &lt;span class="m"&gt;30&lt;/span&gt;
- Encoded Option part: &lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;./dhcp-encapsulated-options.py&lt;span class="w"&gt; &lt;/span&gt;encode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;66&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;http://provisionig.example.com&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;67&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;settings.xml&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;132&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;33&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;133&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;
+Encoding&lt;span class="w"&gt; &lt;/span&gt;part&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;http://provisionig.example.com
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;ID:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;66&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;length:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Encoded&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;part:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
 
-Encoding part &lt;span class="m"&gt;2&lt;/span&gt;: settings.xml
- Option ID: &lt;span class="m"&gt;67&lt;/span&gt;
- Option length: &lt;span class="m"&gt;12&lt;/span&gt;
- Encoded Option part: &lt;span class="m"&gt;43&lt;/span&gt;:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+Encoding&lt;span class="w"&gt; &lt;/span&gt;part&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;settings.xml
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;ID:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;67&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;length:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Encoded&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;part:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;43&lt;/span&gt;:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
 
-Encoding part &lt;span class="m"&gt;3&lt;/span&gt;: &lt;span class="m"&gt;33&lt;/span&gt;
- Option ID: &lt;span class="m"&gt;132&lt;/span&gt;
- Option length: &lt;span class="m"&gt;2&lt;/span&gt;
- Encoded Option part: &lt;span class="m"&gt;84&lt;/span&gt;:02:33:33
+Encoding&lt;span class="w"&gt; &lt;/span&gt;part&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;33&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;ID:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;132&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;length:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Encoded&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;part:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;84&lt;/span&gt;:02:33:33
 
-Encoding part &lt;span class="m"&gt;4&lt;/span&gt;: &lt;span class="m"&gt;6&lt;/span&gt;
- Option ID: &lt;span class="m"&gt;133&lt;/span&gt;
- Option length: &lt;span class="m"&gt;1&lt;/span&gt;
- Encoded Option part: &lt;span class="m"&gt;85&lt;/span&gt;:01:36
+Encoding&lt;span class="w"&gt; &lt;/span&gt;part&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;ID:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;133&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;length:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Encoded&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;part:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;85&lt;/span&gt;:01:36
 
-Full encoded options: &lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36
-&lt;/pre&gt;&lt;/div&gt;
-
+Full&lt;span class="w"&gt; &lt;/span&gt;encoded&lt;span class="w"&gt; &lt;/span&gt;options:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;And then you can add the encoded options in you dhcpd config file:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;host device.labo.local {  &lt;/span&gt;
-&lt;span class="err"&gt;    hardware ethernet 01:04:23:3b:d0:21;  &lt;/span&gt;
-&lt;span class="err"&gt;    fixed-address 172.16.18.30;  &lt;/span&gt;
-&lt;span class="err"&gt;    option vendor-encapsulated-options&lt;/span&gt;
-&lt;span class="err"&gt;    42:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36;  &lt;/span&gt;
-&lt;span class="err"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;host&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;device&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;labo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;hardware&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;ethernet&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;01:04:23:3&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;d0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;fixed-address&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;172.16.18.30&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;option&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;vendor-encapsulated-options&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;42:1&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;74&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;74&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;72&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;76&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;78&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;63&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;74&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;74&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;78&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;84&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;And viceversa you can decode an encapsulated option:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./dhcp-encapsulated-options.py decode &lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
-Decoding part &lt;span class="m"&gt;1&lt;/span&gt;: &lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
- Option ID: &lt;span class="m"&gt;66&lt;/span&gt;
- Option lenght: &lt;span class="m"&gt;30&lt;/span&gt;
- Option value: &lt;span class="s2"&gt;&amp;quot;http://provisionig.example.com&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class="w"&gt; &lt;/span&gt;./dhcp-encapsulated-options.py&lt;span class="w"&gt; &lt;/span&gt;decode&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+Decoding&lt;span class="w"&gt; &lt;/span&gt;part&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;ID:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;66&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;lenght:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;value:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://provisionig.example.com&amp;quot;&lt;/span&gt;
 
-Decoding part &lt;span class="m"&gt;2&lt;/span&gt;: &lt;span class="m"&gt;43&lt;/span&gt;:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
- Option ID: &lt;span class="m"&gt;67&lt;/span&gt;
- Option lenght: &lt;span class="m"&gt;12&lt;/span&gt;
- Option value: &lt;span class="s2"&gt;&amp;quot;settings.xml&amp;quot;&lt;/span&gt;
+Decoding&lt;span class="w"&gt; &lt;/span&gt;part&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;43&lt;/span&gt;:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;ID:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;67&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;lenght:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Option&lt;span class="w"&gt; &lt;/span&gt;value:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;settings.xml&amp;quot;&lt;/span&gt;
 
-End of encoded options
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="decoding"></category><category term="dhcp"></category><category term="encapsulated options"></category><category term="encoding"></category><category term="python"></category><category term="rfc2132"></category></entry><entry><title>Simple CMS using web.py and Markdown</title><link href="https://www.bertera.it/simple-cms-usin-web-py-and-markdown.html" rel="alternate"></link><published>2011-11-18T20:54:00+01:00</published><updated>2011-11-18T20:54:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-18:simple-cms-usin-web-py-and-markdown.html</id><summary type="html">&lt;p&gt;With a bit of code you can build a simple but powerful, single page, CMS
+End&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;encoded&lt;span class="w"&gt; &lt;/span&gt;options
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category><category term="decoding"></category><category term="dhcp"></category><category term="encapsulated options"></category><category term="encoding"></category><category term="python"></category><category term="rfc2132"></category></entry><entry><title>Simple CMS using web.py and Markdown</title><link href="http://www.bertera.it/simple-cms-usin-web-py-and-markdown.html" rel="alternate"></link><published>2011-11-18T20:54:00+01:00</published><updated>2011-11-18T20:54:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-18:/simple-cms-usin-web-py-and-markdown.html</id><summary type="html">&lt;p&gt;With a bit of code you can build a simple but powerful, single page, CMS
 using &lt;a href="http://www.python.org"&gt;python&lt;/a&gt;, &lt;a href="http://www.webpy.org"&gt;web.py&lt;/a&gt;
 and content stored in &lt;a href="http://en.wikipedia.org/wiki/Markdown"&gt;markdown&lt;/a&gt;
 files.&lt;/p&gt;
 &lt;p&gt;1) the application: &lt;strong&gt;application.py&lt;/strong&gt;&lt;/p&gt;
-&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/python26&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/python26&lt;/span&gt;
+&lt;span class="c1"&gt;# vi:si:et:sw=4:sts=4:ts=4&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- coding: UTF-8 -*-&lt;/span&gt;
+&lt;span class="c1"&gt;# -*- Mode: Python -*-&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Copyright (C) 2011 Bertera …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;With a bit of code you can build a simple but powerful, single page, CMS
+using &lt;a href="http://www.python.org"&gt;python&lt;/a&gt;, &lt;a href="http://www.webpy.org"&gt;web.py&lt;/a&gt;
+and content stored in &lt;a href="http://en.wikipedia.org/wiki/Markdown"&gt;markdown&lt;/a&gt;
+files.&lt;/p&gt;
+&lt;p&gt;1) the application: &lt;strong&gt;application.py&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="ch"&gt;#!/usr/bin/python26&lt;/span&gt;
 &lt;span class="c1"&gt;# vi:si:et:sw=4:sts=4:ts=4&lt;/span&gt;
 &lt;span class="c1"&gt;# -*- coding: UTF-8 -*-&lt;/span&gt;
 &lt;span class="c1"&gt;# -*- Mode: Python -*-&lt;/span&gt;
@@ -376,7 +329,7 @@ files.&lt;/p&gt;
 &lt;span class="n"&gt;static_dir&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;public&amp;quot;&lt;/span&gt;
 
 &lt;span class="c1"&gt;# the view, layout.html is a template file&lt;/span&gt;
-&lt;span class="n"&gt;htmlview&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;template&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;views&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;layout&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
+&lt;span class="n"&gt;htmlview&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;template&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;views&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;layout&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;\
    &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ctx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ctx&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 
 &lt;span class="c1"&gt;# generic controller for Markdown pages:&lt;/span&gt;
@@ -420,11 +373,10 @@ files.&lt;/p&gt;
 &lt;span class="c1"&gt;# RUN!&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;myApp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;2) main template layout: &lt;strong&gt;views/layout.html&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$def with (page, title=&amp;quot;&amp;quot;)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$def with (page, title=&amp;quot;&amp;quot;)
 
 &lt;span class="cp"&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Strict//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt; &lt;span class="na"&gt;xmlns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;xml:lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;cs&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;cs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -453,42 +405,46 @@ $:page
     Custom footer here 
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;3) content template: views/page.html&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$def with (html)
 
-&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+$:html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;4) markdown contents:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;contents/home.md&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;##&lt;/span&gt; &lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="o"&gt;!!&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;##&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Welcome&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!!&lt;/span&gt;
 
-&lt;span class="o"&gt;###&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="n"&gt;Page&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+###&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Hello&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;word&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Page&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
 
-&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;best&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;framework&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;webapps&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;][].&lt;/span&gt;
+&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="nv"&gt;web&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;best&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;framework&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;webapps&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;[&lt;span class="nv"&gt;web&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;][].
 
-&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="k"&gt;simple&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;
+&lt;span class="nv"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;simple&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;page&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;markdown&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;
 
-  &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;webpy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;span class="w"&gt;  &lt;/span&gt;[&lt;span class="nv"&gt;web&lt;/span&gt;.&lt;span class="nv"&gt;py&lt;/span&gt;]:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;http&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;www&lt;/span&gt;.&lt;span class="nv"&gt;webpy&lt;/span&gt;.&lt;span class="nv"&gt;org&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;contents/info.md&lt;/strong&gt;  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;## Info&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;## Info&lt;/span&gt;
 
-&lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;stupid&lt;/span&gt; &lt;span class="n"&gt;idea&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;made&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bertera&lt;/span&gt; &lt;span class="n"&gt;pietro&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="nl"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.bertera.it)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category><category term="web.py"></category><category term="webapplications"></category></entry><entry><title>Client side result pagination in python-ldap</title><link href="https://www.bertera.it/client-side-result-pagination-in-python-ldap.html" rel="alternate"></link><published>2011-10-25T13:28:00+02:00</published><updated>2011-10-25T13:28:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-10-25:client-side-result-pagination-in-python-ldap.html</id><summary type="html">&lt;p&gt;Sometime I must fighting with monkeys-configured LDAP servers.&lt;br /&gt;
+&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stupid&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;idea&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;made&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bertera&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pietro&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.bertera.it)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category><category term="python"></category><category term="web.py"></category><category term="webapplications"></category></entry><entry><title>Client side result pagination in python-ldap</title><link href="http://www.bertera.it/client-side-result-pagination-in-python-ldap.html" rel="alternate"></link><published>2011-10-25T13:28:00+02:00</published><updated>2011-10-25T13:28:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-10-25:/client-side-result-pagination-in-python-ldap.html</id><summary type="html">&lt;p&gt;Sometime I must fighting with monkeys-configured LDAP servers.&lt;br&gt;
 This time DIT does not support
 &lt;a href="http://www.ietf.org/rfc/rfc2696" title="RFC2696"&gt;RFC2696&lt;/a&gt; (Paged Results for
-LDAP query), the data tree contains over 90000 entries.&lt;br /&gt;
+LDAP query), the data tree contains over 90000 entries.&lt;br&gt;
 Thanks to ldap.resiter is possible to implement client side pagination
-in ldap scripts.&lt;br /&gt;
+in ldap scripts.&lt;br&gt;
 These simple lines of code explain how to:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ldap&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Sometime I must fighting with monkeys-configured LDAP servers.&lt;br&gt;
+This time DIT does not support
+&lt;a href="http://www.ietf.org/rfc/rfc2696" title="RFC2696"&gt;RFC2696&lt;/a&gt; (Paged Results for
+LDAP query), the data tree contains over 90000 entries.&lt;br&gt;
+Thanks to ldap.resiter is possible to implement client side pagination
+in ldap scripts.&lt;br&gt;
+These simple lines of code explain how to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ldap&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ldap.resiter&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
@@ -507,22 +463,22 @@ These simple lines of code explain how to:&lt;/p&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;res_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;res_msgid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;res_controls&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ldapconn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allresults&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg_id&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page_entry_num&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="nb"&gt;raw_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Press Enter for nex page or CTRL-C to interrupt:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;raw_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Press Enter for nex page or CTRL-C to interrupt:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;KeyboardInterrupt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="n"&gt;ldapconn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abandon&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;..Bye.&amp;quot;&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;..Bye.&amp;quot;&lt;/span&gt;
             &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
         &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;rdn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ldap_obj&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;***********************&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;RDN: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;rdn&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;***********************&amp;quot;&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;***********************&amp;quot;&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;RDN: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;rdn&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;***********************&amp;quot;&lt;/span&gt;
         &lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ldap_obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;***********************&amp;quot;&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;***********************&amp;quot;&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 
     &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="code"></category><category term="ldap"></category><category term="python"></category><category term="python-ldap"></category></entry><entry><title>Hacking della seriale</title><link href="https://www.bertera.it/hacking-della-seriale.html" rel="alternate"></link><published>2006-02-09T16:25:00+01:00</published><updated>2006-02-09T16:25:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-09:hacking-della-seriale.html</id><summary type="html">&lt;p&gt;Leggere e modificare lo stato dei pin di seganalzione della seriale:&lt;br /&gt;
-&lt;a href="https://github.com/pbertera/junk/tree/master/serial"&gt;due script&lt;/a&gt;&lt;/p&gt;</summary><category term="serial port"></category></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category><category term="code"></category><category term="ldap"></category><category term="python"></category><category term="python-ldap"></category></entry><entry><title>Hacking della seriale</title><link href="http://www.bertera.it/hacking-della-seriale.html" rel="alternate"></link><published>2006-02-09T16:25:00+01:00</published><updated>2006-02-09T16:25:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-02-09:/hacking-della-seriale.html</id><content type="html">&lt;p&gt;Leggere e modificare lo stato dei pin di seganalzione della seriale:&lt;br&gt;
+&lt;a href="https://github.com/pbertera/junk/tree/master/serial"&gt;due script&lt;/a&gt;&lt;/p&gt;</content><category term="Python"></category><category term="serial port"></category></entry></feed>

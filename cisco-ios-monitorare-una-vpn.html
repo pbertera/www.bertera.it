@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 ..." />
+<meta name="description" content="Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 …" />
 <meta name="keywords" content="cisco, ios, monitoring, vpn">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="cisco IOS: Monitorare una vpn"/>
-<meta property="og:description" content="Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 ..."/>
+<meta property="og:description" content="Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/cisco-ios-monitorare-una-vpn.html"/>
+<meta property="og:url" content="http://www.bertera.it/cisco-ios-monitorare-una-vpn.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2011-08-23 20:54:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Systems"/>
 <meta property="article:tag" content="cisco"/>
 <meta property="article:tag" content="ios"/>
@@ -50,14 +50,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -70,25 +70,25 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="cisco-ios-monitorare-una-vpn">cisco IOS: Monitorare una vpn</h1>
-    <p>Posted on Tue 23 August 2011 in <a href="https://www.bertera.it/category/systems.html">Systems</a></p>
+    <p>Posted on Tue 23 August 2011 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
   </header>
   <div>
     <p>Avere a che fare con delle connettività scadenti è sempre un disastro.</p>
 <p>Uno strumento per tenere monitorata una VPN e reagire in caso di down
 puo' essere comodo.</p>
-<p><strong>Esempio:</strong><br />
+<p><strong>Esempio:</strong><br>
 In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B
-(192.168.8.0/24)<br />
+(192.168.8.0/24)<br>
 L'endpoint della rete A (192.186.2.1) è un router Cisco, l'enpoint B
 (192.168.8.1) non è in nostra gestione ma parla IPSec. Tramite le
 configurazione seguenti l'endpoint A tiene monitorato lo stato della VPN
@@ -98,50 +98,47 @@ e in caso di down effettua il reload della VPN.</p>
 sicuri di utilizzare il tunnel cifrato e lo scheduling in modo da
 eseguire il test sempre. E' possibile impostare una frequenza di
 esecuzione, di default è 60 secondi.</p>
-<div class="highlight"><pre><span></span><span class="err"> ip sla monitor 5</span>
-<span class="err"> type echo protocol ipIcmpEcho 192.168.8.1 source-ipaddr 192.168.2.1</span>
-<span class="err"> exit</span>
-<span class="err"> ip sla monitor schedule 1 life forever start-time now</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nv">ip</span><span class="w"> </span><span class="nv">sla</span><span class="w"> </span><span class="nv">monitor</span><span class="w"> </span><span class="mi">5</span>
+<span class="w"> </span><span class="nv">type</span><span class="w"> </span><span class="nv">echo</span><span class="w"> </span><span class="nv">protocol</span><span class="w"> </span><span class="nv">ipIcmpEcho</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">8</span>.<span class="mi">1</span><span class="w"> </span><span class="nv">source</span><span class="o">-</span><span class="nv">ipaddr</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">2</span>.<span class="mi">1</span>
+<span class="w"> </span><span class="k">exit</span>
+<span class="w"> </span><span class="nv">ip</span><span class="w"> </span><span class="nv">sla</span><span class="w"> </span><span class="nv">monitor</span><span class="w"> </span><span class="nv">schedule</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">life</span><span class="w"> </span><span class="nv">forever</span><span class="w"> </span><span class="nv">start</span><span class="o">-</span><span class="nv">time</span><span class="w"> </span><span class="nv">now</span>
+</code></pre></div>
 
 <p>2) definiamo un tracker per lo sla monitor creato precedentemente:
 vogliamo monitorare quando lo <strong>sla monitor 5</strong> ritorna route
 unreachable e reagire solo se lo stato di down permane per piu' di 60
 secondi.</p>
-<div class="highlight"><pre><span></span><span class="err"> track 1 rtr 5 reachability</span>
-<span class="err"> delay down 60</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code> track 1 rtr 5 reachability
+ delay down 60
+</code></pre></div>
 
-
-<p>3) definiamo il "reattore"<br />
+<p>3) definiamo il "reattore"<br>
 Le configurazioni immesse finora fanno in modo che se l'host
 192.168.8.1 rimane irraggiungibile per piu' di 60 secondi viene generato
 un evento nel syslog locale. L'event manager applet seguente si occupa
 di intercettare l'evento syslog, eseguire il reload della VPN e loggare
 il messaggio "VPN Reloaded"</p>
-<div class="highlight"><pre><span></span> <span class="n">event</span> <span class="n">manager</span> <span class="n">applet</span> <span class="n">VPN</span><span class="o">-</span><span class="n">IS</span><span class="o">-</span><span class="n">DOWN</span>
- <span class="n">event</span> <span class="n">syslog</span> <span class="n">pattern</span> <span class="s2">&quot;TRACKING-5-STATE: 5 .*Up-&gt;Down&quot;</span>
- <span class="n">action</span> <span class="mf">1.0</span> <span class="n">cli</span> <span class="n">command</span> <span class="s2">&quot;enable&quot;</span>
- <span class="n">action</span> <span class="mf">2.0</span> <span class="n">cli</span> <span class="n">command</span> <span class="s2">&quot;clear crypto session remote b.public.ip&quot;</span>
- <span class="n">action</span> <span class="mf">3.0</span> <span class="n">cli</span> <span class="n">command</span> <span class="s2">&quot;end&quot;</span>
- <span class="n">action</span> <span class="mf">4.0</span> <span class="n">syslog</span> <span class="n">msg</span> <span class="s2">&quot;VPN Reloaded&quot;</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="n">manager</span><span class="w"> </span><span class="n">applet</span><span class="w"> </span><span class="n">VPN</span><span class="o">-</span><span class="n">IS</span><span class="o">-</span><span class="n">DOWN</span>
+<span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="n">syslog</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="s2">&quot;TRACKING-5-STATE: 5 .*Up-&gt;Down&quot;</span>
+<span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="n">cli</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="s2">&quot;enable&quot;</span>
+<span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="n">cli</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="s2">&quot;clear crypto session remote b.public.ip&quot;</span>
+<span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="n">cli</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="s2">&quot;end&quot;</span>
+<span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="n">syslog</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="s2">&quot;VPN Reloaded&quot;</span>
+</code></pre></div>
 
 <p><a href="http://www.cisco.com/en/US/docs/ios/12_4/ip_sla/configuration/guide/hsla_c.html">Cisco IOS IP SLA configuration
-guide</a><br />
+guide</a><br>
 <a href="http://www.cisco.com/en/US/docs/ios/ipsla/command/reference/sla_book.html">Cisco IOS IP SLAs command
-reference</a><br />
+reference</a><br>
 <a href="http://www.cisco.com/en/US/docs/ios/netmgmt/configuration/guide/nm_eem_policy_cli.html">Writing Cisco embedded event manager
 policy</a></p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://www.bertera.it/tag/cisco.html">cisco</a>
-      <a href="https://www.bertera.it/tag/ios.html">ios</a>
-      <a href="https://www.bertera.it/tag/monitoring.html">monitoring</a>
-      <a href="https://www.bertera.it/tag/vpn.html">vpn</a>
+      <a href="http://www.bertera.it/tag/cisco.html">cisco</a>
+      <a href="http://www.bertera.it/tag/ios.html">ios</a>
+      <a href="http://www.bertera.it/tag/monitoring.html">monitoring</a>
+      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -183,7 +180,7 @@ policy</a></p>
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -199,11 +196,11 @@ policy</a></p>
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/cisco-ios-monitorare-una-vpn.html",
-  "description": "Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 ..."
+  "url": "http://www.bertera.it/cisco-ios-monitorare-una-vpn.html",
+  "description": "Avere a che fare con delle connettività scadenti è sempre un disastro. Uno strumento per tenere monitorata una VPN e reagire in caso di down puo' essere comodo. Esempio: In questo esempio ho una VPN tra la rete A (192.168.2.0/24) e la rete B (192.168 …"
 }
 </script></body>
 </html>

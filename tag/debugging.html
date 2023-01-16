@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -34,7 +34,7 @@
 <meta property="og:title" content="Pietro Bertera's Blog"/>
 <meta property="og:description" content="Pietro Bertera's Thoughts and Writings"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it"/>
+<meta property="og:url" content="http://www.bertera.it"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
 
   <title>Pietro Bertera's Blog &ndash; Tag: debugging</title>
@@ -42,14 +42,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -62,37 +62,37 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">bash snippet: dumping function call trace</a></h2>
+    <h2><a href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">bash snippet: dumping function call trace</a></h2>
     <p>
-      Posted on Mon 18 July 2011 in <a href="https://www.bertera.it/category/hacks.html">Hacks</a>
+      Posted on Mon 18 July 2011 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/bash.html">bash</a>,      <a href="https://www.bertera.it/tag/debugging.html">debugging</a>,      <a href="https://www.bertera.it/tag/script.html">script</a>      &#8226; <a href="https://www.bertera.it/bash-snippet-dumping-function-call-trace.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/bash.html">bash</a>,      <a href="http://www.bertera.it/tag/debugging.html">debugging</a>,      <a href="http://www.bertera.it/tag/script.html">script</a>      &#8226; <a href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
       <p>Uno snippet di codice bash utile nel debugging di script.</p>
-<div class="highlight"><pre><span></span><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
-<span class="err">#@</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span><span class="w"></span>
-<span class="err">#@</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
-<span class="err">#@</span><span class="w"></span>
-<span class="n">__cm_exit_error</span><span class="p">()</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span>
+<span class="err">#@</span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span>
+<span class="err">#@</span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span>
+<span class="err">#@</span>
+<span class="n">__cm_exit_error</span><span class="p">()</span>
 
-<span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO ...</span></pre></div>
-      <a class="btn" href="https://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">Continue reading</a>
+<span class="err">{</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO …</span></code></pre></div>
+      <a class="btn" href="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html#bash-snippet-dumping-function-call-trace">Continue reading</a>
   </div>
 </article>
 
@@ -126,7 +126,7 @@
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }

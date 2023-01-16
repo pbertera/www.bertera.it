@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="Usando questo codice durante l'inizializzasione della shell viene salvata una command history nel file .bash_verbose_history contenete data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando eseguito. Inoltre evita la sovrascrittura del file .bash_verbose_history e .bash_history eseguendone una copia quando il file raggiunge ..." />
+<meta name="description" content="Usando questo codice durante l'inizializzasione della shell viene salvata una command history nel file .bash_verbose_history contenete data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando eseguito. Inoltre evita la sovrascrittura del file .bash_verbose_history e .bash_history eseguendone una copia quando il file raggiunge le 3000 righe …" />
 <meta name="keywords" content="">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="Verbose bash history"/>
-<meta property="og:description" content="Usando questo codice durante l'inizializzasione della shell viene salvata una command history nel file .bash_verbose_history contenete data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando eseguito. Inoltre evita la sovrascrittura del file .bash_verbose_history e .bash_history eseguendone una copia quando il file raggiunge ..."/>
+<meta property="og:description" content="Usando questo codice durante l'inizializzasione della shell viene salvata una command history nel file .bash_verbose_history contenete data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando eseguito. Inoltre evita la sovrascrittura del file .bash_verbose_history e .bash_history eseguendone una copia quando il file raggiunge le 3000 righe …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/verbose-bash-history.html"/>
+<meta property="og:url" content="http://www.bertera.it/verbose-bash-history.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2009-07-02 08:58:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Hacks"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
   <title>Pietro Bertera's Blog &ndash; Verbose bash history</title>
@@ -46,14 +46,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -66,17 +66,17 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="verbose-bash-history">Verbose bash history</h1>
-    <p>Posted on Thu 02 July 2009 in <a href="https://www.bertera.it/category/hacks.html">Hacks</a></p>
+    <p>Posted on Thu 02 July 2009 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a></p>
   </header>
   <div>
     <p>Usando questo codice durante l'inizializzasione della shell viene
@@ -86,23 +86,23 @@ eseguito. Inoltre evita la sovrascrittura del file
 <em>.bash_verbose_history</em> e <em>.bash_history</em> eseguendone una copia
 quando il file raggiunge le 3000 righe.</p>
 <p><strong>/etc/bashrc</strong></p>
-<div class="highlight"><pre><span></span>HISTSIZE=4000
+<div class="highlight"><pre><span></span><code>HISTSIZE=4000
 HISTFILESIZE=4000
 
-for f in .bash_history .bash_verbose_history; do
-        if [ `wc -l <span class="nv">$HOME</span>/<span class="nv">$f</span> | awk &#39;{print $1}&#39;` -gt 3000 ] ; then
-                cp -f <span class="nv">$HOME</span>/<span class="nv">$f</span> <span class="nv">$HOME</span>/<span class="nv">$f</span>-`date -I`
-        fi
+for<span class="w"> </span>f<span class="w"> </span>in<span class="w"> </span>.bash_history<span class="w"> </span>.bash_verbose_history;<span class="w"> </span>do
+<span class="w">        </span>if<span class="w"> </span>[<span class="w"> </span>`wc<span class="w"> </span>-l<span class="w"> </span><span class="nv">$HOME</span>/<span class="nv">$f</span><span class="w"> </span>|<span class="w"> </span>awk<span class="w"> </span>&#39;{print<span class="w"> </span>$1}&#39;`<span class="w"> </span>-gt<span class="w"> </span>3000<span class="w"> </span>]<span class="w"> </span>;<span class="w"> </span>then
+<span class="w">                </span>cp<span class="w"> </span>-f<span class="w"> </span><span class="nv">$HOME</span>/<span class="nv">$f</span><span class="w"> </span><span class="nv">$HOME</span>/<span class="nv">$f</span>-`date<span class="w"> </span>-I`
+<span class="w">        </span>fi
 done
 
-if [ -n &quot;<span class="nv">$SSH_CLIENT</span>&quot; ]; then
-        TTY=`echo <span class="nv">$SSH_CLIENT</span>| cut -d   -f1`
+if<span class="w"> </span>[<span class="w"> </span>-n<span class="w"> </span>&quot;<span class="nv">$SSH_CLIENT</span>&quot;<span class="w"> </span>];<span class="w"> </span>then
+<span class="w">        </span>TTY=`echo<span class="w"> </span><span class="nv">$SSH_CLIENT</span>|<span class="w"> </span>cut<span class="w"> </span>-d<span class="w">   </span>-f1`
 else
-        TTY=`tty | sed -e &quot;s:/dev/::&quot;`
+<span class="w">        </span>TTY=`tty<span class="w"> </span>|<span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span>&quot;s:/dev/::&quot;`
 fi
 
-PROMPT_COMMAND=&quot;<span class="cp">${</span><span class="n">PROMPT_COMMAND</span><span class="p">:</span><span class="o">+</span><span class="err">$</span><span class="n">PROMPT_COMMAND</span> <span class="p">;</span> <span class="cp">}</span>&quot;&#39;echo `date +&quot;%Y-%m-%d %k:%M:%S&quot;` <span class="nv">$USER</span> <span class="nv">$TTY</span> &quot;$(history 1)&quot; &gt;&gt; ~/.bash_verbose_history&#39;
-</pre></div>
+PROMPT_COMMAND=&quot;<span class="cp">${</span><span class="n">PROMPT_COMMAND</span><span class="p">:</span><span class="o">+</span><span class="err">$</span><span class="n">PROMPT_COMMAND</span> <span class="p">;</span> <span class="cp">}</span>&quot;&#39;echo<span class="w"> </span>`date<span class="w"> </span>+&quot;%Y-%m-%d<span class="w"> </span>%k:%M:%S&quot;`<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span><span class="nv">$TTY</span><span class="w"> </span>&quot;$(history<span class="w"> </span>1)&quot;<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_verbose_history&#39;
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
@@ -147,7 +147,7 @@ PROMPT_COMMAND=&quot;<span class="cp">${</span><span class="n">PROMPT_COMMAND</s
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -163,11 +163,11 @@ PROMPT_COMMAND=&quot;<span class="cp">${</span><span class="n">PROMPT_COMMAND</s
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/verbose-bash-history.html",
-  "description": "Usando questo codice durante l'inizializzasione della shell viene salvata una command history nel file .bash_verbose_history contenete data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando eseguito. Inoltre evita la sovrascrittura del file .bash_verbose_history e .bash_history eseguendone una copia quando il file raggiunge ..."
+  "url": "http://www.bertera.it/verbose-bash-history.html",
+  "description": "Usando questo codice durante l'inizializzasione della shell viene salvata una command history nel file .bash_verbose_history contenete data e ora, tty (oppure l'ip se l'utente è collegato in ssh) eil comando eseguito. Inoltre evita la sovrascrittura del file .bash_verbose_history e .bash_history eseguendone una copia quando il file raggiunge le 3000 righe …"
 }
 </script></body>
 </html>

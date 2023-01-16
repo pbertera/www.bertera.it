@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="I up against this problem on a server hosted by Hetzner.My server is a virtual hypervisor containing several virtual machines.The Hetzner's politics is to statically associate a public IP to a single mac address, is therefore impossible to have multiple IP address on a single ethernet device ..." />
+<meta name="description" content="I up against this problem on a server hosted by Hetzner.My server is a virtual hypervisor containing several virtual machines.The Hetzner's politics is to statically associate a public IP to a single mac address, is therefore impossible to have multiple IP address on a single ethernet device. Observing …" />
 <meta name="keywords" content="iptables, linux, networking, routing">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="Howto configure multiple mac address over a single ethernet interface"/>
-<meta property="og:description" content="I up against this problem on a server hosted by Hetzner.My server is a virtual hypervisor containing several virtual machines.The Hetzner's politics is to statically associate a public IP to a single mac address, is therefore impossible to have multiple IP address on a single ethernet device ..."/>
+<meta property="og:description" content="I up against this problem on a server hosted by Hetzner.My server is a virtual hypervisor containing several virtual machines.The Hetzner's politics is to statically associate a public IP to a single mac address, is therefore impossible to have multiple IP address on a single ethernet device. Observing …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html"/>
+<meta property="og:url" content="http://www.bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2011-10-04 18:01:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Systems"/>
 <meta property="article:tag" content="iptables"/>
 <meta property="article:tag" content="linux"/>
@@ -50,14 +50,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -70,17 +70,17 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="howto-configure-multiple-mac-address-over-a-single-ethernet-interface">Howto configure multiple mac address over a single ethernet interface</h1>
-    <p>Posted on Tue 04 October 2011 in <a href="https://www.bertera.it/category/systems.html">Systems</a></p>
+    <p>Posted on Tue 04 October 2011 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
   </header>
   <div>
     <p>I up against this problem on a server hosted by Hetzner.My server is a
@@ -102,15 +102,15 @@ addressing problem but slightly complicates routing and NAT.</p>
 <p>B.B.B.B associated mac address: bb:bb:bb:bb:bb:bb  </p>
 <p>C.C.C.C associated mac address: cc:cc:cc:cc:cc:cc  </p>
 <p>External interface: eth0  </p>
-<p><strong>Gateway:</strong><br />
+<p><strong>Gateway:</strong><br>
 X.X.X.X</p>
-<p><strong>Internal Subnets:</strong><br />
-a.a.a.0/24 (eth1)<br />
-b.b.b.0/24 (eth2)<br />
+<p><strong>Internal Subnets:</strong><br>
+a.a.a.0/24 (eth1)<br>
+b.b.b.0/24 (eth2)<br>
 c.c.c.0/24 (eth3)</p>
-<p><strong>Firewall IPs on internal subnets:</strong><br />
-eth1: a.a.a.254<br />
-eth2: b.b.b.254<br />
+<p><strong>Firewall IPs on internal subnets:</strong><br>
+eth1: a.a.a.254<br>
+eth2: b.b.b.254<br>
 eth3: c.c.c.254</p>
 <h3>Network schema:</h3>
 <p>I want to map the outgoing connections in this way:</p>
@@ -140,124 +140,113 @@ eth3: c.c.c.254</p>
 <ol>
 <li>set-up link on physical device:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip link set up dev eth0</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip link set up dev eth0
+</code></pre></div>
 
 <ol>
 <li>create logical interfaces:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa</span>
-<span class="err">    ip link add link eth0 dev peth1 type macvlan address bb:bb:bb:bb:bb:bb</span>
-<span class="err">    ip link add link eth0 dev peth2 type macvlan address cc:cc:cc:cc:cc:cc</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa
+    ip link add link eth0 dev peth1 type macvlan address bb:bb:bb:bb:bb:bb
+    ip link add link eth0 dev peth2 type macvlan address cc:cc:cc:cc:cc:cc
+</code></pre></div>
 
 <ol>
 <li>Assign ip address and activate link:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip addr add A.A.A.A/26 dev peth0</span>
-<span class="err">    ip addr add B.B.B.B/26 dev peth1</span>
-<span class="err">    ip addr add C.C.C.C/26 dev peth2</span>
-<span class="err">    ip link set up dev peth0</span>
-<span class="err">    ip link set up dev peth1</span>
-<span class="err">    ip link set up dev peth2</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip addr add A.A.A.A/26 dev peth0
+    ip addr add B.B.B.B/26 dev peth1
+    ip addr add C.C.C.C/26 dev peth2
+    ip link set up dev peth0
+    ip link set up dev peth1
+    ip link set up dev peth2
+</code></pre></div>
 
 <ol>
 <li>Normally configure the internal interfaces (eth1, eth2 eth3):</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip addr add a.a.a.245/24 dev eth1</span>
-<span class="err">    ip addr add b.b.b.245/24 dev eth2</span>
-<span class="err">    ip addr add b.b.b.245/24 dev eth3</span>
-<span class="err">    ip link set up dev eth1</span>
-<span class="err">    ip link set up dev eth2</span>
-<span class="err">    ip link set up dev eth3</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip addr add a.a.a.245/24 dev eth1
+    ip addr add b.b.b.245/24 dev eth2
+    ip addr add b.b.b.245/24 dev eth3
+    ip link set up dev eth1
+    ip link set up dev eth2
+    ip link set up dev eth3
+</code></pre></div>
 
 <ol>
 <li>This is the routing situation:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err"># ip route sh</span>
-<span class="err">127.0.0.0/8 dev lo  proto kernel  scope link  src 127.0.0.1</span>
-<span class="err">a.a.a.0/24 dev eth1  proto kernel  scope link  src a.a.a.254</span>
-<span class="err">a.a.a.0/24 dev eth2  proto kernel  scope link  src b.b.b.254</span>
-<span class="err">a.a.a.0/24 dev eth3  proto kernel  scope link  src c.c.c.254</span>
-<span class="err">A.A.A.A/26 dev peth0  proto kernel  scope link  src A.A.A.A</span>
-<span class="err">B.B.B.B/26 dev peth1  proto kernel  scope link  src B.B.B.B</span>
-<span class="err">C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code># ip route sh
+127.0.0.0/8 dev lo  proto kernel  scope link  src 127.0.0.1
+a.a.a.0/24 dev eth1  proto kernel  scope link  src a.a.a.254
+a.a.a.0/24 dev eth2  proto kernel  scope link  src b.b.b.254
+a.a.a.0/24 dev eth3  proto kernel  scope link  src c.c.c.254
+A.A.A.A/26 dev peth0  proto kernel  scope link  src A.A.A.A
+B.B.B.B/26 dev peth1  proto kernel  scope link  src B.B.B.B
+C.C.C.C/26 dev peth2  proto kernel  scope link  src C.C.C.C
+</code></pre></div>
 
 <ol>
 <li>You must create a routing table for all outgoing interface:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    echo &quot;500 ipA&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
-<span class="err">    echo &quot;600 ipB&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
-<span class="err">    echo &quot;700 ipC&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    echo &quot;500 ipA&quot; &gt;&gt; /etc/iproute2/rt_tables
+    echo &quot;600 ipB&quot; &gt;&gt; /etc/iproute2/rt_tables
+    echo &quot;700 ipC&quot; &gt;&gt; /etc/iproute2/rt_tables
+</code></pre></div>
 
 <ol>
 <li>Add a "catch all" routing table:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    echo &quot;1000 catch_all&quot; &gt;&gt; /etc/iproute2/rt_tables</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    echo &quot;1000 catch_all&quot; &gt;&gt; /etc/iproute2/rt_tables
+</code></pre></div>
 
 <ol>
 <li>Add gateways for tables:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip route add default via X.X.X.X dev peth0 table ipA</span>
-<span class="err">    ip route add default via X.X.X.X dev peth1 table ipB</span>
-<span class="err">    ip route add default via X.X.X.X dev peth1 table ipC</span>
-<span class="err">    ip route add default via X.X.X.X dev peth0 table catch_all</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip route add default via X.X.X.X dev peth0 table ipA
+    ip route add default via X.X.X.X dev peth1 table ipB
+    ip route add default via X.X.X.X dev peth1 table ipC
+    ip route add default via X.X.X.X dev peth0 table catch_all
+</code></pre></div>
 
 <ol>
 <li>Add routing policy for internal subnet. Note that the priority must
 be greater than the priority used for the normal and default tables (for
 show all rules: ip rule show )</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip rule add from a.a.a.0/24 lookup ipA pref 60000</span>
-<span class="err">    ip rule add from b.b.b.0/24 lookup ipB pref 60001</span>
-<span class="err">    ip rule add from c.c.c.0/24 lookup ipC pref 60002</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip rule add from a.a.a.0/24 lookup ipA pref 60000
+    ip rule add from b.b.b.0/24 lookup ipB pref 60001
+    ip rule add from c.c.c.0/24 lookup ipC pref 60002
+</code></pre></div>
 
 <ol>
 <li>Add routing policy for local IPs:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip rule add from A.A.A.254 lookup ipA pref 60010</span>
-<span class="err">    ip rule add from B.B.B.254 lookup ipB pref 60011</span>
-<span class="err">    ip rule add from C.C.C.254 lookup ipC pref 60012</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip rule add from A.A.A.254 lookup ipA pref 60010
+    ip rule add from B.B.B.254 lookup ipB pref 60011
+    ip rule add from C.C.C.254 lookup ipC pref 60012
+</code></pre></div>
 
 <ol>
 <li>Add a catch all routing policy (with preference greater than all):</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    ip rule add from all lookup catch_all pref 70000</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>    ip rule add from all lookup catch_all pref 70000
+</code></pre></div>
 
 <ol>
 <li>Configure the NAT:</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">    iptables -t nat -I POSTROUTING -o peth0 -s a.a.a.0/24 -j SNAT --to-source A.A.A.A</span>
-<span class="err">    iptables -t nat -I POSTROUTING -o peth1 -s b.b.b.0/24 -j SNAT --to-source B.B.B.B</span>
-<span class="err">    iptables -t nat -I POSTROUTING -o peth2 -s c.c.c.0/24 -j SNAT --to-source C.C.C.C</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>    iptables -t nat -I POSTROUTING -o peth0 -s a.a.a.0/24 -j SNAT --to-source A.A.A.A
+    iptables -t nat -I POSTROUTING -o peth1 -s b.b.b.0/24 -j SNAT --to-source B.B.B.B
+    iptables -t nat -I POSTROUTING -o peth2 -s c.c.c.0/24 -j SNAT --to-source C.C.C.C
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://www.bertera.it/tag/iptables.html">iptables</a>
-      <a href="https://www.bertera.it/tag/linux.html">linux</a>
-      <a href="https://www.bertera.it/tag/networking.html">networking</a>
-      <a href="https://www.bertera.it/tag/routing.html">routing</a>
+      <a href="http://www.bertera.it/tag/iptables.html">iptables</a>
+      <a href="http://www.bertera.it/tag/linux.html">linux</a>
+      <a href="http://www.bertera.it/tag/networking.html">networking</a>
+      <a href="http://www.bertera.it/tag/routing.html">routing</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -299,7 +288,7 @@ show all rules: ip rule show )</li>
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -315,11 +304,11 @@ show all rules: ip rule show )</li>
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html",
-  "description": "I up against this problem on a server hosted by Hetzner.My server is a virtual hypervisor containing several virtual machines.The Hetzner's politics is to statically associate a public IP to a single mac address, is therefore impossible to have multiple IP address on a single ethernet device ..."
+  "url": "http://www.bertera.it/howto-configure-multiple-mac-address-over-a-single-ethernet-interface.html",
+  "description": "I up against this problem on a server hosted by Hetzner.My server is a virtual hypervisor containing several virtual machines.The Hetzner's politics is to statically associate a public IP to a single mac address, is therefore impossible to have multiple IP address on a single ethernet device. Observing …"
 }
 </script></body>
 </html>

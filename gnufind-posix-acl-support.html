@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="Cercare file che corrispondono a delle acl posix all'interno di un filesystem molto intricato è sempre un delirio. Questa patch aggiunge l'opzione -acl al comando find (GNU/Findutils). Esempio d'uso: $ touch 1 2 3 4 $ mkdir 5 $ setfacl -m u:root:rx 1 $ setfacl -m g:bin ..." />
+<meta name="description" content="Cercare file che corrispondono a delle acl posix all'interno di un filesystem molto intricato è sempre un delirio. Questa patch aggiunge l'opzione -acl al comando find (GNU/Findutils). Esempio d'uso: $ touch 1 2 3 4 $ mkdir 5 $ setfacl -m u:root:rx 1 $ setfacl -m g:bin:rw 2 $ setfacl …" />
 <meta name="keywords" content="c, find, gnu">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="GNU/Find posix acl support"/>
-<meta property="og:description" content="Cercare file che corrispondono a delle acl posix all'interno di un filesystem molto intricato è sempre un delirio. Questa patch aggiunge l'opzione -acl al comando find (GNU/Findutils). Esempio d'uso: $ touch 1 2 3 4 $ mkdir 5 $ setfacl -m u:root:rx 1 $ setfacl -m g:bin ..."/>
+<meta property="og:description" content="Cercare file che corrispondono a delle acl posix all'interno di un filesystem molto intricato è sempre un delirio. Questa patch aggiunge l'opzione -acl al comando find (GNU/Findutils). Esempio d'uso: $ touch 1 2 3 4 $ mkdir 5 $ setfacl -m u:root:rx 1 $ setfacl -m g:bin:rw 2 $ setfacl …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/gnufind-posix-acl-support.html"/>
+<meta property="og:url" content="http://www.bertera.it/gnufind-posix-acl-support.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2009-09-28 18:25:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Hacks"/>
 <meta property="article:tag" content="c"/>
 <meta property="article:tag" content="find"/>
@@ -49,14 +49,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -69,17 +69,17 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="gnufind-posix-acl-support">GNU/Find posix acl support</h1>
-    <p>Posted on Mon 28 September 2009 in <a href="https://www.bertera.it/category/hacks.html">Hacks</a></p>
+    <p>Posted on Mon 28 September 2009 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a></p>
   </header>
   <div>
     <p>Cercare file che corrispondono a delle acl posix all'interno di un
@@ -88,33 +88,32 @@ filesystem molto intricato è sempre un delirio.</p>
 l'opzione -acl al comando find
 (<a href="http://www.gnu.org/software/findutils/">GNU/Findutils</a>).</p>
 <p>Esempio d'uso:</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
 <span class="err">$</span> <span class="s s-Atom">mkdir</span> <span class="mi">5</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rx</span> <span class="mi">1</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">bin</span><span class="p">:</span><span class="s s-Atom">rw</span> <span class="mi">2</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">u</span><span class="p">:</span><span class="nn">pietro</span><span class="p">:</span><span class="s s-Atom">---</span> <span class="mi">3</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">bin</span><span class="p">:</span><span class="s s-Atom">rw</span> <span class="mi">3</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">wheel</span><span class="p">:</span><span class="s s-Atom">r</span> <span class="mi">4</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">d</span><span class="p">:</span><span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rwx</span> <span class="mi">5</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">root</span><span class="p">:</span><span class="s s-Atom">rx</span> <span class="mi">1</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">g</span><span class="p">:</span><span class="s s-Atom">bin</span><span class="p">:</span><span class="s s-Atom">rw</span> <span class="mi">2</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">pietro</span><span class="p">:</span><span class="s s-Atom">---</span> <span class="mi">3</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">g</span><span class="p">:</span><span class="s s-Atom">bin</span><span class="p">:</span><span class="s s-Atom">rw</span> <span class="mi">3</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">g</span><span class="p">:</span><span class="s s-Atom">wheel</span><span class="p">:</span><span class="s s-Atom">r</span> <span class="mi">4</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">d</span><span class="p">:</span><span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">root</span><span class="p">:</span><span class="s s-Atom">rwx</span> <span class="mi">5</span>
 <span class="err">$</span> <span class="s s-Atom">touch</span> <span class="mi">5</span><span class="o">/</span><span class="mi">6</span>
-<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="nn">g</span><span class="p">:</span><span class="nn">wheel</span><span class="p">:</span><span class="s s-Atom">r</span> <span class="mi">5</span><span class="o">/</span><span class="mi">6</span>
+<span class="err">$</span> <span class="s s-Atom">setfacl</span> <span class="o">-</span><span class="s s-Atom">m</span> <span class="s s-Atom">g</span><span class="p">:</span><span class="s s-Atom">wheel</span><span class="p">:</span><span class="s s-Atom">r</span> <span class="mi">5</span><span class="o">/</span><span class="mi">6</span>
 
-<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="s s-Atom">rx</span>
+<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">root</span><span class="p">:</span><span class="s s-Atom">rx</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">1</span>
-<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="nn">u</span><span class="p">:</span><span class="nn">root</span><span class="p">:</span><span class="o">*</span>
+<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">root</span><span class="p">:</span><span class="o">*</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">1</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">5</span><span class="o">/</span><span class="mi">6</span>
-<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="nn">u</span><span class="p">:</span><span class="s s-Atom">*:rx</span>
+<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">*:rx</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">1</span>
-<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="nn">g</span><span class="p">:</span><span class="s s-Atom">*:*</span>
+<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="s s-Atom">g</span><span class="p">:</span><span class="s s-Atom">*:*</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">4</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">3</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">5</span><span class="o">/</span><span class="mi">6</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">2</span>
-<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="nn">d</span><span class="p">:</span><span class="nn">u</span><span class="p">:</span><span class="s s-Atom">*:*</span>
+<span class="err">$</span> <span class="s s-Atom">find</span> <span class="p">.</span> <span class="o">-</span><span class="s s-Atom">acl</span> <span class="s s-Atom">d</span><span class="p">:</span><span class="s s-Atom">u</span><span class="p">:</span><span class="s s-Atom">*:*</span>
 <span class="p">.</span><span class="o">/</span><span class="mi">5</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Questa patch e' stata testata solo su Linux, è scaricabile qua:
 <a href="https://github.com/pbertera/junk/tree/master/findutils-acl">https://github.com/pbertera/junk/tree/master/findutils-acl</a> è disponibile per la
@@ -122,9 +121,9 @@ versione 4.42 e 4.5.6 di findutils</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://www.bertera.it/tag/c.html">c</a>
-      <a href="https://www.bertera.it/tag/find.html">find</a>
-      <a href="https://www.bertera.it/tag/gnu.html">gnu</a>
+      <a href="http://www.bertera.it/tag/c.html">c</a>
+      <a href="http://www.bertera.it/tag/find.html">find</a>
+      <a href="http://www.bertera.it/tag/gnu.html">gnu</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -166,7 +165,7 @@ versione 4.42 e 4.5.6 di findutils</p>
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -182,11 +181,11 @@ versione 4.42 e 4.5.6 di findutils</p>
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/gnufind-posix-acl-support.html",
-  "description": "Cercare file che corrispondono a delle acl posix all'interno di un filesystem molto intricato è sempre un delirio. Questa patch aggiunge l'opzione -acl al comando find (GNU/Findutils). Esempio d'uso: $ touch 1 2 3 4 $ mkdir 5 $ setfacl -m u:root:rx 1 $ setfacl -m g:bin ..."
+  "url": "http://www.bertera.it/gnufind-posix-acl-support.html",
+  "description": "Cercare file che corrispondono a delle acl posix all'interno di un filesystem molto intricato è sempre un delirio. Questa patch aggiunge l'opzione -acl al comando find (GNU/Findutils). Esempio d'uso: $ touch 1 2 3 4 $ mkdir 5 $ setfacl -m u:root:rx 1 $ setfacl -m g:bin:rw 2 $ setfacl …"
 }
 </script></body>
 </html>

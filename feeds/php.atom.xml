@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="https://www.bertera.it/" rel="alternate"></link><link href="https://www.bertera.it/feeds/php.atom.xml" rel="self"></link><id>https://www.bertera.it/</id><updated>2012-09-27T13:27:00+02:00</updated><entry><title>vtiger CRM: Howto add products commissions in invoice</title><link href="https://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html" rel="alternate"></link><published>2012-09-27T13:27:00+02:00</published><updated>2012-09-27T13:27:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2012-09-27:vtiger-crm-howto-add-products-commissions-in-invoice.html</id><summary type="html">&lt;p&gt;During last days I played with &lt;a href="https://www.vtiger.com"&gt;vtiger&lt;/a&gt;: a very
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog - PHP</title><link href="http://www.bertera.it/" rel="alternate"></link><link href="http://www.bertera.it/feeds/php.atom.xml" rel="self"></link><id>http://www.bertera.it/</id><updated>2012-09-27T13:27:00+02:00</updated><subtitle>Something about ...</subtitle><entry><title>vtiger CRM: Howto add products commissions in invoice</title><link href="http://www.bertera.it/vtiger-crm-howto-add-products-commissions-in-invoice.html" rel="alternate"></link><published>2012-09-27T13:27:00+02:00</published><updated>2012-09-27T13:27:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2012-09-27:/vtiger-crm-howto-add-products-commissions-in-invoice.html</id><summary type="html">&lt;p&gt;During last days I played with &lt;a href="https://www.vtiger.com"&gt;vtiger&lt;/a&gt;: a very
+customizable and feature rich PHP/MySQL CRM. Sincerely this task has
+revived my intimate &lt;a href="http://www.google.com/search?q=php+sucks"&gt;hate&lt;/a&gt; for
+PHP programming language.&lt;/p&gt;
+&lt;p&gt;This is the idea: add a function hook in vtiger workflow every time that
+an invoice is created or edited. This function …&lt;/p&gt;</summary><content type="html">&lt;p&gt;During last days I played with &lt;a href="https://www.vtiger.com"&gt;vtiger&lt;/a&gt;: a very
 customizable and feature rich PHP/MySQL CRM. Sincerely this task has
 revived my intimate &lt;a href="http://www.google.com/search?q=php+sucks"&gt;hate&lt;/a&gt; for
 PHP programming language.&lt;/p&gt;
 &lt;p&gt;This is the idea: add a function hook in vtiger workflow every time that
 an invoice is created or edited. This function must take care to update
 invoice commission based on products commissions rates.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;First step: Create the hook function:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;First step: Create the hook function:&lt;/strong&gt;&lt;br&gt;
 Create a new file  under "include" folder: &lt;code&gt;vim include/CommissionHandler.php&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Following the content of this file:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;   
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;   
 &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;updateCommission&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$entity&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;   
   &lt;span class="k"&gt;global&lt;/span&gt; &lt;span class="nv"&gt;$log&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;   
   &lt;span class="nv"&gt;$entityArray&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;get_object_vars&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$entity&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;       
@@ -33,21 +38,19 @@ Create a new file  under "include" folder: &lt;code&gt;vim include/CommissionHa
   &lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;pquery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;UPDATE vtiger_invoice SET salescommission=&lt;/span&gt;&lt;span class="si"&gt;$rebate&lt;/span&gt;&lt;span class="s2"&gt; WHERE invoiceid=?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$invoice_id&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Second Step: register the hook  &lt;/p&gt;
 &lt;p&gt;Create a new php file: &lt;code&gt;vim reg.php&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Following the content of reg.php:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; 
 &lt;span class="k"&gt;require_once&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;include/utils/utils.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;modules/com_vtiger_workflow/VTEntityMethodManager.inc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
 &lt;span class="nv"&gt;$emm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;VTEntityMethodManager&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$adb&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
 &lt;span class="c1"&gt;#addEntityMethod(&amp;quot;Module&amp;quot;, &amp;quot;LABEL&amp;quot;, &amp;quot;FILENAME&amp;quot;, &amp;quot;FUNCTION_NAME&amp;quot;); &lt;/span&gt;
 &lt;span class="nv"&gt;$emm&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;addEntityMethod&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Invoice&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Update Commission&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;include/CommissionHandler.php&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;updateCommission&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Execute the registration script:&lt;/p&gt;
 &lt;p&gt;via CLI: &lt;code&gt;php -f reg.php&lt;/code&gt; or via Web: &lt;code&gt;wget http://your.vtiger.url/vtiger-pat/reg.php -O &amp;gt; /dev/null&lt;/code&gt;&lt;/p&gt;
@@ -64,11 +67,11 @@ Create a new file  under "include" folder: &lt;code&gt;vim include/CommissionHa
 &lt;li&gt;Assign a Task title and select &lt;strong&gt;"Update Commission"&lt;/strong&gt; method  &lt;/li&gt;
 &lt;li&gt;Click &lt;strong&gt;"Save"&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Fourth Step: Play with invoice and products commissions.&lt;/strong&gt;&lt;/p&gt;</summary><category term="crm"></category><category term="php"></category><category term="vtiger"></category></entry><entry><title>Php sinippet: howto ignore HTTP errors in file_get_contents()</title><link href="https://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html" rel="alternate"></link><published>2011-11-04T12:52:00+01:00</published><updated>2011-11-04T12:52:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-04:php-sinippet-howto-ignore-http-errors-in-file_get_contents.html</id><summary type="html">&lt;p&gt;A useful snipped of php code:  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;echo file_get_contents(&amp;#39;http://www.example.com/foo.html&amp;#39;,\&lt;/span&gt;
-&lt;span class="err"&gt;  FALSE, stream_context_create(array\&lt;/span&gt;
-&lt;span class="err"&gt;  (&amp;#39;http&amp;#39;=&amp;gt;;array(&amp;#39;ignore_errors&amp;#39; =&amp;gt;; TRUE))))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="code"></category><category term="http"></category><category term="php"></category></entry><entry><title>Camilla</title><link href="https://www.bertera.it/camilla.html" rel="alternate"></link><published>2006-05-21T16:38:00+02:00</published><updated>2006-05-21T16:38:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:camilla.html</id><summary type="html">&lt;p&gt;Camilla è un sistema di booking per camere e case, supporta agenzie
-multiple e la gestione di calendari e stagioni.&lt;br /&gt;
-&lt;img alt="camilla" src="https://www.bertera.it/camilla.jpg" /&gt;  &lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/camilla"&gt;camilla&lt;/a&gt;&lt;/p&gt;</summary><category term="booking"></category><category term="php"></category></entry></feed>
+&lt;p&gt;&lt;strong&gt;Fourth Step: Play with invoice and products commissions.&lt;/strong&gt;&lt;/p&gt;</content><category term="PHP"></category><category term="crm"></category><category term="php"></category><category term="vtiger"></category></entry><entry><title>Php sinippet: howto ignore HTTP errors in file_get_contents()</title><link href="http://www.bertera.it/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html" rel="alternate"></link><published>2011-11-04T12:52:00+01:00</published><updated>2011-11-04T12:52:00+01:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2011-11-04:/php-sinippet-howto-ignore-http-errors-in-file_get_contents.html</id><content type="html">&lt;p&gt;A useful snipped of php code:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;file_get_contents&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://www.example.com/foo.html&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;FALSE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;stream_context_create&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;array&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;;&lt;/span&gt;&lt;span class="nt"&gt;array&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ignore_errors&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;TRUE&lt;/span&gt;&lt;span class="o"&gt;))))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="PHP"></category><category term="code"></category><category term="http"></category><category term="php"></category></entry><entry><title>Camilla</title><link href="http://www.bertera.it/camilla.html" rel="alternate"></link><published>2006-05-21T16:38:00+02:00</published><updated>2006-05-21T16:38:00+02:00</updated><author><name>admin</name></author><id>tag:www.bertera.it,2006-05-21:/camilla.html</id><content type="html">&lt;p&gt;Camilla è un sistema di booking per camere e case, supporta agenzie
+multiple e la gestione di calendari e stagioni.&lt;br&gt;
+&lt;img alt="camilla" src="http://www.bertera.it/camilla.jpg"&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/pbertera/junk/tree/master/camilla"&gt;camilla&lt;/a&gt;&lt;/p&gt;</content><category term="PHP"></category><category term="booking"></category><category term="php"></category></entry></feed>

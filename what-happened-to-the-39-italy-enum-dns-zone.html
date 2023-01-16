@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="ENUM is a DNS based algorithm used to store data associated with E.164 numbers (aka global phone numbers). Using ENUM you can associate your email or Skype or SIP contact along with your phone number. So, registering your contacts in the ENUM tree you'll make yourself reachable trough ..." />
+<meta name="description" content="ENUM is a DNS based algorithm used to store data associated with E.164 numbers (aka global phone numbers). Using ENUM you can associate your email or Skype or SIP contact along with your phone number. So, registering your contacts in the ENUM tree you'll make yourself reachable trough all …" />
 <meta name="keywords" content="ENUM, Italy, VoIP">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="What happened to the +39 (Italy) ENUM DNS Zone ?"/>
-<meta property="og:description" content="ENUM is a DNS based algorithm used to store data associated with E.164 numbers (aka global phone numbers). Using ENUM you can associate your email or Skype or SIP contact along with your phone number. So, registering your contacts in the ENUM tree you'll make yourself reachable trough ..."/>
+<meta property="og:description" content="ENUM is a DNS based algorithm used to store data associated with E.164 numbers (aka global phone numbers). Using ENUM you can associate your email or Skype or SIP contact along with your phone number. So, registering your contacts in the ENUM tree you'll make yourself reachable trough all …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html"/>
+<meta property="og:url" content="http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2015-02-25 16:38:00+01:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="VoIP"/>
 <meta property="article:tag" content="ENUM"/>
 <meta property="article:tag" content="Italy"/>
@@ -49,14 +49,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -69,17 +69,17 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="what-happened-to-the-39-italy-enum-dns-zone">What happened to the +39 (Italy) ENUM DNS Zone ?</h1>
-    <p>Posted on Wed 25 February 2015 in <a href="https://www.bertera.it/category/voip.html">VoIP</a></p>
+    <p>Posted on Wed 25 February 2015 in <a href="http://www.bertera.it/category/voip.html">VoIP</a></p>
   </header>
   <div>
     <p><a href="https://tools.ietf.org/html/rfc6116">ENUM</a> is a DNS based algorithm
@@ -107,86 +107,80 @@ URI, Web URL, Instant message, presence service, etc..).</p>
 </ol>
 <p>ENUM is globally managed trough a DNS hierarchy:
 <a href="https://tools.ietf.org/html/rfc6116#section-6">RFC6116</a> states:</p>
-<div class="highlight"><pre><span></span><span class="err">   Names within this zone are to be delegated to parties consistent with</span>
-<span class="err">   ITU Recommendation E.164.  The names allocated should be hierarchic</span>
-<span class="err">   in accordance with ITU Recommendation E.164, and the codes should be</span>
-<span class="err">   assigned in accordance with that Recommendation.</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="n">Names</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">zone</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">delegated</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">parties</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">with</span>
+<span class="w">   </span><span class="n">ITU</span><span class="w"> </span><span class="n">Recommendation</span><span class="w"> </span><span class="n">E</span><span class="mf">.164</span><span class="p">.</span><span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="n">allocated</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">hierarchic</span>
+<span class="w">   </span><span class="n">in</span><span class="w"> </span><span class="n">accordance</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">ITU</span><span class="w"> </span><span class="n">Recommendation</span><span class="w"> </span><span class="n">E</span><span class="mf">.164</span><span class="p">,</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">codes</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span>
+<span class="w">   </span><span class="n">assigned</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">accordance</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">Recommendation</span><span class="p">.</span>
+</code></pre></div>
 
 <p>This means that for example the +49 E.164 country code (Germany) is
 managed by the German naming authority:</p>
-<div class="highlight"><pre><span></span><span class="o">~</span> <span class="n">pietro</span><span class="o">$</span> <span class="n">dig</span> <span class="o">+</span><span class="n">short</span> <span class="n">NS</span> <span class="mf">9.4</span><span class="o">.</span><span class="n">e164</span><span class="o">.</span><span class="n">arpa</span>  
-<span class="n">enum3</span><span class="o">.</span><span class="n">denic</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>  
-<span class="n">enum1</span><span class="o">.</span><span class="n">denic</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>  
-<span class="n">enum2</span><span class="o">.</span><span class="n">denic</span><span class="o">.</span><span class="n">de</span><span class="o">.</span>  
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="o">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="o">+</span><span class="n">short</span><span class="w"> </span><span class="n">NS</span><span class="w"> </span><span class="mf">9.4</span><span class="o">.</span><span class="n">e164</span><span class="o">.</span><span class="n">arpa</span><span class="w">  </span>
+<span class="n">enum3</span><span class="o">.</span><span class="n">denic</span><span class="o">.</span><span class="n">de</span><span class="o">.</span><span class="w">  </span>
+<span class="n">enum1</span><span class="o">.</span><span class="n">denic</span><span class="o">.</span><span class="n">de</span><span class="o">.</span><span class="w">  </span>
+<span class="n">enum2</span><span class="o">.</span><span class="n">denic</span><span class="o">.</span><span class="n">de</span><span class="o">.</span><span class="w">  </span>
+</code></pre></div>
 
 <p>A working example is the number +43 780 00471:</p>
-<div class="highlight"><pre><span></span><span class="o">~</span> <span class="n">pietro</span><span class="o">$</span> <span class="n">dig</span> <span class="o">+</span><span class="n">short</span> <span class="mf">1.1</span><span class="o">.</span><span class="mf">7.4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.8</span><span class="o">.</span><span class="mf">7.3</span><span class="o">.</span><span class="mf">4.e164</span><span class="o">.</span><span class="n">arpa</span> <span class="n">NAPTR</span>  
-<span class="mi">100</span> <span class="mi">10</span> <span class="s2">&quot;u&quot;</span> <span class="s2">&quot;E2U+web:http&quot;</span> <span class="s2">&quot;!\^.\*\$!http://q.nemox.net/!&quot;</span> <span class="o">.</span>  
-<span class="mi">100</span> <span class="mi">10</span> <span class="s2">&quot;u&quot;</span> <span class="s2">&quot;E2U+email:mailto&quot;</span> <span class="s2">&quot;!\^.\*\$!mailto:info@nemox.net!&quot;</span> <span class="o">.</span>  
-<span class="mi">100</span> <span class="mi">10</span> <span class="s2">&quot;u&quot;</span> <span class="s2">&quot;E2U+sip&quot;</span> <span class="s2">&quot;!\^.\*\$!sip:enum-test@sip.nemox.net!&quot;</span> <span class="o">.</span>  
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="o">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="o">+</span><span class="n">short</span><span class="w"> </span><span class="mf">1.1</span><span class="o">.</span><span class="mf">7.4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.8</span><span class="o">.</span><span class="mf">7.3</span><span class="o">.</span><span class="mf">4.e164</span><span class="o">.</span><span class="n">arpa</span><span class="w"> </span><span class="n">NAPTR</span><span class="w">  </span>
+<span class="mi">100</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="s2">&quot;u&quot;</span><span class="w"> </span><span class="s2">&quot;E2U+web:http&quot;</span><span class="w"> </span><span class="s2">&quot;!\^.\*\$!http://q.nemox.net/!&quot;</span><span class="w"> </span><span class="o">.</span><span class="w">  </span>
+<span class="mi">100</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="s2">&quot;u&quot;</span><span class="w"> </span><span class="s2">&quot;E2U+email:mailto&quot;</span><span class="w"> </span><span class="s2">&quot;!\^.\*\$!mailto:info@nemox.net!&quot;</span><span class="w"> </span><span class="o">.</span><span class="w">  </span>
+<span class="mi">100</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="s2">&quot;u&quot;</span><span class="w"> </span><span class="s2">&quot;E2U+sip&quot;</span><span class="w"> </span><span class="s2">&quot;!\^.\*\$!sip:enum-test@sip.nemox.net!&quot;</span><span class="w"> </span><span class="o">.</span><span class="w">  </span>
+</code></pre></div>
 
 <h1>The 9.3.e164.arpa zone</h1>
 <p>The DNS manging the +39 country code seems not working:</p>
-<div class="highlight"><pre><span></span><span class="err">~ pietro$ dig +short 9.3.e164.arpa ANY  </span>
-<span class="err">;; connection timed out; no servers could be reached  </span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>~ pietro$ dig +short 9.3.e164.arpa ANY  
+;; connection timed out; no servers could be reached  
+</code></pre></div>
 
 <p>Searching the nameserver managing this zone:</p>
-<div class="highlight"><pre><span></span><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="o">+</span><span class="n">short</span><span class="w"> </span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="w"> </span><span class="n">NS</span><span class="w">  </span>
+<div class="highlight"><pre><span></span><code><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="o">+</span><span class="n">short</span><span class="w"> </span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="w"> </span><span class="n">NS</span><span class="w">  </span>
 <span class="n">sec1</span><span class="p">.</span><span class="n">apnic</span><span class="p">.</span><span class="n">net</span><span class="p">.</span><span class="w">  </span>
 <span class="n">tinnie</span><span class="p">.</span><span class="n">arin</span><span class="p">.</span><span class="n">net</span><span class="p">.</span><span class="w">  </span>
 <span class="n">pri</span><span class="p">.</span><span class="n">authdns</span><span class="p">.</span><span class="n">ripe</span><span class="p">.</span><span class="n">net</span><span class="p">.</span><span class="w">  </span>
 <span class="n">sec3</span><span class="p">.</span><span class="n">apnic</span><span class="p">.</span><span class="n">net</span><span class="p">.</span><span class="w">  </span>
 <span class="n">ns3</span><span class="p">.</span><span class="n">nic</span><span class="p">.</span><span class="n">fr</span><span class="p">.</span><span class="w">  </span>
-<span class="n">sns</span><span class="o">-</span><span class="n">pb</span><span class="p">.</span><span class="n">isc</span><span class="p">.</span><span class="n">org</span><span class="p">.</span><span class="w"></span>
+<span class="n">sns</span><span class="o">-</span><span class="n">pb</span><span class="p">.</span><span class="n">isc</span><span class="p">.</span><span class="n">org</span><span class="p">.</span>
 
-<span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@ns3</span><span class="p">.</span><span class="n">nic</span><span class="p">.</span><span class="n">fr</span><span class="w"> </span><span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="w"> </span><span class="n">NS</span><span class="w"></span>
+<span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@ns3</span><span class="p">.</span><span class="n">nic</span><span class="p">.</span><span class="n">fr</span><span class="w"> </span><span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="w"> </span><span class="n">NS</span>
 
 <span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.8.3</span><span class="o">-</span><span class="n">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nv">@ns3</span><span class="p">.</span><span class="n">nic</span><span class="p">.</span><span class="n">fr</span><span class="w"> </span><span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="w"> </span><span class="n">NS</span><span class="w">  </span>
 <span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="k">found</span><span class="p">)</span><span class="w">  </span>
 <span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span><span class="w">  </span>
 <span class="p">;;</span><span class="w"> </span><span class="n">Got</span><span class="w"> </span><span class="nl">answer</span><span class="p">:</span><span class="w">  </span>
-<span class="p">;;</span><span class="w"> </span><span class="o">-&gt;&gt;</span><span class="n">HEADER</span><span class="o">&lt;</span><span class="p">;;</span><span class="w"> </span><span class="nl">flags</span><span class="p">:</span><span class="w"> </span><span class="n">qr</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"> </span><span class="nl">QUERY</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">AUTHORITY</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="p">;;</span><span class="w"> </span><span class="o">-&gt;&gt;</span><span class="n">HEADER</span><span class="o">&lt;</span><span class="p">;;</span><span class="w"> </span><span class="nl">flags</span><span class="p">:</span><span class="w"> </span><span class="n">qr</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"> </span><span class="nl">QUERY</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">AUTHORITY</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="nl">ADDITIONAL</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">recursion</span><span class="w"> </span><span class="n">requested</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">available</span><span class="w"></span>
+<span class="p">;;</span><span class="w"> </span><span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">recursion</span><span class="w"> </span><span class="n">requested</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">available</span>
 
 <span class="p">;;</span><span class="w"> </span><span class="n">QUESTION</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span><span class="w">  </span>
-<span class="p">;</span><span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="p">.</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="n">NS</span><span class="w"></span>
+<span class="p">;</span><span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="p">.</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="n">NS</span>
 
 <span class="p">;;</span><span class="w"> </span><span class="n">AUTHORITY</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span><span class="w">  </span>
 <span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="p">.</span><span class="w"> </span><span class="mi">172800</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="n">NS</span><span class="w"> </span><span class="n">dns2</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="p">.</span><span class="w">  </span>
 <span class="mf">9.3</span><span class="p">.</span><span class="n">e164</span><span class="p">.</span><span class="n">arpa</span><span class="p">.</span><span class="w"> </span><span class="mi">172800</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="n">NS</span><span class="w"> </span><span class="n">dns</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="p">.</span><span class="w">  </span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The 9.3.e164.arpa is delegated to dns2.istsupcti.it and
 dns.istsupcti.it, no one of them seems working:</p>
-<div class="highlight"><pre><span></span><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@dns2</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="w"> </span><span class="ow">ANY</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@dns2</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="w"> </span><span class="ow">ANY</span>
 
 <span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.8.3</span><span class="o">-</span><span class="n">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nv">@dns2</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="w"> </span><span class="ow">ANY</span><span class="w">  </span>
 <span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="k">found</span><span class="p">)</span><span class="w">  </span>
 <span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span><span class="w">  </span>
 <span class="p">;;</span><span class="w"> </span><span class="k">connection</span><span class="w"> </span><span class="n">timed</span><span class="w"> </span><span class="k">out</span><span class="p">;</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="n">could</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">reached</span><span class="w">  </span>
-<span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@dns</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="w"> </span><span class="ow">ANY</span><span class="w"></span>
+<span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@dns</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="w"> </span><span class="ow">ANY</span>
 
 <span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.8.3</span><span class="o">-</span><span class="n">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nv">@dns</span><span class="p">.</span><span class="n">istsupcti</span><span class="p">.</span><span class="n">it</span><span class="w"> </span><span class="ow">ANY</span><span class="w">  </span>
 <span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="k">found</span><span class="p">)</span><span class="w">  </span>
 <span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span><span class="w">  </span>
 <span class="p">;;</span><span class="w"> </span><span class="k">connection</span><span class="w"> </span><span class="n">timed</span><span class="w"> </span><span class="k">out</span><span class="p">;</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="n">could</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">reached</span><span class="w">  </span>
-</pre></div>
-
+</code></pre></div>
 
 <h5><strong>Ok, ENUM is totally broken in Italy.</strong></h5>
 <p>Let me dig a bit more:</p>
 <p>Who is istsupcti.it (seems not have even a working web site)?</p>
-<div class="highlight"><pre><span></span>~ pietro$ whois istsupcti.it
+<div class="highlight"><pre><span></span><code>~ pietro$ whois istsupcti.it
 
 \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*  
 \* Please note that the following result could be a subgroup of \*  
@@ -243,8 +237,7 @@ Name: FASTWEB-REG
 Nameservers  
 dns1.fweds-spc.it  
 dns2.fweds-spc.it  
-</pre></div>
-
+</code></pre></div>
 
 <p><a href="http://lmgtfy.com/?q=Istituto+Superiore+delle+Comunicazioni+e+delle+Tecnologie+dell%27Informazione">Googling</a>
 for "Istituto Superiore delle Comunicazioni e delle Tecnologie
@@ -271,16 +264,16 @@ cannot find test results, adoptions guidelines nor regulation rules.</p>
 dell'Informazione" <a href="http://www.isticom.it/index.php/contatti">PR
 office</a> ), I tried to send an
 email to AGCOM too but I crashed against this message:</p>
-<p><img alt="agcom" src="https://www.bertera.it/agcom-300x170.png" />]</p>
+<p><img alt="agcom" src="http://www.bertera.it/agcom-300x170.png">]</p>
 <p>If you have any information about ENUM in Italy, feel free to
 <a href="http://www.bertera.it/index.php/contacts/">contact</a> me.</p>
 <h5>to be continued ...</h5>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://www.bertera.it/tag/enum.html">ENUM</a>
-      <a href="https://www.bertera.it/tag/italy.html">Italy</a>
-      <a href="https://www.bertera.it/tag/voip.html">VoIP</a>
+      <a href="http://www.bertera.it/tag/enum.html">ENUM</a>
+      <a href="http://www.bertera.it/tag/italy.html">Italy</a>
+      <a href="http://www.bertera.it/tag/voip.html">VoIP</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -322,7 +315,7 @@ email to AGCOM too but I crashed against this message:</p>
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -338,11 +331,11 @@ email to AGCOM too but I crashed against this message:</p>
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html",
-  "description": "ENUM is a DNS based algorithm used to store data associated with E.164 numbers (aka global phone numbers). Using ENUM you can associate your email or Skype or SIP contact along with your phone number. So, registering your contacts in the ENUM tree you'll make yourself reachable trough ..."
+  "url": "http://www.bertera.it/what-happened-to-the-39-italy-enum-dns-zone.html",
+  "description": "ENUM is a DNS based algorithm used to store data associated with E.164 numbers (aka global phone numbers). Using ENUM you can associate your email or Skype or SIP contact along with your phone number. So, registering your contacts in the ENUM tree you'll make yourself reachable trough all …"
 }
 </script></body>
 </html>

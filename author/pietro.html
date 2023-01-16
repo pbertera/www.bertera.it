@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -34,7 +34,7 @@
 <meta property="og:title" content="Pietro Bertera's Blog"/>
 <meta property="og:description" content="Pietro Bertera's Thoughts and Writings"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it"/>
+<meta property="og:url" content="http://www.bertera.it"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
 
   <title>Pietro Bertera's Blog &ndash; Posts by: Pietro</title>
@@ -42,14 +42,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -62,131 +62,113 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/mirroring-pod-network-traffic-to-another-pod-on-openshift.html#mirroring-pod-network-traffic-to-another-pod-on-openshift">Mirroring pod network traffic to another pod on OpenShift</a></h2>
+    <h2><a href="http://www.bertera.it/running-rootless-red-hat-quay-with-podman.html#running-rootless-red-hat-quay-with-podman">Running rootless Red Hat Quay with podman</a></h2>
     <p>
-      Posted on Fri 04 February 2022 in <a href="https://www.bertera.it/category/systems.html">Systems</a>
+      Posted on Wed 23 February 2022 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/systems.html">Systems</a>,      <a href="https://www.bertera.it/tag/network-namespaces.html">Network namespaces</a>,      <a href="https://www.bertera.it/tag/openshift.html">OpenShift</a>,      <a href="https://www.bertera.it/tag/kubernetes.html">Kubernetes</a>      &#8226; <a href="https://www.bertera.it/mirroring-pod-network-traffic-to-another-pod-on-openshift.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/podman.html">Podman</a>,      <a href="http://www.bertera.it/tag/containers.html">Containers</a>,      <a href="http://www.bertera.it/tag/linux.html">Linux</a>      &#8226; <a href="http://www.bertera.it/running-rootless-red-hat-quay-with-podman.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <h2>What ?</h2>
-<p>This article explain how to setup traffic mirroring on two pods on Red Hat OpenShift Container Platform.
-This solution is based on <code>tc</code> and <code>vxlan</code> tunnel, this post refer to OpenShift but the general concepts apply to Kubernetes, with some variations depending on specific networking implementation.</p>
-<p>The main goal ...</p>
-      <a class="btn" href="https://www.bertera.it/mirroring-pod-network-traffic-to-another-pod-on-openshift.html#mirroring-pod-network-traffic-to-another-pod-on-openshift">Continue reading</a>
+      <p><a href="https://podman.io">Podman</a>, as the name suggests (<strong>Pod Man</strong>ager tool) has the concept of pods.</p>
+<p>Basically a pod is a goup of containers sharing the same kernel namespaces.
+When a pod is created an "infra" container is instantiated with the purpose to hold the namespaces associated with the pod.</p>
+<p>The other …</p>
+      <a class="btn" href="http://www.bertera.it/running-rootless-red-hat-quay-with-podman.html#running-rootless-red-hat-quay-with-podman">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/spawning-a-network-namespace-with-sudo.html#spawning-a-network-namespace-with-sudo">Spawning a network namespace with sudo</a></h2>
+    <h2><a href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html#kubernetes-semaphore-validating-webhook">Kubernetes semaphore Validating Webhook</a></h2>
     <p>
-      Posted on Mon 31 January 2022 in <a href="https://www.bertera.it/category/systems.html">Systems</a>
+      Posted on Thu 24 September 2020 in <a href="http://www.bertera.it/category/kubernetes.html">Kubernetes</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/systems.html">Systems</a>,      <a href="https://www.bertera.it/tag/linux.html">Linux</a>,      <a href="https://www.bertera.it/tag/network-namespaces.html">Network namespaces</a>      &#8226; <a href="https://www.bertera.it/spawning-a-network-namespace-with-sudo.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/kubernetes.html">Kubernetes</a>,      <a href="http://www.bertera.it/tag/openshift.html">OpenShift</a>      &#8226; <a href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
-      <p>After 1 year and half a new post! I'm improving :)</p>
-<p>This post is to keep track of some subtle issues that took me some hours to face and solve.</p>
-<h2>The intention</h2>
-<p>In a setup I needed to script the creation of two unnamed Kernel <a href="https://man7.org/linux/man-pages/man7/network_namespaces.7.html">network namespaces</a> and connect them ...</p>
-      <a class="btn" href="https://www.bertera.it/spawning-a-network-namespace-with-sudo.html#spawning-a-network-namespace-with-sudo">Continue reading</a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://www.bertera.it/kubernetes-semaphore-validating-webhook.html#kubernetes-semaphore-validating-webhook">Kubernetes semaphore Validating Webhook</a></h2>
-    <p>
-      Posted on Thu 24 September 2020 in <a href="https://www.bertera.it/category/kubernetes.html">Kubernetes</a>
-      &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/kubernetes.html">Kubernetes</a>,      <a href="https://www.bertera.it/tag/openshift.html">OpenShift</a>      &#8226; <a href="https://www.bertera.it/kubernetes-semaphore-validating-webhook.html#disqus_thread">Leave a comment</a>
-    </p>
-  </header>
-  <div>
-      <p>After more than 3 years a new post!</p>
+      <p>After more than 2 years a new post!</p>
 <p>In the path of learning Kubernetes <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">Dynamic Admission Control</a> I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label.</p>
-<p><a href="https://github.com/pbertera/k8s-semaphore">k8s-semaphore</a> is a quick and dirty <a href="https://webpy.org/">web.py</a> app implementing the ...</p>
-      <a class="btn" href="https://www.bertera.it/kubernetes-semaphore-validating-webhook.html#kubernetes-semaphore-validating-webhook">Continue reading</a>
+<p><a href="https://github.com/pbertera/k8s-semaphore">k8s-semaphore</a> is a quick and dirty <a href="https://webpy.org/">web.py</a> app implementing the …</p>
+      <a class="btn" href="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html#kubernetes-semaphore-validating-webhook">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html#introducing-dcw-a-poor-man-paas-tool">Introducing dcw: a Poor Man PaaS tool</a></h2>
+    <h2><a href="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html#introducing-dcw-a-poor-man-paas-tool">Introducing dcw: a Poor Man PaaS tool</a></h2>
     <p>
-      Posted on Tue 28 March 2017 in <a href="https://www.bertera.it/category/systems.html">Systems</a>
+      Posted on Tue 28 March 2017 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/docker.html">Docker</a>,      <a href="https://www.bertera.it/tag/bash.html">Bash</a>,      <a href="https://www.bertera.it/tag/ssh.html">SSH</a>      &#8226; <a href="https://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/bash.html">Bash</a>,      <a href="http://www.bertera.it/tag/ssh.html">SSH</a>      &#8226; <a href="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
       <p>Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the <a href="https://docs.docker.com/compose/"><code>docker-compose</code></a> command. The meaning of such wrapper is to expose some <code>docker-compose</code> <a href="https://docs.docker.com/compose/reference/">operations</a>  and a set of well defined commands on the host machine.</p>
-<p>The typical use-case is an SSH command executed via the <code>~/.ssh/authorized_keys</code> file ...</p>
-      <a class="btn" href="https://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html#introducing-dcw-a-poor-man-paas-tool">Continue reading</a>
+<p>The typical use-case is an SSH command executed via the <code>~/.ssh/authorized_keys</code> file …</p>
+      <a class="btn" href="http://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html#introducing-dcw-a-poor-man-paas-tool">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html#a-dns-server-with-batteries-included-with-powerdns-docker-and-python">A DNS server with Batteries Included with PowerDNS, Docker and Python</a></h2>
+    <h2><a href="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html#a-dns-server-with-batteries-included-with-powerdns-docker-and-python">A DNS server with Batteries Included with PowerDNS, Docker and Python</a></h2>
     <p>
-      Posted on Tue 06 September 2016 in <a href="https://www.bertera.it/category/systems.html">Systems</a>
+      Posted on Tue 06 September 2016 in <a href="http://www.bertera.it/category/systems.html">Systems</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/docker.html">Docker</a>,      <a href="https://www.bertera.it/tag/python.html">Python</a>,      <a href="https://www.bertera.it/tag/rest.html">REST</a>,      <a href="https://www.bertera.it/tag/powerdns.html">PowerDNS</a>      &#8226; <a href="https://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/python.html">Python</a>,      <a href="http://www.bertera.it/tag/rest.html">REST</a>,      <a href="http://www.bertera.it/tag/powerdns.html">PowerDNS</a>      &#8226; <a href="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
       <p>If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind <a href="http://www.zytrax.com/books/dns/ch6/mydomain.html">zone file</a> is an annoying and error-prone task.</p>
-<p>In order to make this job simpler I worked on <a href="https://hub.docker.com/r/pbertera/pdns/">this</a> Docker container: the container instantiate a <a href="https://www.powerdns.com/">PowerDNS</a> and provides ...</p>
-      <a class="btn" href="https://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html#a-dns-server-with-batteries-included-with-powerdns-docker-and-python">Continue reading</a>
+<p>In order to make this job simpler I worked on <a href="https://hub.docker.com/r/pbertera/pdns/">this</a> Docker container: the container instantiate a <a href="https://www.powerdns.com/">PowerDNS</a> and provides …</p>
+      <a class="btn" href="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html#a-dns-server-with-batteries-included-with-powerdns-docker-and-python">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">How to simulate a slow HTTP server with a Dockerized lighttpd</a></h2>
+    <h2><a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">How to simulate a slow HTTP server with a Dockerized lighttpd</a></h2>
     <p>
-      Posted on Tue 30 August 2016 in <a href="https://www.bertera.it/category/hacks.html">Hacks</a>
+      Posted on Tue 30 August 2016 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/lighttpd.html">lighttpd</a>,      <a href="https://www.bertera.it/tag/docker.html">Docker</a>,      <a href="https://www.bertera.it/tag/testing.html">testing</a>      &#8226; <a href="https://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/lighttpd.html">lighttpd</a>,      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/testing.html">testing</a>      &#8226; <a href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
       <p>Today I had to work on an issue related to troubled HTTP connections.
 So in order to reproduce such issue I had to find a way to easily reduce the bandwidth of the HTTP transfer.</p>
 <p>After a quick Google search I landed on <a href="http://stackoverflow.com/a/13656825/143819">this</a> Stackoverflow answer 
-which suggested me the ...</p>
-      <a class="btn" href="https://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">Continue reading</a>
+which suggested me the …</p>
+      <a class="btn" href="http://www.bertera.it/how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd.html#how-to-simulate-a-slow-http-server-with-a-dockerized-lighttpd">Continue reading</a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://www.bertera.it/how-this-website-works.html#how-this-website-works">How this website works</a></h2>
+    <h2><a href="http://www.bertera.it/how-this-website-works.html#how-this-website-works">How this website works</a></h2>
     <p>
-      Posted on Wed 29 June 2016 in <a href="https://www.bertera.it/category/cloud.html">Cloud</a>
+      Posted on Wed 29 June 2016 in <a href="http://www.bertera.it/category/cloud.html">Cloud</a>
       &#8226; Tagged with
-      <a href="https://www.bertera.it/tag/markdown.html">markdown</a>,      <a href="https://www.bertera.it/tag/pelican.html">Pelican</a>,      <a href="https://www.bertera.it/tag/docker.html">Docker</a>,      <a href="https://www.bertera.it/tag/github.html">github</a>      &#8226; <a href="https://www.bertera.it/how-this-website-works.html#disqus_thread">Leave a comment</a>
+      <a href="http://www.bertera.it/tag/markdown.html">markdown</a>,      <a href="http://www.bertera.it/tag/pelican.html">Pelican</a>,      <a href="http://www.bertera.it/tag/docker.html">Docker</a>,      <a href="http://www.bertera.it/tag/github.html">github</a>      &#8226; <a href="http://www.bertera.it/how-this-website-works.html#disqus_thread">Leave a comment</a>
     </p>
   </header>
   <div>
       <p>After many years on Wordpress I decided to move my website to a static website.</p>
 <p>I decided to adopt <a href="http://blog.getpelican.com/">Pelican</a>: a static website builder based on python and supporting reStructuredText, Markdown, or AsciiDoc.</p>
 <p>Moreover I decided to use <a href="https://pages.github.com/">GitHub</a> pages to host the website.</p>
-<p>The <a href="https://github.com/pbertera/www.bertera.it/blob/master/plugins/cv_pdf/__init__.py">pdf plugin</a> comes from <a href="http://cyrille.rossant.net/pelican-github/">Cyrille ...</a></p>
-      <a class="btn" href="https://www.bertera.it/how-this-website-works.html#how-this-website-works">Continue reading</a>
+<p>The <a href="https://github.com/pbertera/www.bertera.it/blob/master/plugins/cv_pdf/__init__.py">pdf plugin</a> comes from <a href="http://cyrille.rossant.net/pelican-github/">Cyrille …</a></p>
+      <a class="btn" href="http://www.bertera.it/how-this-website-works.html#how-this-website-works">Continue reading</a>
   </div>
 </article>
 
@@ -220,7 +202,7 @@ which suggested me the ...</p>
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }

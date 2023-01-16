@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="Uno snippet di codice bash utile nel debugging di script. #@.. function:: __cm_exit_error([text],[...]) #@ #@ Stampa la stringa passata in stderr ed esce #@ Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni #@ #@ :param text: la stringa da stampare #@ :type text: String #@ __cm_exit_error() { echo "Error in ${FUNCNAME[1]}:${BASH_LINENO ..." />
+<meta name="description" content="Uno snippet di codice bash utile nel debugging di script. #@.. function:: __cm_exit_error([text],[...]) #@ #@ Stampa la stringa passata in stderr ed esce #@ Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni #@ #@ :param text: la stringa da stampare #@ :type text: String #@ __cm_exit_error() { echo "Error in ${FUNCNAME[1]}:${BASH_LINENO …" />
 <meta name="keywords" content="bash, debugging, script">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="bash snippet: dumping function call trace"/>
-<meta property="og:description" content="Uno snippet di codice bash utile nel debugging di script. #@.. function:: __cm_exit_error([text],[...]) #@ #@ Stampa la stringa passata in stderr ed esce #@ Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni #@ #@ :param text: la stringa da stampare #@ :type text: String #@ __cm_exit_error() { echo "Error in ${FUNCNAME[1]}:${BASH_LINENO ..."/>
+<meta property="og:description" content="Uno snippet di codice bash utile nel debugging di script. #@.. function:: __cm_exit_error([text],[...]) #@ #@ Stampa la stringa passata in stderr ed esce #@ Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni #@ #@ :param text: la stringa da stampare #@ :type text: String #@ __cm_exit_error() { echo "Error in ${FUNCNAME[1]}:${BASH_LINENO …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/bash-snippet-dumping-function-call-trace.html"/>
+<meta property="og:url" content="http://www.bertera.it/bash-snippet-dumping-function-call-trace.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2011-07-18 12:44:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Hacks"/>
 <meta property="article:tag" content="bash"/>
 <meta property="article:tag" content="debugging"/>
@@ -49,14 +49,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -69,47 +69,47 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="bash-snippet-dumping-function-call-trace">bash snippet: dumping function call trace</h1>
-    <p>Posted on Mon 18 July 2011 in <a href="https://www.bertera.it/category/hacks.html">Hacks</a></p>
+    <p>Posted on Mon 18 July 2011 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a></p>
   </header>
   <div>
     <p>Uno snippet di codice bash utile nel debugging di script.</p>
-<div class="highlight"><pre><span></span><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
-<span class="err">#@</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span><span class="w"></span>
-<span class="err">#@</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span><span class="w"></span>
-<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
-<span class="err">#@</span><span class="w"></span>
-<span class="n">__cm_exit_error</span><span class="p">()</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">#@</span><span class="p">..</span><span class="w"> </span><span class="k">function</span><span class="o">::</span><span class="w"> </span><span class="n">__cm_exit_error</span><span class="p">(</span><span class="o">[</span><span class="n">text</span><span class="o">]</span><span class="p">,</span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="p">)</span>
+<span class="err">#@</span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Stampa</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">passata</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">stderr</span><span class="w"> </span><span class="n">ed</span><span class="w"> </span><span class="n">esce</span>
+<span class="err">#@</span><span class="w">   </span><span class="n">Se</span><span class="w"> </span><span class="n">è</span><span class="w"> </span><span class="n">impostata</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">variabile</span><span class="w"> </span><span class="n">__cm_debug</span><span class="w"> </span><span class="n">stampa</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">chiamata</span><span class="w"> </span><span class="n">delle</span><span class="w"> </span><span class="n">funzioni</span>
+<span class="err">#@</span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">stringa</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">stampare</span>
+<span class="err">#@</span><span class="w">   </span><span class="err">:</span><span class="n">type</span><span class="w"> </span><span class="nc">text</span><span class="err">:</span><span class="w"> </span><span class="n">String</span>
+<span class="err">#@</span>
+<span class="n">__cm_exit_error</span><span class="p">()</span>
 
-<span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO[0]}: $*&quot;</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&amp;</span><span class="mi">2</span><span class="w"></span>
-<span class="w">        </span><span class="k">local</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
-<span class="w">        </span><span class="o">[</span><span class="n"> $__cm_debug </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="n"> $i -lt ${#FUNCNAME} </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="n">do</span><span class="w"></span>
+<span class="err">{</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Error in ${FUNCNAME[1]}:${BASH_LINENO[0]}: $*&quot;</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&amp;</span><span class="mi">2</span>
+<span class="w">        </span><span class="k">local</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">        </span><span class="o">[</span><span class="n"> $__cm_debug </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="o">[</span><span class="n"> $i -lt ${#FUNCNAME} </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="n">do</span>
 <span class="w">                </span><span class="o">[</span><span class="n"> &quot;${FUNCNAME[$i</span><span class="o">]</span><span class="err">}</span><span class="ss">&quot; == &quot;</span><span class="n">main</span><span class="ss">&quot; ] &amp;&amp; break</span>
-<span class="ss">                echo &quot;</span><span class="err">${</span><span class="n">BASH_SOURCE</span><span class="o">[</span><span class="n">$i</span><span class="o">]</span><span class="err">}</span><span class="o">::</span><span class="err">${</span><span class="n">FUNCNAME</span><span class="o">[</span><span class="n">$i + 1</span><span class="o">]</span><span class="err">}</span><span class="o">::</span><span class="err">${</span><span class="n">BASH_LINENO</span><span class="o">[</span><span class="n">$i</span><span class="o">]</span><span class="err">}&quot;</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&amp;</span><span class="mi">2</span><span class="w"></span>
-<span class="w">                </span><span class="n">i</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">expr</span><span class="w"> </span><span class="err">$</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="n">done</span><span class="w"></span>
-<span class="w">        </span><span class="k">exit</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
-</pre></div>
+<span class="ss">                echo &quot;</span><span class="err">${</span><span class="n">BASH_SOURCE</span><span class="o">[</span><span class="n">$i</span><span class="o">]</span><span class="err">}</span><span class="o">::</span><span class="err">${</span><span class="n">FUNCNAME</span><span class="o">[</span><span class="n">$i + 1</span><span class="o">]</span><span class="err">}</span><span class="o">::</span><span class="err">${</span><span class="n">BASH_LINENO</span><span class="o">[</span><span class="n">$i</span><span class="o">]</span><span class="err">}&quot;</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&amp;</span><span class="mi">2</span>
+<span class="w">                </span><span class="n">i</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">expr</span><span class="w"> </span><span class="err">$</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="n">done</span>
+<span class="w">        </span><span class="k">exit</span><span class="w"> </span><span class="mi">1</span>
+<span class="err">}</span>
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://www.bertera.it/tag/bash.html">bash</a>
-      <a href="https://www.bertera.it/tag/debugging.html">debugging</a>
-      <a href="https://www.bertera.it/tag/script.html">script</a>
+      <a href="http://www.bertera.it/tag/bash.html">bash</a>
+      <a href="http://www.bertera.it/tag/debugging.html">debugging</a>
+      <a href="http://www.bertera.it/tag/script.html">script</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -151,7 +151,7 @@
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -167,11 +167,11 @@
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/bash-snippet-dumping-function-call-trace.html",
-  "description": "Uno snippet di codice bash utile nel debugging di script. #@.. function:: __cm_exit_error([text],[...]) #@ #@ Stampa la stringa passata in stderr ed esce #@ Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni #@ #@ :param text: la stringa da stampare #@ :type text: String #@ __cm_exit_error() { echo "Error in ${FUNCNAME[1]}:${BASH_LINENO ..."
+  "url": "http://www.bertera.it/bash-snippet-dumping-function-call-trace.html",
+  "description": "Uno snippet di codice bash utile nel debugging di script. #@.. function:: __cm_exit_error([text],[...]) #@ #@ Stampa la stringa passata in stderr ed esce #@ Se è impostata la variabile __cm_debug stampa lo stack di chiamata delle funzioni #@ #@ :param text: la stringa da stampare #@ :type text: String #@ __cm_exit_error() { echo "Error in ${FUNCNAME[1]}:${BASH_LINENO …"
 }
 </script></body>
 </html>

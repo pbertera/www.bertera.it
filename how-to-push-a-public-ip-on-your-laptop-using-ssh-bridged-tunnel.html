@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network ..." />
+<meta name="description" content="In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network segment …" />
 <meta name="keywords" content="routing, ssh, vpn">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="How to push a public IP on your laptop using SSH bridged tunnel"/>
-<meta property="og:description" content="In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network ..."/>
+<meta property="og:description" content="In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network segment …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html"/>
+<meta property="og:url" content="http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2012-03-04 23:49:00+01:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://www.bertera.it/author/admin.html">
+<meta property="article:author" content="http://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Systems"/>
 <meta property="article:tag" content="routing"/>
 <meta property="article:tag" content="ssh"/>
@@ -49,14 +49,14 @@
 <body>
   <aside>
     <div>
-      <a href="https://www.bertera.it">
+      <a href="http://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -69,30 +69,30 @@
   </aside>
   <main>
     <nav>
-      <a href="https://www.bertera.it">Home</a>
+      <a href="http://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel">How to push a public IP on your laptop using SSH bridged tunnel</h1>
-    <p>Posted on Sun 04 March 2012 in <a href="https://www.bertera.it/category/systems.html">Systems</a></p>
+    <p>Posted on Sun 04 March 2012 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
   </header>
   <div>
     <p>In my <a href="http://www.bertera.it/index.php/2008/12/22/vpn-layer-3-con-openssh/" title="VPN layer 3 con OpenSSH">previous
 post</a> I
 talked about Layer 3 VPN feature of OpenSSH (starting from version
-4.3).<br />
+4.3).<br>
 Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature
 you can create a virtual network device that, through the encrypted
 tunnel, is connected on the same network segment of remote server. In
 fact the VPN acts as a network switch connecting local virtual device
 with remote device in same ethernet network.</p>
 <p>With this setup your SSH client will connect to remote server and start
-forwarding packet between local end remote TUN/TAP device.<br />
+forwarding packet between local end remote TUN/TAP device.<br>
 All packets are forward through the encrypted SSH tunnel.</p>
 <p>using <strong>-o Tunnel=ethernet</strong> instead of <strong><em>-o
 Tunnel=point-to-point</em></strong> ssh process try to use a tap device and
@@ -100,15 +100,15 @@ forwards all ethernet frames (layer 2). You can specify TUN/TAP local
 and remote device index with <strong><em>-w</em></strong> option:</p>
 <p>This command: <code>ssh -o Tunnel=ethernet -w 0:1 host.example.com</code>
 establish an ssh connection to host.example.com and forwards all ethernet
-frames from local tap0 to remote tap1 and vice-versa.<br />
+frames from local tap0 to remote tap1 and vice-versa.<br>
 If tap0 and tap1 doesn't exist ssh will try to create.</p>
 <p>In order to setup a public IP on your laptop you need to create a bridge
 between remote remote public ethernet device and remote TUN/TAP device.
 Below the accomplishment step for this task:</p>
 <p>Assuming that this is the public network configuration:</p>
-<p><strong>Public IP:</strong> 78.47.249.187<br />
-<strong>Public Network:</strong> 78.47.249.160<br />
-<strong>Public Gateway:</strong> 78.47.249.190<br />
+<p><strong>Public IP:</strong> 78.47.249.187<br>
+<strong>Public Network:</strong> 78.47.249.160<br>
+<strong>Public Gateway:</strong> 78.47.249.190<br>
 <strong>Laptop Public IP:</strong> 78.47.249.187</p>
 <p><strong>On server side:</strong></p>
 <ul>
@@ -128,7 +128,7 @@ reachable.</p>
 <li>add public ip to your client and setup link: <code>ip addr add  78.47.249.188/27 dev tap0 &amp;&amp; ip link set up dev tap0</code></li>
 </ul>
 <p>Now your laptop is directly connected to public remote network through
-tap0 device.<br />
+tap0 device.<br>
 Following steps are needed only  if you  need to substitute your
 gateway with public gw:</p>
 <ul>
@@ -145,40 +145,38 @@ default gw): <code>ip route add 78.47.249.187 via my.old.def.gw</code></li>
 <li>following the configuration files for automatic and reboot persistent configuration on server side (for RedHat based distro):</li>
 </ul>
 <p><strong>/etc/sysconfig/network-scripts/ifcfg-br0</strong></p>
-<div class="highlight"><pre><span></span><span class="err">DEVICE=&quot;br0&quot;</span>
-<span class="err">ONBOOT=&quot;yes&quot;</span>
-<span class="err">TYPE=Bridge</span>
-<span class="err">BOOTPROTO=none</span>
-<span class="err">IPADDR=78.47.249.187</span>
-<span class="err">PREFIX=27</span>
-<span class="err">GATEWAY=78.47.249.190</span>
-<span class="err">DEFROUTE=yes</span>
-<span class="err">IPV4_FAILURE_FATAL=yes</span>
-<span class="err">IPV6INIT=no</span>
-<span class="err">NAME=&quot;System Bridge&quot;</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>DEVICE=&quot;br0&quot;
+ONBOOT=&quot;yes&quot;
+TYPE=Bridge
+BOOTPROTO=none
+IPADDR=78.47.249.187
+PREFIX=27
+GATEWAY=78.47.249.190
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=yes
+IPV6INIT=no
+NAME=&quot;System Bridge&quot;
+</code></pre></div>
 
 <p><strong>/etc/sysconfig/network-scripts/ifcfg-tap0</strong></p>
-<div class="highlight"><pre><span></span><span class="err">DEVICE=tap0</span>
-<span class="err">TYPE=Tap</span>
-<span class="err">OWNER=vpnuser #use an unprivileged user for your TUN/TAP device</span>
-<span class="err">BRIDGE=br0</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nv">DEVICE</span><span class="o">=</span><span class="nv">tap0</span>
+<span class="nv">TYPE</span><span class="o">=</span><span class="nv">Tap</span>
+<span class="nv">OWNER</span><span class="o">=</span><span class="nv">vpnuser</span><span class="w"> </span>#<span class="nv">use</span><span class="w"> </span><span class="nv">an</span><span class="w"> </span><span class="nv">unprivileged</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">your</span><span class="w"> </span><span class="nv">TUN</span><span class="o">/</span><span class="nv">TAP</span><span class="w"> </span><span class="nv">device</span>
+<span class="nv">BRIDGE</span><span class="o">=</span><span class="nv">br0</span>
+</code></pre></div>
 
 <p><strong>/etc/sysconfig/network-scripts/ifcfg-eth0</strong></p>
-<div class="highlight"><pre><span></span><span class="err">DEVICE=&quot;eth0&quot;</span>
-<span class="err">ONBOOT=&quot;yes&quot;</span>
-<span class="err">TYPE=Ethernet</span>
-<span class="err">BRIDGE=br0</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>DEVICE=&quot;eth0&quot;
+ONBOOT=&quot;yes&quot;
+TYPE=Ethernet
+BRIDGE=br0
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="https://www.bertera.it/tag/routing.html">routing</a>
-      <a href="https://www.bertera.it/tag/ssh.html">ssh</a>
-      <a href="https://www.bertera.it/tag/vpn.html">vpn</a>
+      <a href="http://www.bertera.it/tag/routing.html">routing</a>
+      <a href="http://www.bertera.it/tag/ssh.html">ssh</a>
+      <a href="http://www.bertera.it/tag/vpn.html">vpn</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -220,7 +218,7 @@ default gw): <code>ip route add 78.47.249.187 via my.old.def.gw</code></li>
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "https://www.bertera.it",
+  "url" : "http://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -236,11 +234,11 @@ default gw): <code>ip route add 78.47.249.187 via my.old.def.gw</code></li>
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "https://www.bertera.it/author/admin.html"
+    "url": "http://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "https://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html",
-  "description": "In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network ..."
+  "url": "http://www.bertera.it/how-to-push-a-public-ip-on-your-laptop-using-ssh-bridged-tunnel.html",
+  "description": "In my previous post I talked about Layer 3 VPN feature of OpenSSH (starting from version 4.3). Now, I'm talking about bridged VPN or Layer 2 VPN. With this feature you can create a virtual network device that, through the encrypted tunnel, is connected on the same network segment …"
 }
 </script></body>
 </html>

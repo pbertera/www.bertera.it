@@ -27,23 +27,24 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<meta name="author" content="admin" />
-<meta name="description" content="un tool per forgiare pacchetti ARP/RARP da linea di comando. arpiglio.c" />
-<meta name="keywords" content="arp, c">
+<meta name="author" content="Pietro" />
+<meta name="description" content="Podman, as the name suggests (Pod Manager tool) has the concept of pods. Basically a pod is a goup of containers sharing the same kernel namespaces. When a pod is created an "infra" container is instantiated with the purpose to hold the namespaces associated with the pod. The other …" />
+<meta name="keywords" content="Podman, Containers, Linux">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
-<meta property="og:title" content="Arpiglio"/>
-<meta property="og:description" content="un tool per forgiare pacchetti ARP/RARP da linea di comando. arpiglio.c"/>
+<meta property="og:title" content="Running rootless Red Hat Quay with podman"/>
+<meta property="og:description" content="Podman, as the name suggests (Pod Manager tool) has the concept of pods. Basically a pod is a goup of containers sharing the same kernel namespaces. When a pod is created an "infra" container is instantiated with the purpose to hold the namespaces associated with the pod. The other …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="http://www.bertera.it/arpiglio.html"/>
+<meta property="og:url" content="http://www.bertera.it/running-rootless-red-hat-quay-with-podman.html"/>
 <meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2006-05-21 16:36:00+02:00"/>
+<meta property="article:published_time" content="2022-02-23 00:00:00+01:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://www.bertera.it/author/admin.html">
-<meta property="article:section" content="Hacks"/>
-<meta property="article:tag" content="arp"/>
-<meta property="article:tag" content="c"/>
+<meta property="article:author" content="http://www.bertera.it/author/pietro.html">
+<meta property="article:section" content="Systems"/>
+<meta property="article:tag" content="Podman"/>
+<meta property="article:tag" content="Containers"/>
+<meta property="article:tag" content="Linux"/>
 <meta property="og:image" content="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120">
-  <title>Pietro Bertera's Blog &ndash; Arpiglio</title>
+  <title>Pietro Bertera's Blog &ndash; Running rootless Red Hat Quay with podman</title>
 </head>
 <body>
   <aside>
@@ -77,17 +78,35 @@
 
 <article>
   <header>
-    <h1 id="arpiglio">Arpiglio</h1>
-    <p>Posted on Sun 21 May 2006 in <a href="http://www.bertera.it/category/hacks.html">Hacks</a></p>
+    <h1 id="running-rootless-red-hat-quay-with-podman">Running rootless Red Hat Quay with podman</h1>
+    <p>Posted on Wed 23 February 2022 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
   </header>
   <div>
-    <p>un tool per forgiare pacchetti ARP/RARP da linea di comando.<br>
-<a href="https://github.com/pbertera/junk/tree/master/arpiglio">arpiglio.c</a></p>
+    <p><a href="https://podman.io">Podman</a>, as the name suggests (<strong>Pod Man</strong>ager tool) has the concept of pods.</p>
+<p>Basically a pod is a goup of containers sharing the same kernel namespaces.
+When a pod is created an "infra" container is instantiated with the purpose to hold the namespaces associated with the pod.</p>
+<p>The other containers belonging to the pod are spawn using the same namespaces.</p>
+<p>This feature comes handy when you have to deploy applications composed by multiple containers.</p>
+<p>Icing on the cake is that podman supports the Kubernets Pod YAML syntax, thus you can import and export the workloads easily.</p>
+<h2>Setting up Quay Container Registry</h2>
+<p>First of all we have to create three folders where the permanent data is stored:</p>
+<ul>
+<li><code>~/quay/config</code> contains the congifuration</li>
+<li><code>~/quay/postgres</code> contains the <code>pg-data</code> of the PosgreSQL container</li>
+<li><code>~/quay/storage</code> holds the container images served by quay</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/quay/<span class="o">{</span>config,postgres,storage<span class="o">}</span>
+</code></pre></div>
+
+<p>Since the PostgreSQL container is running with UID 26 we have to set an ACL for the <code>postgres</code> folder</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>setfacl<span class="w"> </span>-m<span class="w"> </span>u:26:-wx<span class="w"> </span>~/quay/postgres
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="http://www.bertera.it/tag/arp.html">arp</a>
-      <a href="http://www.bertera.it/tag/c.html">c</a>
+      <a href="http://www.bertera.it/tag/podman.html">Podman</a>
+      <a href="http://www.bertera.it/tag/containers.html">Containers</a>
+      <a href="http://www.bertera.it/tag/linux.html">Linux</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -138,18 +157,18 @@
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Arpiglio",
-  "headline": "Arpiglio",
-  "datePublished": "2006-05-21 16:36:00+02:00",
+  "name": "Running rootless Red Hat Quay with podman",
+  "headline": "Running rootless Red Hat Quay with podman",
+  "datePublished": "2022-02-23 00:00:00+01:00",
   "dateModified": "",
   "author": {
     "@type": "Person",
-    "name": "admin",
-    "url": "http://www.bertera.it/author/admin.html"
+    "name": "Pietro",
+    "url": "http://www.bertera.it/author/pietro.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "http://www.bertera.it/arpiglio.html",
-  "description": "un tool per forgiare pacchetti ARP/RARP da linea di comando. arpiglio.c"
+  "url": "http://www.bertera.it/running-rootless-red-hat-quay-with-podman.html",
+  "description": "Podman, as the name suggests (Pod Manager tool) has the concept of pods. Basically a pod is a goup of containers sharing the same kernel namespaces. When a pod is created an "infra" container is instantiated with the purpose to hold the namespaces associated with the pod. The other …"
 }
 </script></body>
 </html>
