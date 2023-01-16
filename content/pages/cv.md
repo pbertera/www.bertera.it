@@ -9,10 +9,11 @@ Status: hidden
 ----------------------------
 - **place and date of birth:** August 26th 1981, Como (Italy)
 - **nationality:** Italian
-- **domicile:** Galbiate (Lecco, Italy)
+- **domicile:** Pasturo (Lecco, Italy)
 - **email:** pietro@bertera.it
 - **phone number:** (+39) 338 4007825
 - **web site:** http://www.bertera.it
+- **Git Hub:** https://github.com/pbertera
 ----------------------------
 
 ## About
