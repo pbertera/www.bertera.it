@@ -17,22 +17,28 @@ Status: hidden
 
 ## About
 
-Network engineer specialised in VoIP systems and network management.
-Strong background in software engineering and various IT technologies.
-More than 10 years managing complex IT systems and providing tech support.
+I’m IT professional with more than 15 years of experience about Linux, Cloud platforms, Virtualization, Containers and Containers orchestration.
+I'm working as a Senior Technical Account Manager at Red Hat helping customer on the path of OpenShift adoption on public and private environments.
 
-Specialities: VoIP and communication technologies, networking, virtualisation and Python programming.
+I have a strong experience as network and system engineer specialised in  VoIP systems and network management.
+
+Specialities: 
+- VoIP and communication technologies
+- Networking
+- Virtualisation
+- Containers and microservice adoption
 
 ### Technical skills and competencies:
 
-- *Containers orchestration:* Kubernetes OpenShift, Docker, Podman, CRI-O
+- *Containers orchestration:* Kubernetes, Red Hat OpenShift, Docker, Podman, CRI-O
+- *GitOps, DevOps & CI/CD:* Tekton, Jenkins, ArgoCD, Red Hat ACM
 - *VoIP:* VoIP networks, Good experience in managing of complex and distributed
 VoIP infrastructures. Cisco CUCM (6.x - 7.x - 8.x), Cisco CM Express, Asterisk,
 OpenSIPS. Deep knowledge in snom products: phones and PBX (snom ONE).
 - *Programming:* Excellent knowledge of the language Python, PHP and Unix Shell
 languages, System Unix programming, GNU/Make; very good knowledge of automation
 in system administration.
-- *VCS Systems:* Project managing with Subversion, CVS, git, Trac.
+- *VCS Systems:* Project managing with Subversion, CVS, git, Trac, Jira.
 - *Database:* MySQL, PostgreSQL, MSSQL, SQLite.
 - *Networking:* In-depth knowledge of network protocols and issues, daily use of
 Cisco devices (IOS, PIX), Vyatta appliances and network softwares (OpenVPN,
@@ -48,9 +54,29 @@ Zimbra, Nagios , Samba with integration in Windows networks.
 - *Other:* active in several communities and open source projects, maintainer of software and various projects at [http://www.bertera.it](http://www.bertera.it) and [https://github.com/pbertera](https://github.com/pbertera).
 
 ## Work experience
-**November 2019 - Now:** *Senior OpenShift Technical Account Manager ar Red Hat*
+**November 2019 - Now:** *Senior OpenShift Technical Account Manager at Red Hat*
+
+###### Duties and responsibilities:
+
+* Helping enterprise customers in their path through the Red Hat OpenShift adoption
+* Post sales technical support
+* Guiding and providing best practices
+* Acting as a customer trusted advisor within Red Hat
+
+###### Projects:
+* CNI Passthrough: a "fake" CNI plugin acting just as a passthrough plugin, useful to troublshoot SND and containers networks. [Project](https://github.com/pbertera/CNI-passthrough)
+* OCP SMB FlexVolume: a Kubernetes FlexVolume for SMB/CIFS suitable for OpenShift 4. [Project](https://github.com/pbertera/ocp4-smb-flexvolume)
+* OCP Entitlement Operator: an Ansible Operator to entitle an OpenShift cluster through a custom resource. [Project](https://github.com/pbertera/ocp-entitlement-manager-operator)
+* oc-wlogin: `oc` plugin and a companion web app allowing using the browser to login on an OpenShift cluster. [Project](https://github.com/pbertera/oc-wlogin)
+
+###### Publications:
+* [Augmenting OpenShift CLI with Plugins](https://cloud.redhat.com/blog/augmenting-openshift-cli-with-plugins)
+* [Painless services: implementing serverless with rootless Podman and systemd](https://www.redhat.com/en/blog/painless-services-implementing-serverless-rootless-podman-and-systemd)
+* [A Guide to Customizing Red Hat Enterprise Linux CoreOS](https://cloud.redhat.com/blog/red-hat-enterprise-linux-coreos-customization)
+* [Providing Multi-Tenancy and Network Isolation to the Edge](https://cloud.redhat.com/blog/providing-multi-tenancy-and-network-isolation-to-the-edge)
 
 ----------------------------
+
 **July 2015 - November 2019:** *Head of global support and training at Snom Technology AG*
 
 ###### Duties and responsibilities:
@@ -111,7 +137,7 @@ and clusters.
 
 ----------------------------
 
-I**January 2001 - December 2005:** *Freelance consultant and developer*
+**January 2001 - December 2005:** *Freelance consultant and developer*
 
 ###### Duties and responsibilities: Sysadmin and developer
 
