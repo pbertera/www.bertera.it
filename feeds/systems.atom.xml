@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="https://www.bertera.it/" rel="alternate"></link><link href="https://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>https://www.bertera.it/</id><updated>2022-02-23T00:00:00+01:00</updated><entry><title>Running rootless Red Hat Quay with podman</title><link href="https://www.bertera.it/running-rootless-red-hat-quay-with-podman.html" rel="alternate"></link><published>2022-02-23T00:00:00+01:00</published><updated>2022-02-23T00:00:00+01:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2022-02-23:running-rootless-red-hat-quay-with-podman.html</id><summary type="html">&lt;p&gt;&lt;a href="https://podman.io"&gt;Podman&lt;/a&gt;, as the name suggests (&lt;strong&gt;Pod Man&lt;/strong&gt;ager tool) has the concept of pods.&lt;/p&gt;
-&lt;p&gt;Basically a pod is a goup of containers sharing the same kernel namespaces.
-When a pod is created an "infra" container is instantiated with the purpose to hold the namespaces associated with the pod.&lt;/p&gt;
-&lt;p&gt;The other containers belonging to the pod are spawn using the same namespaces.&lt;/p&gt;
-&lt;p&gt;This feature comes handy when you have to deploy applications composed by multiple containers.&lt;/p&gt;
-&lt;p&gt;Icing on the cake is that podman supports the Kubernets Pod YAML syntax, thus you can import and export the workloads easily.&lt;/p&gt;
-&lt;h2&gt;Setting up Quay Container Registry&lt;/h2&gt;
-&lt;p&gt;First of all we have to create three folders where the permanent data is stored:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;~/quay/config&lt;/code&gt; contains the congifuration&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;~/quay/postgres&lt;/code&gt; contains the &lt;code&gt;pg-data&lt;/code&gt; of the PosgreSQL container&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;~/quay/storage&lt;/code&gt; holds the container images served by quay&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mkdir -p ~/quay/&lt;span class="o"&gt;{&lt;/span&gt;config,postgres,storage&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Since the PostgreSQL container is running with UID 26 we have to set an ACL for the &lt;code&gt;postgres&lt;/code&gt; folder&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ setfacl -m u:26:-wx ~/quay/postgres
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Podman"></category><category term="Containers"></category><category term="Linux"></category></entry><entry><title>Introducing dcw: a Poor Man PaaS tool</title><link href="https://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html" rel="alternate"></link><published>2017-03-28T22:25:00+02:00</published><updated>2017-03-28T22:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2017-03-28:introducing-dcw-a-poor-man-paas-tool.html</id><summary type="html">&lt;p&gt;Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the &lt;a href="https://docs.docker.com/compose/"&gt;&lt;code&gt;docker-compose&lt;/code&gt;&lt;/a&gt; command. The meaning of such wrapper is to expose some &lt;code&gt;docker-compose&lt;/code&gt; &lt;a href="https://docs.docker.com/compose/reference/"&gt;operations&lt;/a&gt;  and a set of well defined commands on the host machine.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Pietro Bertera's Blog</title><link href="https://www.bertera.it/" rel="alternate"></link><link href="https://www.bertera.it/feeds/systems.atom.xml" rel="self"></link><id>https://www.bertera.it/</id><updated>2017-03-28T22:25:00+02:00</updated><entry><title>Introducing dcw: a Poor Man PaaS tool</title><link href="https://www.bertera.it/introducing-dcw-a-poor-man-paas-tool.html" rel="alternate"></link><published>2017-03-28T22:25:00+02:00</published><updated>2017-03-28T22:25:00+02:00</updated><author><name>Pietro</name></author><id>tag:www.bertera.it,2017-03-28:introducing-dcw-a-poor-man-paas-tool.html</id><summary type="html">&lt;p&gt;Dcw (Docker Compose Wrapper) is very small and dirty Bash script wrapping the &lt;a href="https://docs.docker.com/compose/"&gt;&lt;code&gt;docker-compose&lt;/code&gt;&lt;/a&gt; command. The meaning of such wrapper is to expose some &lt;code&gt;docker-compose&lt;/code&gt; &lt;a href="https://docs.docker.com/compose/reference/"&gt;operations&lt;/a&gt;  and a set of well defined commands on the host machine.&lt;/p&gt;
 &lt;p&gt;The typical use-case is an SSH command executed via the &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; file, in this way you can provide provide some &lt;code&gt;docker-compose&lt;/code&gt; commands that can be execute with some specific &lt;code&gt;docker-compose&lt;/code&gt; config files.&lt;/p&gt;
 &lt;h2&gt;The containers pool&lt;/h2&gt;
 &lt;p&gt;A pool is defined via a &lt;code&gt;docker-compose&lt;/code&gt; YAML config file. The name of the config file defines the pool name.&lt;/p&gt;
