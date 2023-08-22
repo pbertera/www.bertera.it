@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Pietro" />
-<meta name="description" content="If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides …" />
+<meta name="description" content="If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides ..." />
 <meta name="keywords" content="Docker, Python, REST, PowerDNS">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="A DNS server with Batteries Included with PowerDNS, Docker and Python"/>
-<meta property="og:description" content="If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides …"/>
+<meta property="og:description" content="If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides ..."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html"/>
+<meta property="og:url" content="https://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2016-09-06 03:25:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://www.bertera.it/author/pietro.html">
+<meta property="article:author" content="https://www.bertera.it/author/pietro.html">
 <meta property="article:section" content="Systems"/>
 <meta property="article:tag" content="Docker"/>
 <meta property="article:tag" content="Python"/>
@@ -50,14 +50,14 @@
 <body>
   <aside>
     <div>
-      <a href="http://www.bertera.it">
+      <a href="https://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -70,145 +70,149 @@
   </aside>
   <main>
     <nav>
-      <a href="http://www.bertera.it">Home</a>
+      <a href="https://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="a-dns-server-with-batteries-included-with-powerdns-docker-and-python">A DNS server with Batteries Included with PowerDNS, Docker and Python</h1>
-    <p>Posted on Tue 06 September 2016 in <a href="http://www.bertera.it/category/systems.html">Systems</a></p>
+    <p>Posted on Tue 06 September 2016 in <a href="https://www.bertera.it/category/systems.html">Systems</a></p>
   </header>
   <div>
     <p>If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind <a href="http://www.zytrax.com/books/dns/ch6/mydomain.html">zone file</a> is an annoying and error-prone task.</p>
 <p>In order to make this job simpler I worked on <a href="https://hub.docker.com/r/pbertera/pdns/">this</a> Docker container: the container instantiate a <a href="https://www.powerdns.com/">PowerDNS</a> and provides an easy-to-use <a href="https://github.com/pbertera/PowerDNS-CLI">CLI script</a> interacting with the REST API.</p>
 <h2>How to use:</h2>
 <p>Inspired by the illuminating <a href="https://twitter.com/jessfraz">@jessfraz</a> <a href="https://blog.jessfraz.com/post/docker-containers-on-the-desktop/">post</a> about containerizing everything, I added to my <a href="https://github.com/pbertera/dotfiles/blob/master/.dockerfunc">.dockerfunc</a> some helper functions: </p>
-<div class="highlight"><pre><span></span><code>pdns<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span>pdns
-<span class="w">    </span><span class="k">if</span><span class="w"> </span>is_running<span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span>bailout<span class="w"> </span><span class="s2">&quot;Container </span><span class="nv">$name</span><span class="s2"> is already running&quot;</span>
-<span class="w">        </span><span class="k">return</span>
-<span class="w">    </span><span class="k">fi</span>
+<div class="highlight"><pre><span></span>pdns<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local</span> <span class="nv">name</span><span class="o">=</span>pdns
+    <span class="k">if</span> is_running <span class="nv">$name</span><span class="p">;</span> <span class="k">then</span>
+        bailout <span class="s2">&quot;Container </span><span class="nv">$name</span><span class="s2"> is already running&quot;</span>
+        <span class="k">return</span>
+    <span class="k">fi</span>
 
-<span class="w">    </span>del_stopped<span class="w"> </span><span class="nv">$name</span>
+    del_stopped <span class="nv">$name</span>
 
-<span class="w">    </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span><span class="nv">$name</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">API_KEY</span><span class="o">=</span>MySecretKey<span class="w"> </span>-e<span class="w"> </span><span class="nv">WEB_PORT</span><span class="o">=</span><span class="m">8081</span><span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PDNS_DB</span><span class="si">}</span>:/data/pdns.db<span class="w"> </span>-p<span class="w"> </span><span class="m">8081</span>:8081<span class="w"> </span>-p<span class="w"> </span><span class="m">53</span>:53<span class="w"> </span>-p<span class="w"> </span><span class="m">53</span>:53/udp<span class="w"> </span>pbertera/<span class="si">${</span><span class="nv">name</span><span class="si">}</span>
+    docker run -it --name <span class="nv">$name</span> -e <span class="nv">API_KEY</span><span class="o">=</span>MySecretKey -e <span class="nv">WEB_PORT</span><span class="o">=</span><span class="m">8081</span> -v <span class="si">${</span><span class="nv">PDNS_DB</span><span class="si">}</span>:/data/pdns.db -p <span class="m">8081</span>:8081 -p <span class="m">53</span>:53 -p <span class="m">53</span>:53/udp pbertera/<span class="si">${</span><span class="nv">name</span><span class="si">}</span>
 <span class="o">}</span>
 
 pdns.py<span class="o">(){</span>
-<span class="w">    </span>relies_on<span class="w"> </span>pdns
-<span class="w">    </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pdns<span class="w"> </span>pdns.py<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+    relies_on pdns
+    docker <span class="nb">exec</span> -it pdns pdns.py <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 <span class="o">}</span>
-</code></pre></div>
+</pre></div>
+
 
 <p><em>NOTE:</em> for the first run you will need to create an empty database file: <code>touch ${PDNS_DB}</code></p>
 <p>Then I can start the container:</p>
-<div class="highlight"><pre><span></span><code><span class="n">hank</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="o">$</span><span class="w"> </span><span class="n">pdns</span>
-<span class="n">pdns</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">domains</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">name_index</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">16</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">31</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">rec_name_index</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">32</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">nametype_index</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">33</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">domain_id</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">34</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">orderindex</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">37</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">supermasters</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">43</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">ip_nameserver_pk</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">46</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">comments</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">57</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">comments_domain_id_index</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">58</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">comments_nametype_index</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">59</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">comments_order_idx</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">62</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">domainmetadata</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">70</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">domainmetaidindex</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">73</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">cryptokeys</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">82</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">domainidindex</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">85</span><span class="p">:</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">tsigkeys</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Error</span><span class="p">:</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">92</span><span class="p">:</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">namealgoindex</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span>
-<span class="n">Imported</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="n">structure</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Reading</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="n">entropy</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;/dev/urandom&#39;</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Loading</span><span class="w"> </span><span class="s1">&#39;/usr/lib/x86_64-linux-gnu/pdns/libgsqlite3backend.so&#39;</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">standalone</span><span class="w"> </span><span class="n">pdns</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Listening</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">controlsocket</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s1">&#39;/var/run/pdns.controlsocket&#39;</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">UDP</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">53</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Unable</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">timestamp</span><span class="w"> </span><span class="n">reporting</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">socket</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">UDPv6</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="p">[::]:</span><span class="mi">53</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">TCP</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">53</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">TCPv6</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">bound</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="p">[::]:</span><span class="mi">53</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">PowerDNS</span><span class="w"> </span><span class="n">Authoritative</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="mf">4.0</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">alpha2</span><span class="w"> </span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="w"> </span><span class="mi">2001</span><span class="o">-</span><span class="mi">2016</span><span class="w"> </span><span class="n">PowerDNS</span><span class="o">.</span><span class="n">COM</span><span class="w"> </span><span class="n">BV</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Using</span><span class="w"> </span><span class="mi">64</span><span class="o">-</span><span class="n">bits</span><span class="w"> </span><span class="n">mode</span><span class="o">.</span><span class="w"> </span><span class="n">Built</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">gcc</span><span class="w"> </span><span class="mf">5.3</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="mf">20160330.</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">PowerDNS</span><span class="w"> </span><span class="n">comes</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">ABSOLUTELY</span><span class="w"> </span><span class="n">NO</span><span class="w"> </span><span class="n">WARRANTY</span><span class="o">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">free</span><span class="w"> </span><span class="n">software</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">welcome</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">redistribute</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">according</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">terms</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">GPL</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="mf">2.</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Listening</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">HTTP</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">8081</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Creating</span><span class="w"> </span><span class="n">backend</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">TCP</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">About</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">backend</span><span class="w"> </span><span class="n">threads</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UDP</span>
-<span class="n">Sep</span><span class="w"> </span><span class="mi">06</span><span class="w"> </span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="n">Done</span><span class="w"> </span><span class="n">launching</span><span class="w"> </span><span class="n">threads</span><span class="p">,</span><span class="w"> </span><span class="n">ready</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">distribute</span><span class="w"> </span><span class="n">questions</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>hank-2:~ pietro$ pdns
+pdns
+Error: near line 3: table domains already exists
+Error: near line 13: index name_index already exists
+Error: near line 16: table records already exists
+Error: near line 31: index rec_name_index already exists
+Error: near line 32: index nametype_index already exists
+Error: near line 33: index domain_id already exists
+Error: near line 34: index orderindex already exists
+Error: near line 37: table supermasters already exists
+Error: near line 43: index ip_nameserver_pk already exists
+Error: near line 46: table comments already exists
+Error: near line 57: index comments_domain_id_index already exists
+Error: near line 58: index comments_nametype_index already exists
+Error: near line 59: index comments_order_idx already exists
+Error: near line 62: table domainmetadata already exists
+Error: near line 70: index domainmetaidindex already exists
+Error: near line 73: table cryptokeys already exists
+Error: near line 82: index domainidindex already exists
+Error: near line 85: table tsigkeys already exists
+Error: near line 92: index namealgoindex already exists
+Imported schema structure
+Sep 06 01:24:36 Reading random entropy from &#39;/dev/urandom&#39;
+Sep 06 01:24:36 Loading &#39;/usr/lib/x86_64-linux-gnu/pdns/libgsqlite3backend.so&#39;
+Sep 06 01:24:36 This is a standalone pdns
+Sep 06 01:24:36 Listening on controlsocket in &#39;/var/run/pdns.controlsocket&#39;
+Sep 06 01:24:36 UDP server bound to 0.0.0.0:53
+Sep 06 01:24:36 Unable to enable timestamp reporting for socket
+Sep 06 01:24:36 UDPv6 server bound to [::]:53
+Sep 06 01:24:36 TCP server bound to 0.0.0.0:53
+Sep 06 01:24:36 TCPv6 server bound to [::]:53
+Sep 06 01:24:36 PowerDNS Authoritative Server 4.0.0-alpha2 (C) 2001-2016 PowerDNS.COM BV
+Sep 06 01:24:36 Using 64-bits mode. Built using gcc 5.3.1 20160330.
+Sep 06 01:24:36 PowerDNS comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it according to the terms of the GPL version 2.
+Sep 06 01:24:36 Listening for HTTP requests on 0.0.0.0:8081
+Sep 06 01:24:36 Creating backend connection for TCP
+Sep 06 01:24:36 About to create 3 backend threads for UDP
+Sep 06 01:24:36 Done launching threads, ready to distribute questions
+</pre></div>
+
 
 <p>Now PowerDNS is running and listening on the port <code>8081</code> for the REST API and the port <code>53</code> UDP and TCP for the DNS queries, the database is permanently stored into the SQLite DB file <code>${PDNS_DB}</code>.</p>
 <p>Using the command <code>pdns.py</code> you can manage the zones:</p>
 <h3>Creating a zone:</h3>
-<div class="highlight"><pre><span></span><code>hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameserver ns.example.com.  add_zone
+<div class="highlight"><pre><span></span>hank-2:~ pietro$ pdns.py --zone example.com. --zoneType MASTER --nameserver ns.example.com.  add_zone
 2016-09-06 01:57:09,938 pdns         INFO     DNS Zone &#39;example.com.&#39; Successfully Added...
 hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.com. --content 172.16.18.15 add_record
 2016-09-06 01:58:04,316 pdns         INFO     DNS Record &#39;ns.example.com.&#39; Successfully Added/Updated
-</code></pre></div>
+</pre></div>
+
 
 <h4>Digging the zone:</h4>
-<div class="highlight"><pre><span></span><code><span class="n">hank</span><span class="o">-</span><span class="mi">2</span><span class="err">:</span><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@localhost</span><span class="w"> </span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="n">NS</span>
+<div class="highlight"><pre><span></span><span class="nt">hank-2</span><span class="o">:~</span> <span class="nt">pietro</span><span class="o">$</span> <span class="nt">dig</span> <span class="p">@</span><span class="k">localhost</span> <span class="nt">example</span><span class="p">.</span><span class="nc">com</span> <span class="nt">NS</span>
 
-<span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.8.3</span><span class="o">-</span><span class="n">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nv">@localhost</span><span class="w"> </span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="n">NS</span>
-<span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="k">found</span><span class="p">)</span>
-<span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span>
-<span class="p">;;</span><span class="w"> </span><span class="n">Got</span><span class="w"> </span><span class="nl">answer</span><span class="p">:</span>
-<span class="p">;;</span><span class="w"> </span><span class="o">-&gt;&gt;</span><span class="n">HEADER</span><span class="o">&lt;&lt;-</span><span class="w"> </span><span class="nl">opcode</span><span class="p">:</span><span class="w"> </span><span class="n">QUERY</span><span class="p">,</span><span class="w"> </span><span class="nl">status</span><span class="p">:</span><span class="w"> </span><span class="n">NOERROR</span><span class="p">,</span><span class="w"> </span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="mi">57709</span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">flags</span><span class="p">:</span><span class="w"> </span><span class="n">qr</span><span class="w"> </span><span class="n">aa</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"> </span><span class="nl">QUERY</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">AUTHORITY</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">ADDITIONAL</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">recursion</span><span class="w"> </span><span class="n">requested</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">available</span>
+<span class="p">;</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="nt">DiG</span> <span class="nt">9</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">3-P1</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="p">@</span><span class="k">localhost</span> <span class="nt">example</span><span class="p">.</span><span class="nc">com</span> <span class="nt">NS</span>
+<span class="p">;</span> <span class="o">(</span><span class="nt">2</span> <span class="nt">servers</span> <span class="nt">found</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">global</span> <span class="nt">options</span><span class="o">:</span> <span class="o">+</span><span class="nt">cmd</span>
+<span class="o">;;</span> <span class="nt">Got</span> <span class="nt">answer</span><span class="o">:</span>
+<span class="o">;;</span> <span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span> <span class="nt">opcode</span><span class="o">:</span> <span class="nt">QUERY</span><span class="o">,</span> <span class="nt">status</span><span class="o">:</span> <span class="nt">NOERROR</span><span class="o">,</span> <span class="nt">id</span><span class="o">:</span> <span class="nt">57709</span>
+<span class="o">;;</span> <span class="nt">flags</span><span class="o">:</span> <span class="nt">qr</span> <span class="nt">aa</span> <span class="nt">rd</span><span class="o">;</span> <span class="nt">QUERY</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">ANSWER</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">AUTHORITY</span><span class="o">:</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">ADDITIONAL</span><span class="o">:</span> <span class="nt">0</span>
+<span class="o">;;</span> <span class="nt">WARNING</span><span class="o">:</span> <span class="nt">recursion</span> <span class="nt">requested</span> <span class="nt">but</span> <span class="nt">not</span> <span class="nt">available</span>
 
-<span class="p">;;</span><span class="w"> </span><span class="n">QUESTION</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span>
-<span class="p">;</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w">           </span><span class="ow">IN</span><span class="w">  </span><span class="n">NS</span>
+<span class="o">;;</span> <span class="nt">QUESTION</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="o">;</span><span class="nt">example</span><span class="p">.</span><span class="nc">com</span><span class="o">.</span>           <span class="nt">IN</span>  <span class="nt">NS</span>
 
-<span class="p">;;</span><span class="w"> </span><span class="n">ANSWER</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span>
-<span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w">        </span><span class="mi">3600</span><span class="w">    </span><span class="ow">IN</span><span class="w">  </span><span class="n">NS</span><span class="w">  </span><span class="n">ns</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span>
+<span class="o">;;</span> <span class="nt">ANSWER</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="nt">example</span><span class="p">.</span><span class="nc">com</span><span class="o">.</span>        <span class="nt">3600</span>    <span class="nt">IN</span>  <span class="nt">NS</span>  <span class="nt">ns</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">.</span>
 
-<span class="p">;;</span><span class="w"> </span><span class="n">Query</span><span class="w"> </span><span class="nc">time</span><span class="err">:</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="n">msec</span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">SERVER</span><span class="p">:</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="n">#53</span><span class="p">(</span><span class="mf">127.0.0.1</span><span class="p">)</span>
-<span class="p">;;</span><span class="w"> </span><span class="k">WHEN</span><span class="err">:</span><span class="w"> </span><span class="n">Tue</span><span class="w"> </span><span class="n">Sep</span><span class="w">  </span><span class="mi">6</span><span class="w"> </span><span class="mi">03</span><span class="err">:</span><span class="mi">59</span><span class="err">:</span><span class="mi">18</span><span class="w"> </span><span class="mi">2016</span>
-<span class="p">;;</span><span class="w"> </span><span class="n">MSG</span><span class="w"> </span><span class="k">SIZE</span><span class="w">  </span><span class="nl">rcvd</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span>
+<span class="o">;;</span> <span class="nt">Query</span> <span class="nt">time</span><span class="o">:</span> <span class="nt">16</span> <span class="nt">msec</span>
+<span class="o">;;</span> <span class="nt">SERVER</span><span class="o">:</span> <span class="nt">127</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">1</span><span class="p">#</span><span class="nn">53</span><span class="o">(</span><span class="nt">127</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">1</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">WHEN</span><span class="o">:</span> <span class="nt">Tue</span> <span class="nt">Sep</span>  <span class="nt">6</span> <span class="nt">03</span><span class="p">:</span><span class="nd">59</span><span class="p">:</span><span class="nd">18</span> <span class="nt">2016</span>
+<span class="o">;;</span> <span class="nt">MSG</span> <span class="nt">SIZE</span>  <span class="nt">rcvd</span><span class="o">:</span> <span class="nt">46</span>
 
-<span class="n">hank</span><span class="o">-</span><span class="mi">2</span><span class="err">:</span><span class="o">~</span><span class="w"> </span><span class="n">pietro</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@localhost</span><span class="w"> </span><span class="n">ns</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="w"> </span>
+<span class="nt">hank-2</span><span class="o">:~</span> <span class="nt">pietro</span><span class="o">$</span> <span class="nt">dig</span> <span class="p">@</span><span class="k">localhost</span> <span class="nt">ns</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span> 
 
-<span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.8.3</span><span class="o">-</span><span class="n">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nv">@localhost</span><span class="w"> </span><span class="n">ns</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
-<span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="k">found</span><span class="p">)</span>
-<span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span>
-<span class="p">;;</span><span class="w"> </span><span class="n">Got</span><span class="w"> </span><span class="nl">answer</span><span class="p">:</span>
-<span class="p">;;</span><span class="w"> </span><span class="o">-&gt;&gt;</span><span class="n">HEADER</span><span class="o">&lt;&lt;-</span><span class="w"> </span><span class="nl">opcode</span><span class="p">:</span><span class="w"> </span><span class="n">QUERY</span><span class="p">,</span><span class="w"> </span><span class="nl">status</span><span class="p">:</span><span class="w"> </span><span class="n">NOERROR</span><span class="p">,</span><span class="w"> </span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="mi">49682</span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">flags</span><span class="p">:</span><span class="w"> </span><span class="n">qr</span><span class="w"> </span><span class="n">aa</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"> </span><span class="nl">QUERY</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">AUTHORITY</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">ADDITIONAL</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">recursion</span><span class="w"> </span><span class="n">requested</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">available</span>
+<span class="p">;</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="nt">DiG</span> <span class="nt">9</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">3-P1</span> <span class="o">&lt;&lt;&gt;&gt;</span> <span class="p">@</span><span class="k">localhost</span> <span class="nt">ns</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span>
+<span class="p">;</span> <span class="o">(</span><span class="nt">2</span> <span class="nt">servers</span> <span class="nt">found</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">global</span> <span class="nt">options</span><span class="o">:</span> <span class="o">+</span><span class="nt">cmd</span>
+<span class="o">;;</span> <span class="nt">Got</span> <span class="nt">answer</span><span class="o">:</span>
+<span class="o">;;</span> <span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span> <span class="nt">opcode</span><span class="o">:</span> <span class="nt">QUERY</span><span class="o">,</span> <span class="nt">status</span><span class="o">:</span> <span class="nt">NOERROR</span><span class="o">,</span> <span class="nt">id</span><span class="o">:</span> <span class="nt">49682</span>
+<span class="o">;;</span> <span class="nt">flags</span><span class="o">:</span> <span class="nt">qr</span> <span class="nt">aa</span> <span class="nt">rd</span><span class="o">;</span> <span class="nt">QUERY</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">ANSWER</span><span class="o">:</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">AUTHORITY</span><span class="o">:</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">ADDITIONAL</span><span class="o">:</span> <span class="nt">0</span>
+<span class="o">;;</span> <span class="nt">WARNING</span><span class="o">:</span> <span class="nt">recursion</span> <span class="nt">requested</span> <span class="nt">but</span> <span class="nt">not</span> <span class="nt">available</span>
 
-<span class="p">;;</span><span class="w"> </span><span class="n">QUESTION</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span>
-<span class="p">;</span><span class="n">ns</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w">            </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span>
+<span class="o">;;</span> <span class="nt">QUESTION</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="o">;</span><span class="nt">ns</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">.</span>            <span class="nt">IN</span>  <span class="nt">A</span>
 
-<span class="p">;;</span><span class="w"> </span><span class="n">ANSWER</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span>
-<span class="n">ns</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w">     </span><span class="mi">3600</span><span class="w">    </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">172.16.18.15</span>
+<span class="o">;;</span> <span class="nt">ANSWER</span> <span class="nt">SECTION</span><span class="o">:</span>
+<span class="nt">ns</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">.</span>     <span class="nt">3600</span>    <span class="nt">IN</span>  <span class="nt">A</span>   <span class="nt">172</span><span class="p">.</span><span class="nc">16</span><span class="p">.</span><span class="nc">18</span><span class="p">.</span><span class="nc">15</span>
 
-<span class="p">;;</span><span class="w"> </span><span class="n">Query</span><span class="w"> </span><span class="nc">time</span><span class="err">:</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="n">msec</span>
-<span class="p">;;</span><span class="w"> </span><span class="nl">SERVER</span><span class="p">:</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="n">#53</span><span class="p">(</span><span class="mf">127.0.0.1</span><span class="p">)</span>
-<span class="p">;;</span><span class="w"> </span><span class="k">WHEN</span><span class="err">:</span><span class="w"> </span><span class="n">Tue</span><span class="w"> </span><span class="n">Sep</span><span class="w">  </span><span class="mi">6</span><span class="w"> </span><span class="mi">03</span><span class="err">:</span><span class="mi">59</span><span class="err">:</span><span class="mi">58</span><span class="w"> </span><span class="mi">2016</span>
-<span class="p">;;</span><span class="w"> </span><span class="n">MSG</span><span class="w"> </span><span class="k">SIZE</span><span class="w">  </span><span class="nl">rcvd</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span>
-</code></pre></div>
+<span class="o">;;</span> <span class="nt">Query</span> <span class="nt">time</span><span class="o">:</span> <span class="nt">13</span> <span class="nt">msec</span>
+<span class="o">;;</span> <span class="nt">SERVER</span><span class="o">:</span> <span class="nt">127</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">1</span><span class="p">#</span><span class="nn">53</span><span class="o">(</span><span class="nt">127</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">1</span><span class="o">)</span>
+<span class="o">;;</span> <span class="nt">WHEN</span><span class="o">:</span> <span class="nt">Tue</span> <span class="nt">Sep</span>  <span class="nt">6</span> <span class="nt">03</span><span class="p">:</span><span class="nd">59</span><span class="p">:</span><span class="nd">58</span> <span class="nt">2016</span>
+<span class="o">;;</span> <span class="nt">MSG</span> <span class="nt">SIZE</span>  <span class="nt">rcvd</span><span class="o">:</span> <span class="nt">48</span>
+</pre></div>
+
 
 <h2>Credits</h2>
 <p>All the credits to <a href="http://everythingshouldbevirtual.com/">Larry Smith Jr.</a> for the original pdns.py script and <a href="https://github.com/renan">Renan Gonçalves</a> for the original <a href="https://github.com/renan/powerdns-docker">PowerDNS+MySQL</a> Docker container</p>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="http://www.bertera.it/tag/docker.html">Docker</a>
-      <a href="http://www.bertera.it/tag/python.html">Python</a>
-      <a href="http://www.bertera.it/tag/rest.html">REST</a>
-      <a href="http://www.bertera.it/tag/powerdns.html">PowerDNS</a>
+      <a href="https://www.bertera.it/tag/docker.html">Docker</a>
+      <a href="https://www.bertera.it/tag/python.html">Python</a>
+      <a href="https://www.bertera.it/tag/rest.html">REST</a>
+      <a href="https://www.bertera.it/tag/powerdns.html">PowerDNS</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -250,7 +254,7 @@ hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.co
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "http://www.bertera.it",
+  "url" : "https://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -266,11 +270,11 @@ hank-2:~ pietro$ pdns.py --zone example.com. --recordType A --name ns.example.co
   "author": {
     "@type": "Person",
     "name": "Pietro",
-    "url": "http://www.bertera.it/author/pietro.html"
+    "url": "https://www.bertera.it/author/pietro.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "http://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html",
-  "description": "If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides …"
+  "url": "https://www.bertera.it/a-dns-server-with-batteries-included-with-powerdns-docker-and-python.html",
+  "description": "If you have to frequently create, destroy and re-configure DNS zones for testing purposes you will agree that manually editing a Bind zone file is an annoying and error-prone task. In order to make this job simpler I worked on this Docker container: the container instantiate a PowerDNS and provides ..."
 }
 </script></body>
 </html>

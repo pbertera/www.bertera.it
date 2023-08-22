@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Pietro" />
-<meta name="description" content="After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the …" />
+<meta name="description" content="After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..." />
 <meta name="keywords" content="Kubernetes, OpenShift">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="Kubernetes semaphore Validating Webhook"/>
-<meta property="og:description" content="After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the …"/>
+<meta property="og:description" content="After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="http://www.bertera.it/kubernetes-semaphore-validating-webhook.html"/>
+<meta property="og:url" content="https://www.bertera.it/kubernetes-semaphore-validating-webhook.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2020-09-24 20:25:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://www.bertera.it/author/pietro.html">
+<meta property="article:author" content="https://www.bertera.it/author/pietro.html">
 <meta property="article:section" content="Kubernetes"/>
 <meta property="article:tag" content="Kubernetes"/>
 <meta property="article:tag" content="OpenShift"/>
@@ -48,14 +48,14 @@
 <body>
   <aside>
     <div>
-      <a href="http://www.bertera.it">
+      <a href="https://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -68,24 +68,24 @@
   </aside>
   <main>
     <nav>
-      <a href="http://www.bertera.it">Home</a>
+      <a href="https://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="kubernetes-semaphore-validating-webhook">Kubernetes semaphore Validating Webhook</h1>
-    <p>Posted on Thu 24 September 2020 in <a href="http://www.bertera.it/category/kubernetes.html">Kubernetes</a></p>
+    <p>Posted on Thu 24 September 2020 in <a href="https://www.bertera.it/category/kubernetes.html">Kubernetes</a></p>
   </header>
   <div>
     <p>After more than 2 years a new post!</p>
 <p>In the path of learning Kubernetes <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">Dynamic Admission Control</a> I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label.</p>
 <p><a href="https://github.com/pbertera/k8s-semaphore">k8s-semaphore</a> is a quick and dirty <a href="https://webpy.org/">web.py</a> app implementing the webhook, can be deployed on any Kubernetes cluster.</p>
 <p>Here is a self-explaining usage of the admission controller:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF | oc apply -f -</span>
+<div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOF | oc apply -f -</span>
 <span class="s">apiVersion: v1</span>
 <span class="s">kind: Pod</span>
 <span class="s">metadata:</span>
@@ -101,19 +101,20 @@
 <span class="s">    args: [ &quot;while true; do sleep 30; done;&quot; ]</span>
 <span class="s">EOF</span>
 
-$<span class="w"> </span>oc<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span><span class="nb">test</span>
-NAME<span class="w">     </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
-<span class="nb">test</span><span class="w">     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>29m
+$ oc get pod <span class="nb">test</span>
+NAME     READY   STATUS    RESTARTS   AGE
+<span class="nb">test</span>     <span class="m">1</span>/1     Running   <span class="m">0</span>          29m
 
-$<span class="w"> </span>oc<span class="w"> </span>delete<span class="w"> </span><span class="nb">test</span>
-Error<span class="w"> </span>from<span class="w"> </span>server:<span class="w"> </span>admission<span class="w"> </span>webhook<span class="w"> </span><span class="s2">&quot;k8s-semaphore.k8s-semaphore.svc&quot;</span><span class="w"> </span>denied<span class="w"> </span>the<span class="w"> </span>request:<span class="w"> </span>Resource<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="o">(</span>kind:<span class="w"> </span>Pod,<span class="w"> </span>version:<span class="w"> </span>v1,<span class="w"> </span>group:<span class="w"> </span><span class="o">)</span><span class="w"> </span>is<span class="w"> </span>annotated<span class="w"> </span>with<span class="w"> </span>bertera.it/k8s-semaphore,<span class="w"> </span>cannot<span class="w"> </span>be<span class="w"> </span>removed
+$ oc delete <span class="nb">test</span>
+Error from server: admission webhook <span class="s2">&quot;k8s-semaphore.k8s-semaphore.svc&quot;</span> denied the request: Resource <span class="nb">test</span> <span class="o">(</span>kind: Pod, version: v1, group: <span class="o">)</span> is annotated with bertera.it/k8s-semaphore, cannot be removed
 
-$<span class="w"> </span>oc<span class="w"> </span>annotate<span class="w"> </span>pod<span class="w"> </span><span class="nb">test</span><span class="w"> </span>bertera.it/k8s-semaphore-
-pod/test<span class="w"> </span>annotated
+$ oc annotate pod <span class="nb">test</span> bertera.it/k8s-semaphore-
+pod/test annotated
 
-$<span class="w"> </span>oc<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span><span class="nb">test</span>
-pod<span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="w"> </span>deleted
-</code></pre></div>
+$ oc delete pod <span class="nb">test</span>
+pod <span class="s2">&quot;test&quot;</span> deleted
+</pre></div>
+
 
 <p>The label name and value can be modified via the environemt variables <code>SEMAPHORE_ANNOTATION</code> and <code>SEMAPHORE_RED</code>. Depending on the definition of the <code>ValidatingWebhookConfiguration</code> the admission controller can be applied to any Kubernetes resource and verbs.</p>
 <p>Look at the <a href="https://github.com/pbertera/k8s-semaphore/blob/master/manifest.yaml">manifest.yaml</a> for an example deployment and <code>ValidatingWebhookConfiguration</code>.</p>
@@ -121,8 +122,8 @@ pod<span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="http://www.bertera.it/tag/kubernetes.html">Kubernetes</a>
-      <a href="http://www.bertera.it/tag/openshift.html">OpenShift</a>
+      <a href="https://www.bertera.it/tag/kubernetes.html">Kubernetes</a>
+      <a href="https://www.bertera.it/tag/openshift.html">OpenShift</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -164,7 +165,7 @@ pod<span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "http://www.bertera.it",
+  "url" : "https://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -180,11 +181,11 @@ pod<span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="
   "author": {
     "@type": "Person",
     "name": "Pietro",
-    "url": "http://www.bertera.it/author/pietro.html"
+    "url": "https://www.bertera.it/author/pietro.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "http://www.bertera.it/kubernetes-semaphore-validating-webhook.html",
-  "description": "After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the …"
+  "url": "https://www.bertera.it/kubernetes-semaphore-validating-webhook.html",
+  "description": "After more than 2 years a new post! In the path of learning Kubernetes Dynamic Admission Control I wrote a small webhook to be used as a semaphore to deny certains operations on k8s objects with a specific label. k8s-semaphore is a quick and dirty web.py app implementing the ..."
 }
 </script></body>
 </html>

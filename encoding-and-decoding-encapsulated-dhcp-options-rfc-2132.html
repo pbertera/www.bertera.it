@@ -3,13 +3,13 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/stylesheet/style.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/pygments/default.min.css">
-  <link rel="stylesheet" type="text/css" href="http://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.bertera.it/theme/font-awesome/css/font-awesome.min.css">
 
 
-    <link href="http://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
+    <link href="https://www.bertera.it/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Pietro Bertera's Blog Atom">
 
 
 
@@ -28,17 +28,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="admin" />
-<meta name="description" content="Vendor specific DHCP options may be provided encapsulated in DHCP option 43. With this little script you can encode and decode vendor encapsulated option according to RFC 2132. For example with this command you can tunnel options 66 (TFTP Server), 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS …" />
+<meta name="description" content="Vendor specific DHCP options may be provided encapsulated in DHCP option 43. With this little script you can encode and decode vendor encapsulated option according to RFC 2132. For example with this command you can tunnel options 66 (TFTP Server), 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS ..." />
 <meta name="keywords" content="decoding, dhcp, encapsulated options, encoding, python, rfc2132">
 <meta property="og:site_name" content="Pietro Bertera's Blog"/>
 <meta property="og:title" content="Encoding and decoding Encapsulated DHCP options (RFC 2132)"/>
-<meta property="og:description" content="Vendor specific DHCP options may be provided encapsulated in DHCP option 43. With this little script you can encode and decode vendor encapsulated option according to RFC 2132. For example with this command you can tunnel options 66 (TFTP Server), 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS …"/>
+<meta property="og:description" content="Vendor specific DHCP options may be provided encapsulated in DHCP option 43. With this little script you can encode and decode vendor encapsulated option according to RFC 2132. For example with this command you can tunnel options 66 (TFTP Server), 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS ..."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="http://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html"/>
+<meta property="og:url" content="https://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2012-10-19 10:38:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://www.bertera.it/author/admin.html">
+<meta property="article:author" content="https://www.bertera.it/author/admin.html">
 <meta property="article:section" content="Python"/>
 <meta property="article:tag" content="decoding"/>
 <meta property="article:tag" content="dhcp"/>
@@ -52,14 +52,14 @@
 <body>
   <aside>
     <div>
-      <a href="http://www.bertera.it">
+      <a href="https://www.bertera.it">
         <img src="//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120" alt="Pietro Bertera" title="Pietro Bertera">
       </a>
-      <h1><a href="http://www.bertera.it">Pietro Bertera</a></h1>
+      <h1><a href="https://www.bertera.it">Pietro Bertera</a></h1>
 <p>Something about ...</p>      <nav>
         <ul class="list">
-          <li><a href="http://www.bertera.it/pages/about.html#about">About</a></li>
-          <li><a href="http://www.bertera.it/pages/contact.html#contact">Contact</a></li>
+          <li><a href="https://www.bertera.it/pages/about.html#about">About</a></li>
+          <li><a href="https://www.bertera.it/pages/contact.html#contact">Contact</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -72,82 +72,84 @@
   </aside>
   <main>
     <nav>
-      <a href="http://www.bertera.it">Home</a>
+      <a href="https://www.bertera.it">Home</a>
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="http://www.bertera.it/feeds/all.atom.xml">Atom</a>
+      <a href="https://www.bertera.it/feeds/all.atom.xml">Atom</a>
     </nav>
 
 <article>
   <header>
     <h1 id="encoding-and-decoding-encapsulated-dhcp-options-rfc-2132">Encoding and decoding Encapsulated DHCP options (RFC 2132)</h1>
-    <p>Posted on Fri 19 October 2012 in <a href="http://www.bertera.it/category/python.html">Python</a></p>
+    <p>Posted on Fri 19 October 2012 in <a href="https://www.bertera.it/category/python.html">Python</a></p>
   </header>
   <div>
     <p>Vendor specific DHCP options may be provided encapsulated in DHCP option
-43.<br>
+43.<br />
 With <a href="https://github.com/pbertera/junk/tree/master/dhcp-encapsulated-options">this little script</a> you
 can encode and decode vendor encapsulated option according to <a href="http://www.ietf.org/rfc/rfc2132.txt">RFC
 2132</a>.</p>
 <p>For example with this command you can tunnel options 66 (TFTP Server),
 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS):</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./dhcp-encapsulated-options.py<span class="w"> </span>encode<span class="w"> </span><span class="m">66</span><span class="w"> </span>http://provisionig.example.com<span class="w"> </span><span class="m">67</span><span class="w"> </span>settings.xml<span class="w"> </span><span class="m">132</span><span class="w"> </span><span class="m">33</span><span class="w"> </span><span class="m">133</span><span class="w"> </span><span class="m">6</span>
-Encoding<span class="w"> </span>part<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>http://provisionig.example.com
-<span class="w"> </span>Option<span class="w"> </span>ID:<span class="w"> </span><span class="m">66</span>
-<span class="w"> </span>Option<span class="w"> </span>length:<span class="w"> </span><span class="m">30</span>
-<span class="w"> </span>Encoded<span class="w"> </span>Option<span class="w"> </span>part:<span class="w"> </span><span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
+<div class="highlight"><pre><span></span>$ ./dhcp-encapsulated-options.py encode <span class="m">66</span> http://provisionig.example.com <span class="m">67</span> settings.xml <span class="m">132</span> <span class="m">33</span> <span class="m">133</span> <span class="m">6</span>
+Encoding part <span class="m">1</span>: http://provisionig.example.com
+ Option ID: <span class="m">66</span>
+ Option length: <span class="m">30</span>
+ Encoded Option part: <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
 
-Encoding<span class="w"> </span>part<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>settings.xml
-<span class="w"> </span>Option<span class="w"> </span>ID:<span class="w"> </span><span class="m">67</span>
-<span class="w"> </span>Option<span class="w"> </span>length:<span class="w"> </span><span class="m">12</span>
-<span class="w"> </span>Encoded<span class="w"> </span>Option<span class="w"> </span>part:<span class="w"> </span><span class="m">43</span>:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+Encoding part <span class="m">2</span>: settings.xml
+ Option ID: <span class="m">67</span>
+ Option length: <span class="m">12</span>
+ Encoded Option part: <span class="m">43</span>:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
 
-Encoding<span class="w"> </span>part<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="m">33</span>
-<span class="w"> </span>Option<span class="w"> </span>ID:<span class="w"> </span><span class="m">132</span>
-<span class="w"> </span>Option<span class="w"> </span>length:<span class="w"> </span><span class="m">2</span>
-<span class="w"> </span>Encoded<span class="w"> </span>Option<span class="w"> </span>part:<span class="w"> </span><span class="m">84</span>:02:33:33
+Encoding part <span class="m">3</span>: <span class="m">33</span>
+ Option ID: <span class="m">132</span>
+ Option length: <span class="m">2</span>
+ Encoded Option part: <span class="m">84</span>:02:33:33
 
-Encoding<span class="w"> </span>part<span class="w"> </span><span class="m">4</span>:<span class="w"> </span><span class="m">6</span>
-<span class="w"> </span>Option<span class="w"> </span>ID:<span class="w"> </span><span class="m">133</span>
-<span class="w"> </span>Option<span class="w"> </span>length:<span class="w"> </span><span class="m">1</span>
-<span class="w"> </span>Encoded<span class="w"> </span>Option<span class="w"> </span>part:<span class="w"> </span><span class="m">85</span>:01:36
+Encoding part <span class="m">4</span>: <span class="m">6</span>
+ Option ID: <span class="m">133</span>
+ Option length: <span class="m">1</span>
+ Encoded Option part: <span class="m">85</span>:01:36
 
-Full<span class="w"> </span>encoded<span class="w"> </span>options:<span class="w"> </span><span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36
-</code></pre></div>
+Full encoded options: <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C:84:02:33:33:85:01:36
+</pre></div>
+
 
 <p>And then you can add the encoded options in you dhcpd config file:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">host</span><span class="w"> </span><span class="nt">device</span><span class="p">.</span><span class="nc">labo</span><span class="p">.</span><span class="nc">local</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<span class="w">    </span><span class="err">hardware</span><span class="w"> </span><span class="err">ethernet</span><span class="w"> </span><span class="err">01:04:23:3</span><span class="n">b</span><span class="p">:</span><span class="n">d0</span><span class="o">:</span><span class="mi">21</span><span class="p">;</span><span class="w">  </span>
-<span class="w">    </span><span class="err">fixed-address</span><span class="w"> </span><span class="err">172.16.18.30</span><span class="p">;</span><span class="w">  </span>
-<span class="w">    </span><span class="err">option</span><span class="w"> </span><span class="err">vendor-encapsulated-options</span>
-<span class="w">    </span><span class="err">42:1</span><span class="n">E</span><span class="p">:</span><span class="mi">68</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">3</span><span class="n">A</span><span class="o">:</span><span class="mi">2</span><span class="n">F</span><span class="o">:</span><span class="mi">2</span><span class="n">F</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">72</span><span class="o">:</span><span class="mi">6</span><span class="n">F</span><span class="o">:</span><span class="mi">76</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">73</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">6</span><span class="n">F</span><span class="o">:</span><span class="mi">6</span><span class="n">E</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">67</span><span class="o">:</span><span class="mi">2</span><span class="n">E</span><span class="o">:</span><span class="mi">65</span><span class="o">:</span><span class="mi">78</span><span class="o">:</span><span class="mi">61</span><span class="o">:</span><span class="mi">6</span><span class="n">D</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">6</span><span class="n">C</span><span class="o">:</span><span class="mi">65</span><span class="o">:</span><span class="mi">2</span><span class="n">E</span><span class="o">:</span><span class="mi">63</span><span class="o">:</span><span class="mi">6</span><span class="n">F</span><span class="o">:</span><span class="mi">6</span><span class="n">D</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">0</span><span class="n">C</span><span class="o">:</span><span class="mi">73</span><span class="o">:</span><span class="mi">65</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">6</span><span class="n">E</span><span class="o">:</span><span class="mi">67</span><span class="o">:</span><span class="mi">73</span><span class="o">:</span><span class="mi">2</span><span class="n">E</span><span class="o">:</span><span class="mi">78</span><span class="o">:</span><span class="mi">6</span><span class="n">D</span><span class="o">:</span><span class="mi">6</span><span class="n">C</span><span class="o">:</span><span class="mi">84</span><span class="o">:</span><span class="mi">02</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">85</span><span class="o">:</span><span class="mi">01</span><span class="o">:</span><span class="mi">36</span><span class="p">;</span><span class="w">  </span>
+<div class="highlight"><pre><span></span><span class="nt">host</span> <span class="nt">device</span><span class="p">.</span><span class="nc">labo</span><span class="p">.</span><span class="nc">local</span> <span class="p">{</span>  
+    <span class="err">hardware</span> <span class="err">ethernet</span> <span class="err">01:04:23:3</span><span class="n">b</span><span class="p">:</span><span class="n">d0</span><span class="o">:</span><span class="mi">21</span><span class="p">;</span>  
+    <span class="err">fixed-address</span> <span class="err">172.16.18.30</span><span class="p">;</span>  
+    <span class="err">option</span> <span class="err">vendor-encapsulated-options</span>
+    <span class="err">42:1</span><span class="n">E</span><span class="p">:</span><span class="mi">68</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">3</span><span class="n">A</span><span class="o">:</span><span class="mi">2</span><span class="n">F</span><span class="o">:</span><span class="mi">2</span><span class="n">F</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">72</span><span class="o">:</span><span class="mi">6</span><span class="n">F</span><span class="o">:</span><span class="mi">76</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">73</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">6</span><span class="n">F</span><span class="o">:</span><span class="mi">6</span><span class="n">E</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">67</span><span class="o">:</span><span class="mi">2</span><span class="n">E</span><span class="o">:</span><span class="mi">65</span><span class="o">:</span><span class="mi">78</span><span class="o">:</span><span class="mi">61</span><span class="o">:</span><span class="mi">6</span><span class="n">D</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">6</span><span class="n">C</span><span class="o">:</span><span class="mi">65</span><span class="o">:</span><span class="mi">2</span><span class="n">E</span><span class="o">:</span><span class="mi">63</span><span class="o">:</span><span class="mi">6</span><span class="n">F</span><span class="o">:</span><span class="mi">6</span><span class="n">D</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mi">0</span><span class="n">C</span><span class="o">:</span><span class="mi">73</span><span class="o">:</span><span class="mi">65</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">74</span><span class="o">:</span><span class="mi">69</span><span class="o">:</span><span class="mi">6</span><span class="n">E</span><span class="o">:</span><span class="mi">67</span><span class="o">:</span><span class="mi">73</span><span class="o">:</span><span class="mi">2</span><span class="n">E</span><span class="o">:</span><span class="mi">78</span><span class="o">:</span><span class="mi">6</span><span class="n">D</span><span class="o">:</span><span class="mi">6</span><span class="n">C</span><span class="o">:</span><span class="mi">84</span><span class="o">:</span><span class="mi">02</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">33</span><span class="o">:</span><span class="mi">85</span><span class="o">:</span><span class="mi">01</span><span class="o">:</span><span class="mi">36</span><span class="p">;</span>  
 <span class="p">}</span>
-</code></pre></div>
+</pre></div>
+
 
 <p>And viceversa you can decode an encapsulated option:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./dhcp-encapsulated-options.py<span class="w"> </span>decode<span class="w"> </span><span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
-Decoding<span class="w"> </span>part<span class="w"> </span><span class="m">1</span>:<span class="w"> </span><span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
-<span class="w"> </span>Option<span class="w"> </span>ID:<span class="w"> </span><span class="m">66</span>
-<span class="w"> </span>Option<span class="w"> </span>lenght:<span class="w"> </span><span class="m">30</span>
-<span class="w"> </span>Option<span class="w"> </span>value:<span class="w"> </span><span class="s2">&quot;http://provisionig.example.com&quot;</span>
+<div class="highlight"><pre><span></span>$ ./dhcp-encapsulated-options.py decode <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D:43:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+Decoding part <span class="m">1</span>: <span class="m">42</span>:1E:68:74:74:70:3A:2F:2F:70:72:6F:76:69:73:69:6F:6E:69:67:2E:65:78:61:6D:70:6C:65:2E:63:6F:6D
+ Option ID: <span class="m">66</span>
+ Option lenght: <span class="m">30</span>
+ Option value: <span class="s2">&quot;http://provisionig.example.com&quot;</span>
 
-Decoding<span class="w"> </span>part<span class="w"> </span><span class="m">2</span>:<span class="w"> </span><span class="m">43</span>:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
-<span class="w"> </span>Option<span class="w"> </span>ID:<span class="w"> </span><span class="m">67</span>
-<span class="w"> </span>Option<span class="w"> </span>lenght:<span class="w"> </span><span class="m">12</span>
-<span class="w"> </span>Option<span class="w"> </span>value:<span class="w"> </span><span class="s2">&quot;settings.xml&quot;</span>
+Decoding part <span class="m">2</span>: <span class="m">43</span>:0C:73:65:74:74:69:6E:67:73:2E:78:6D:6C
+ Option ID: <span class="m">67</span>
+ Option lenght: <span class="m">12</span>
+ Option value: <span class="s2">&quot;settings.xml&quot;</span>
 
-End<span class="w"> </span>of<span class="w"> </span>encoded<span class="w"> </span>options
-</code></pre></div>
+End of encoded options
+</pre></div>
   </div>
   <div class="tag-cloud">
     <p>
-      <a href="http://www.bertera.it/tag/decoding.html">decoding</a>
-      <a href="http://www.bertera.it/tag/dhcp.html">dhcp</a>
-      <a href="http://www.bertera.it/tag/encapsulated-options.html">encapsulated options</a>
-      <a href="http://www.bertera.it/tag/encoding.html">encoding</a>
-      <a href="http://www.bertera.it/tag/python.html">python</a>
-      <a href="http://www.bertera.it/tag/rfc2132.html">rfc2132</a>
+      <a href="https://www.bertera.it/tag/decoding.html">decoding</a>
+      <a href="https://www.bertera.it/tag/dhcp.html">dhcp</a>
+      <a href="https://www.bertera.it/tag/encapsulated-options.html">encapsulated options</a>
+      <a href="https://www.bertera.it/tag/encoding.html">encoding</a>
+      <a href="https://www.bertera.it/tag/python.html">python</a>
+      <a href="https://www.bertera.it/tag/rfc2132.html">rfc2132</a>
     </p>
   </div>
 <div id="disqus_thread"></div>
@@ -189,7 +191,7 @@ End<span class="w"> </span>of<span class="w"> </span>encoded<span class="w"> </s
   "@context" : "http://schema.org",
   "@type" : "Blog",
   "name": " Pietro Bertera's Blog ",
-  "url" : "http://www.bertera.it",
+  "url" : "https://www.bertera.it",
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
   "description": "Pietro Bertera's Thoughts and Writings"
 }
@@ -205,11 +207,11 @@ End<span class="w"> </span>of<span class="w"> </span>encoded<span class="w"> </s
   "author": {
     "@type": "Person",
     "name": "admin",
-    "url": "http://www.bertera.it/author/admin.html"
+    "url": "https://www.bertera.it/author/admin.html"
   },
   "image": "//s.gravatar.com/avatar/f64fc3d41c2a8368feff0b7672ca7571?s=120",
-  "url": "http://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html",
-  "description": "Vendor specific DHCP options may be provided encapsulated in DHCP option 43. With this little script you can encode and decode vendor encapsulated option according to RFC 2132. For example with this command you can tunnel options 66 (TFTP Server), 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS …"
+  "url": "https://www.bertera.it/encoding-and-decoding-encapsulated-dhcp-options-rfc-2132.html",
+  "description": "Vendor specific DHCP options may be provided encapsulated in DHCP option 43. With this little script you can encode and decode vendor encapsulated option according to RFC 2132. For example with this command you can tunnel options 66 (TFTP Server), 67 (TFTP Path), 132 (VLAN ID) and 133 (VLAN QOS ..."
 }
 </script></body>
 </html>
